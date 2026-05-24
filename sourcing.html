@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sourcing Product · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="services">
+<section class="hero">
+  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot"></span> Sourcing Product</span>
+      <h1 class="headline" style="color:var(--accent)">Find, Source & Scale &mdash; Hassle-Free Product Sourcing</h1>
+      <p class="hero-sub">Source winning products at the best prices, with quality checks and trade-ready stock.</p>
+      <div class="cta-row"><a href="#cta" class="btn-primary">Get Started →</a></div>
+    </div>
+  </div>
+</section>
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">Why Sourcing Product</span><h2 class="title">Unlock Efficient Sourcing: Your e-commerce network solution to better profits</h2></div>
+    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto">
+      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">💰</div><h4>Best Prices, Highest Quality</h4><p>Access vetted suppliers that meet our top quality standards.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">⚡</div><h4>Faster Time-to-Market</h4><p>Skip months of factory chasing — promote new arrivals in days.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">📈</div><h4>Business Scalability</h4><p>A logistics partner that grows with your volume.</p></div>
+    </div>
+  </div>
+</section>
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="title">Quick Answers to Key Questions</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>Didn't get your answer yet?</h3>
+        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open"><div class="faq-q">What are the expenses associated with the service? <span class="pl">+</span></div><div class="faq-a">Check our comprehensive fee guide on the platform to get a general idea about our prices.</div></div><div class="faq-item"><div class="faq-q">How to source a product? <span class="pl">+</span></div><div class="faq-a">Submit a request through your dashboard with your target price and we’ll match you with vetted suppliers.</div></div><div class="faq-item"><div class="faq-q">What are MDM Express’s warehousing policies? <span class="pl">+</span></div><div class="faq-a">Standard storage for active SKUs is included; long-term storage fees apply after 60 days of inactivity.</div></div><div class="faq-item"><div class="faq-q">How can I benefit from cash credit offered by MDM Express? <span class="pl">+</span></div><div class="faq-a">Eligible operators can apply for performance-based financing on the Capital page.</div></div>
+      </div>
+    </div>
+  </div>
+</section><script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="animations.js"></script>
+
+<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn = document.getElementById('musicToggle');
+  const video = document.querySelector('.hero-video');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+      .catch(()=>{});
+  }
+  document.addEventListener('click', tryStart, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  // Pause music when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden && playing) audio.pause();
+    else if (!document.hidden && playing) audio.play();
+  });
+})();
+</script>
+</body>
+</html>

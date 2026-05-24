@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Services · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="services">
+<section class="hero">
+  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot"></span> Services Overview</span>
+      <h1 class="headline">Unlock New Markets with Premium <span class="accent">COD Solutions</span></h1>
+      <p class="hero-sub">A full-stack operations platform — from product sourcing to last-mile delivery and post-sale support.</p>
+      <div class="cta-row">
+        <a href="#cta" class="btn-primary">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">Five services</span><h2 class="title">Pick a service or take the whole stack</h2><p class="sec-sub">Each service stands on its own — combined, they remove every operational bottleneck for COD sellers.</p></div>
+    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);gap:24px">
+      <a class="feat" href="sourcing.html"><div class="feat-vis r" style="font-size:48px">🔍</div><h4>Sourcing Product</h4><p>Source winning products at the best prices, with quality checks and trade-ready stock.</p></a>
+      <a class="feat" href="warehousing.html"><div class="feat-vis" style="font-size:48px">🏬</div><h4>Warehousing &amp; Fulfillment</h4><p>High-quality storage with professional packaging and picking for every product type.</p></a>
+      <a class="feat" href="call-center.html"><div class="feat-vis r" style="font-size:48px">🎧</div><h4>Call Centre</h4><p>24/7 multilingual confirmation team that lifts your COD acceptance rate.</p></a>
+      <a class="feat" href="delivery.html"><div class="feat-vis" style="font-size:48px">🚚</div><h4>Shipping &amp; Delivery</h4><p>Fast logistics with precise shipment tracking across the GCC and beyond.</p></a>
+      <a class="feat" href="remittance.html"><div class="feat-vis r" style="font-size:48px">💸</div><h4>COD Remittance</h4><p>Get paid faster with transparent, predictable COD payouts.</p></a>
+      <a class="feat" href="capital.html"><div class="feat-vis" style="font-size:48px">📈</div><h4>Capital</h4><p>Performance-based funding to scale inventory and ad spend.</p></a>
+    </div>
+  </div>
+</section>
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="title">Quick Answers to Key Questions</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>Didn't get your answer yet?</h3>
+        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open"><div class="faq-q">Can I use one service without the others? <span class="pl">+</span></div><div class="faq-a">Yes — every service is modular. Most operators start with sourcing or call-center and expand from there.</div></div><div class="faq-item"><div class="faq-q">Which markets do you cover? <span class="pl">+</span></div><div class="faq-a">Saudi Arabia, UAE and the wider GCC, with selected international corridors.</div></div><div class="faq-item"><div class="faq-q">How long does onboarding take? <span class="pl">+</span></div><div class="faq-a">Most accounts go live within 48–72 hours of submitting your application.</div></div><div class="faq-item"><div class="faq-q">Do you handle returns? <span class="pl">+</span></div><div class="faq-a">Yes — NDR management and returns are included in the warehousing service.</div></div>
+      </div>
+    </div>
+  </div>
+</section><script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="animations.js"></script>
+
+<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn = document.getElementById('musicToggle');
+  const video = document.querySelector('.hero-video');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+      .catch(()=>{});
+  }
+  document.addEventListener('click', tryStart, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  // Pause music when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden && playing) audio.pause();
+    else if (!document.hidden && playing) audio.play();
+  });
+})();
+</script>
+</body>
+</html>

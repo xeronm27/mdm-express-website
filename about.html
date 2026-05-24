@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About Us · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="about">
+<section class="hero">
+  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot"></span> About Us</span>
+      <h1 class="headline">A Partner Made for <span class="accent">E-commerce Sellers</span></h1>
+      <p class="hero-sub">Over a decade of expertise in COD e-commerce and logistics — built by operators, for operators.</p>
+      <div class="cta-row">
+        <a href="#cta" class="btn-primary">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block alt">
+  <div class="wrap">
+    <div class="stat-band" style="grid-template-columns:repeat(4,1fr);text-align:center">
+      <div class="stat-cell" style="border:none"><div class="stat-amount">9K+</div><h4 style="color:var(--ink)">Sellers Onboarded</h4></div>
+      <div class="stat-cell" style="border:none"><div class="stat-amount">8+</div><h4 style="color:var(--ink)">Years Experience</h4></div>
+      <div class="stat-cell" style="border:none"><div class="stat-amount">2+</div><h4 style="color:var(--ink)">Markets Live</h4></div>
+      <div class="stat-cell" style="border:none"><div class="stat-amount">9+</div><h4 style="color:var(--ink)">Awards</h4></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">Leadership</span><h2 class="title">Over A Decade Of Expertise In COD E-Commerce and Logistics</h2><p class="sec-sub">A team of operators, technologists and logistics veterans building the COD stack we always wished existed.</p></div>
+    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto">
+      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:120px;font-size:42px">👤</div><h4>Mohammed Abdullah</h4><p>CEO &amp; Founder</p></div>
+      <div class="feat" style="text-align:center"><div class="feat-vis" style="height:120px;font-size:42px">👤</div><h4>Karim Al-Hijazi</h4><p>COO</p></div>
+      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:120px;font-size:42px">👤</div><h4>Sarah Al-Tahir</h4><p>Head of Logistics</p></div>
+    </div>
+  </div>
+</section>
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="title">Quick Answers to Key Questions</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>Didn't get your answer yet?</h3>
+        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open"><div class="faq-q">What are the expenses associated with the service? <span class="pl">+</span></div><div class="faq-a">Check our comprehensive fee guide on the platform for current pricing across all services.</div></div><div class="faq-item"><div class="faq-q">How is inventory handled? <span class="pl">+</span></div><div class="faq-a">We provide warehouse storage, packaging and order picking out of our regional fulfillment centers.</div></div><div class="faq-item"><div class="faq-q">What are MDM Express’s warehousing policies? <span class="pl">+</span></div><div class="faq-a">Standard storage for active SKUs is included; long-term storage fees apply after 60 days of inactivity.</div></div><div class="faq-item"><div class="faq-q">How can I benefit from cash credit offered by MDM Express? <span class="pl">+</span></div><div class="faq-a">Active operators with consistent sales volume qualify for performance-based financing on the Capital page.</div></div>
+      </div>
+    </div>
+  </div>
+</section><script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="animations.js"></script>
+
+<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn = document.getElementById('musicToggle');
+  const video = document.querySelector('.hero-video');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+      .catch(()=>{});
+  }
+  document.addEventListener('click', tryStart, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  // Pause music when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden && playing) audio.pause();
+    else if (!document.hidden && playing) audio.play();
+  });
+})();
+</script>
+</body>
+</html>

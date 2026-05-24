@@ -1,0 +1,12 @@
+# Uploads (large files not needed in repo)
+uploads/
+
+# Old standalone files
+CODPARTNER Homepage Redesign*.html
+
+# Dev files
+tweaks-panel.jsx
+
+# OS files
+.DS_Store
+Thumbs.db

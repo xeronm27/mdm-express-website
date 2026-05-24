@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How it works · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="how">
+<section class="hero">
+  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot"></span> How it works</span>
+      <h1 class="headline">From Setup to Sale, <span class="accent">in Three Easy Steps</span></h1>
+      <p class="hero-sub">Get from sign-up to your first paid order without ever touching a warehouse.</p>
+      <div class="cta-row">
+        <a href="#cta" class="btn-primary">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block alt">
+  <div class="wrap">
+    <div class="steps" style="grid-template-columns:1fr 1fr;gap:32px">
+      <div class="step"><div class="step-num">STEP 01</div><h3 style="font-size:26px">Connect &amp; Kickstart</h3><p style="font-size:15px">Sign up, pick your market, and configure your storefront. Our onboarding team gets you fully set up within 48 hours — from store integration to payment routing.</p><div class="step-vis" style="height:160px;margin-top:18px"><div class="req">🔌</div></div></div>
+      <div class="step"><div class="step-num">STEP 02</div><h3 style="font-size:26px">Find &amp; Choose Products</h3><p style="font-size:15px">Browse our curated catalog of validated COD products with live conversion data. Pick winners, push them to your funnel, and let our system handle the rest.</p><div class="step-vis" style="height:160px;margin-top:18px"><div class="req">🛒</div></div></div>
+    </div>
+    <div style="margin-top:32px">
+      <div class="step" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center"><div><div class="step-num">STEP 03</div><h3 style="font-size:26px;margin-top:8px">Fast &amp; Secure Transactions</h3><p style="font-size:15px">Every COD order is confirmed by our call center, fulfilled by our warehouse, delivered by our logistics network, and paid out to you on a predictable schedule.</p></div><div class="step-vis" style="height:200px"><div class="chip-fund">$87,896 paid</div></div></div>
+    </div>
+  </div>
+</section>
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="title">Quick Answers to Key Questions</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>Didn't get your answer yet?</h3>
+        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open"><div class="faq-q">How does integration sync with my meeting platform? <span class="pl">+</span></div><div class="faq-a">We integrate directly with Shopify, WooCommerce, and custom funnels — orders flow straight into our fulfillment system.</div></div><div class="faq-item"><div class="faq-q">Can I access transcriptions after the meeting ends? <span class="pl">+</span></div><div class="faq-a">Yes — every call from our confirmation center is recorded and accessible in your dashboard.</div></div><div class="faq-item"><div class="faq-q">Is it possible to search for specific topics within the transcriptions? <span class="pl">+</span></div><div class="faq-a">Use the dashboard’s search to surface order events, customer feedback, and call notes.</div></div><div class="faq-item"><div class="faq-q">What formats are available for exporting the transcripts? <span class="pl">+</span></div><div class="faq-a">Export reports as PDF, CSV or XLSX directly from your dashboard.</div></div>
+      </div>
+    </div>
+  </div>
+</section><script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="animations.js"></script>
+
+<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn = document.getElementById('musicToggle');
+  const video = document.querySelector('.hero-video');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+      .catch(()=>{});
+  }
+  document.addEventListener('click', tryStart, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  // Pause music when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden && playing) audio.pause();
+    else if (!document.hidden && playing) audio.play();
+  });
+})();
+</script>
+</body>
+</html>

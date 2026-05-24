@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>COD Remittance · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="services">
+<section class="hero">
+  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot"></span> COD Remittance</span>
+      <h1 class="headline" style="color:var(--accent)">COD Remittance</h1>
+      <p class="hero-sub">Get paid faster, secure your COD eCommerce revenue effortlessly.</p>
+      <div class="cta-row"><a href="#cta" class="btn-primary">Get Started →</a></div>
+    </div>
+  </div>
+</section>
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">Why COD Remittance</span><h2 class="title">Fast COD Remittance for E-Commerce Growth</h2></div>
+    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto">
+      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">💸</div><h4>Quick Cash Flow</h4><p>Funds settled to your account on a predictable weekly schedule.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">⚙️</div><h4>Seamless Operations</h4><p>Automatic reconciliation across orders, shipments and payouts.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">🌍</div><h4>Global Reach</h4><p>Multi-currency payouts to bank accounts across the region and abroad.</p></div>
+    </div>
+  </div>
+</section>
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="title">Quick Answers to Key Questions</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>Didn't get your answer yet?</h3>
+        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
+        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open"><div class="faq-q">What are the expenses associated with the service? <span class="pl">+</span></div><div class="faq-a">A flat percentage on collected revenue — no hidden fees.</div></div><div class="faq-item"><div class="faq-q">How to source a product? <span class="pl">+</span></div><div class="faq-a">Use our Sourcing service to find vetted suppliers.</div></div><div class="faq-item"><div class="faq-q">Is warehousing free? <span class="pl">+</span></div><div class="faq-a">Active SKUs are included; long-term storage incurs a small fee after 60 days.</div></div><div class="faq-item"><div class="faq-q">How can I get cash credit? <span class="pl">+</span></div><div class="faq-a">Eligible operators can apply via the Capital page based on monthly remittance volume.</div></div>
+      </div>
+    </div>
+  </div>
+</section><script src="shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="animations.js"></script>
+
+<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn = document.getElementById('musicToggle');
+  const video = document.querySelector('.hero-video');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+      .catch(()=>{});
+  }
+  document.addEventListener('click', tryStart, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  // Pause music when tab hidden
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden && playing) audio.pause();
+    else if (!document.hidden && playing) audio.play();
+  });
+})();
+</script>
+</body>
+</html>
