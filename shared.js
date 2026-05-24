@@ -245,6 +245,13 @@
       </div>
     </footer>`;
 
+  /* ── INJECT: skip link (keyboard users — hidden until focused) */
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main-content';
+  skipLink.className = 'skip-link';
+  skipLink.textContent = 'Skip to main content';
+  document.body.insertBefore(skipLink, document.body.firstChild);
+
   /* ── INJECT: nav at very top of body ──────────────────────── */
   const navWrap = document.createElement('div');
   navWrap.innerHTML = navHtml;
@@ -260,7 +267,7 @@
 
   /* ── INJECT: stats band + testimonials (home page only) ───── */
   if (active === 'home') {
-    const reorderRoot = document.getElementById('reorder-root');
+    const reorderRoot = document.querySelector('[data-reorder]');
     if (reorderRoot) {
       // Stats band — after the reorder-root sections
       const sbWrap = document.createElement('div');
