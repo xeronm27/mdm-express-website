@@ -111,44 +111,93 @@
 .sa-fund-title{font-size:1rem;font-weight:700;color:#111;margin:0 0 8px}
 .sa-fund-desc{font-size:.84rem;color:#666;line-height:1.6;margin:0 0 16px}
 .sa-fund-cap{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:500;color:#DC2626;background:rgba(220,38,38,.08);padding:5px 10px;border-radius:8px;display:inline-block}
-/* TIERS — comparison table layout */
+/* TIERS — horizontal band layout */
 .sa-tiers-section{background:#07100A}
-.sa-compare-wrap{margin-top:56px;border:1px solid rgba(255,255,255,.08);border-radius:24px;overflow:hidden}
-/* Header grid */
-.sa-compare-grid{display:grid;grid-template-columns:220px 1fr 1fr 1fr;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.08)}
-.sa-cg-spacer{padding:28px 24px;border-right:1px solid rgba(255,255,255,.06)}
-.sa-cg-col{padding:28px 24px;border-right:1px solid rgba(255,255,255,.06);position:relative}
-.sa-cg-col:last-child{border-right:none}
-.sa-cg-col--featured{background:rgba(220,38,38,.07);border-left:1px solid rgba(220,38,38,.25);border-right:1px solid rgba(220,38,38,.25)}
-.sa-col-pop{display:inline-block;background:#DC2626;color:#fff;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
-.sa-col-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#EF4444;margin-bottom:8px}
-.sa-col-limit{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:#fff;line-height:1;margin-bottom:4px}
-.sa-col-sub{font-size:.72rem;color:rgba(255,255,255,.3)}
-/* Table rows */
-.sa-compare-table{display:flex;flex-direction:column}
-.sa-ctr{display:grid;grid-template-columns:220px 1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,.05)}
-.sa-ctr:hover{background:rgba(255,255,255,.015)}
-.sa-ct-key{padding:14px 24px;font-size:.82rem;color:rgba(255,255,255,.45);border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
-.sa-ct-val{padding:14px 24px;font-family:'JetBrains Mono',monospace;font-size:.84rem;color:rgba(255,255,255,.8);font-weight:500;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
-.sa-ct-val:last-child{border-right:none}
-.sa-ct-featured{background:rgba(220,38,38,.05);border-left:1px solid rgba(220,38,38,.15);border-right:1px solid rgba(220,38,38,.15)}
-.sa-ct-yes{color:#4ADE80}
-.sa-ct-no{color:rgba(255,255,255,.2)}
-/* CTA row */
-.sa-compare-cta{display:grid;grid-template-columns:220px 1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-.sa-cta-spacer{padding:24px}
-.sa-cta-col{padding:20px 24px;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
-.sa-cta-col:last-child{border-right:none}
-.sa-cta-col--featured{background:rgba(220,38,38,.07);border-left:1px solid rgba(220,38,38,.2);border-right:1px solid rgba(220,38,38,.2)}
-.sa-cta-btn{display:block;width:100%;padding:11px 16px;border-radius:9px;text-align:center;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;white-space:nowrap}
-.sa-cta-solid{background:#DC2626;color:#fff;box-shadow:0 4px 16px rgba(220,38,38,.3)}
-.sa-cta-solid:hover{background:#B91C1C;transform:translateY(-1px)}
-.sa-cta-outline{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
-.sa-cta-outline:hover{border-color:rgba(220,38,38,.5);color:#EF4444}
-/* Fine print */
-.sa-compare-note{text-align:center;margin-top:20px;font-size:.75rem;color:rgba(255,255,255,.25);line-height:1.6}
-/* Keep old classes for safety */
-.sa-tier-btn,.sa-tier,.sa-tiers-grid{display:none}
+.sa-bands{margin-top:56px;display:flex;flex-direction:column;gap:0;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.sa-band{
+  display:grid;
+  grid-template-columns:140px 180px 1fr auto;
+  align-items:center;
+  gap:0;
+  padding:28px 32px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .2s;
+}
+.sa-band:last-child{border-bottom:none}
+.sa-band:hover{background:rgba(255,255,255,.02)}
+.sa-band--featured{
+  background:rgba(220,38,38,.06);
+  border-top:1px solid rgba(220,38,38,.2);
+  border-bottom:1px solid rgba(220,38,38,.2);
+  position:relative;
+}
+.sa-band--featured::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  background:linear-gradient(180deg,#DC2626,#EF4444);
+}
+.sa-band-tier{padding-right:24px}
+.sa-band-name{
+  font-size:.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:rgba(255,255,255,.4);display:block;margin-bottom:4px;
+}
+.sa-band--featured .sa-band-name{color:#EF4444}
+.sa-band-pop{
+  display:inline-block;background:#DC2626;color:#fff;
+  font-size:.58rem;font-weight:700;padding:2px 8px;
+  border-radius:100px;letter-spacing:.05em;text-transform:uppercase;
+}
+.sa-band-limit{
+  padding-right:32px;
+  border-right:1px solid rgba(255,255,255,.07);
+  margin-right:32px;
+}
+.sa-band-amount{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.9rem;font-weight:500;color:#fff;
+  display:block;line-height:1;margin-bottom:3px;
+}
+.sa-band--featured .sa-band-amount{color:#fff}
+.sa-band-cap{font-size:.7rem;color:rgba(255,255,255,.3)}
+.sa-band-chips{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+.sa-chip{
+  font-size:.75rem;font-weight:500;
+  color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  padding:5px 12px;border-radius:100px;
+  white-space:nowrap;
+}
+.sa-chip--lit{
+  color:rgba(255,255,255,.8);
+  background:rgba(220,38,38,.12);
+  border-color:rgba(220,38,38,.2);
+}
+.sa-band-action{padding-left:32px}
+.sa-band-btn{
+  display:inline-block;
+  padding:10px 22px;
+  border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.7);
+  font-size:.82rem;font-weight:700;
+  border-radius:9px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:all .2s;
+}
+.sa-band-btn:hover{border-color:rgba(220,38,38,.5);color:#EF4444}
+.sa-band-btn--solid{
+  background:#DC2626;color:#fff;
+  border-color:#DC2626;
+  box-shadow:0 4px 16px rgba(220,38,38,.3);
+}
+.sa-band-btn--solid:hover{background:#B91C1C;border-color:#B91C1C;color:#fff;transform:translateY(-1px)}
+.sa-bands-note{
+  text-align:center;margin-top:18px;
+  font-size:.74rem;color:rgba(255,255,255,.22);line-height:1.6;
+}
 
 /* ELIGIBILITY */
 .sa-elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:56px}
@@ -363,107 +412,78 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag" style="background:rgba(220,38,38,.12);color:#FCA5A5;border-color:rgba(220,38,38,.3)">Advance Limits</span>
-      <h2 class="title" style="color:#fff">Find the Right Advance for Your Volume</h2>
-      <p class="sec-sub" style="color:rgba(255,255,255,.5)">Each tier is sized to your sales track record. Limits review every 90 days and grow as you repay.</p>
+      <h2 class="title" style="color:#fff">How Much Can You Access?</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.5)">Limits are tied to your COD sales volume. As you repay and grow, your advance scales up automatically.</p>
     </div>
 
-    <div class="sa-compare-wrap">
+    <div class="sa-bands">
 
-      <!-- Column headers -->
-      <div class="sa-compare-grid">
-        <div class="sa-cg-spacer"></div>
-
-        <div class="sa-cg-col">
-          <div class="sa-col-label">Starter</div>
-          <div class="sa-col-limit">$5,000</div>
-          <div class="sa-col-sub">max advance</div>
+      <!-- Band 1: Starter -->
+      <div class="sa-band">
+        <div class="sa-band-tier">
+          <span class="sa-band-name">Starter</span>
         </div>
-
-        <div class="sa-cg-col sa-cg-col--featured">
-          <div class="sa-col-pop">Most Popular</div>
-          <div class="sa-col-label">Growth</div>
-          <div class="sa-col-limit">$20,000</div>
-          <div class="sa-col-sub">max advance</div>
+        <div class="sa-band-limit">
+          <span class="sa-band-amount">$5,000</span>
+          <span class="sa-band-cap">max advance</span>
         </div>
-
-        <div class="sa-cg-col">
-          <div class="sa-col-label">Scale</div>
-          <div class="sa-col-limit">$50K+</div>
-          <div class="sa-col-sub">negotiated</div>
+        <div class="sa-band-chips">
+          <span class="sa-chip">$3K+/mo sales</span>
+          <span class="sa-chip">3 mo history</span>
+          <span class="sa-chip">60-day window</span>
+          <span class="sa-chip">5–8% auto-repay</span>
+        </div>
+        <div class="sa-band-action">
+          <a href="#cta" class="sa-band-btn">Apply &rarr;</a>
         </div>
       </div>
 
-      <!-- Table rows -->
-      <div class="sa-compare-table">
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Min. monthly sales</div>
-          <div class="sa-ct-val">$3,000 /mo</div>
-          <div class="sa-ct-val sa-ct-featured">$8,000 /mo</div>
-          <div class="sa-ct-val">$20,000 /mo</div>
+      <!-- Band 2: Growth -->
+      <div class="sa-band sa-band--featured">
+        <div class="sa-band-tier">
+          <span class="sa-band-name">Growth</span>
+          <span class="sa-band-pop">Most Popular</span>
         </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Platform history</div>
-          <div class="sa-ct-val">3 months</div>
-          <div class="sa-ct-val sa-ct-featured">6 months</div>
-          <div class="sa-ct-val">12 months</div>
+        <div class="sa-band-limit">
+          <span class="sa-band-amount">$20,000</span>
+          <span class="sa-band-cap">max advance</span>
         </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Repayment window</div>
-          <div class="sa-ct-val">60 days</div>
-          <div class="sa-ct-val sa-ct-featured">90 days</div>
-          <div class="sa-ct-val">120 days</div>
+        <div class="sa-band-chips">
+          <span class="sa-chip sa-chip--lit">$8K+/mo sales</span>
+          <span class="sa-chip sa-chip--lit">6 mo history</span>
+          <span class="sa-chip sa-chip--lit">90-day window</span>
+          <span class="sa-chip sa-chip--lit">5–8% auto-repay</span>
+          <span class="sa-chip sa-chip--lit">2 concurrent</span>
         </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Auto-deduction rate</div>
-          <div class="sa-ct-val">5 – 8%</div>
-          <div class="sa-ct-val sa-ct-featured">5 – 8%</div>
-          <div class="sa-ct-val">Custom</div>
+        <div class="sa-band-action">
+          <a href="#cta" class="sa-band-btn sa-band-btn--solid">Apply &rarr;</a>
         </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Concurrent advances</div>
-          <div class="sa-ct-val">1</div>
-          <div class="sa-ct-val sa-ct-featured">Up to 2</div>
-          <div class="sa-ct-val">Unlimited</div>
-        </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Account manager</div>
-          <div class="sa-ct-val sa-ct-no">&#8212;</div>
-          <div class="sa-ct-val sa-ct-featured sa-ct-yes">&#10003; Included</div>
-          <div class="sa-ct-val sa-ct-yes">&#10003; VIP</div>
-        </div>
-
-        <div class="sa-ctr">
-          <div class="sa-ct-key">Approval time</div>
-          <div class="sa-ct-val">48 hrs</div>
-          <div class="sa-ct-val sa-ct-featured">48 hrs</div>
-          <div class="sa-ct-val">Priority</div>
-        </div>
-
       </div>
 
-      <!-- CTA row -->
-      <div class="sa-compare-cta">
-        <div class="sa-cta-spacer"></div>
-        <div class="sa-cta-col">
-          <a href="#cta" class="sa-cta-btn sa-cta-outline">Apply &mdash; Starter &rarr;</a>
+      <!-- Band 3: Scale -->
+      <div class="sa-band">
+        <div class="sa-band-tier">
+          <span class="sa-band-name">Scale</span>
         </div>
-        <div class="sa-cta-col sa-cta-col--featured">
-          <a href="#cta" class="sa-cta-btn sa-cta-solid">Apply &mdash; Growth &rarr;</a>
+        <div class="sa-band-limit">
+          <span class="sa-band-amount">$50K+</span>
+          <span class="sa-band-cap">custom limit</span>
         </div>
-        <div class="sa-cta-col">
-          <a href="#cta" class="sa-cta-btn sa-cta-outline">Contact Us &rarr;</a>
+        <div class="sa-band-chips">
+          <span class="sa-chip">$20K+/mo sales</span>
+          <span class="sa-chip">12 mo history</span>
+          <span class="sa-chip">120-day window</span>
+          <span class="sa-chip">Custom rate</span>
+          <span class="sa-chip">Unlimited concurrent</span>
+        </div>
+        <div class="sa-band-action">
+          <a href="#cta" class="sa-band-btn">Talk to Us &rarr;</a>
         </div>
       </div>
 
     </div>
 
-    <p class="sa-compare-note">Advances are offered on a discretionary basis to eligible COD Partner sellers. All rates and limits subject to periodic review.</p>
+    <p class="sa-bands-note">Advances are offered on a discretionary basis. Eligibility and limits are reviewed every 90 days based on your settlement performance.</p>
   </div>
 </section>
 
