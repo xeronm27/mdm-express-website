@@ -3,49 +3,504 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Warehousing and Fulfillment · MDM Express</title>
+<title>Warehousing &amp; Fulfillment · MDM Express</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-page="services">
-<section class="hero">
-  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
-    <div class="hero-inner">
-      <span class="eyebrow"><span class="dot"></span> Warehousing and Fulfillment</span>
-      <h1 class="headline" style="color:var(--accent)">Warehousing and Fulfillment</h1>
-      <p class="hero-sub">Secure your products with our top-rated storage solutions across the GCC.</p>
-      <div class="cta-row"><a href="#cta" class="btn-primary">Get Started →</a></div>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
+<section class="hero wh-hero">
+  <div class="wh-hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="wh-hero-wrap">
+
+      <!-- Left copy -->
+      <div class="wh-hero-left">
+        <span class="eyebrow wh-eyebrow"><span class="dot"></span> Warehousing &amp; Fulfillment</span>
+        <h1 class="headline">
+          Your Inventory,<br/>
+          <em class="wh-accent">Always Ready.</em>
+        </h1>
+        <p class="hero-sub">Secure, climate-controlled warehouses across Saudi Arabia and the UAE — so products move from shelf to doorstep with zero friction.</p>
+        <div class="wh-hero-metrics">
+          <div class="wh-metric">
+            <span class="wh-metric-num">99.6%</span>
+            <span class="wh-metric-lab">Inventory Accuracy</span>
+          </div>
+          <div class="wh-metric-div"></div>
+          <div class="wh-metric">
+            <span class="wh-metric-num">&lt; 4 h</span>
+            <span class="wh-metric-lab">Pick &amp; Pack SLA</span>
+          </div>
+          <div class="wh-metric-div"></div>
+          <div class="wh-metric">
+            <span class="wh-metric-num">2</span>
+            <span class="wh-metric-lab">GCC Hub Locations</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="#cta" class="btn-primary">Store My Inventory →</a>
+          <a href="#flow" class="wh-link">See how it works</a>
+        </div>
+      </div>
+
+      <!-- Right: inventory dashboard -->
+      <div class="wh-dashboard" aria-label="Live inventory dashboard preview">
+        <div class="wh-dash-header">
+          <div class="wh-dash-title">
+            <div class="wh-dash-dot wh-dot-green"></div>
+            <span>Warehouse Dashboard</span>
+          </div>
+          <div class="wh-dash-time" id="whClock">—</div>
+        </div>
+
+        <!-- Shelf utilisation bars -->
+        <div class="wh-shelf-section">
+          <div class="wh-shelf-label">
+            <span>Riyadh Hub — Shelf Capacity</span>
+            <span class="wh-shelf-pct" id="whRiyPct">0%</span>
+          </div>
+          <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-green" id="whRiyFill" style="width:0%"></div></div>
+
+          <div class="wh-shelf-label" style="margin-top:14px">
+            <span>Dubai Hub — Shelf Capacity</span>
+            <span class="wh-shelf-pct" id="whDubPct">0%</span>
+          </div>
+          <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-blue" id="whDubFill" style="width:0%"></div></div>
+        </div>
+
+        <!-- SKU list -->
+        <div class="wh-sku-list">
+          <div class="wh-sku-head">
+            <span>SKU</span>
+            <span>Units</span>
+            <span>Status</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-8821</span>
+            <span class="wh-sku-units">1,204</span>
+            <span class="wh-badge wh-badge-green">In Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-4492</span>
+            <span class="wh-sku-units">387</span>
+            <span class="wh-badge wh-badge-amber">Low Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-7703</span>
+            <span class="wh-sku-units">2,051</span>
+            <span class="wh-badge wh-badge-green">In Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-3310</span>
+            <span class="wh-sku-units">0</span>
+            <span class="wh-badge wh-badge-red">Restocking</span>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="wh-activity">
+          <div class="wh-act-row" id="whAct1">
+            <div class="wh-act-icon wh-act-pack">📦</div>
+            <div class="wh-act-text">Order #WH-7841 — Packed &amp; ready</div>
+            <div class="wh-act-time">just now</div>
+          </div>
+          <div class="wh-act-row" id="whAct2">
+            <div class="wh-act-icon wh-act-in">↓</div>
+            <div class="wh-act-text">Inbound: 400 units MDM-8821</div>
+            <div class="wh-act-time">2 min</div>
+          </div>
+          <div class="wh-act-row" id="whAct3">
+            <div class="wh-act-icon wh-act-ship">🚚</div>
+            <div class="wh-act-text">Order #WH-7839 — Dispatched to Jeddah</div>
+            <div class="wh-act-time">5 min</div>
+          </div>
+        </div>
+
+        <!-- Scan toast -->
+        <div class="wh-scan-toast" id="whScanToast" aria-live="polite">
+          <div class="wh-scan-icon">✓</div>
+          <div class="wh-scan-text">
+            <div class="wh-scan-title">Barcode Scanned</div>
+            <div class="wh-scan-sub">MDM-7703 · Dubai Hub · Shelf D-14</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ═══ FULFILLMENT FLOW ═══════════════════════════════════════════ -->
+<section class="block" id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">How It Works</span>
+      <h2 class="title">From Factory to Front Door in 4 Steps</h2>
+      <p class="sec-sub">Every order passes through the same battle-tested process — nothing falls through the cracks.</p>
+    </div>
+
+    <div class="wh-flow" id="whFlow">
+      <div class="wh-flow-track" aria-hidden="true">
+        <div class="wh-flow-progress" id="whFlowProgress"></div>
+      </div>
+
+      <div class="wh-step" data-step="1">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">01</div>
+          <h4 class="wh-step-title">Inbound Receiving</h4>
+          <p class="wh-step-desc">Goods arrive at our hub. Every unit is counted, barcoded, and registered in your real-time inventory dashboard within 2 hours.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="2">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">02</div>
+          <h4 class="wh-step-title">Secure Storage</h4>
+          <p class="wh-step-desc">Climate-controlled zones, 24/7 CCTV, and rack-level SKU mapping. Your products are always exactly where we say they are.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="3">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">03</div>
+          <h4 class="wh-step-title">Pick &amp; Pack</h4>
+          <p class="wh-step-desc">Automated pick lists, multi-SKU bundling, and protective packaging — all under 4 hours SLA.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="4">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">04</div>
+          <h4 class="wh-step-title">Dispatch &amp; Track</h4>
+          <p class="wh-step-desc">Orders hand off directly to our delivery fleet. Live tracking updates sync back to your dashboard the moment the parcel moves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GCC HUBS ════════════════════════════════════════════════════ -->
 <section class="block alt">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-tag">Why Warehousing and Fulfillment</span><h2 class="title">Revolutionize Your Supply Chain with Our Advanced Warehousing Solutions</h2></div>
-    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto">
-      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">🏬</div><h4>Premium Storage</h4><p>Climate-controlled warehouses with 24/7 security.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">📦</div><h4>Pick &amp; Pack</h4><p>Professional packing for every product type, every order.</p></div><div class="feat" style="text-align:center"><div class="feat-vis r" style="height:80px;font-size:32px">🔁</div><h4>Returns Handling</h4><p>Automated NDR processing and inventory restocking.</p></div>
+    <div class="sec-head">
+      <span class="sec-tag">Our Locations</span>
+      <h2 class="title">Two Hubs. One Network.</h2>
+      <p class="sec-sub">Strategically positioned to cover all major GCC markets with same or next-day delivery reach.</p>
+    </div>
+    <div class="wh-hubs">
+
+      <div class="wh-hub-card" id="whHubRiy">
+        <div class="wh-hub-top">
+          <div class="wh-hub-flag">🇸🇦</div>
+          <div>
+            <div class="wh-hub-city">Riyadh Hub</div>
+            <div class="wh-hub-sub">King Abdulaziz Industrial City</div>
+          </div>
+          <div class="wh-hub-live"><span class="wh-hub-pulse"></span> Live</div>
+        </div>
+        <div class="wh-hub-stats">
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="18000">0</div>
+            <div class="wh-hub-stat-lab">sqm Floor Space</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="240">0</div>
+            <div class="wh-hub-stat-lab">Active SKUs</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="99" data-suffix="%">0%</div>
+            <div class="wh-hub-stat-lab">Accuracy Rate</div>
+          </div>
+        </div>
+        <div class="wh-hub-cap">
+          <div class="wh-hub-cap-label">
+            <span>Capacity Used</span>
+            <span class="wh-hub-cap-pct">74%</span>
+          </div>
+          <div class="wh-hub-cap-track">
+            <div class="wh-hub-cap-fill" style="width:0%" data-target="74"></div>
+          </div>
+        </div>
+        <div class="wh-hub-tags">
+          <span class="wh-hub-tag">Next-Day KSA</span>
+          <span class="wh-hub-tag">Returns Handling</span>
+          <span class="wh-hub-tag">Cold Zone</span>
+        </div>
+      </div>
+
+      <div class="wh-hub-card" id="whHubDub">
+        <div class="wh-hub-top">
+          <div class="wh-hub-flag">🇦🇪</div>
+          <div>
+            <div class="wh-hub-city">Dubai Hub</div>
+            <div class="wh-hub-sub">Jebel Ali Free Zone</div>
+          </div>
+          <div class="wh-hub-live"><span class="wh-hub-pulse"></span> Live</div>
+        </div>
+        <div class="wh-hub-stats">
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="12500">0</div>
+            <div class="wh-hub-stat-lab">sqm Floor Space</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="180">0</div>
+            <div class="wh-hub-stat-lab">Active SKUs</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="99" data-suffix="%">0%</div>
+            <div class="wh-hub-stat-lab">Accuracy Rate</div>
+          </div>
+        </div>
+        <div class="wh-hub-cap">
+          <div class="wh-hub-cap-label">
+            <span>Capacity Used</span>
+            <span class="wh-hub-cap-pct">61%</span>
+          </div>
+          <div class="wh-hub-cap-track">
+            <div class="wh-hub-cap-fill wh-fill-blue" style="width:0%" data-target="61"></div>
+          </div>
+        </div>
+        <div class="wh-hub-tags">
+          <span class="wh-hub-tag">Same-Day UAE</span>
+          <span class="wh-hub-tag">Port Access</span>
+          <span class="wh-hub-tag">B2B Pallets</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ═══ FEATURES ════════════════════════════════════════════════════ -->
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">What's Included</span>
+      <h2 class="title">Everything Your Inventory Needs</h2>
+      <p class="sec-sub">No add-ons, no surprises. Every seller gets the full stack from day one.</p>
+    </div>
+    <div class="wh-feat-grid">
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-shelf-anim">
+            <div class="wh-shelf-row">
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-c"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+            </div>
+            <div class="wh-shelf-plank"></div>
+            <div class="wh-shelf-row">
+              <div class="wh-shelf-box wh-box-c"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-c"></div>
+            </div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Premium Storage</h4>
+        <p class="wh-feat-desc">Climate-controlled zones, 24/7 security, and rack-mapped SKU placement across all hubs.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-scan-anim">
+            <div class="wh-barcode">
+              <div class="wh-bar"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar wh-bar-thin"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar wh-bar-thin"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar"></div>
+            </div>
+            <div class="wh-scan-beam"></div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Real-Time Tracking</h4>
+        <p class="wh-feat-desc">Every scan, every movement — visible in your dashboard the moment it happens, at unit level.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-pick-anim">
+            <div class="wh-pick-row"><div class="wh-pick-check wh-check-done">✓</div><span>MDM-8821 × 2</span></div>
+            <div class="wh-pick-row wh-pick-delay1"><div class="wh-pick-check wh-check-done">✓</div><span>MDM-4492 × 1</span></div>
+            <div class="wh-pick-row wh-pick-delay2"><div class="wh-pick-check wh-check-pulse"></div><span>MDM-7703 × 3</span></div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Pick &amp; Pack</h4>
+        <p class="wh-feat-desc">Automated pick lists, multi-SKU bundling, and protective packaging — all under 4 hours SLA.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-return-anim">
+            <div class="wh-ret-box wh-ret-out">📦</div>
+            <div class="wh-ret-arrow" id="whRetArrow">←</div>
+            <div class="wh-ret-box wh-ret-back">🏬</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Returns Processing</h4>
+        <p class="wh-feat-desc">Automated NDR and return workflows route products back to stock — without touching your team.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-alert-anim">
+            <div class="wh-bell" id="whBell">🔔</div>
+            <div class="wh-alert-badge">!</div>
+            <div class="wh-alert-msg">Low stock: MDM-4492</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Restock Alerts</h4>
+        <p class="wh-feat-desc">Set minimum thresholds per SKU and get instant alerts before you hit zero — never lose a sale to a stockout.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-dispatch-anim">
+            <div class="wh-road"></div>
+            <div class="wh-truck" id="whTruck">🚚</div>
+            <div class="wh-dest">🏠</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">Same-Day Dispatch</h4>
+        <p class="wh-feat-desc">Orders confirmed before 2 PM ship the same day — handed directly to our delivery partners.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SYNC SPLIT ══════════════════════════════════════════════════ -->
+<section class="block">
+  <div class="wrap">
+    <div class="wh-sync-layout">
+      <div class="wh-sync-left">
+        <span class="sec-tag">Live Sync</span>
+        <h2 class="title" style="font-size:clamp(28px,4vw,44px);margin-bottom:18px">Your Inventory Dashboard.<br/>Updated Every Second.</h2>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.7;margin-bottom:32px">No spreadsheets. No manual counts. MDM Express syncs every warehouse action — inbounds, picks, returns, and dispatches — to a single dashboard you can open from your phone.</p>
+        <div class="wh-sync-bullets">
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">Live Stock Levels</div>
+              <div class="wh-sync-bullet-sub">Per-SKU counts update the moment inventory moves.</div>
+            </div>
+          </div>
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">Order Timeline</div>
+              <div class="wh-sync-bullet-sub">Full audit trail from confirmed order to dispatch.</div>
+            </div>
+          </div>
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">Threshold Alerts</div>
+              <div class="wh-sync-bullet-sub">SMS + email when any SKU drops below your minimum.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wh-sync-right">
+        <div class="wh-sync-screen">
+          <div class="wh-sync-screen-header">
+            <div class="wh-sync-screen-dot r"></div>
+            <div class="wh-sync-screen-dot y"></div>
+            <div class="wh-sync-screen-dot g"></div>
+            <span style="margin-left:8px;font-size:11px;color:rgba(255,255,255,0.3)">inventory.mdmexpress.com</span>
+          </div>
+          <div class="wh-sync-screen-body">
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-8821</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill" style="width:82%"></div></div>
+              <span class="wh-sync-count wh-count-green">1,204</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-4492</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill wh-mini-amber" style="width:28%"></div></div>
+              <span class="wh-sync-count wh-count-amber">387</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-7703</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill" style="width:95%"></div></div>
+              <span class="wh-sync-count wh-count-green">2,051</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-3310</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill wh-mini-red" style="width:4%"></div></div>
+              <span class="wh-sync-count wh-count-red">12</span>
+            </div>
+            <div class="wh-sync-pulse-row">
+              <div class="wh-sync-spinner"></div>
+              <span>Syncing from Riyadh Hub…</span>
+              <span class="wh-sync-live-dot"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═════════════════════════════════════════════════════════ -->
 <section class="block lav">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag">FAQ</span>
-      <h2 class="title">Quick Answers to Key Questions</h2>
+      <h2 class="title">Quick Answers</h2>
     </div>
     <div class="faq-grid">
       <aside class="faq-side">
-        <h3>Didn't get your answer yet?</h3>
-        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
-        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+        <h3>Need more detail?</h3>
+        <p>Our operations team will walk you through pricing, minimums, and onboarding — usually within 24 hours.</p>
+        <a href="#cta" class="btn-primary" style="display:inline-block">Talk to Us</a>
       </aside>
       <div class="faq-list">
-        <div class="faq-item open"><div class="faq-q">What are the expenses associated with the service? <span class="pl">+</span></div><div class="faq-a">Check our comprehensive fee guide for storage and pick-pack rates.</div></div><div class="faq-item"><div class="faq-q">How to source a product? <span class="pl">+</span></div><div class="faq-a">Use our Sourcing service to find SKUs, then they auto-route to warehouse on arrival.</div></div><div class="faq-item"><div class="faq-q">What are MDM Express’s warehousing policies? <span class="pl">+</span></div><div class="faq-a">Active SKUs ship free; long-term storage fees apply after 60 days of inactivity.</div></div><div class="faq-item"><div class="faq-q">How can I benefit from cash credit offered by MDM Express? <span class="pl">+</span></div><div class="faq-a">Stocked operators with consistent throughput qualify for inventory financing.</div></div>
+        <div class="faq-item open">
+          <div class="faq-q">What are the storage fees? <span class="pl">+</span></div>
+          <div class="faq-a">Storage is billed per pallet or cubic metre per month. Active SKUs that ship regularly get preferential rates — contact us for a tailored quote based on your volume and product mix.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is there a minimum inventory requirement? <span class="pl">+</span></div>
+          <div class="faq-a">No hard minimum — but to make the most of the pick-pack SLA we recommend maintaining at least 7 days of projected sales stock at all times.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I send inventory to your warehouse? <span class="pl">+</span></div>
+          <div class="faq-a">You book an inbound shipment through your dashboard, print our routing labels, and ship to the nearest hub. Our receiving team checks in every unit on arrival — usually within 2 hours of delivery.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens to returned items? <span class="pl">+</span></div>
+          <div class="faq-a">Returned items are inspected, graded (sellable / QC / damaged), and either restocked, held for review, or flagged for disposal per your instructions — all visible in your dashboard.</div>
+        </div>
       </div>
     </div>
   </div>
-</section><script src="shared.js"></script>
+</section>
+
+<script src="shared.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="animations.js"></script>
@@ -56,28 +511,175 @@
 </button>
 <script>
 (function(){
+  /* ── Music ───────────────────────────────────────────────────── */
   const audio = document.getElementById('hero-music');
-  const btn = document.getElementById('musicToggle');
-  const video = document.querySelector('.hero-video');
+  const btn   = document.getElementById('musicToggle');
   if (!audio || !btn) return;
   audio.volume = 0.5;
   let playing = false;
-  function tryStart(){
-    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
+  document.addEventListener('click', function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); })
       .catch(()=>{});
-  }
-  document.addEventListener('click', tryStart, {once:false});
+  }, {once:false});
   btn.addEventListener('click', (e)=>{
     e.stopPropagation();
-    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    if(playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
     else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
   });
-  // Pause music when tab hidden
   document.addEventListener('visibilitychange', ()=>{
-    if (document.hidden && playing) audio.pause();
-    else if (!document.hidden && playing) audio.play();
+    if(document.hidden && playing) audio.pause();
+    else if(!document.hidden && playing) audio.play();
   });
 })();
+
+(function(){
+  /* ── Live clock ──────────────────────────────────────────────── */
+  const clockEl = document.getElementById('whClock');
+  function tick(){
+    if(!clockEl) return;
+    const n = new Date();
+    clockEl.textContent = n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' AST';
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ── Hero capacity bars ──────────────────────────────────────── */
+  function animateCapBar(fillId, pctId, target, delay){
+    setTimeout(()=>{
+      const fill = document.getElementById(fillId);
+      const pct  = document.getElementById(pctId);
+      if(!fill || !pct) return;
+      let v = 0;
+      const step = () => {
+        v = Math.min(v + 1, target);
+        fill.style.width = v + '%';
+        pct.textContent  = v + '%';
+        if(v < target) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay);
+  }
+  animateCapBar('whRiyFill','whRiyPct', 74, 600);
+  animateCapBar('whDubFill','whDubPct', 61, 900);
+
+  /* ── Scan toast ──────────────────────────────────────────────── */
+  const toast = document.getElementById('whScanToast');
+  function showScanToast(){
+    if(!toast) return;
+    toast.classList.add('wh-toast-show');
+    setTimeout(()=> toast.classList.remove('wh-toast-show'), 2400);
+  }
+  setTimeout(showScanToast, 2200);
+  setInterval(showScanToast, 8000);
+
+  /* ── GSAP animations ─────────────────────────────────────────── */
+  if(window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.wh-hero-left > *', {
+      y: 40, opacity: 0, duration: 0.7,
+      stagger: 0.1, ease: 'power3.out', delay: 0.2
+    });
+    gsap.from('.wh-dashboard', {
+      y: 60, opacity: 0, duration: 0.9,
+      ease: 'power3.out', delay: 0.5
+    });
+
+    /* Flow steps */
+    gsap.from('.wh-step', {
+      scrollTrigger: { trigger: '#whFlow', start: 'top 72%' },
+      x: -30, opacity: 0, duration: 0.6,
+      stagger: 0.18, ease: 'power2.out'
+    });
+    gsap.to('#whFlowProgress', {
+      scrollTrigger: {
+        trigger: '#whFlow',
+        start: 'top 70%', end: 'bottom 40%',
+        scrub: 1.2
+      },
+      width: '100%', ease: 'none'
+    });
+
+    /* Hub cards */
+    gsap.from('.wh-hub-card', {
+      scrollTrigger: { trigger: '.wh-hubs', start: 'top 75%' },
+      y: 50, opacity: 0, duration: 0.65,
+      stagger: 0.2, ease: 'power2.out',
+      onComplete: animateHubCounters
+    });
+
+    function animateHubCounters(){
+      document.querySelectorAll('.wh-hub-cap-fill').forEach(bar => {
+        gsap.to(bar, { width: bar.dataset.target+'%', duration: 1.4, ease:'power2.out' });
+      });
+      document.querySelectorAll('.wh-hub-stat-num').forEach(el => {
+        const target = parseInt(el.dataset.target) || 0;
+        const suffix = el.dataset.suffix || '';
+        let obj = {val:0};
+        gsap.to(obj, {
+          val: target, duration: 1.6, ease:'power2.out',
+          onUpdate(){ el.textContent = Math.round(obj.val).toLocaleString() + suffix; }
+        });
+      });
+    }
+
+    /* Feature cards */
+    gsap.from('.wh-feat-card', {
+      scrollTrigger: { trigger: '.wh-feat-grid', start: 'top 75%' },
+      y: 40, opacity: 0, duration: 0.55,
+      stagger: 0.1, ease: 'power2.out'
+    });
+
+    /* Sync section */
+    gsap.from('.wh-sync-left > *', {
+      scrollTrigger: { trigger: '.wh-sync-layout', start: 'top 72%' },
+      x: -30, opacity: 0, duration: 0.6,
+      stagger: 0.12, ease: 'power2.out'
+    });
+    gsap.from('.wh-sync-screen', {
+      scrollTrigger: { trigger: '.wh-sync-layout', start: 'top 72%' },
+      x: 40, opacity: 0, duration: 0.8,
+      ease: 'power2.out', delay: 0.2
+    });
+  }
+
+  /* ── Truck animation ─────────────────────────────────────────── */
+  const truck = document.getElementById('whTruck');
+  if(truck){
+    function runTruck(){
+      truck.style.transition = 'none';
+      truck.style.left = '2%';
+      setTimeout(()=>{
+        truck.style.transition = 'left 2.2s cubic-bezier(0.16,1,0.3,1)';
+        truck.style.left = '68%';
+      }, 80);
+    }
+    runTruck();
+    setInterval(runTruck, 4200);
+  }
+
+  /* ── Bell shake ──────────────────────────────────────────────── */
+  const bell = document.getElementById('whBell');
+  if(bell){
+    function shakeBell(){
+      bell.classList.add('wh-bell-shake');
+      setTimeout(()=> bell.classList.remove('wh-bell-shake'), 600);
+    }
+    setTimeout(shakeBell, 1000);
+    setInterval(shakeBell, 3500);
+  }
+
+  /* ── Return arrow pulse ──────────────────────────────────────── */
+  const retArrow = document.getElementById('whRetArrow');
+  if(retArrow){
+    setInterval(()=>{
+      retArrow.style.transform = 'translateX(-6px)';
+      setTimeout(()=>{ retArrow.style.transform = 'translateX(0)'; }, 400);
+    }, 2000);
+    retArrow.style.transition = 'transform 0.35s cubic-bezier(0.16,1,0.3,1)';
+  }
+
+})();
 </script>
+
 </body>
 </html>
