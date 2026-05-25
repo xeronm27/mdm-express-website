@@ -111,27 +111,45 @@
 .sa-fund-title{font-size:1rem;font-weight:700;color:#111;margin:0 0 8px}
 .sa-fund-desc{font-size:.84rem;color:#666;line-height:1.6;margin:0 0 16px}
 .sa-fund-cap{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:500;color:#DC2626;background:rgba(220,38,38,.08);padding:5px 10px;border-radius:8px;display:inline-block}
-/* TIERS */
-.sa-tiers-section{background:#030D09}
-.sa-tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.sa-tier{border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px 28px;background:rgba(255,255,255,.03);position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
-.sa-tier:hover{border-color:rgba(220,38,38,.3);transform:translateY(-4px)}
-.sa-tier.featured{border-color:rgba(220,38,38,.4);background:rgba(220,38,38,.06)}
-.sa-tier.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#DC2626,#FCA5A5,#DC2626)}
-.sa-tier-badge{position:absolute;top:16px;right:16px;background:#DC2626;color:#fff;font-size:.65rem;font-weight:700;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
-.sa-tier-name{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#DC2626;margin:0 0 12px}
-.sa-tier-limit{font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:500;color:#fff;line-height:1;margin:0 0 4px}
-.sa-tier-sub{font-size:.8rem;color:rgba(255,255,255,.4);margin:0 0 28px}
-.sa-tier-divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:24px}
-.sa-tier-features{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:11px}
-.sa-tier-feature{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.5}
-.sa-feat-check{width:18px;height:18px;background:rgba(220,38,38,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#DC2626;flex-shrink:0;margin-top:1px}
-.sa-tier-req{font-size:.75rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);border-radius:8px;padding:8px 12px;margin-bottom:20px}
-.sa-tier-btn{display:block;width:100%;padding:12px;border-radius:10px;text-align:center;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
-.sa-tier-btn.solid{background:#DC2626;color:#fff;box-shadow:0 4px 16px rgba(220,38,38,.3)}
-.sa-tier-btn.solid:hover{background:#B91C1C;transform:translateY(-1px)}
-.sa-tier-btn.outline{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
-.sa-tier-btn.outline:hover{border-color:rgba(220,38,38,.4);color:#DC2626}
+/* TIERS — comparison table layout */
+.sa-tiers-section{background:#07100A}
+.sa-compare-wrap{margin-top:56px;border:1px solid rgba(255,255,255,.08);border-radius:24px;overflow:hidden}
+/* Header grid */
+.sa-compare-grid{display:grid;grid-template-columns:220px 1fr 1fr 1fr;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.08)}
+.sa-cg-spacer{padding:28px 24px;border-right:1px solid rgba(255,255,255,.06)}
+.sa-cg-col{padding:28px 24px;border-right:1px solid rgba(255,255,255,.06);position:relative}
+.sa-cg-col:last-child{border-right:none}
+.sa-cg-col--featured{background:rgba(220,38,38,.07);border-left:1px solid rgba(220,38,38,.25);border-right:1px solid rgba(220,38,38,.25)}
+.sa-col-pop{display:inline-block;background:#DC2626;color:#fff;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.sa-col-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#EF4444;margin-bottom:8px}
+.sa-col-limit{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:#fff;line-height:1;margin-bottom:4px}
+.sa-col-sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+/* Table rows */
+.sa-compare-table{display:flex;flex-direction:column}
+.sa-ctr{display:grid;grid-template-columns:220px 1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,.05)}
+.sa-ctr:hover{background:rgba(255,255,255,.015)}
+.sa-ct-key{padding:14px 24px;font-size:.82rem;color:rgba(255,255,255,.45);border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
+.sa-ct-val{padding:14px 24px;font-family:'JetBrains Mono',monospace;font-size:.84rem;color:rgba(255,255,255,.8);font-weight:500;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
+.sa-ct-val:last-child{border-right:none}
+.sa-ct-featured{background:rgba(220,38,38,.05);border-left:1px solid rgba(220,38,38,.15);border-right:1px solid rgba(220,38,38,.15)}
+.sa-ct-yes{color:#4ADE80}
+.sa-ct-no{color:rgba(255,255,255,.2)}
+/* CTA row */
+.sa-compare-cta{display:grid;grid-template-columns:220px 1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+.sa-cta-spacer{padding:24px}
+.sa-cta-col{padding:20px 24px;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center}
+.sa-cta-col:last-child{border-right:none}
+.sa-cta-col--featured{background:rgba(220,38,38,.07);border-left:1px solid rgba(220,38,38,.2);border-right:1px solid rgba(220,38,38,.2)}
+.sa-cta-btn{display:block;width:100%;padding:11px 16px;border-radius:9px;text-align:center;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;white-space:nowrap}
+.sa-cta-solid{background:#DC2626;color:#fff;box-shadow:0 4px 16px rgba(220,38,38,.3)}
+.sa-cta-solid:hover{background:#B91C1C;transform:translateY(-1px)}
+.sa-cta-outline{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
+.sa-cta-outline:hover{border-color:rgba(220,38,38,.5);color:#EF4444}
+/* Fine print */
+.sa-compare-note{text-align:center;margin-top:20px;font-size:.75rem;color:rgba(255,255,255,.25);line-height:1.6}
+/* Keep old classes for safety */
+.sa-tier-btn,.sa-tier,.sa-tiers-grid{display:none}
+
 /* ELIGIBILITY */
 .sa-elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:56px}
 .sa-elig-left h3{font-size:1.5rem;font-weight:800;color:#111;margin:0 0 12px}
@@ -345,123 +363,107 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag" style="background:rgba(220,38,38,.12);color:#FCA5A5;border-color:rgba(220,38,38,.3)">Advance Limits</span>
-      <h2 class="title" style="color:#fff">Pick the Advance That Fits Your Volume</h2>
-      <p class="sec-sub" style="color:rgba(255,255,255,.5)">Each tier is sized to your sales track record. As you repay, your limit grows automatically.</p>
+      <h2 class="title" style="color:#fff">Find the Right Advance for Your Volume</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.5)">Each tier is sized to your sales track record. Limits review every 90 days and grow as you repay.</p>
     </div>
 
-    <div class="sa-tiers-grid">
+    <div class="sa-compare-wrap">
 
-      <!-- STARTER -->
-      <div class="sa-tier">
-        <div class="sa-tier-name">Starter</div>
-        <div class="sa-tier-limit">$5,000</div>
-        <div class="sa-tier-sub">Maximum advance</div>
-        <div class="sa-tier-divider"></div>
+      <!-- Column headers -->
+      <div class="sa-compare-grid">
+        <div class="sa-cg-spacer"></div>
 
-        <div class="sa-tier-req-bar">
-          <div class="sa-trb-header">
-            <span class="sa-trb-label">Min. monthly sales required</span>
-            <span class="sa-trb-val">$3,000 /mo</span>
-          </div>
-          <div class="sa-trb-track"><div class="sa-trb-fill" style="width:30%"></div></div>
+        <div class="sa-cg-col">
+          <div class="sa-col-label">Starter</div>
+          <div class="sa-col-limit">$5,000</div>
+          <div class="sa-col-sub">max advance</div>
         </div>
 
-        <div class="sa-tier-terms">
-          <div class="sa-term">
-            <div class="sa-term-val">60 days</div>
-            <div class="sa-term-label">Repayment window</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">5–8%</div>
-            <div class="sa-term-label">Auto-deduction rate</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">3 months</div>
-            <div class="sa-term-label">Min. platform tenure</div>
-          </div>
+        <div class="sa-cg-col sa-cg-col--featured">
+          <div class="sa-col-pop">Most Popular</div>
+          <div class="sa-col-label">Growth</div>
+          <div class="sa-col-limit">$20,000</div>
+          <div class="sa-col-sub">max advance</div>
         </div>
 
-        <a href="#cta" class="sa-tier-btn outline">Apply &mdash; Starter &rarr;</a>
+        <div class="sa-cg-col">
+          <div class="sa-col-label">Scale</div>
+          <div class="sa-col-limit">$50K+</div>
+          <div class="sa-col-sub">negotiated</div>
+        </div>
       </div>
 
-      <!-- GROWTH (featured) -->
-      <div class="sa-tier featured">
-        <div class="sa-tier-badge">Most Popular</div>
-        <div class="sa-tier-name">Growth</div>
-        <div class="sa-tier-limit">$20,000</div>
-        <div class="sa-tier-sub">Maximum advance</div>
-        <div class="sa-tier-divider"></div>
+      <!-- Table rows -->
+      <div class="sa-compare-table">
 
-        <div class="sa-tier-req-bar">
-          <div class="sa-trb-header">
-            <span class="sa-trb-label">Min. monthly sales required</span>
-            <span class="sa-trb-val">$8,000 /mo</span>
-          </div>
-          <div class="sa-trb-track"><div class="sa-trb-fill" style="width:55%"></div></div>
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Min. monthly sales</div>
+          <div class="sa-ct-val">$3,000 /mo</div>
+          <div class="sa-ct-val sa-ct-featured">$8,000 /mo</div>
+          <div class="sa-ct-val">$20,000 /mo</div>
         </div>
 
-        <div class="sa-tier-terms">
-          <div class="sa-term">
-            <div class="sa-term-val">90 days</div>
-            <div class="sa-term-label">Repayment window</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">5–8%</div>
-            <div class="sa-term-label">Auto-deduction rate</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">6 months</div>
-            <div class="sa-term-label">Min. platform tenure</div>
-          </div>
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Platform history</div>
+          <div class="sa-ct-val">3 months</div>
+          <div class="sa-ct-val sa-ct-featured">6 months</div>
+          <div class="sa-ct-val">12 months</div>
         </div>
 
-        <div class="sa-tier-perk">&#10024; Includes dedicated account manager &amp; 2 concurrent advances</div>
-        <a href="#cta" class="sa-tier-btn solid">Apply &mdash; Growth &rarr;</a>
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Repayment window</div>
+          <div class="sa-ct-val">60 days</div>
+          <div class="sa-ct-val sa-ct-featured">90 days</div>
+          <div class="sa-ct-val">120 days</div>
+        </div>
+
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Auto-deduction rate</div>
+          <div class="sa-ct-val">5 – 8%</div>
+          <div class="sa-ct-val sa-ct-featured">5 – 8%</div>
+          <div class="sa-ct-val">Custom</div>
+        </div>
+
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Concurrent advances</div>
+          <div class="sa-ct-val">1</div>
+          <div class="sa-ct-val sa-ct-featured">Up to 2</div>
+          <div class="sa-ct-val">Unlimited</div>
+        </div>
+
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Account manager</div>
+          <div class="sa-ct-val sa-ct-no">&#8212;</div>
+          <div class="sa-ct-val sa-ct-featured sa-ct-yes">&#10003; Included</div>
+          <div class="sa-ct-val sa-ct-yes">&#10003; VIP</div>
+        </div>
+
+        <div class="sa-ctr">
+          <div class="sa-ct-key">Approval time</div>
+          <div class="sa-ct-val">48 hrs</div>
+          <div class="sa-ct-val sa-ct-featured">48 hrs</div>
+          <div class="sa-ct-val">Priority</div>
+        </div>
+
       </div>
 
-      <!-- SCALE -->
-      <div class="sa-tier">
-        <div class="sa-tier-name">Scale</div>
-        <div class="sa-tier-limit">$50K+</div>
-        <div class="sa-tier-sub">Custom limit &mdash; negotiated</div>
-        <div class="sa-tier-divider"></div>
-
-        <div class="sa-tier-req-bar">
-          <div class="sa-trb-header">
-            <span class="sa-trb-label">Min. monthly sales required</span>
-            <span class="sa-trb-val">$20,000 /mo</span>
-          </div>
-          <div class="sa-trb-track"><div class="sa-trb-fill" style="width:100%"></div></div>
+      <!-- CTA row -->
+      <div class="sa-compare-cta">
+        <div class="sa-cta-spacer"></div>
+        <div class="sa-cta-col">
+          <a href="#cta" class="sa-cta-btn sa-cta-outline">Apply &mdash; Starter &rarr;</a>
         </div>
-
-        <div class="sa-tier-terms">
-          <div class="sa-term">
-            <div class="sa-term-val">120 days</div>
-            <div class="sa-term-label">Repayment window</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">Custom</div>
-            <div class="sa-term-label">Repayment rate</div>
-          </div>
-          <div class="sa-term-sep"></div>
-          <div class="sa-term">
-            <div class="sa-term-val">12 months</div>
-            <div class="sa-term-label">Min. platform tenure</div>
-          </div>
+        <div class="sa-cta-col sa-cta-col--featured">
+          <a href="#cta" class="sa-cta-btn sa-cta-solid">Apply &mdash; Growth &rarr;</a>
         </div>
-
-        <a href="#cta" class="sa-tier-btn outline">Contact Us &rarr;</a>
+        <div class="sa-cta-col">
+          <a href="#cta" class="sa-cta-btn sa-cta-outline">Contact Us &rarr;</a>
+        </div>
       </div>
 
     </div>
 
-    <!-- Fine print -->
-    <p style="text-align:center;margin-top:28px;font-size:.78rem;color:rgba(255,255,255,.3)">Advances are offered on a discretionary basis. Limits and rates reviewed every 90 days based on your settlement performance.</p>
+    <p class="sa-compare-note">Advances are offered on a discretionary basis to eligible COD Partner sellers. All rates and limits subject to periodic review.</p>
   </div>
 </section>
 
