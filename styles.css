@@ -4559,20 +4559,19 @@ footer li{transition:color .18s ease;cursor:default}
 }
 
 /* ── LIVE NETWORK MAP ─────────────────────────────────────────────── */
-/* specificity override: section.block.alt would win otherwise */
-section.block.alt.dl-map-section,
-section.block.dl-map-section { background: #07090F; }
-.dl-map-section .sec-head .sec-tag { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.12); }
-.dl-map-section .title { color: #fff !important; }
-.dl-map-section .sec-sub { color: rgba(255,255,255,0.45) !important; }
+/* Section uses standard block alt (white→lavender gradient) */
+/* The SVG map is its own dark card sitting on the light background  */
 
-/* SVG map container */
+/* SVG map container — dark card on light section */
 .dl-map-wrap {
   margin-top: 52px;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 0 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 4px 6px rgba(0,0,0,0.04),
+    0 12px 40px rgba(0,0,0,0.14),
+    0 40px 80px rgba(0,0,0,0.1);
 }
 .dl-map-svg { width: 100%; height: auto; display: block; }
 
