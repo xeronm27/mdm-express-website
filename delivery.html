@@ -366,111 +366,226 @@
       <p class="sec-sub">Active operations across Libya, Iraq, and Lebanon — each market with its own fleet, carriers, and local operations team.</p>
     </div>
 
-    <div class="dl-mkt-grid">
+    <div class="dl-map-wrap">
+      <svg class="dl-map-svg" viewBox="0 0 960 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MDM Express delivery network — Libya, Iraq, Lebanon">
+        <defs>
+          <!-- Fine dot-grid -->
+          <pattern id="mapGrid2" width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.028)" stroke-width="1"/>
+          </pattern>
+          <!-- Dot glow filter -->
+          <filter id="gDot" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="3.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Hub core glow -->
+          <filter id="gHub" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Radial blob gradients per country -->
+          <radialGradient id="bLY" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F97316" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#F97316" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="bLB" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#22C55E" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="bIQ" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#818CF8" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
+          </radialGradient>
+          <!-- Route paths used by animateMotion (invisible, in defs) -->
+          <path id="rLY1" d="M 165 245 C 132 212 108 190 82 170"/>
+          <path id="rLY2" d="M 165 245 C 196 210 218 188 245 168"/>
+          <path id="rLY3" d="M 165 245 C 132 278 110 302 85 325"/>
+          <path id="rLY4" d="M 165 245 C 196 278 220 305 248 338"/>
+          <path id="rLB1" d="M 480 190 C 456 158 438 132 415 104"/>
+          <path id="rLB2" d="M 480 190 C 506 158 524 132 548 106"/>
+          <path id="rLB3" d="M 480 190 C 460 220 448 244 432 268"/>
+          <path id="rLB4" d="M 480 190 C 502 222 516 245 532 266"/>
+          <path id="rIQ1" d="M 782 248 C 752 212 730 186 706 158"/>
+          <path id="rIQ2" d="M 782 248 C 814 208 834 182 858 155"/>
+          <path id="rIQ3" d="M 782 248 C 814 284 834 310 854 346"/>
+          <path id="rIQ4" d="M 782 248 C 752 284 730 310 706 342"/>
+        </defs>
 
-      <!-- Libya -->
-      <div class="dl-mkt-col dl-mkt-ly">
-        <div class="dl-mkt-head">
-          <span class="dl-mkt-flag">🇱🇾</span>
-          <div class="dl-mkt-name">Libya</div>
-          <span class="dl-mkt-status dl-mkt-status-live">Active</span>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="4200" data-suffix="+">0+</div>
-          <div class="dl-mkt-label">Daily shipments</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="98" data-suffix="%">0%</div>
-          <div class="dl-mkt-label">Confirmation rate</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">Next day</div>
-          <div class="dl-mkt-label">Delivery SLA (Tripoli)</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">LYD</div>
-          <div class="dl-mkt-label">COD currency</div>
-        </div>
-        <div class="dl-mkt-cities">
-          <span class="dl-mkt-city dl-mkt-city-hub">Tripoli ⭑</span>
-          <span class="dl-mkt-city">Benghazi</span>
-          <span class="dl-mkt-city">Misrata</span>
-          <span class="dl-mkt-city">Sabha</span>
-          <span class="dl-mkt-city">Tobruk</span>
-          <span class="dl-mkt-city">Zawia</span>
-          <span class="dl-mkt-city">Zliten</span>
-        </div>
-      </div>
+        <!-- Background -->
+        <rect width="960" height="440" fill="#07090F" rx="20"/>
+        <rect width="960" height="440" fill="url(#mapGrid2)" rx="20"/>
 
-      <!-- Iraq -->
-      <div class="dl-mkt-col dl-mkt-iq">
-        <div class="dl-mkt-head">
-          <span class="dl-mkt-flag">🇮🇶</span>
-          <div class="dl-mkt-name">Iraq</div>
-          <span class="dl-mkt-status dl-mkt-status-live">Active</span>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="3800" data-suffix="+">0+</div>
-          <div class="dl-mkt-label">Daily shipments</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="96" data-suffix="%">0%</div>
-          <div class="dl-mkt-label">Confirmation rate</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">1–2 days</div>
-          <div class="dl-mkt-label">Delivery SLA (Baghdad)</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">IQD</div>
-          <div class="dl-mkt-label">COD currency</div>
-        </div>
-        <div class="dl-mkt-cities">
-          <span class="dl-mkt-city dl-mkt-city-hub">Baghdad ⭑</span>
-          <span class="dl-mkt-city">Basra</span>
-          <span class="dl-mkt-city">Mosul</span>
-          <span class="dl-mkt-city">Erbil</span>
-          <span class="dl-mkt-city">Najaf</span>
-          <span class="dl-mkt-city">Kirkuk</span>
-          <span class="dl-mkt-city">Karbala</span>
-        </div>
-      </div>
+        <!-- Country glow blobs -->
+        <ellipse cx="165" cy="245" rx="145" ry="122" fill="url(#bLY)"/>
+        <ellipse cx="480" cy="190" rx="118" ry="98" fill="url(#bLB)"/>
+        <ellipse cx="782" cy="248" rx="145" ry="122" fill="url(#bIQ)"/>
 
-      <!-- Lebanon -->
-      <div class="dl-mkt-col dl-mkt-lb">
-        <div class="dl-mkt-head">
-          <span class="dl-mkt-flag">🇱🇧</span>
-          <div class="dl-mkt-name">Lebanon</div>
-          <span class="dl-mkt-status dl-mkt-status-live">Active</span>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="1200" data-suffix="+">0+</div>
-          <div class="dl-mkt-label">Daily shipments</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val" data-target="94" data-suffix="%">0%</div>
-          <div class="dl-mkt-label">Confirmation rate</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">Same day</div>
-          <div class="dl-mkt-label">Delivery SLA (Beirut)</div>
-        </div>
-        <div class="dl-mkt-stat">
-          <div class="dl-mkt-val">LBP / USD</div>
-          <div class="dl-mkt-label">COD currency</div>
-        </div>
-        <div class="dl-mkt-cities">
-          <span class="dl-mkt-city dl-mkt-city-hub">Beirut ⭑</span>
-          <span class="dl-mkt-city">Tripoli</span>
-          <span class="dl-mkt-city">Sidon</span>
-          <span class="dl-mkt-city">Tyre</span>
-          <span class="dl-mkt-city">Byblos</span>
-          <span class="dl-mkt-city">Zahlé</span>
-          <span class="dl-mkt-city">Jounieh</span>
-        </div>
-      </div>
+        <!-- ── Route dashes ── -->
+        <!-- Libya -->
+        <path d="M 165 245 C 132 212 108 190 82 170"  stroke="rgba(249,115,22,0.28)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 165 245 C 196 210 218 188 245 168"  stroke="rgba(249,115,22,0.22)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 165 245 C 132 278 110 302 85 325"   stroke="rgba(249,115,22,0.18)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 165 245 C 196 278 220 305 248 338"  stroke="rgba(249,115,22,0.14)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <!-- Lebanon -->
+        <path d="M 480 190 C 456 158 438 132 415 104"  stroke="rgba(34,197,94,0.28)"  stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 480 190 C 506 158 524 132 548 106"  stroke="rgba(34,197,94,0.22)"  stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 480 190 C 460 220 448 244 432 268"  stroke="rgba(34,197,94,0.18)"  stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 480 190 C 502 222 516 245 532 266"  stroke="rgba(34,197,94,0.14)"  stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <!-- Iraq -->
+        <path d="M 782 248 C 752 212 730 186 706 158"  stroke="rgba(129,140,248,0.28)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 782 248 C 814 208 834 182 858 155"  stroke="rgba(129,140,248,0.22)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 782 248 C 814 284 834 310 854 346"  stroke="rgba(129,140,248,0.18)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+        <path d="M 782 248 C 752 284 730 310 706 342"  stroke="rgba(129,140,248,0.14)" stroke-width="1.5" stroke-dasharray="6 5" stroke-linecap="round"/>
 
-    </div><!-- /.dl-mkt-grid -->
+        <!-- ── Animated delivery dots — Libya ── -->
+        <circle r="4.5" fill="#F97316" filter="url(#gDot)">
+          <animateMotion dur="2.8s" repeatCount="indefinite" begin="0s"   keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLY1"/></animateMotion>
+        </circle>
+        <circle r="3"   fill="#F97316" opacity="0.7">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin="0.9s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLY2"/></animateMotion>
+        </circle>
+        <circle r="3.5" fill="#FB923C" opacity="0.62">
+          <animateMotion dur="3.8s" repeatCount="indefinite" begin="1.8s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLY3"/></animateMotion>
+        </circle>
+        <circle r="2.5" fill="#F97316" opacity="0.5">
+          <animateMotion dur="4.2s" repeatCount="indefinite" begin="2.6s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLY4"/></animateMotion>
+        </circle>
+        <!-- ── Animated delivery dots — Lebanon ── -->
+        <circle r="4.5" fill="#22C55E" filter="url(#gDot)">
+          <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.4s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLB1"/></animateMotion>
+        </circle>
+        <circle r="3"   fill="#22C55E" opacity="0.7">
+          <animateMotion dur="3.0s" repeatCount="indefinite" begin="1.3s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLB2"/></animateMotion>
+        </circle>
+        <circle r="3.5" fill="#4ADE80" opacity="0.58">
+          <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.7s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLB3"/></animateMotion>
+        </circle>
+        <circle r="2.5" fill="#22C55E" opacity="0.5">
+          <animateMotion dur="3.9s" repeatCount="indefinite" begin="2.1s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rLB4"/></animateMotion>
+        </circle>
+        <!-- ── Animated delivery dots — Iraq ── -->
+        <circle r="4.5" fill="#818CF8" filter="url(#gDot)">
+          <animateMotion dur="2.9s" repeatCount="indefinite" begin="0.2s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rIQ1"/></animateMotion>
+        </circle>
+        <circle r="3"   fill="#818CF8" opacity="0.7">
+          <animateMotion dur="3.3s" repeatCount="indefinite" begin="1.1s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rIQ2"/></animateMotion>
+        </circle>
+        <circle r="3.5" fill="#A5B4FC" opacity="0.58">
+          <animateMotion dur="3.7s" repeatCount="indefinite" begin="2.0s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rIQ3"/></animateMotion>
+        </circle>
+        <circle r="2.5" fill="#818CF8" opacity="0.5">
+          <animateMotion dur="4.1s" repeatCount="indefinite" begin="1.6s" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#rIQ4"/></animateMotion>
+        </circle>
+
+        <!-- ══ LIBYA CLUSTER ══ -->
+        <!-- City: Tripoli -->
+        <circle cx="82"  cy="170" r="9"   fill="rgba(249,115,22,0.12)" stroke="rgba(249,115,22,0.45)" stroke-width="1.5"/>
+        <circle cx="82"  cy="170" r="4"   fill="#F97316"><animate attributeName="opacity" values="0.75;1;0.75" dur="2.2s" repeatCount="indefinite"/></circle>
+        <text x="82" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,0.6)" letter-spacing="0.4">Tripoli</text>
+        <!-- City: Benghazi -->
+        <circle cx="245" cy="168" r="7.5" fill="rgba(249,115,22,0.09)" stroke="rgba(249,115,22,0.38)" stroke-width="1.5"/>
+        <circle cx="245" cy="168" r="3.5" fill="#F97316" opacity="0.85"><animate attributeName="opacity" values="0.6;1;0.6" dur="3.0s" repeatCount="indefinite"/></circle>
+        <text x="258" y="162" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.4">Benghazi</text>
+        <!-- City: Misrata -->
+        <circle cx="85"  cy="325" r="7"   fill="rgba(249,115,22,0.09)" stroke="rgba(249,115,22,0.32)" stroke-width="1.5"/>
+        <circle cx="85"  cy="325" r="3"   fill="#F97316" opacity="0.75"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.9s" repeatCount="indefinite"/></circle>
+        <text x="72" y="343" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.45)" letter-spacing="0.4">Misrata</text>
+        <!-- City: Sabha -->
+        <circle cx="248" cy="338" r="6"   fill="rgba(249,115,22,0.07)" stroke="rgba(249,115,22,0.26)" stroke-width="1"/>
+        <circle cx="248" cy="338" r="2.5" fill="#F97316" opacity="0.65"><animate attributeName="opacity" values="0.4;0.85;0.4" dur="3.6s" repeatCount="indefinite"/></circle>
+        <text x="260" y="343" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9" font-weight="500" fill="rgba(255,255,255,0.38)" letter-spacing="0.4">Sabha</text>
+        <!-- Libya Hub node -->
+        <circle cx="165" cy="245" r="28" fill="none" stroke="rgba(249,115,22,0.2)" stroke-width="1.5">
+          <animate attributeName="r" values="28;44;28" dur="3.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.55;0;0.55" dur="3.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="165" cy="245" r="20" fill="none" stroke="rgba(249,115,22,0.14)" stroke-width="1">
+          <animate attributeName="r" values="20;36;20" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.45;0;0.45" dur="3.2s" begin="1.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="165" cy="245" r="22" fill="rgba(249,115,22,0.07)" stroke="rgba(249,115,22,0.45)" stroke-width="1.5"/>
+        <circle cx="165" cy="245" r="13" fill="rgba(249,115,22,0.22)" stroke="rgba(249,115,22,0.85)" stroke-width="2"/>
+        <circle cx="165" cy="245" r="5"  fill="#F97316" filter="url(#gHub)"/>
+        <text x="165" y="292" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="13.5" font-weight="800" fill="#F97316" letter-spacing="0.5">🇱🇾 Libya</text>
+        <rect x="117" y="298" width="96" height="23" rx="11.5" fill="rgba(249,115,22,0.1)" stroke="rgba(249,115,22,0.32)" stroke-width="1"/>
+        <text x="165" y="313.5" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="rgba(249,115,22,0.9)" letter-spacing="0.2">4,200+ / day</text>
+
+        <!-- ══ LEBANON CLUSTER ══ -->
+        <!-- City: Beirut -->
+        <circle cx="415" cy="104" r="9"   fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.45)" stroke-width="1.5"/>
+        <circle cx="415" cy="104" r="4"   fill="#22C55E"><animate attributeName="opacity" values="0.75;1;0.75" dur="2.0s" repeatCount="indefinite"/></circle>
+        <text x="415" y="89" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,0.6)" letter-spacing="0.4">Beirut</text>
+        <!-- City: Tripoli LB -->
+        <circle cx="548" cy="106" r="7.5" fill="rgba(34,197,94,0.09)" stroke="rgba(34,197,94,0.38)" stroke-width="1.5"/>
+        <circle cx="548" cy="106" r="3.5" fill="#22C55E" opacity="0.85"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.7s" repeatCount="indefinite"/></circle>
+        <text x="562" y="100" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.4">Tripoli</text>
+        <!-- City: Sidon -->
+        <circle cx="432" cy="268" r="7"   fill="rgba(34,197,94,0.09)" stroke="rgba(34,197,94,0.32)" stroke-width="1.5"/>
+        <circle cx="432" cy="268" r="3"   fill="#22C55E" opacity="0.75"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.2s" repeatCount="indefinite"/></circle>
+        <text x="432" y="285" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.45)" letter-spacing="0.4">Sidon</text>
+        <!-- City: Zahlé -->
+        <circle cx="532" cy="266" r="6"   fill="rgba(34,197,94,0.07)" stroke="rgba(34,197,94,0.26)" stroke-width="1"/>
+        <circle cx="532" cy="266" r="2.5" fill="#22C55E" opacity="0.65"><animate attributeName="opacity" values="0.4;0.85;0.4" dur="3.8s" repeatCount="indefinite"/></circle>
+        <text x="546" y="271" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9" font-weight="500" fill="rgba(255,255,255,0.38)" letter-spacing="0.4">Zahlé</text>
+        <!-- Lebanon Hub node -->
+        <circle cx="480" cy="190" r="28" fill="none" stroke="rgba(34,197,94,0.2)" stroke-width="1.5">
+          <animate attributeName="r" values="28;44;28" dur="3.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.55;0;0.55" dur="3.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="480" cy="190" r="20" fill="none" stroke="rgba(34,197,94,0.14)" stroke-width="1">
+          <animate attributeName="r" values="20;36;20" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.45;0;0.45" dur="3.6s" begin="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="480" cy="190" r="22" fill="rgba(34,197,94,0.07)" stroke="rgba(34,197,94,0.45)" stroke-width="1.5"/>
+        <circle cx="480" cy="190" r="13" fill="rgba(34,197,94,0.22)" stroke="rgba(34,197,94,0.85)" stroke-width="2"/>
+        <circle cx="480" cy="190" r="5"  fill="#22C55E" filter="url(#gHub)"/>
+        <text x="480" y="237" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="13.5" font-weight="800" fill="#22C55E" letter-spacing="0.5">🇱🇧 Lebanon</text>
+        <rect x="424" y="243" width="112" height="23" rx="11.5" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.32)" stroke-width="1"/>
+        <text x="480" y="258.5" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="rgba(34,197,94,0.9)" letter-spacing="0.2">1,200+ / day</text>
+
+        <!-- ══ IRAQ CLUSTER ══ -->
+        <!-- City: Baghdad -->
+        <circle cx="706" cy="158" r="9"   fill="rgba(129,140,248,0.12)" stroke="rgba(129,140,248,0.45)" stroke-width="1.5"/>
+        <circle cx="706" cy="158" r="4"   fill="#818CF8"><animate attributeName="opacity" values="0.75;1;0.75" dur="2.4s" repeatCount="indefinite"/></circle>
+        <text x="706" y="143" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,0.6)" letter-spacing="0.4">Baghdad</text>
+        <!-- City: Erbil -->
+        <circle cx="858" cy="155" r="7.5" fill="rgba(129,140,248,0.09)" stroke="rgba(129,140,248,0.38)" stroke-width="1.5"/>
+        <circle cx="858" cy="155" r="3.5" fill="#818CF8" opacity="0.85"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.9s" repeatCount="indefinite"/></circle>
+        <text x="872" y="149" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.4">Erbil</text>
+        <!-- City: Basra -->
+        <circle cx="854" cy="346" r="7"   fill="rgba(129,140,248,0.09)" stroke="rgba(129,140,248,0.32)" stroke-width="1.5"/>
+        <circle cx="854" cy="346" r="3"   fill="#818CF8" opacity="0.75"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.3s" repeatCount="indefinite"/></circle>
+        <text x="866" y="351" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.45)" letter-spacing="0.4">Basra</text>
+        <!-- City: Najaf -->
+        <circle cx="706" cy="342" r="6"   fill="rgba(129,140,248,0.07)" stroke="rgba(129,140,248,0.26)" stroke-width="1"/>
+        <circle cx="706" cy="342" r="2.5" fill="#818CF8" opacity="0.65"><animate attributeName="opacity" values="0.4;0.85;0.4" dur="3.7s" repeatCount="indefinite"/></circle>
+        <text x="694" y="357" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="9" font-weight="500" fill="rgba(255,255,255,0.38)" letter-spacing="0.4">Najaf</text>
+        <!-- Iraq Hub node -->
+        <circle cx="782" cy="248" r="28" fill="none" stroke="rgba(129,140,248,0.2)" stroke-width="1.5">
+          <animate attributeName="r" values="28;44;28" dur="2.9s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.55;0;0.55" dur="2.9s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="782" cy="248" r="20" fill="none" stroke="rgba(129,140,248,0.14)" stroke-width="1">
+          <animate attributeName="r" values="20;36;20" dur="2.9s" begin="1.45s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.45;0;0.45" dur="2.9s" begin="1.45s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="782" cy="248" r="22" fill="rgba(129,140,248,0.07)" stroke="rgba(129,140,248,0.45)" stroke-width="1.5"/>
+        <circle cx="782" cy="248" r="13" fill="rgba(129,140,248,0.22)" stroke="rgba(129,140,248,0.85)" stroke-width="2"/>
+        <circle cx="782" cy="248" r="5"  fill="#818CF8" filter="url(#gHub)"/>
+        <text x="782" y="295" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="13.5" font-weight="800" fill="#818CF8" letter-spacing="0.5">🇮🇶 Iraq</text>
+        <rect x="734" y="301" width="96" height="23" rx="11.5" fill="rgba(129,140,248,0.1)" stroke="rgba(129,140,248,0.32)" stroke-width="1"/>
+        <text x="782" y="316.5" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="10" font-weight="700" fill="rgba(129,140,248,0.9)" letter-spacing="0.2">3,800+ / day</text>
+
+        <!-- ── Live shipment counter bar ── -->
+        <rect x="280" y="400" width="400" height="28" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+        <circle cx="305" cy="414" r="3.5" fill="#22C55E">
+          <animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/>
+        </circle>
+        <text y="418" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,0.75)">
+          <tspan x="480"><tspan id="dlShipCount">0</tspan> active shipments across all markets</tspan>
+        </text>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -977,13 +1092,7 @@
     /* Journey progress line scrub (no opacity on cards — they're always visible) */
     gsap.to('#dlJfProgress', { scrollTrigger:{trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4}, height:'100%', ease:'none' });
 
-    /* Market stats — counter roll-up on enter */
-    ScrollTrigger.create({ trigger:'.dl-mkt-grid', start:'top 88%', once:true, onEnter:()=>{
-      document.querySelectorAll('.dl-mkt-val[data-target]').forEach(el=>{
-        const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
-        let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v).toLocaleString()+s; }});
-      });
-    }});
+    /* Market coverage map — live counter handled by IntersectionObserver on #dlMap */
 
     /* Coverage fleet bars — animate width on enter (cards always visible) */
     ScrollTrigger.create({ trigger:'.dl-cov3', start:'top 88%', once:true, onEnter:()=>{

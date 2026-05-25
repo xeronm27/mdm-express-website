@@ -4566,6 +4566,16 @@ section.block.dl-map-section { background: #07090F; }
 .dl-map-section .title { color: #fff !important; }
 .dl-map-section .sec-sub { color: rgba(255,255,255,0.45) !important; }
 
+/* SVG map container */
+.dl-map-wrap {
+  margin-top: 52px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 0 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.dl-map-svg { width: 100%; height: auto; display: block; }
+
 /* ── MARKET STATS GRID (replaces SVG map) ─────────────────────────── */
 .dl-mkt-grid {
   display: grid; grid-template-columns: repeat(3,1fr);
