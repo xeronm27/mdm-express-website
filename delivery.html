@@ -857,34 +857,34 @@
   if(window.gsap){
     gsap.registerPlugin(ScrollTrigger);
 
+    /* Hero — on-load entrance (no ScrollTrigger, always plays) */
     gsap.from('.dl-hero-left > *', { y:40, opacity:0, duration:0.7, stagger:0.1, ease:'power3.out', delay:0.2 });
     gsap.from('.dl-card-glow-wrap', { y:60, opacity:0, duration:0.9, ease:'power3.out', delay:0.5 });
 
-    /* Stats */
-    ScrollTrigger.create({ trigger:'#dlStatsBar', start:'top 85%', once:true, onEnter:()=>{
+    /* Stats — counter only, no opacity hide (numbers animate in via value) */
+    ScrollTrigger.create({ trigger:'#dlStatsBar', start:'top 88%', once:true, onEnter:()=>{
       document.querySelectorAll('.dl-dstat-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
         let o={v:0}; gsap.to(o,{v:t, duration:1.4, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
       });
     }});
 
-    /* Journey cards */
-    gsap.from('.dl-jf-step', { scrollTrigger:{trigger:'#dlJourneyFull',start:'top 72%'}, y:30, opacity:0, duration:0.55, stagger:0.15, ease:'power2.out' });
+    /* Journey progress line scrub (no opacity on cards — they're always visible) */
     gsap.to('#dlJfProgress', { scrollTrigger:{trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4}, height:'100%', ease:'none' });
 
-    /* Coverage fleet bars */
-    ScrollTrigger.create({ trigger:'.dl-cov3', start:'top 75%', once:true, onEnter:()=>{
+    /* Coverage fleet bars — animate width on enter (cards always visible) */
+    ScrollTrigger.create({ trigger:'.dl-cov3', start:'top 88%', once:true, onEnter:()=>{
       document.querySelectorAll('.dl-c3-fleet-fill').forEach(bar=>{
         gsap.to(bar, { width:bar.dataset.target+'%', duration:1.4, ease:'power2.out' });
       });
     }});
-    gsap.from('.dl-cov3-card', { scrollTrigger:{trigger:'.dl-cov3',start:'top 76%'}, y:50, opacity:0, duration:0.65, stagger:0.18, ease:'power2.out' });
 
-    /* Bento cards */
-    gsap.from('.dl-bento-card', { scrollTrigger:{trigger:'.dl-bento',start:'top 75%'}, y:40, opacity:0, duration:0.55, stagger:0.08, ease:'power2.out' });
+    /* Bento + perf — use onEnter so elements are NEVER pre-hidden by GSAP */
+    ScrollTrigger.create({ trigger:'.dl-bento', start:'top 88%', once:true, onEnter:()=>{
+      gsap.from('.dl-bento-card', { y:30, opacity:0, duration:0.5, stagger:0.07, ease:'power2.out' });
+    }});
 
-    /* Performance strip */
-    ScrollTrigger.create({ trigger:'.dl-perf-strip', start:'top 80%', once:true, onEnter:()=>{
+    ScrollTrigger.create({ trigger:'.dl-perf-strip', start:'top 88%', once:true, onEnter:()=>{
       document.querySelectorAll('.dl-perf-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
         let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
