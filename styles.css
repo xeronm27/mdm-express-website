@@ -4559,37 +4559,74 @@ footer li{transition:color .18s ease;cursor:default}
 }
 
 /* ── LIVE NETWORK MAP ─────────────────────────────────────────────── */
-.dl-map-section { background: #07090F; }
-.dl-map-section .sec-head .sec-tag,
-.dl-map-section .title,
-.dl-map-section .sec-sub { color: var(--on-dark); }
-.dl-map-section .title { color: var(--on-dark) !important; }
+/* specificity override: section.block.alt would win otherwise */
+section.block.alt.dl-map-section,
+section.block.dl-map-section { background: #07090F; }
+.dl-map-section .sec-head .sec-tag { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.12); }
+.dl-map-section .title { color: #fff !important; }
 .dl-map-section .sec-sub { color: rgba(255,255,255,0.45) !important; }
-.dl-map-section .sec-tag { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.12); }
-.dl-map-wrap { position: relative; margin-top: 48px; }
-.dl-map-svg {
-  width: 100%; border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: #0A0D16;
-  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
-  display: block;
+
+/* ── MARKET STATS GRID (replaces SVG map) ─────────────────────────── */
+.dl-mkt-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 56px;
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.dl-map-counter {
-  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(10,13,22,0.9);
-  border: 1px solid rgba(59,130,246,0.25);
-  border-radius: 99px; padding: 8px 20px;
-  font-size: 13px; color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  white-space: nowrap;
+.dl-mkt-col {
+  padding: 40px 36px;
+  background: #0D1017;
+  position: relative; overflow: hidden;
 }
-.dl-map-counter-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #22C55E; flex-shrink: 0;
-  animation: dlNodePulse 1.6s ease-in-out infinite;
+.dl-mkt-col::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
 }
-.dl-map-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #60A5FA; }
+.dl-mkt-ly::before { background: linear-gradient(90deg,#EA580C,#F97316); }
+.dl-mkt-iq::before { background: linear-gradient(90deg,#2563EB,#3B82F6); }
+.dl-mkt-lb::before { background: linear-gradient(90deg,#16A34A,#22C55E); }
+
+.dl-mkt-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+}
+.dl-mkt-flag { font-size: 28px; }
+.dl-mkt-name { font-size: 18px; font-weight: 800; color: #fff; }
+.dl-mkt-status {
+  margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 99px;
+}
+.dl-mkt-status-live { background: rgba(34,197,94,0.15); color: #4ADE80; }
+.dl-mkt-status-soon { background: rgba(249,115,22,0.15); color: #FB923C; }
+
+.dl-mkt-stat {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.dl-mkt-stat:last-child { border-bottom: none; }
+.dl-mkt-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 26px; font-weight: 700; color: #fff; line-height: 1;
+}
+.dl-mkt-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+.dl-mkt-cities {
+  margin-top: 24px; display: flex; flex-wrap: wrap; gap: 6px;
+}
+.dl-mkt-city {
+  font-size: 11px; padding: 4px 10px; border-radius: 99px;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.dl-mkt-city-hub {
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.15); font-weight: 600;
+}
+
+@media(max-width:900px){
+  .dl-mkt-grid { grid-template-columns: 1fr; }
+}
 
 /* ── COVERAGE 3-COL ───────────────────────────────────────────────── */
 .dl-cov3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 56px; }
