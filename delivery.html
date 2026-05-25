@@ -849,75 +849,16 @@
     gsap.registerPlugin(ScrollTrigger);
     if(window.MotionPathPlugin) gsap.registerPlugin(MotionPathPlugin);
 
-    /* ── Utility: manual word-mask split (SplitText technique) ──
-       Wraps each word in overflow:hidden so words slide up from
-       behind a clip, giving the cinematic "reveal from below" look. */
-    function wordMaskReveal(el, vars){
-      if(!el) return;
-      // Collect child nodes (handles <em> inline elements)
-      const nodes = Array.from(el.childNodes);
-      const wordSpans = [];
-
-      nodes.forEach(node => {
-        if(node.nodeType === 3){ // text node
-          const raw = node.textContent;
-          const frag = document.createDocumentFragment();
-          raw.split(/(\s+)/).forEach(part => {
-            if(!part.trim()){ frag.appendChild(document.createTextNode(part)); return; }
-            const mask = document.createElement('span');
-            mask.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
-            const inner = document.createElement('span');
-            inner.style.cssText = 'display:inline-block;';
-            inner.textContent = part;
-            mask.appendChild(inner);
-            frag.appendChild(mask);
-            wordSpans.push(inner);
-          });
-          node.replaceWith(frag);
-        } else if(node.nodeType === 1){ // element (e.g. <em>)
-          const raw = node.textContent;
-          node.textContent = '';
-          const className = node.className;
-          raw.split(/(\s+)/).forEach(part => {
-            if(!part.trim()){ node.appendChild(document.createTextNode(part)); return; }
-            const mask = document.createElement('span');
-            mask.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
-            const inner = document.createElement('span');
-            inner.style.cssText = 'display:inline-block;';
-            if(className) inner.className = className; // carry italic/accent class
-            inner.textContent = part;
-            mask.appendChild(inner);
-            node.appendChild(mask);
-            wordSpans.push(inner);
-          });
-        }
-      });
-
-      // Animate word spans from below
-      return gsap.from(wordSpans, {
-        y: '110%',
-        opacity: 0,
-        duration: vars.duration || 0.75,
-        stagger: vars.stagger || 0.06,
-        ease: vars.ease || 'power3.out',
-        delay: vars.delay || 0
-      });
-    }
-
-    /* ── 1. HERO HEADLINE — word mask reveal ─────────────────────
-       "Every Order," slides up, then "On Time. Every Time."
-       Each word is its own masked element — cinematic stagger.    */
-    const h1 = document.querySelector('.dl-hero-left .headline');
-    wordMaskReveal(h1, { duration:0.8, stagger:0.07, delay:0.25, ease:'power3.out' });
-
-    /* Eyebrow tag fades up first */
-    gsap.from('.dl-eyebrow', { y:20, opacity:0, duration:0.5, ease:'power2.out', delay:0.1 });
-    /* Sub-copy and pills after headline */
-    gsap.from('.dl-hero-left .hero-sub',    { y:20, opacity:0, duration:0.55, ease:'power2.out', delay:0.85 });
-    gsap.from('.dl-cpill', { y:24, opacity:0, duration:0.5, ease:'power3.out', delay:1.0, stagger:0.1 });
-    gsap.from('.dl-hero-left .cta-row',     { y:16, opacity:0, duration:0.5, ease:'power2.out', delay:1.35 });
+    /* ── 1. HERO — staggered entrance ───────────────────────────── */
+    const heroTl = gsap.timeline({ delay: 0.15 });
+    heroTl
+      .from('.dl-eyebrow',              { y:18, opacity:0, duration:0.45, ease:'power2.out' })
+      .from('.dl-hero-left .headline',  { y:36, opacity:0, duration:0.75, ease:'power3.out' }, '-=0.1')
+      .from('.dl-hero-left .hero-sub',  { y:22, opacity:0, duration:0.55, ease:'power2.out' }, '-=0.35')
+      .from('.dl-cpill',                { y:20, opacity:0, duration:0.45, ease:'power2.out', stagger:0.1 }, '-=0.25')
+      .from('.dl-hero-left .cta-row',   { y:16, opacity:0, duration:0.45, ease:'power2.out' }, '-=0.2');
     /* Tracking card sweeps in from right */
-    gsap.from('.dl-card-glow-wrap', { x:60, opacity:0, duration:1.0, ease:'power3.out', delay:0.55 });
+    gsap.from('.dl-card-glow-wrap', { x:60, opacity:0, duration:1.0, ease:'power3.out', delay:0.4 });
 
     /* ── 2. HERO SVG — DrawSVG-style path draw-in ───────────────
        Each route path strokes itself in on page load.
@@ -947,29 +888,19 @@
       } catch(e) {}
     });
 
-    /* ── 3. SCROLL: section heading reveals (ScrollTrigger.batch)
-       All .sec-head blocks share a batched trigger — the eyebrow
-       tag fades in, then the h2 title does the word-mask reveal,
-       then the sub-copy. Runs once per element on scroll entry.  */
+    /* ── 3. SCROLL: section heading reveals (ScrollTrigger.batch) ─ */
     ScrollTrigger.batch('.sec-head', {
       start: 'top 83%',
       once: true,
       onEnter: (els) => {
         els.forEach(secHead => {
           const tl  = gsap.timeline();
-          const tag  = secHead.querySelector('.sec-tag');
-          const h2   = secHead.querySelector('.title');
-          const sub  = secHead.querySelector('.sec-sub');
-          if(tag) tl.from(tag, { y:16, opacity:0, duration:0.4, ease:'power2.out' });
-          if(h2){
-            const words = Array.from(h2.querySelectorAll('span.word-inner') || []);
-            if(words.length){
-              tl.from(words, { y:'100%', duration:0.65, stagger:0.04, ease:'power3.out' }, '-=0.15');
-            } else {
-              tl.from(h2, { y:22, opacity:0, duration:0.65, ease:'power3.out' }, '-=0.15');
-            }
-          }
-          if(sub) tl.from(sub, { y:14, opacity:0, duration:0.5, ease:'power2.out' }, '-=0.2');
+          const tag = secHead.querySelector('.sec-tag');
+          const h2  = secHead.querySelector('.title');
+          const sub = secHead.querySelector('.sec-sub');
+          if(tag) tl.from(tag, { y:14, opacity:0, duration:0.38, ease:'power2.out' });
+          if(h2)  tl.from(h2,  { y:28, opacity:0, duration:0.6,  ease:'power3.out' }, '-=0.1');
+          if(sub) tl.from(sub, { y:14, opacity:0, duration:0.5,  ease:'power2.out' }, '-=0.2');
         });
       }
     });
