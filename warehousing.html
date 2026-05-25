@@ -24,7 +24,7 @@
           Your Inventory,<br/>
           <em class="wh-accent">Always Ready.</em>
         </h1>
-        <p class="hero-sub">Secure, climate-controlled warehouses across Saudi Arabia and the UAE — so products move from shelf to doorstep with zero friction.</p>
+        <p class="hero-sub">Secure, climate-controlled warehouses across Libya, Iraq &amp; Lebanon — so products move from shelf to doorstep with zero friction.</p>
         <div class="wh-hero-metrics">
           <div class="wh-metric">
             <span class="wh-metric-num">99.6%</span>
@@ -38,7 +38,7 @@
           <div class="wh-metric-div"></div>
           <div class="wh-metric">
             <span class="wh-metric-num">2</span>
-            <span class="wh-metric-lab">GCC Hub Locations</span>
+            <span class="wh-metric-lab">Hub Locations</span>
           </div>
         </div>
         <div class="cta-row">
@@ -60,13 +60,13 @@
         <!-- Shelf utilisation bars -->
         <div class="wh-shelf-section">
           <div class="wh-shelf-label">
-            <span>Riyadh Hub — Shelf Capacity</span>
+            <span>Tripoli Hub — Shelf Capacity</span>
             <span class="wh-shelf-pct" id="whRiyPct">0%</span>
           </div>
           <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-green" id="whRiyFill" style="width:0%"></div></div>
 
           <div class="wh-shelf-label" style="margin-top:14px">
-            <span>Dubai Hub — Shelf Capacity</span>
+            <span>Baghdad Hub — Shelf Capacity</span>
             <span class="wh-shelf-pct" id="whDubPct">0%</span>
           </div>
           <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-blue" id="whDubFill" style="width:0%"></div></div>
@@ -115,7 +115,7 @@
           </div>
           <div class="wh-act-row" id="whAct3">
             <div class="wh-act-icon wh-act-ship">🚚</div>
-            <div class="wh-act-text">Order #WH-7839 — Dispatched to Jeddah</div>
+            <div class="wh-act-text">Order #WH-7839 — Dispatched to Benghazi</div>
             <div class="wh-act-time">5 min</div>
           </div>
         </div>
@@ -125,7 +125,7 @@
           <div class="wh-scan-icon">✓</div>
           <div class="wh-scan-text">
             <div class="wh-scan-title">Barcode Scanned</div>
-            <div class="wh-scan-sub">MDM-7703 · Dubai Hub · Shelf D-14</div>
+            <div class="wh-scan-sub">MDM-7703 · Baghdad Hub · Shelf D-14</div>
           </div>
         </div>
       </div>
@@ -195,13 +195,13 @@
   </div>
 </section>
 
-<!-- ═══ GCC HUBS ════════════════════════════════════════════════════ -->
+<!-- ═══ MENA HUBS ════════════════════════════════════════════════════ -->
 <section class="block alt">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag">Our Locations</span>
       <h2 class="title">Two Hubs. One Network.</h2>
-      <p class="sec-sub">Strategically positioned to cover all major GCC markets with same or next-day delivery reach.</p>
+      <p class="sec-sub">Strategically positioned to cover all major MENA markets with same or next-day delivery reach.</p>
     </div>
     <div class="wh-hubs">
 
@@ -209,8 +209,8 @@
         <div class="wh-hub-top">
           <div class="wh-hub-flag">🇸🇦</div>
           <div>
-            <div class="wh-hub-city">Riyadh Hub</div>
-            <div class="wh-hub-sub">King Abdulaziz Industrial City</div>
+            <div class="wh-hub-city">Tripoli Hub</div>
+            <div class="wh-hub-sub">Tripoli Logistics Zone</div>
           </div>
           <div class="wh-hub-live"><span class="wh-hub-pulse"></span> Live</div>
         </div>
@@ -238,7 +238,7 @@
           </div>
         </div>
         <div class="wh-hub-tags">
-          <span class="wh-hub-tag">Next-Day KSA</span>
+          <span class="wh-hub-tag">Next-Day Libya</span>
           <span class="wh-hub-tag">Returns Handling</span>
           <span class="wh-hub-tag">Cold Zone</span>
         </div>
@@ -248,8 +248,8 @@
         <div class="wh-hub-top">
           <div class="wh-hub-flag">🇦🇪</div>
           <div>
-            <div class="wh-hub-city">Dubai Hub</div>
-            <div class="wh-hub-sub">Jebel Ali Free Zone</div>
+            <div class="wh-hub-city">Baghdad Hub</div>
+            <div class="wh-hub-sub">Baghdad Industrial Zone</div>
           </div>
           <div class="wh-hub-live"><span class="wh-hub-pulse"></span> Live</div>
         </div>
@@ -277,7 +277,7 @@
           </div>
         </div>
         <div class="wh-hub-tags">
-          <span class="wh-hub-tag">Same-Day UAE</span>
+          <span class="wh-hub-tag">Same-Day Iraq</span>
           <span class="wh-hub-tag">Port Access</span>
           <span class="wh-hub-tag">B2B Pallets</span>
         </div>
@@ -455,7 +455,7 @@
             </div>
             <div class="wh-sync-pulse-row">
               <div class="wh-sync-spinner"></div>
-              <span>Syncing from Riyadh Hub…</span>
+              <span>Syncing from Tripoli Hub…</span>
               <span class="wh-sync-live-dot"></span>
             </div>
           </div>
@@ -538,7 +538,7 @@
   function tick(){
     if(!clockEl) return;
     const n = new Date();
-    clockEl.textContent = n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' AST';
+    clockEl.textContent = n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' UTC+2';
   }
   tick(); setInterval(tick, 1000);
 

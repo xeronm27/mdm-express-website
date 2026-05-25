@@ -19,7 +19,7 @@
       icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`
     },
     {
-      label: 'Warehousing', sub: 'GCC coverage', href: 'warehousing.html',
+      label: 'Warehousing', sub: 'Libya & Iraq hubs', href: 'warehousing.html',
       icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
     },
     {
@@ -85,7 +85,7 @@
   const trustItems = [
     '9,000+ Active Sellers',
     '$30M+ Capital Deployed',
-    'Saudi Arabia · UAE Coverage',
+    'Libya · Iraq · Lebanon',
     '8+ Years Experience',
     '24/7 Call Centre Support',
     'Next-Day Delivery',
@@ -134,7 +134,7 @@
         <div class="sec-head">
           <span class="sec-tag">Seller Stories</span>
           <h2 class="title">Trusted by Thousands of COD Operators</h2>
-          <p class="sec-sub">Real results from sellers who scaled with MDM Express across Saudi Arabia and the UAE.</p>
+          <p class="sec-sub">Real results from sellers who scaled with MDM Express across Libya, Iraq, and Lebanon.</p>
         </div>
         <div class="testi-grid">
           <div class="testi-card">
@@ -143,7 +143,7 @@
               <div class="testi-avatar">👤</div>
               <div>
                 <div class="testi-name">Khalid Al-Rashid</div>
-                <div class="testi-role">Electronics Seller · Riyadh</div>
+                <div class="testi-role">Electronics Seller · Tripoli</div>
               </div>
               <span class="testi-stat">+23% Conf. Rate</span>
             </div>
@@ -154,7 +154,7 @@
               <div class="testi-avatar">👤</div>
               <div>
                 <div class="testi-name">Fatima Hassan</div>
-                <div class="testi-role">Fashion Retailer · Dubai</div>
+                <div class="testi-role">Fashion Retailer · Baghdad</div>
               </div>
               <span class="testi-stat">500+ Daily Orders</span>
             </div>
@@ -165,7 +165,7 @@
               <div class="testi-avatar">👤</div>
               <div>
                 <div class="testi-name">Omar Al-Sayed</div>
-                <div class="testi-role">Multi-Category Seller · Kuwait</div>
+                <div class="testi-role">Multi-Category Seller · Beirut</div>
               </div>
               <span class="testi-stat">$120K Funded</span>
             </div>
