@@ -776,7 +776,6 @@
 <script src="shared.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="animations.js"></script>
 
 <audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
@@ -804,7 +803,22 @@
     if(truck) { truck.style.transition = 'left 2.8s cubic-bezier(0.16,1,0.3,1)';  truck.style.left  = 'calc(62% - 16px)'; }
   }, 900);
 
-  /* GPS coordinate cycle — handled below with ScrambleText effect */
+  /* ── GPS coordinate cycle ────────────────────────────────────── */
+  const coords = [
+    ['32.8872° N, 13.1913° E', 'Tripoli, Libya'],
+    ['33.8938° N, 35.5018° E', 'Beirut, Lebanon'],
+    ['33.3152° N, 44.3661° E', 'Baghdad, Iraq'],
+    ['32.4942° N, 13.8800° E', 'Misrata, Libya'],
+    ['30.5085° N, 47.7835° E', 'Basra, Iraq'],
+  ];
+  let ci = 0;
+  const coordEl = document.getElementById('dlCoord');
+  const cityEl  = document.querySelector('.dl-gps-city');
+  setInterval(()=>{
+    ci = (ci+1) % coords.length;
+    if(coordEl) coordEl.textContent = coords[ci][0];
+    if(cityEl)  cityEl.textContent  = coords[ci][1];
+  }, 2800);
 
   /* ── Live shipment counter ───────────────────────────────────── */
   const countEl = document.getElementById('dlShipCount');
@@ -839,164 +853,44 @@
     if(el){ el.style.opacity='0'; el.style.transform='translateY(8px)'; setTimeout(()=>{ el.style.transition='opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1)'; el.style.opacity='1'; el.style.transform='none'; }, 700+i*700); }
   });
 
-  /* ══════════════════════════════════════════════════════════════
-     GSAP — delivery page animations
-     Uses: ScrollTrigger, MotionPathPlugin (now free via Webflow/GSAP)
-     Techniques: word-mask reveal, DrawSVG-style path draw-in,
-                 ScrambleText, ScrollTrigger.batch
-     ══════════════════════════════════════════════════════════════ */
+  /* ── GSAP ────────────────────────────────────────────────────── */
   if(window.gsap){
     gsap.registerPlugin(ScrollTrigger);
-    if(window.MotionPathPlugin) gsap.registerPlugin(MotionPathPlugin);
 
-    /* ── 1. HERO — staggered entrance ───────────────────────────── */
-    const heroTl = gsap.timeline({ delay: 0.15 });
-    heroTl
-      .from('.dl-eyebrow',              { y:18, opacity:0, duration:0.45, ease:'power2.out' })
-      .from('.dl-hero-left .headline',  { y:36, opacity:0, duration:0.75, ease:'power3.out' }, '-=0.1')
-      .from('.dl-hero-left .hero-sub',  { y:22, opacity:0, duration:0.55, ease:'power2.out' }, '-=0.35')
-      .from('.dl-cpill',                { y:20, opacity:0, duration:0.45, ease:'power2.out', stagger:0.1 }, '-=0.25')
-      .from('.dl-hero-left .cta-row',   { y:16, opacity:0, duration:0.45, ease:'power2.out' }, '-=0.2');
-    /* Tracking card sweeps in from right */
-    gsap.from('.dl-card-glow-wrap', { x:60, opacity:0, duration:1.0, ease:'power3.out', delay:0.4 });
+    gsap.from('.dl-hero-left > *', { y:40, opacity:0, duration:0.7, stagger:0.1, ease:'power3.out', delay:0.2 });
+    gsap.from('.dl-card-glow-wrap', { y:60, opacity:0, duration:0.9, ease:'power3.out', delay:0.5 });
 
-    /* ── 2. HERO SVG — DrawSVG-style path draw-in ───────────────
-       Each route path strokes itself in on page load.
-       Technique: set stroke-dasharray = path length, animate
-       stroke-dashoffset from length → 0, then restore dashes.    */
-    document.querySelectorAll('.dl-route-svg path[id]').forEach((path, i) => {
-      try {
-        const len   = path.getTotalLength();
-        const dash  = path.getAttribute('stroke-dasharray') || '5 4';
-        // Draw state: full solid dash covering whole path, offset so invisible
-        path.setAttribute('stroke-dasharray', String(len));
-        path.setAttribute('stroke-dashoffset', String(len));
-        gsap.set(path, { opacity: 0 });
-        // Animate: fade in + draw
-        gsap.timeline({ delay: 0.6 + i * 0.09 })
-          .to(path, { opacity: 1, duration: 0.15 })
-          .to(path, {
-            attr: { 'stroke-dashoffset': 0 },
-            duration: 1.1,
-            ease: 'power2.inOut'
-          }, '<')
-          .add(() => {
-            // Restore original dashed style after draw completes
-            path.setAttribute('stroke-dasharray', dash);
-            path.setAttribute('stroke-dashoffset', '0');
-          });
-      } catch(e) {}
-    });
-
-    /* ── 3. SCROLL: section heading reveals (ScrollTrigger.batch) ─ */
-    ScrollTrigger.batch('.sec-head', {
-      start: 'top 83%',
-      once: true,
-      onEnter: (els) => {
-        els.forEach(secHead => {
-          const tl  = gsap.timeline();
-          const tag = secHead.querySelector('.sec-tag');
-          const h2  = secHead.querySelector('.title');
-          const sub = secHead.querySelector('.sec-sub');
-          if(tag) tl.from(tag, { y:14, opacity:0, duration:0.38, ease:'power2.out' });
-          if(h2)  tl.from(h2,  { y:28, opacity:0, duration:0.6,  ease:'power3.out' }, '-=0.1');
-          if(sub) tl.from(sub, { y:14, opacity:0, duration:0.5,  ease:'power2.out' }, '-=0.2');
-        });
-      }
-    });
-
-    /* ── 4. STATS bar — counter roll-up ─────────────────────────── */
+    /* Stats */
     ScrollTrigger.create({ trigger:'#dlStatsBar', start:'top 85%', once:true, onEnter:()=>{
       document.querySelectorAll('.dl-dstat-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
-        let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
+        let o={v:0}; gsap.to(o,{v:t, duration:1.4, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
       });
-      gsap.from('.dl-dstat-item', { y:28, opacity:0, duration:0.55, stagger:0.12, ease:'power2.out' });
     }});
 
-    /* ── 5. JOURNEY timeline — card reveal + progress line scrub ─ */
-    gsap.from('.dl-jf-step', {
-      scrollTrigger:{ trigger:'#dlJourneyFull', start:'top 72%' },
-      y:40, opacity:0, duration:0.6, stagger:0.18, ease:'power3.out'
-    });
-    gsap.to('#dlJfProgress', {
-      scrollTrigger:{ trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4 },
-      height:'100%', ease:'none'
-    });
+    /* Journey cards */
+    gsap.from('.dl-jf-step', { scrollTrigger:{trigger:'#dlJourneyFull',start:'top 72%'}, y:30, opacity:0, duration:0.55, stagger:0.15, ease:'power2.out' });
+    gsap.to('#dlJfProgress', { scrollTrigger:{trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4}, height:'100%', ease:'none' });
 
-    /* ── 6. COVERAGE 3-col — slide up + fleet bar animation ──────── */
-    ScrollTrigger.batch('.dl-cov3-card', {
-      start: 'top 80%',
-      once: true,
-      interval: 0.1,
-      batchMax: 3,
-      onEnter: (batch) => {
-        gsap.from(batch, { y:55, opacity:0, duration:0.65, stagger:0.18, ease:'power3.out' });
-        // Animate fleet bars for visible batch
-        batch.forEach(card => {
-          card.querySelectorAll('.dl-c3-fleet-fill').forEach(bar => {
-            gsap.to(bar, { width:bar.dataset.target+'%', duration:1.5, ease:'power2.out', delay:0.3 });
-          });
-        });
-      }
-    });
+    /* Coverage fleet bars */
+    ScrollTrigger.create({ trigger:'.dl-cov3', start:'top 75%', once:true, onEnter:()=>{
+      document.querySelectorAll('.dl-c3-fleet-fill').forEach(bar=>{
+        gsap.to(bar, { width:bar.dataset.target+'%', duration:1.4, ease:'power2.out' });
+      });
+    }});
+    gsap.from('.dl-cov3-card', { scrollTrigger:{trigger:'.dl-cov3',start:'top 76%'}, y:50, opacity:0, duration:0.65, stagger:0.18, ease:'power2.out' });
 
-    /* ── 7. BENTO grid — staggered card reveal ───────────────────── */
-    ScrollTrigger.batch('.dl-bento-card', {
-      start: 'top 78%',
-      once: true,
-      interval: 0.08,
-      onEnter: (batch) => {
-        gsap.from(batch, { y:40, opacity:0, duration:0.55, stagger:0.08, ease:'power2.out' });
-      }
-    });
+    /* Bento cards */
+    gsap.from('.dl-bento-card', { scrollTrigger:{trigger:'.dl-bento',start:'top 75%'}, y:40, opacity:0, duration:0.55, stagger:0.08, ease:'power2.out' });
 
-    /* ── 8. PERFORMANCE strip — gradient number counter ─────────── */
+    /* Performance strip */
     ScrollTrigger.create({ trigger:'.dl-perf-strip', start:'top 80%', once:true, onEnter:()=>{
-      gsap.from('.dl-perf-item', { y:30, opacity:0, duration:0.6, stagger:0.15, ease:'power3.out' });
       document.querySelectorAll('.dl-perf-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
-        let o={v:0}; gsap.to(o,{v:t, duration:1.8, ease:'power2.out', delay:0.2, onUpdate(){ el.textContent=Math.round(o.v)+s; }});
+        let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
       });
     }});
   }
-
-  /* ── ScrambleText on GPS coordinate cycle ───────────────────────
-     Replaces the plain setInterval swap with a matrix/glitch reveal.
-     Each coordinate change scrambles through random chars first.   */
-  (function(){
-    const CHARS = '0123456789.,°NSEW ';
-    function scrambleTo(el, newText, dur){
-      if(!el) return;
-      const frames = Math.round(dur / 16);
-      let f = 0;
-      const id = setInterval(()=>{
-        f++;
-        const prog = f / frames;
-        el.textContent = newText.split('').map((ch,i)=>{
-          if(i <= prog * newText.length) return ch;
-          return CHARS[Math.floor(Math.random() * CHARS.length)];
-        }).join('');
-        if(f >= frames){ clearInterval(id); el.textContent = newText; }
-      }, 16);
-    }
-
-    const coords = [
-      ['32.8872° N, 13.1913° E', 'Tripoli, Libya'],
-      ['33.8938° N, 35.5018° E', 'Beirut, Lebanon'],
-      ['33.3152° N, 44.3661° E', 'Baghdad, Iraq'],
-      ['32.4942° N, 13.8800° E', 'Misrata, Libya'],
-      ['30.5085° N, 47.7835° E', 'Basra, Iraq'],
-    ];
-    let ci = 0;
-    const coordEl = document.getElementById('dlCoord');
-    const cityEl  = document.querySelector('.dl-gps-city');
-    setInterval(()=>{
-      ci = (ci+1) % coords.length;
-      scrambleTo(coordEl, coords[ci][0], 480);
-      if(cityEl){ cityEl.style.opacity='0'; setTimeout(()=>{ cityEl.textContent=coords[ci][1]; cityEl.style.transition='opacity 0.3s'; cityEl.style.opacity='1'; }, 200); }
-    }, 2800);
-  })();
 })();
 </script>
 
