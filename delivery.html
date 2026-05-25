@@ -776,6 +776,7 @@
 <script src="shared.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="animations.js"></script>
 
 <audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
@@ -803,22 +804,7 @@
     if(truck) { truck.style.transition = 'left 2.8s cubic-bezier(0.16,1,0.3,1)';  truck.style.left  = 'calc(62% - 16px)'; }
   }, 900);
 
-  /* ── GPS coordinate cycle ────────────────────────────────────── */
-  const coords = [
-    ['32.8872° N, 13.1913° E', 'Tripoli, Libya'],
-    ['33.8938° N, 35.5018° E', 'Beirut, Lebanon'],
-    ['33.3152° N, 44.3661° E', 'Baghdad, Iraq'],
-    ['32.4942° N, 13.8800° E', 'Misrata, Libya'],
-    ['30.5085° N, 47.7835° E', 'Basra, Iraq'],
-  ];
-  let ci = 0;
-  const coordEl = document.getElementById('dlCoord');
-  const cityEl  = document.querySelector('.dl-gps-city');
-  setInterval(()=>{
-    ci = (ci+1) % coords.length;
-    if(coordEl) coordEl.textContent = coords[ci][0];
-    if(cityEl)  cityEl.textContent  = coords[ci][1];
-  }, 2800);
+  /* GPS coordinate cycle — handled below with ScrambleText effect */
 
   /* ── Live shipment counter ───────────────────────────────────── */
   const countEl = document.getElementById('dlShipCount');
@@ -853,44 +839,233 @@
     if(el){ el.style.opacity='0'; el.style.transform='translateY(8px)'; setTimeout(()=>{ el.style.transition='opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1)'; el.style.opacity='1'; el.style.transform='none'; }, 700+i*700); }
   });
 
-  /* ── GSAP ────────────────────────────────────────────────────── */
+  /* ══════════════════════════════════════════════════════════════
+     GSAP — delivery page animations
+     Uses: ScrollTrigger, MotionPathPlugin (now free via Webflow/GSAP)
+     Techniques: word-mask reveal, DrawSVG-style path draw-in,
+                 ScrambleText, ScrollTrigger.batch
+     ══════════════════════════════════════════════════════════════ */
   if(window.gsap){
     gsap.registerPlugin(ScrollTrigger);
+    if(window.MotionPathPlugin) gsap.registerPlugin(MotionPathPlugin);
 
-    gsap.from('.dl-hero-left > *', { y:40, opacity:0, duration:0.7, stagger:0.1, ease:'power3.out', delay:0.2 });
-    gsap.from('.dl-card-glow-wrap', { y:60, opacity:0, duration:0.9, ease:'power3.out', delay:0.5 });
+    /* ── Utility: manual word-mask split (SplitText technique) ──
+       Wraps each word in overflow:hidden so words slide up from
+       behind a clip, giving the cinematic "reveal from below" look. */
+    function wordMaskReveal(el, vars){
+      if(!el) return;
+      // Collect child nodes (handles <em> inline elements)
+      const nodes = Array.from(el.childNodes);
+      const wordSpans = [];
 
-    /* Stats */
+      nodes.forEach(node => {
+        if(node.nodeType === 3){ // text node
+          const raw = node.textContent;
+          const frag = document.createDocumentFragment();
+          raw.split(/(\s+)/).forEach(part => {
+            if(!part.trim()){ frag.appendChild(document.createTextNode(part)); return; }
+            const mask = document.createElement('span');
+            mask.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
+            const inner = document.createElement('span');
+            inner.style.cssText = 'display:inline-block;';
+            inner.textContent = part;
+            mask.appendChild(inner);
+            frag.appendChild(mask);
+            wordSpans.push(inner);
+          });
+          node.replaceWith(frag);
+        } else if(node.nodeType === 1){ // element (e.g. <em>)
+          const raw = node.textContent;
+          node.textContent = '';
+          const className = node.className;
+          raw.split(/(\s+)/).forEach(part => {
+            if(!part.trim()){ node.appendChild(document.createTextNode(part)); return; }
+            const mask = document.createElement('span');
+            mask.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;';
+            const inner = document.createElement('span');
+            inner.style.cssText = 'display:inline-block;';
+            if(className) inner.className = className; // carry italic/accent class
+            inner.textContent = part;
+            mask.appendChild(inner);
+            node.appendChild(mask);
+            wordSpans.push(inner);
+          });
+        }
+      });
+
+      // Animate word spans from below
+      return gsap.from(wordSpans, {
+        y: '110%',
+        opacity: 0,
+        duration: vars.duration || 0.75,
+        stagger: vars.stagger || 0.06,
+        ease: vars.ease || 'power3.out',
+        delay: vars.delay || 0
+      });
+    }
+
+    /* ── 1. HERO HEADLINE — word mask reveal ─────────────────────
+       "Every Order," slides up, then "On Time. Every Time."
+       Each word is its own masked element — cinematic stagger.    */
+    const h1 = document.querySelector('.dl-hero-left .headline');
+    wordMaskReveal(h1, { duration:0.8, stagger:0.07, delay:0.25, ease:'power3.out' });
+
+    /* Eyebrow tag fades up first */
+    gsap.from('.dl-eyebrow', { y:20, opacity:0, duration:0.5, ease:'power2.out', delay:0.1 });
+    /* Sub-copy and pills after headline */
+    gsap.from('.dl-hero-left .hero-sub',    { y:20, opacity:0, duration:0.55, ease:'power2.out', delay:0.85 });
+    gsap.from('.dl-cpill', { y:24, opacity:0, duration:0.5, ease:'power3.out', delay:1.0, stagger:0.1 });
+    gsap.from('.dl-hero-left .cta-row',     { y:16, opacity:0, duration:0.5, ease:'power2.out', delay:1.35 });
+    /* Tracking card sweeps in from right */
+    gsap.from('.dl-card-glow-wrap', { x:60, opacity:0, duration:1.0, ease:'power3.out', delay:0.55 });
+
+    /* ── 2. HERO SVG — DrawSVG-style path draw-in ───────────────
+       Each route path strokes itself in on page load.
+       Technique: set stroke-dasharray = path length, animate
+       stroke-dashoffset from length → 0, then restore dashes.    */
+    document.querySelectorAll('.dl-route-svg path[id]').forEach((path, i) => {
+      try {
+        const len   = path.getTotalLength();
+        const dash  = path.getAttribute('stroke-dasharray') || '5 4';
+        // Draw state: full solid dash covering whole path, offset so invisible
+        path.setAttribute('stroke-dasharray', String(len));
+        path.setAttribute('stroke-dashoffset', String(len));
+        gsap.set(path, { opacity: 0 });
+        // Animate: fade in + draw
+        gsap.timeline({ delay: 0.6 + i * 0.09 })
+          .to(path, { opacity: 1, duration: 0.15 })
+          .to(path, {
+            attr: { 'stroke-dashoffset': 0 },
+            duration: 1.1,
+            ease: 'power2.inOut'
+          }, '<')
+          .add(() => {
+            // Restore original dashed style after draw completes
+            path.setAttribute('stroke-dasharray', dash);
+            path.setAttribute('stroke-dashoffset', '0');
+          });
+      } catch(e) {}
+    });
+
+    /* ── 3. SCROLL: section heading reveals (ScrollTrigger.batch)
+       All .sec-head blocks share a batched trigger — the eyebrow
+       tag fades in, then the h2 title does the word-mask reveal,
+       then the sub-copy. Runs once per element on scroll entry.  */
+    ScrollTrigger.batch('.sec-head', {
+      start: 'top 83%',
+      once: true,
+      onEnter: (els) => {
+        els.forEach(secHead => {
+          const tl  = gsap.timeline();
+          const tag  = secHead.querySelector('.sec-tag');
+          const h2   = secHead.querySelector('.title');
+          const sub  = secHead.querySelector('.sec-sub');
+          if(tag) tl.from(tag, { y:16, opacity:0, duration:0.4, ease:'power2.out' });
+          if(h2){
+            const words = Array.from(h2.querySelectorAll('span.word-inner') || []);
+            if(words.length){
+              tl.from(words, { y:'100%', duration:0.65, stagger:0.04, ease:'power3.out' }, '-=0.15');
+            } else {
+              tl.from(h2, { y:22, opacity:0, duration:0.65, ease:'power3.out' }, '-=0.15');
+            }
+          }
+          if(sub) tl.from(sub, { y:14, opacity:0, duration:0.5, ease:'power2.out' }, '-=0.2');
+        });
+      }
+    });
+
+    /* ── 4. STATS bar — counter roll-up ─────────────────────────── */
     ScrollTrigger.create({ trigger:'#dlStatsBar', start:'top 85%', once:true, onEnter:()=>{
       document.querySelectorAll('.dl-dstat-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
-        let o={v:0}; gsap.to(o,{v:t, duration:1.4, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
+        let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
       });
+      gsap.from('.dl-dstat-item', { y:28, opacity:0, duration:0.55, stagger:0.12, ease:'power2.out' });
     }});
 
-    /* Journey cards */
-    gsap.from('.dl-jf-step', { scrollTrigger:{trigger:'#dlJourneyFull',start:'top 72%'}, y:30, opacity:0, duration:0.55, stagger:0.15, ease:'power2.out' });
-    gsap.to('#dlJfProgress', { scrollTrigger:{trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4}, height:'100%', ease:'none' });
+    /* ── 5. JOURNEY timeline — card reveal + progress line scrub ─ */
+    gsap.from('.dl-jf-step', {
+      scrollTrigger:{ trigger:'#dlJourneyFull', start:'top 72%' },
+      y:40, opacity:0, duration:0.6, stagger:0.18, ease:'power3.out'
+    });
+    gsap.to('#dlJfProgress', {
+      scrollTrigger:{ trigger:'#dlJourneyFull', start:'top 68%', end:'bottom 38%', scrub:1.4 },
+      height:'100%', ease:'none'
+    });
 
-    /* Coverage fleet bars */
-    ScrollTrigger.create({ trigger:'.dl-cov3', start:'top 75%', once:true, onEnter:()=>{
-      document.querySelectorAll('.dl-c3-fleet-fill').forEach(bar=>{
-        gsap.to(bar, { width:bar.dataset.target+'%', duration:1.4, ease:'power2.out' });
-      });
-    }});
-    gsap.from('.dl-cov3-card', { scrollTrigger:{trigger:'.dl-cov3',start:'top 76%'}, y:50, opacity:0, duration:0.65, stagger:0.18, ease:'power2.out' });
+    /* ── 6. COVERAGE 3-col — slide up + fleet bar animation ──────── */
+    ScrollTrigger.batch('.dl-cov3-card', {
+      start: 'top 80%',
+      once: true,
+      interval: 0.1,
+      batchMax: 3,
+      onEnter: (batch) => {
+        gsap.from(batch, { y:55, opacity:0, duration:0.65, stagger:0.18, ease:'power3.out' });
+        // Animate fleet bars for visible batch
+        batch.forEach(card => {
+          card.querySelectorAll('.dl-c3-fleet-fill').forEach(bar => {
+            gsap.to(bar, { width:bar.dataset.target+'%', duration:1.5, ease:'power2.out', delay:0.3 });
+          });
+        });
+      }
+    });
 
-    /* Bento cards */
-    gsap.from('.dl-bento-card', { scrollTrigger:{trigger:'.dl-bento',start:'top 75%'}, y:40, opacity:0, duration:0.55, stagger:0.08, ease:'power2.out' });
+    /* ── 7. BENTO grid — staggered card reveal ───────────────────── */
+    ScrollTrigger.batch('.dl-bento-card', {
+      start: 'top 78%',
+      once: true,
+      interval: 0.08,
+      onEnter: (batch) => {
+        gsap.from(batch, { y:40, opacity:0, duration:0.55, stagger:0.08, ease:'power2.out' });
+      }
+    });
 
-    /* Performance strip */
+    /* ── 8. PERFORMANCE strip — gradient number counter ─────────── */
     ScrollTrigger.create({ trigger:'.dl-perf-strip', start:'top 80%', once:true, onEnter:()=>{
+      gsap.from('.dl-perf-item', { y:30, opacity:0, duration:0.6, stagger:0.15, ease:'power3.out' });
       document.querySelectorAll('.dl-perf-num').forEach(el=>{
         const t = parseInt(el.dataset.target)||0, s = el.dataset.suffix||'';
-        let o={v:0}; gsap.to(o,{v:t, duration:1.6, ease:'power2.out', onUpdate(){ el.textContent=Math.round(o.v)+s; }});
+        let o={v:0}; gsap.to(o,{v:t, duration:1.8, ease:'power2.out', delay:0.2, onUpdate(){ el.textContent=Math.round(o.v)+s; }});
       });
     }});
   }
+
+  /* ── ScrambleText on GPS coordinate cycle ───────────────────────
+     Replaces the plain setInterval swap with a matrix/glitch reveal.
+     Each coordinate change scrambles through random chars first.   */
+  (function(){
+    const CHARS = '0123456789.,°NSEW ';
+    function scrambleTo(el, newText, dur){
+      if(!el) return;
+      const frames = Math.round(dur / 16);
+      let f = 0;
+      const id = setInterval(()=>{
+        f++;
+        const prog = f / frames;
+        el.textContent = newText.split('').map((ch,i)=>{
+          if(i <= prog * newText.length) return ch;
+          return CHARS[Math.floor(Math.random() * CHARS.length)];
+        }).join('');
+        if(f >= frames){ clearInterval(id); el.textContent = newText; }
+      }, 16);
+    }
+
+    const coords = [
+      ['32.8872° N, 13.1913° E', 'Tripoli, Libya'],
+      ['33.8938° N, 35.5018° E', 'Beirut, Lebanon'],
+      ['33.3152° N, 44.3661° E', 'Baghdad, Iraq'],
+      ['32.4942° N, 13.8800° E', 'Misrata, Libya'],
+      ['30.5085° N, 47.7835° E', 'Basra, Iraq'],
+    ];
+    let ci = 0;
+    const coordEl = document.getElementById('dlCoord');
+    const cityEl  = document.querySelector('.dl-gps-city');
+    setInterval(()=>{
+      ci = (ci+1) % coords.length;
+      scrambleTo(coordEl, coords[ci][0], 480);
+      if(cityEl){ cityEl.style.opacity='0'; setTimeout(()=>{ cityEl.textContent=coords[ci][1]; cityEl.style.transition='opacity 0.3s'; cityEl.style.opacity='1'; }, 200); }
+    }, 2800);
+  })();
 })();
 </script>
 
