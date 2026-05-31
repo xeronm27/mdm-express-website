@@ -3,11 +3,178 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MDM Express — Your All-In-One E-Commerce Partner</title>
+<title>MDM Express — The COD Platform for MENA Sellers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
+<style>
+/* ── HERO: improved copy badge ──────────────────────────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 8px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+.hero-badge-dot {
+  width: 8px; height: 8px;
+  background: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.25);
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,.25); }
+  50%      { box-shadow: 0 0 0 6px rgba(34,197,94,.08); }
+}
+
+/* ── SERVICES STRIP: chip layout ───────────────────────────── */
+.svc-strip-section { background: #fff; border-bottom: 1px solid var(--line); }
+.svc-strip         { display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: none; }
+.svc-strip::-webkit-scrollbar { display: none; }
+.svc-divider       { width: 1px; background: var(--line); flex-shrink: 0; }
+
+/* ── WHY SECTION ────────────────────────────────────────────── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+.why-card {
+  background: #fff;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.why-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.why-card h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -.02em;
+  line-height: 1.3;
+}
+.why-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+.why-card-stat {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -.03em;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: auto;
+}
+.why-card-stat-lab {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-top: 2px;
+}
+
+/* ── PROOF / SELLER STORIES ─────────────────────────────────── */
+.proof-strip {
+  background: #0A0202;
+  padding: 72px 0;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.proof-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color .2s;
+}
+.proof-card:hover { border-color: rgba(220,38,38,.3); }
+.proof-stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+.proof-quote {
+  font-size: 14.5px;
+  color: rgba(255,255,255,.75);
+  line-height: 1.72;
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 24px;
+}
+.proof-quote::before { content: '\201C'; }
+.proof-quote::after  { content: '\201D'; }
+.proof-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.proof-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.proof-name  { font-size: 13px; font-weight: 700; color: #fff; }
+.proof-role  { font-size: 11.5px; color: rgba(255,255,255,.4); margin-top: 1px; }
+.proof-badge {
+  margin-left: auto;
+  padding: 4px 10px;
+  background: rgba(220,38,38,.12);
+  border: 1px solid rgba(220,38,38,.25);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #EF4444;
+  white-space: nowrap;
+}
+.proof-head .title  { color: #fff; }
+.proof-head .sec-tag { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); border: none; }
+.proof-head .sec-sub { color: rgba(255,255,255,.45); }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:900px){
+  .why-grid   { grid-template-columns:1fr; }
+  .proof-grid { grid-template-columns:1fr; }
+}
+@media(max-width:640px){
+  .why-card { padding:28px 22px; }
+  .proof-card { padding:22px 20px 18px; }
+}
+</style>
 </head>
 <body data-page="home">
 
@@ -17,17 +184,20 @@
   <div class="hero-veil"></div>
   <div class="wrap">
     <div class="hero-inner">
-      <span class="eyebrow"><span class="dot"></span> Your All-In-One Partner for E-Commerce Success</span>
-      <h1 class="headline">Achieve Effortless COD<br/>eCommerce Growth <span class="accent">with Strategic Solutions</span></h1>
-      <p class="hero-sub">Discover how MDM Express's essential platform features are designed to simplify eCommerce operations from sourcing to delivery.</p>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Live in Libya &amp; Iraq · 9,000+ Active Sellers
+      </div>
+      <h1 class="headline">One Partner.<br/>Source, Ship &amp; <span class="accent">Get Paid.</span></h1>
+      <p class="hero-sub">MDM Express handles sourcing, warehousing, order confirmation, next-day delivery, and weekly payouts — so you can focus entirely on selling.</p>
       <div class="cta-row">
-        <a href="#cta" class="btn-primary">Get Started →</a>
-        <a href="how-it-works.html" class="btn-ghost">How it works</a>
+        <a href="#cta" class="btn-primary">Start Selling Free →</a>
+        <a href="how-it-works.html" class="btn-ghost">See How It Works</a>
       </div>
     </div>
     <div class="float-cards" aria-hidden="true">
       <div class="fc fc-1"><div class="ph red">👟</div><div><div class="meta">SKU · 4521</div><div class="label">Sneakers</div><div class="price">$89.00</div></div></div>
-      <div class="fc fc-2"><div class="ph">⌚</div><div><div class="meta">SKU · 9912</div><div class="label">Smart watch</div><div class="price">$59.50</div></div></div>
+      <div class="fc fc-2"><div class="ph">⌚</div><div><div class="meta">SKU · 9912</div><div class="label">Smart Watch</div><div class="price">$59.50</div></div></div>
       <div class="fc fc-stat"><div><div class="num">$260.87</div><div class="lab">New payment received</div></div></div>
       <div class="fc fc-3"><div class="ph cream">🎧</div><div><div class="meta">SKU · 3318</div><div class="label">Headphones</div><div class="price">$120.00</div></div></div>
       <div class="fc fc-4"><div class="ph lav">📦</div><div><div class="meta">Order #2034</div><div class="label">Shipped</div><div class="price">$87,896</div></div></div>
@@ -52,7 +222,7 @@
         <div class="svc-divider"></div>
         <a href="warehousing.html" class="svc-chip">
           <div class="svc-chip-icon">🏬</div>
-          <div><div class="svc-chip-name">Warehousing</div><div class="svc-chip-sub">MENA coverage</div></div>
+          <div><div class="svc-chip-name">Warehousing</div><div class="svc-chip-sub">Libya &amp; Iraq hubs</div></div>
         </a>
         <div class="svc-divider"></div>
         <a href="call-center.html" class="svc-chip">
@@ -62,7 +232,7 @@
         <div class="svc-divider"></div>
         <a href="delivery.html" class="svc-chip">
           <div class="svc-chip-icon">🚚</div>
-          <div><div class="svc-chip-name">Delivery</div><div class="svc-chip-sub">Next-day</div></div>
+          <div><div class="svc-chip-name">Delivery</div><div class="svc-chip-sub">Next-day shipping</div></div>
         </a>
         <div class="svc-divider"></div>
         <a href="remittance.html" class="svc-chip">
@@ -71,29 +241,69 @@
         </a>
         <div class="svc-divider"></div>
         <a href="capital.html" class="svc-chip">
-          <div class="svc-chip-icon">📈</div>
-          <div><div class="svc-chip-name">Capital</div><div class="svc-chip-sub">$30M+ deployed</div></div>
+          <div class="svc-chip-icon">💳</div>
+          <div><div class="svc-chip-name">Advance</div><div class="svc-chip-sub">Stock now, pay later</div></div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ② HOW IT WORKS — Alternating 3-step visual layout -->
+  <!-- ② WHY MDM — 3 value pillars -->
   <section class="block">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-tag">Simple Process</span>
+        <span class="sec-tag">Why MDM Express</span>
+        <h2 class="title">Everything a COD Seller Needs, Under One Roof</h2>
+        <p class="sec-sub">No more juggling suppliers, couriers, call agents, and payment processors. MDM Express replaces all of them.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card-icon">🚀</div>
+          <h3>Live in 48 Hours</h3>
+          <p>From sign-up to your first shipped order — our onboarding team handles store integration, warehouse setup, and payment routing in under two days.</p>
+          <div>
+            <div class="why-card-stat">48h</div>
+            <div class="why-card-stat-lab">Average Onboarding Time</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">📞</div>
+          <h3>98% Confirmation Rate</h3>
+          <p>Our multilingual call center agents confirm every COD order before dispatch — dramatically cutting returns and lifting your net revenue per delivery.</p>
+          <div>
+            <div class="why-card-stat">98%</div>
+            <div class="why-card-stat-lab">COD Confirmation Rate</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">💰</div>
+          <h3>Get Paid Every Week</h3>
+          <p>Transparent weekly remittances with zero invoice chasing. Your COD collections hit your account on a fixed, predictable schedule — always on time.</p>
+          <div>
+            <div class="why-card-stat">7 days</div>
+            <div class="why-card-stat-lab">Payout Cycle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ HOW IT WORKS — 3-step alternating -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">How It Works</span>
         <h2 class="title">From Sign-Up to First Sale in 48 Hours</h2>
-        <p class="sec-sub">Three steps from sign-up to your first paid order — without ever touching a warehouse.</p>
+        <p class="sec-sub">Three steps from registration to paid orders — without ever touching a warehouse or hiring a single agent.</p>
       </div>
 
-      <!-- Step 1: Connect Store -->
+      <!-- Step 1 -->
       <div class="hiw-row">
         <div class="hiw-text">
           <div class="hiw-num">STEP 01</div>
-          <h3>Connect Your Store</h3>
-          <p>Sign up, pick your target market, and integrate your existing storefront in minutes. Our onboarding team sets up your entire account in under 48 hours — from store sync to payment routing.</p>
-          <a href="how-it-works.html" class="hiw-link">Learn more →</a>
+          <h3>Connect &amp; Configure Your Store</h3>
+          <p>Sign up, choose your market (Libya or Iraq), and plug in your storefront. Our onboarding team sets up your full account — store sync, payment routing, and warehouse allocation — within 48 hours.</p>
+          <a href="how-it-works.html" class="hiw-link">See full process →</a>
         </div>
         <div class="hiw-visual">
           <div class="hiw-card">
@@ -128,13 +338,13 @@
         </div>
       </div>
 
-      <!-- Step 2: Pick Products -->
+      <!-- Step 2 -->
       <div class="hiw-row hiw-row-rev">
         <div class="hiw-text">
           <div class="hiw-num">STEP 02</div>
-          <h3>Find &amp; Pick Products</h3>
-          <p>Browse our curated catalog of 10,000+ validated COD products with live conversion data. Pick winners, push them to your funnel, and let our system handle sourcing and fulfillment.</p>
-          <a href="affiliate.html" class="hiw-link">Browse catalog →</a>
+          <h3>Pick Products from 10,000+ SKUs</h3>
+          <p>Browse our validated catalog of COD-ready products with live order-rate data. Choose your winners, push them to your funnel, and our fulfillment team handles the rest — storage, packing, and dispatch included.</p>
+          <a href="sourcing.html" class="hiw-link">Browse catalog →</a>
         </div>
         <div class="hiw-visual">
           <div class="hiw-card">
@@ -169,13 +379,13 @@
         </div>
       </div>
 
-      <!-- Step 3: Collect Profits -->
+      <!-- Step 3 -->
       <div class="hiw-row">
         <div class="hiw-text">
           <div class="hiw-num">STEP 03</div>
-          <h3>Collect Profits</h3>
-          <p>Every COD order is confirmed by our call center, fulfilled from our warehouse, delivered by our logistics network, and paid out to you on a predictable weekly schedule — zero hassle.</p>
-          <a href="capital.html" class="hiw-link">See Capital →</a>
+          <h3>Sell. We Deliver. You Collect.</h3>
+          <p>Every order is confirmed by our call center, packed in our warehouse, shipped next-day by our logistics network, and paid to you on a fixed weekly schedule. You never touch the operations — just the profits.</p>
+          <a href="capital.html" class="hiw-link">Explore Sourcing Advance →</a>
         </div>
         <div class="hiw-visual">
           <div class="hiw-card hiw-card-dark">
@@ -205,21 +415,21 @@
     </div>
   </section>
 
-  <!-- ③ SERVICES BENTO GRID -->
-  <section class="block alt">
+  <!-- ④ SERVICES BENTO GRID -->
+  <section class="block">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-tag">Five services</span>
-        <h2 class="title">Unlock New Markets with Premium COD Solutions</h2>
-        <p class="sec-sub">Each service stands on its own — combined, they remove every operational bottleneck for COD sellers.</p>
+        <span class="sec-tag">Six Services</span>
+        <h2 class="title">Every Service a COD Business Needs</h2>
+        <p class="sec-sub">Each service works standalone. Combined, they remove every operational bottleneck between you and profit.</p>
       </div>
       <div class="bento-grid">
 
-        <!-- Sourcing — wide, lavender -->
+        <!-- Sourcing — wide -->
         <a href="sourcing.html" class="bento-card bento-wide bento-lav">
-          <div class="bento-tag">Sourcing Product</div>
+          <div class="bento-tag">Product Sourcing</div>
           <h3 class="bento-title">Find winning products at factory prices</h3>
-          <p class="bento-desc">Skip months of factory chasing — source 10,000+ validated SKUs from our supplier network in days, not weeks.</p>
+          <p class="bento-desc">Skip months of factory chasing — access 10,000+ validated COD-ready SKUs with live conversion data from our supplier network.</p>
           <div class="bento-icons">
             <span>👜</span><span>⌚</span><span>👟</span><span>🎧</span><span>💄</span><span>🏠</span>
           </div>
@@ -230,7 +440,7 @@
         <a href="call-center.html" class="bento-card bento-dark">
           <div class="bento-tag-light">Call Centre</div>
           <h3 class="bento-title-light">24/7 multilingual confirmation team</h3>
-          <p class="bento-desc-light">Our agents lift your COD acceptance rate well above the industry baseline.</p>
+          <p class="bento-desc-light">Native-language agents confirm every order before dispatch — the single biggest driver of COD profitability.</p>
           <div class="bento-stat">
             <div class="bento-stat-num">98%</div>
             <div class="bento-stat-lab">Confirmation Rate</div>
@@ -238,19 +448,19 @@
           <div class="bento-arrow light">→</div>
         </a>
 
-        <!-- Warehousing — white -->
+        <!-- Warehousing -->
         <a href="warehousing.html" class="bento-card bento-white">
           <div class="bento-tag">Warehousing &amp; Fulfillment</div>
-          <h3 class="bento-title">Climate-controlled storage across MENA</h3>
-          <p class="bento-desc">Professional pick &amp; pack, returns handling, and real-time inventory sync from our regional hubs.</p>
+          <h3 class="bento-title">Regional hubs in Libya &amp; Iraq</h3>
+          <p class="bento-desc">Professional pick &amp; pack, returns handling, and real-time inventory sync — all from our MENA facilities.</p>
           <div class="bento-arrow">→</div>
         </a>
 
-        <!-- Delivery — white -->
+        <!-- Delivery -->
         <a href="delivery.html" class="bento-card bento-white">
-          <div class="bento-tag">Shipping &amp; Delivery</div>
-          <h3 class="bento-title">Next-day to major metro areas</h3>
-          <p class="bento-desc">Live tracking at every shipment hop across Libya, Iraq and the wider MENA.</p>
+          <div class="bento-tag">Last-Mile Delivery</div>
+          <h3 class="bento-title">Next-day to every major city</h3>
+          <p class="bento-desc">Live shipment tracking across Libya and Iraq, with on-ground logistics built for COD confirmation workflows.</p>
           <div class="bento-arrow">→</div>
         </a>
 
@@ -258,15 +468,15 @@
         <a href="remittance.html" class="bento-card bento-accent">
           <div class="bento-tag-light">COD Remittance</div>
           <h3 class="bento-title-light">Get paid every week, automatically</h3>
-          <p class="bento-desc-light">Transparent COD payouts on a predictable schedule — no chasing invoices, no delays.</p>
+          <p class="bento-desc-light">Predictable weekly payouts direct to your account. No invoice chasing. No delays. No surprises.</p>
           <div class="bento-arrow light">→</div>
         </a>
 
-        <!-- Capital — white -->
+        <!-- Advance -->
         <a href="capital.html" class="bento-card bento-white">
-          <div class="bento-tag">Capital</div>
-          <h3 class="bento-title">$30M+ deployed, zero equity taken</h3>
-          <p class="bento-desc">Performance-based funding to scale inventory and ad spend — approved in 48 hours.</p>
+          <div class="bento-tag">Sourcing Advance</div>
+          <h3 class="bento-title">Stock now, repay from your sales</h3>
+          <p class="bento-desc">Performance-based inventory funding approved in 48 hours. No equity required — repay as your COD revenue comes in.</p>
           <div class="bento-arrow">→</div>
         </a>
 
@@ -274,20 +484,68 @@
     </div>
   </section>
 
-  <!-- ④ MARKETS + PRODUCT CATALOG PREVIEW -->
+  <!-- ⑤ SELLER PROOF (testimonials) -->
+  <section class="proof-strip">
+    <div class="wrap">
+      <div class="sec-head proof-head">
+        <span class="sec-tag">Seller Stories</span>
+        <h2 class="title">Trusted by 9,000+ COD Operators</h2>
+        <p class="sec-sub">Real outcomes from sellers running their operations with MDM Express across Libya, Iraq, and Lebanon.</p>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="proof-stars">★★★★★</div>
+          <p class="proof-quote">MDM's call center lifted my confirmation rate by 23% in the first month. I went from losing money on returns to running the most profitable campaign I've ever had.</p>
+          <div class="proof-footer">
+            <div class="proof-avatar">KR</div>
+            <div>
+              <div class="proof-name">Khalid Al-Rashid</div>
+              <div class="proof-role">Electronics Seller · Tripoli, Libya</div>
+            </div>
+            <div class="proof-badge">+23% Rate</div>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-stars">★★★★★</div>
+          <p class="proof-quote">Zero to 500 daily orders in 90 days. The sourcing team found products I couldn't replicate anywhere else at these margins. MDM handles everything — I just manage my ads.</p>
+          <div class="proof-footer">
+            <div class="proof-avatar">FH</div>
+            <div>
+              <div class="proof-name">Fatima Hassan</div>
+              <div class="proof-role">Fashion Retailer · Baghdad, Iraq</div>
+            </div>
+            <div class="proof-badge">500+ Orders/Day</div>
+          </div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-stars">★★★★★</div>
+          <p class="proof-quote">The Sourcing Advance gave me the inventory funding I needed to scale at exactly the right time. No equity lost — just the fuel I needed to 3× my monthly revenue.</p>
+          <div class="proof-footer">
+            <div class="proof-avatar">OS</div>
+            <div>
+              <div class="proof-name">Omar Al-Sayed</div>
+              <div class="proof-role">Multi-Category Seller · Beirut</div>
+            </div>
+            <div class="proof-badge">$120K Funded</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ MARKETS + CATALOG PREVIEW -->
   <section class="block">
     <div class="wrap">
       <div class="markets-layout">
 
-        <!-- Left: Markets text -->
         <div class="markets-text">
           <span class="sec-tag">Coverage</span>
-          <h2 class="title" style="margin-top:14px">Expand Globally with a Trusted E-Commerce Network</h2>
-          <p style="color:var(--muted);line-height:1.72;margin:18px 0 28px;font-size:16px">We operate in the fastest-growing COD markets in the Middle East — with infrastructure built to scale far beyond.</p>
+          <h2 class="title" style="margin-top:14px">Built for the Fastest-Growing COD Markets</h2>
+          <p style="color:var(--muted);line-height:1.72;margin:18px 0 28px;font-size:16px">MDM Express operates where COD dominates — with infrastructure purpose-built for Libya and Iraq, and expansion markets arriving soon.</p>
           <div class="market-chips">
-            <div class="market-chip chip-active">🇸🇦 Libya <span class="chip-badge">Live</span></div>
-            <div class="market-chip chip-active">🇦🇪 Iraq <span class="chip-badge">Live</span></div>
-            <div class="market-chip chip-soon">🇰🇼 Lebanon <span class="chip-badge soon">Soon</span></div>
+            <div class="market-chip chip-active">🇱🇾 Libya <span class="chip-badge">Live</span></div>
+            <div class="market-chip chip-active">🇮🇶 Iraq <span class="chip-badge">Live</span></div>
+            <div class="market-chip chip-soon">🇱🇧 Lebanon <span class="chip-badge soon">Soon</span></div>
             <div class="market-chip chip-soon">🇶🇦 Qatar <span class="chip-badge soon">Soon</span></div>
             <div class="market-chip chip-soon">🇧🇭 Bahrain <span class="chip-badge soon">Soon</span></div>
             <div class="market-chip chip-soon">🇴🇲 Oman <span class="chip-badge soon">Soon</span></div>
@@ -299,20 +557,19 @@
             </div>
             <div class="market-kpi">
               <div class="market-kpi-num">$30M+</div>
-              <div class="market-kpi-lab">Capital Deployed</div>
+              <div class="market-kpi-lab">Advanced to Sellers</div>
             </div>
             <div class="market-kpi">
               <div class="market-kpi-num">8+</div>
-              <div class="market-kpi-lab">Years Experience</div>
+              <div class="market-kpi-lab">Years of Experience</div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Product catalog preview -->
         <div class="catalog-preview">
           <div class="catalog-top">
-            <span class="mono" style="font-size:10.5px;color:var(--muted)">MORE PRODUCTS, MORE PROFITS</span>
-            <span class="catalog-count">10,000+ Ready</span>
+            <span class="mono" style="font-size:10.5px;color:var(--muted)">READY-TO-SELL CATALOG</span>
+            <span class="catalog-count">10,000+ SKUs</span>
           </div>
           <div class="catalog-grid">
             <div class="catalog-card"><div class="catalog-img red">👟</div><div class="catalog-name">Sneakers</div><div class="catalog-price">$89.00</div><div class="catalog-meta">1.2k orders/wk</div></div>
@@ -333,15 +590,15 @@
     </div>
   </section>
 
-  <!-- ⑤ PLATFORM STATS -->
+  <!-- ⑦ PLATFORM STATS -->
   <section class="block alt">
     <div class="wrap">
       <div class="platform-layout">
 
         <div class="platform-text">
           <span class="sec-tag">Platform</span>
-          <h2 class="title" style="margin-top:14px">The Numbers Behind 9,000+ Sellers</h2>
-          <p style="color:var(--muted);line-height:1.72;margin:18px 0 32px;font-size:16px">Built for operators who want results — not complexity. Every metric optimized for COD success in the MENA and beyond.</p>
+          <h2 class="title" style="margin-top:14px">The Numbers Behind 9,000 Sellers</h2>
+          <p style="color:var(--muted);line-height:1.72;margin:18px 0 32px;font-size:16px">Built for operators who want results — not complexity. Every metric is optimized for COD success in MENA markets.</p>
           <a href="features.html" class="btn-primary">Explore All Features →</a>
         </div>
 
@@ -373,7 +630,7 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
             </div>
-            <div class="psc-lab">Capital Deployed to Sellers</div>
+            <div class="psc-lab">Advanced to Sellers</div>
             <div class="psc-bar"><div class="psc-fill" style="--w:75%"></div></div>
           </div>
           <div class="psc-card">
@@ -392,7 +649,7 @@
     </div>
   </section>
 
-  <!-- ⑥ FAQ -->
+  <!-- ⑧ FAQ -->
   <section class="block lav">
     <div class="wrap">
       <div class="sec-head">
@@ -401,15 +658,16 @@
       </div>
       <div class="faq-grid">
         <aside class="faq-side">
-          <h3>Didn't get your answer yet?</h3>
+          <h3>Didn't find your answer?</h3>
           <p>Contact our team — we respond within one business day.</p>
           <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
         </aside>
         <div class="faq-list">
-          <div class="faq-item open"><div class="faq-q">How quickly can I start selling on MDM Express? <span class="pl">+</span></div><div class="faq-a">Most accounts go live within 48–72 hours of submitting your application. Our onboarding team handles everything from store integration to first shipment.</div></div>
-          <div class="faq-item"><div class="faq-q">Do I need to hold inventory myself? <span class="pl">+</span></div><div class="faq-a">No — for our Affiliate program you hold zero inventory. For Sellers, we warehouse and fulfill every order from our MENA facilities on your behalf.</div></div>
-          <div class="faq-item"><div class="faq-q">Which markets do you currently cover? <span class="pl">+</span></div><div class="faq-a">Libya and the Iraq are fully live. Lebanon, Qatar, Bahrain and Oman are launching soon — join the waitlist to be first.</div></div>
-          <div class="faq-item"><div class="faq-q">How does the Capital program work? <span class="pl">+</span></div><div class="faq-a">We analyze your sales history and offer performance-based funding in as little as 48 hours. No equity required — repay from your COD revenue on a flexible schedule.</div></div>
+          <div class="faq-item open"><div class="faq-q">How quickly can I start selling on MDM Express? <span class="pl">+</span></div><div class="faq-a">Most accounts go live within 48–72 hours of submitting your application. Our onboarding team handles everything — from store integration to warehouse allocation and first shipment.</div></div>
+          <div class="faq-item"><div class="faq-q">Do I need to hold inventory myself? <span class="pl">+</span></div><div class="faq-a">No. For our Affiliate program you hold zero stock. For full Sellers, we warehouse and fulfill every order from our Libya and Iraq facilities on your behalf.</div></div>
+          <div class="faq-item"><div class="faq-q">Which markets are currently live? <span class="pl">+</span></div><div class="faq-a">Libya and Iraq are fully operational. Lebanon, Qatar, Bahrain, and Oman are launching soon — sign up now to be first in queue when your market goes live.</div></div>
+          <div class="faq-item"><div class="faq-q">How does the Sourcing Advance work? <span class="pl">+</span></div><div class="faq-a">We review your sales history and offer inventory funding within 48 hours. No equity required — repay from your COD revenue on a flexible schedule tied to your actual sales performance.</div></div>
+          <div class="faq-item"><div class="faq-q">What confirmation rate can I expect? <span class="pl">+</span></div><div class="faq-a">Our call center consistently delivers a 98% COD confirmation rate across all active markets — significantly above the MENA industry average of 60–70%.</div></div>
         </div>
       </div>
     </div>
@@ -429,12 +687,12 @@
 <script>
 (function(){
   const audio = document.getElementById('hero-music');
-  const btn = document.getElementById('musicToggle');
+  const btn   = document.getElementById('musicToggle');
   if (!audio || !btn) return;
   audio.volume = 0.5;
   let playing = false;
   function tryStart(){
-    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); }).catch(()=>{});
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }).catch(()=>{});
   }
   document.addEventListener('click', tryStart, {once:false});
   btn.addEventListener('click', (e)=>{
