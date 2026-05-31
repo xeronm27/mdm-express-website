@@ -281,25 +281,6 @@
     hero.after(trustWrap.firstElementChild);
   }
 
-  /* ── INJECT: stats band + testimonials (home page only) ───── */
-  if (active === 'home') {
-    const reorderRoot = document.querySelector('[data-reorder]');
-    if (reorderRoot) {
-      // Stats band — after the reorder-root sections
-      const sbWrap = document.createElement('div');
-      sbWrap.innerHTML = statsHtml;
-      reorderRoot.after(sbWrap.firstElementChild);
-
-      // Testimonials — after the stats band
-      const statsEl = document.querySelector('.stats-accent-band');
-      if (statsEl) {
-        const tWrap = document.createElement('div');
-        tWrap.innerHTML = testiHtml;
-        statsEl.after(tWrap.firstElementChild);
-      }
-    }
-  }
-
   /* ── INJECT: CTA strip + footer at bottom ─────────────────── */
   if (!document.body.dataset.noCta) {
     const ctaWrap = document.createElement('div');
