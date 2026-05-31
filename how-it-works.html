@@ -1,87 +1,656 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>How it works · MDM Express</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How It Works &middot; MDM Express</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css"/>
+<style>
+/* ============================================================
+   HOW IT WORKS  —  hw-* namespace
+   Accent: Brand Red #DC2626 / #EF4444
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.hw-hero{position:relative;background:#0A0202;overflow:hidden;padding:130px 0 90px;min-height:100vh;display:flex;align-items:center}
+.hw-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 600px at 10% 60%,rgba(220,38,38,.14) 0%,transparent 65%),radial-gradient(ellipse 400px 400px at 85% 15%,rgba(220,38,38,.08) 0%,transparent 60%);pointer-events:none}
+.hw-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hw-hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hw-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);border-radius:100px;padding:6px 14px;font-size:.76rem;font-weight:600;color:#FCA5A5;letter-spacing:.05em;text-transform:uppercase;margin-bottom:22px}
+.hw-eye-dot{width:7px;height:7px;background:#DC2626;border-radius:50%;animation:hwPulse 1.8s ease-in-out infinite}
+@keyframes hwPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hw-headline{font-size:clamp(2.2rem,4vw,3.6rem);font-weight:800;line-height:1.1;color:#fff;margin:0 0 18px;letter-spacing:-.03em}
+.hw-accent{color:#EF4444}
+.hw-sub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.72;max-width:460px;margin:0 0 34px}
+.hw-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hw-btn{background:#DC2626;color:#fff;font-weight:700;font-size:.92rem;padding:13px 26px;border-radius:10px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 18px rgba(220,38,38,.35)}
+.hw-btn:hover{background:#B91C1C;transform:translateY(-1px);box-shadow:0 8px 28px rgba(220,38,38,.45)}
+.hw-ghost{color:rgba(255,255,255,.65);font-weight:600;font-size:.88rem;text-decoration:none;transition:color .2s}
+.hw-ghost:hover{color:#EF4444}
+
+/* Hero flow preview widget */
+.hw-flow-preview{position:relative;z-index:2}
+.hw-flow-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:24px;backdrop-filter:blur(20px);box-shadow:0 4px 6px rgba(0,0,0,.3),0 24px 64px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07)}
+.hw-flow-title{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.hw-flow-steps{display:flex;flex-direction:column;gap:0}
+.hw-fs{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
+.hw-fs:last-child{border-bottom:none}
+.hw-fs-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:500;color:rgba(255,255,255,.3);min-width:20px}
+.hw-fs-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.hw-fs-icon.c1{background:rgba(220,38,38,.15)}
+.hw-fs-icon.c2{background:rgba(245,158,11,.15)}
+.hw-fs-icon.c3{background:rgba(99,102,241,.15)}
+.hw-fs-icon.c4{background:rgba(16,185,129,.15)}
+.hw-fs-icon.c5{background:rgba(236,72,153,.15)}
+.hw-fs-icon.c6{background:rgba(220,38,38,.15)}
+.hw-fs-info{flex:1}
+.hw-fs-name{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:2px}
+.hw-fs-detail{font-size:.7rem;color:rgba(255,255,255,.35)}
+.hw-fs-status{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:100px}
+.hw-fs-status.done{background:rgba(16,185,129,.15);color:#4ADE80}
+.hw-fs-status.active{background:rgba(220,38,38,.15);color:#FCA5A5;animation:hwBlink 2s ease-in-out infinite}
+.hw-fs-status.pending{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+@keyframes hwBlink{0%,100%{opacity:1}50%{opacity:.5}}
+.hw-flow-bar{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.hw-flow-bar-label{font-size:.68rem;color:rgba(255,255,255,.3);margin-bottom:8px}
+.hw-flow-bar-track{height:4px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
+.hw-flow-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#DC2626,#EF4444);border-radius:100px;transition:width 1.6s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- STATS ---------- */
+.hw-stats{background:#fff;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:34px 0}
+.hw-stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.hw-stat{text-align:center;padding:8px 20px;border-right:1px solid rgba(0,0,0,.07)}
+.hw-stat:last-child{border-right:none}
+.hw-stat-val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:#111;line-height:1;margin-bottom:5px}
+.hw-stat-val.r{color:#DC2626}
+.hw-stat-label{font-size:.8rem;color:#888;font-weight:500}
+
+/* ---------- JOURNEY STEPS ---------- */
+.hw-steps-wrap{margin-top:64px;position:relative}
+/* vertical connector line */
+.hw-steps-wrap::before{content:'';position:absolute;left:40px;top:60px;bottom:60px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.25) 10%,rgba(220,38,38,.25) 90%,transparent);pointer-events:none}
+.hw-step{display:grid;grid-template-columns:80px 1fr 1fr;gap:40px;align-items:center;padding:48px 0;border-bottom:1px solid rgba(0,0,0,.06);position:relative}
+.hw-step:last-child{border-bottom:none}
+/* step number bubble */
+.hw-step-num{display:flex;flex-direction:column;align-items:center;gap:0}
+.hw-step-bubble{width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:500;color:#999;transition:border-color .3s,color .3s;position:relative;z-index:1}
+.hw-step:hover .hw-step-bubble{border-color:#DC2626;color:#DC2626}
+/* step content */
+.hw-step-content{}
+.hw-step-tag{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#DC2626;background:rgba(220,38,38,.08);padding:4px 10px;border-radius:100px;margin-bottom:12px}
+.hw-step-title{font-size:1.5rem;font-weight:800;color:#111;margin:0 0 12px;letter-spacing:-.02em}
+.hw-step-desc{font-size:.9rem;color:#555;line-height:1.7;margin:0 0 18px}
+.hw-step-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hw-chip{font-size:.75rem;color:#555;background:#F3F4F6;border:1px solid #E5E7EB;padding:5px 12px;border-radius:100px}
+/* step mockup */
+.hw-step-mock{border-radius:18px;overflow:hidden}
+
+/* Step mock designs */
+/* Step 1 – store connect */
+.hw-mock-connect{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:20px}
+.hw-mc-title{font-size:.72rem;font-weight:700;color:#374151;margin-bottom:14px;text-transform:uppercase;letter-spacing:.05em}
+.hw-mc-platform{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1px solid #E5E7EB;border-radius:10px;margin-bottom:8px}
+.hw-mc-platform.active{border-color:#DC2626;background:rgba(220,38,38,.03)}
+.hw-mc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.hw-mc-name{font-size:.8rem;font-weight:600;color:#111;flex:1}
+.hw-mc-check{color:#DC2626;font-size:.8rem}
+.hw-mc-markets{display:flex;gap:8px;margin-top:12px}
+.hw-mc-mkt{flex:1;padding:8px;background:#fff;border:1px solid #E5E7EB;border-radius:9px;text-align:center;font-size:.72rem;font-weight:600;color:#555}
+.hw-mc-mkt.sel{border-color:#DC2626;color:#DC2626;background:rgba(220,38,38,.04)}
+
+/* Step 2 – sourcing */
+.hw-mock-source{background:#FFFBF0;border:1px solid #FDE68A;border-radius:16px;padding:20px}
+.hw-ms-product{display:flex;align-items:center;gap:12px;padding:12px;background:#fff;border:1px solid #FDE68A;border-radius:12px;margin-bottom:12px}
+.hw-ms-img{width:44px;height:44px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.hw-ms-info{flex:1}
+.hw-ms-name{font-size:.78rem;font-weight:700;color:#111;margin-bottom:3px}
+.hw-ms-origin{font-size:.68rem;color:#92400E}
+.hw-ms-price{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:500;color:#D97706}
+.hw-ms-qc{display:flex;align-items:center;gap:6px;padding:7px 12px;background:#ECFDF5;border:1px solid rgba(16,185,129,.25);border-radius:8px;font-size:.72rem;font-weight:600;color:#065F46}
+
+/* Step 3 – warehouse */
+.hw-mock-wh{background:#F0F4FF;border:1px solid #C7D2FE;border-radius:16px;padding:20px}
+.hw-wh-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #E0E7FF}
+.hw-wh-stat:last-of-type{border-bottom:none;margin-bottom:10px}
+.hw-wh-key{font-size:.75rem;color:#4338CA}
+.hw-wh-val{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:500;color:#1E1B4B}
+.hw-wh-bar{height:5px;background:#C7D2FE;border-radius:3px;overflow:hidden;margin-bottom:4px}
+.hw-wh-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#6366F1,#818CF8)}
+
+/* Step 4 – orders / call center */
+.hw-mock-orders{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:20px}
+.hw-ord-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;margin-bottom:6px}
+.hw-ord-row.confirmed{background:#ECFDF5;border:1px solid rgba(16,185,129,.2)}
+.hw-ord-row.calling{background:#FEF9C3;border:1px solid rgba(234,179,8,.3)}
+.hw-ord-row.new{background:#F3F4F6;border:1px solid #E5E7EB}
+.hw-ord-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hw-ord-dot.g{background:#22C55E}
+.hw-ord-dot.y{background:#EAB308;animation:hwBlink 1.2s ease-in-out infinite}
+.hw-ord-dot.s{background:#D1D5DB}
+.hw-ord-id{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#555;flex:1}
+.hw-ord-status{font-size:.68rem;font-weight:700}
+.hw-ord-row.confirmed .hw-ord-status{color:#16A34A}
+.hw-ord-row.calling .hw-ord-status{color:#CA8A04}
+.hw-ord-row.new .hw-ord-status{color:#9CA3AF}
+.hw-ord-val{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#111;font-weight:500}
+
+/* Step 5 – delivery */
+.hw-mock-delivery{background:#0A0202;border:1px solid rgba(220,38,38,.15);border-radius:16px;padding:20px;color:#fff}
+.hw-dl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.hw-dl-title{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.hw-dl-live{font-size:.65rem;font-weight:700;color:#EF4444;background:rgba(220,38,38,.15);padding:3px 9px;border-radius:100px}
+.hw-dl-route{display:flex;flex-direction:column;gap:8px}
+.hw-dl-stop{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:9px}
+.hw-dl-stop.current{border-color:rgba(220,38,38,.35);background:rgba(220,38,38,.08)}
+.hw-dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hw-dl-dot.done2{background:#22C55E}
+.hw-dl-dot.now{background:#EF4444;animation:hwBlink 1s ease-in-out infinite}
+.hw-dl-dot.soon{background:rgba(255,255,255,.2)}
+.hw-dl-stop-name{font-size:.78rem;color:rgba(255,255,255,.7);flex:1}
+.hw-dl-stop.current .hw-dl-stop-name{color:#fff;font-weight:600}
+.hw-dl-eta{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.3)}
+.hw-dl-stop.current .hw-dl-eta{color:#EF4444}
+
+/* Step 6 – payout */
+.hw-mock-payout{background:#030D09;border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:20px;color:#fff}
+.hw-pay-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.hw-pay-amount{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:500;color:#4ADE80;line-height:1;margin-bottom:4px}
+.hw-pay-date{font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hw-pay-breakdown{display:flex;flex-direction:column;gap:6px}
+.hw-pay-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,.04);border-radius:7px}
+.hw-pay-rkey{font-size:.72rem;color:rgba(255,255,255,.5)}
+.hw-pay-rval{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.85);font-weight:500}
+.hw-pay-rval.g{color:#4ADE80}
+
+/* ---------- WHAT YOU DON'T NEED (bento) ---------- */
+.hw-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.hw-bc{border:1px solid rgba(0,0,0,.07);border-radius:20px;padding:28px;background:#fff;transition:box-shadow .25s,transform .25s;position:relative;overflow:hidden}
+.hw-bc:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);transform:translateY(-2px)}
+.hw-bc.hw-wide{grid-column:span 2}
+.hw-bc.hw-dark{background:#0A0202;border-color:rgba(255,255,255,.07)}
+.hw-bc-cross{font-size:1.4rem;margin-bottom:12px;display:block;opacity:.7}
+.hw-bc-title{font-size:.95rem;font-weight:700;color:#111;margin:0 0 8px}
+.hw-bc.hw-dark .hw-bc-title{color:#fff}
+.hw-bc-desc{font-size:.83rem;color:#777;line-height:1.6;margin:0}
+.hw-bc.hw-dark .hw-bc-desc{color:rgba(255,255,255,.45)}
+.hw-bc-tag{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;color:#DC2626;background:rgba(220,38,38,.08);padding:4px 10px;border-radius:100px;margin-top:12px}
+/* Savings summary inside wide dark card */
+.hw-savings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.hw-saving{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px}
+.hw-saving-num{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:#fff;margin-bottom:4px}
+.hw-saving-label{font-size:.68rem;color:rgba(255,255,255,.4)}
+
+/* ---------- FAQ ---------- */
+.hw-faq-grid{display:grid;grid-template-columns:300px 1fr;gap:64px;margin-top:56px}
+.hw-faq-side h3{font-size:1.3rem;font-weight:800;color:#111;margin:0 0 10px}
+.hw-faq-side p{font-size:.87rem;color:#666;line-height:1.65;margin:0 0 22px}
+.hw-faq-contact{display:inline-block;padding:11px 22px;background:#DC2626;color:#fff;font-weight:700;font-size:.85rem;border-radius:10px;text-decoration:none;transition:background .2s}
+.hw-faq-contact:hover{background:#B91C1C}
+.hw-faq-list{display:flex;flex-direction:column}
+.hw-faq-item{border-bottom:1px solid #F3F4F6}
+.hw-faq-q{display:flex;align-items:center;justify-content:space-between;padding:17px 0;font-size:.9rem;font-weight:600;color:#111;cursor:pointer;user-select:none;transition:color .2s}
+.hw-faq-q:hover{color:#DC2626}
+.hw-faq-plus{width:24px;height:24px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#888;transition:background .2s,color .2s,transform .25s;flex-shrink:0}
+.hw-faq-item.open .hw-faq-plus{background:#DC2626;color:#fff;transform:rotate(45deg)}
+.hw-faq-a{font-size:.86rem;color:#666;line-height:1.7;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease;padding-bottom:0}
+.hw-faq-item.open .hw-faq-a{max-height:200px;padding-bottom:16px}
+
+/* ---------- CTA ---------- */
+.hw-cta{background:#0A0202;padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.hw-cta::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(220,38,38,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hw-cta-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);color:#FCA5A5;font-size:.72rem;font-weight:700;padding:6px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:22px}
+.hw-cta-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin:0 0 14px;letter-spacing:-.03em;line-height:1.15}
+.hw-cta-sub{font-size:.95rem;color:rgba(255,255,255,.48);line-height:1.7;max-width:480px;margin:0 auto 32px}
+.hw-cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.hw-cta-primary{padding:14px 30px;background:#DC2626;color:#fff;font-weight:700;font-size:.92rem;border-radius:11px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(220,38,38,.38)}
+.hw-cta-primary:hover{background:#B91C1C;transform:translateY(-2px);box-shadow:0 10px 28px rgba(220,38,38,.45)}
+.hw-cta-sec{padding:14px 26px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);font-weight:600;font-size:.88rem;border-radius:11px;text-decoration:none;transition:border-color .2s,color .2s}
+.hw-cta-sec:hover{border-color:rgba(220,38,38,.5);color:#EF4444}
+</style>
 </head>
 <body data-page="how">
-<section class="hero">
-  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
-    <div class="hero-inner">
-      <span class="eyebrow"><span class="dot"></span> How it works</span>
-      <h1 class="headline">From Setup to Sale, <span class="accent">in Three Easy Steps</span></h1>
-      <p class="hero-sub">Get from sign-up to your first paid order without ever touching a warehouse.</p>
-      <div class="cta-row">
-        <a href="#cta" class="btn-primary">Get Started →</a>
+
+<!-- ================================================ HERO -->
+<section class="hw-hero">
+  <div class="wrap">
+    <div class="hw-hero-inner">
+
+      <div>
+        <div class="hw-eyebrow"><span class="hw-eye-dot"></span>End-to-End Platform</div>
+        <h1 class="hw-headline">From Product Idea<br>to Customer<br><span class="hw-accent">Payment.</span></h1>
+        <p class="hw-sub">Six steps. One platform. MDM Express handles sourcing, warehousing, delivery, call confirmation, and remittance — so you just focus on selling.</p>
+        <div class="hw-cta-row">
+          <a href="#steps" class="hw-btn">See the Full Journey &darr;</a>
+          <a href="index.html" class="hw-ghost">Get Started &rarr;</a>
+        </div>
       </div>
+
+      <!-- Flow preview widget -->
+      <div class="hw-flow-preview">
+        <div class="hw-flow-card">
+          <div class="hw-flow-title">Your order right now</div>
+          <div class="hw-flow-steps">
+            <div class="hw-fs">
+              <span class="hw-fs-num">01</span>
+              <div class="hw-fs-icon c1">&#128279;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">Store Connected</div><div class="hw-fs-detail">Shopify &rarr; MDM Express</div></div>
+              <span class="hw-fs-status done">Done</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">02</span>
+              <div class="hw-fs-icon c2">&#128230;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">Products Sourced</div><div class="hw-fs-detail">China &middot; QC passed</div></div>
+              <span class="hw-fs-status done">Done</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">03</span>
+              <div class="hw-fs-icon c3">&#127981;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">In Warehouse</div><div class="hw-fs-detail">284 units on shelf</div></div>
+              <span class="hw-fs-status done">Done</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">04</span>
+              <div class="hw-fs-icon c4">&#128222;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">Order Confirmed</div><div class="hw-fs-detail">COD &middot; Call center &#10003;</div></div>
+              <span class="hw-fs-status done">Done</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">05</span>
+              <div class="hw-fs-icon c5">&#128666;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">Out for Delivery</div><div class="hw-fs-detail">Tripoli &middot; ETA 2h</div></div>
+              <span class="hw-fs-status active">Live</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">06</span>
+              <div class="hw-fs-icon c6">&#128176;</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">Payout</div><div class="hw-fs-detail">Thursday settlement</div></div>
+              <span class="hw-fs-status pending">Thu</span>
+            </div>
+          </div>
+          <div class="hw-flow-bar">
+            <div class="hw-flow-bar-label">Journey progress &mdash; step 5 of 6</div>
+            <div class="hw-flow-bar-track"><div class="hw-flow-bar-fill" id="hwFlowFill"></div></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ================================================ STATS -->
+<div class="hw-stats" id="hwStats">
+  <div class="wrap">
+    <div class="hw-stats-grid">
+      <div class="hw-stat"><div class="hw-stat-val r" id="hwS1">6</div><div class="hw-stat-label">Steps, fully managed</div></div>
+      <div class="hw-stat"><div class="hw-stat-val" id="hwS2">48 hrs</div><div class="hw-stat-label">From signup to first order</div></div>
+      <div class="hw-stat"><div class="hw-stat-val r" id="hwS3">3</div><div class="hw-stat-label">Markets covered</div></div>
+      <div class="hw-stat"><div class="hw-stat-val" id="hwS4">$0</div><div class="hw-stat-label">Upfront warehouse cost</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================ 6-STEP JOURNEY -->
+<section class="block" id="steps">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">The Journey</span>
+      <h2 class="title">Six Steps. Zero Guesswork.</h2>
+      <p class="sec-sub">Every step handled by MDM Express — you manage your store and ads. We handle everything else.</p>
+    </div>
+    <div class="hw-steps-wrap">
+
+      <!-- Step 1 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">01</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#128279; Setup</div>
+          <h3 class="hw-step-title">Join &amp; Connect Your Store</h3>
+          <p class="hw-step-desc">Sign up, connect your storefront (Shopify, WooCommerce or custom funnel), choose your target market and configure payment routing. Our onboarding team gets you live within 48 hours.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">Shopify / WooCommerce</span>
+            <span class="hw-chip">Custom funnels</span>
+            <span class="hw-chip">Libya &middot; Iraq &middot; Lebanon</span>
+            <span class="hw-chip">48h onboarding</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-connect">
+            <div class="hw-mc-title">Store Integration</div>
+            <div class="hw-mc-platform active">
+              <div class="hw-mc-icon" style="background:#96BF48;color:#fff;font-size:.7rem;font-weight:700">SH</div>
+              <span class="hw-mc-name">Shopify</span>
+              <span class="hw-mc-check">&#10003; Connected</span>
+            </div>
+            <div class="hw-mc-platform">
+              <div class="hw-mc-icon" style="background:#7F54B3;color:#fff;font-size:.6rem;font-weight:700">WC</div>
+              <span class="hw-mc-name">WooCommerce</span>
+              <span style="font-size:.68rem;color:#ccc">+ Add</span>
+            </div>
+            <div class="hw-mc-markets">
+              <div class="hw-mc-mkt sel">&#127473;&#127486; Libya</div>
+              <div class="hw-mc-mkt sel">&#127470;&#127478; Iraq</div>
+              <div class="hw-mc-mkt">&#127473;&#127463; Lebanon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">02</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#128270; Sourcing</div>
+          <h3 class="hw-step-title">Source Your Products</h3>
+          <p class="hw-step-desc">Browse 500+ verified suppliers from China, Turkey and UAE. We handle QC inspection, private labeling and freight to our warehouse. You pick winners — we handle the rest.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">500+ verified suppliers</span>
+            <span class="hw-chip">QC inspection included</span>
+            <span class="hw-chip">Private label option</span>
+            <span class="hw-chip">Save up to 30%</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-source">
+            <div class="hw-ms-product">
+              <div class="hw-ms-img">&#129399;</div>
+              <div class="hw-ms-info">
+                <div class="hw-ms-name">Wireless Earbuds Pro</div>
+                <div class="hw-ms-origin">China &middot; Shenzhen factory</div>
+              </div>
+              <div class="hw-ms-price">$11.40</div>
+            </div>
+            <div class="hw-ms-qc">&#9989; QC Passed &middot; 200 units ready to ship</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">03</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#127981; Warehousing</div>
+          <h3 class="hw-step-title">We Store It, Ready to Ship</h3>
+          <p class="hw-step-desc">Your products arrive at our fulfillment centers across Libya, Iraq and Lebanon. We pick, pack and label every order — with real-time inventory tracking in your dashboard.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">3 fulfillment centers</span>
+            <span class="hw-chip">Real-time stock tracking</span>
+            <span class="hw-chip">Same-day dispatch</span>
+            <span class="hw-chip">$0 storage fee to start</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-wh">
+            <div class="hw-wh-stat"><span class="hw-wh-key">Units in stock</span><span class="hw-wh-val">284</span></div>
+            <div class="hw-wh-stat"><span class="hw-wh-key">Shipped today</span><span class="hw-wh-val">47</span></div>
+            <div class="hw-wh-stat"><span class="hw-wh-key">Avg. dispatch time</span><span class="hw-wh-val">3.2 hrs</span></div>
+            <div class="hw-wh-bar"><div class="hw-wh-fill" style="width:68%"></div></div>
+            <div style="font-size:.68rem;color:#6366F1;margin-top:2px">68% capacity used</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">04</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#128222; Confirmation</div>
+          <h3 class="hw-step-title">You Sell. We Confirm Every Order.</h3>
+          <p class="hw-step-desc">Run your ads. Orders flow automatically into our system. Our Arabic-speaking call center contacts every customer to confirm their order before dispatch — reducing returns and boosting your delivery rate.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">Arabic call center</span>
+            <span class="hw-chip">Auto order sync</span>
+            <span class="hw-chip">94%+ confirmation rate</span>
+            <span class="hw-chip">Recorded calls</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-orders">
+            <div class="hw-ord-row confirmed">
+              <div class="hw-ord-dot g"></div>
+              <span class="hw-ord-id">#ORD-4821</span>
+              <span class="hw-ord-status">&#10003; Confirmed</span>
+              <span class="hw-ord-val">$34</span>
+            </div>
+            <div class="hw-ord-row calling">
+              <div class="hw-ord-dot y"></div>
+              <span class="hw-ord-id">#ORD-4822</span>
+              <span class="hw-ord-status">&#128222; Calling...</span>
+              <span class="hw-ord-val">$28</span>
+            </div>
+            <div class="hw-ord-row new">
+              <div class="hw-ord-dot s"></div>
+              <span class="hw-ord-id">#ORD-4823</span>
+              <span class="hw-ord-status">Queue</span>
+              <span class="hw-ord-val">$41</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">05</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#128666; Delivery</div>
+          <h3 class="hw-step-title">Last-Mile Delivery Across MENA</h3>
+          <p class="hw-step-desc">Confirmed orders are dispatched from the nearest fulfillment center. Our network of delivery partners covers all major cities across Libya, Iraq and Lebanon — with live tracking and COD collection at the door.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">Libya &middot; Iraq &middot; Lebanon</span>
+            <span class="hw-chip">1–3 day delivery</span>
+            <span class="hw-chip">Live tracking</span>
+            <span class="hw-chip">COD collected on delivery</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-delivery">
+            <div class="hw-dl-header">
+              <span class="hw-dl-title">Order #ORD-4821</span>
+              <span class="hw-dl-live">&#9679; Live</span>
+            </div>
+            <div class="hw-dl-route">
+              <div class="hw-dl-stop"><div class="hw-dl-dot done2"></div><span class="hw-dl-stop-name">Warehouse dispatched</span><span class="hw-dl-eta">09:14</span></div>
+              <div class="hw-dl-stop"><div class="hw-dl-dot done2"></div><span class="hw-dl-stop-name">In transit &mdash; Tripoli North</span><span class="hw-dl-eta">11:30</span></div>
+              <div class="hw-dl-stop current"><div class="hw-dl-dot now"></div><span class="hw-dl-stop-name">Out for delivery</span><span class="hw-dl-eta">ETA 2h</span></div>
+              <div class="hw-dl-stop"><div class="hw-dl-dot soon"></div><span class="hw-dl-stop-name">Delivered &amp; COD collected</span><span class="hw-dl-eta">&mdash;</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">06</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">&#128176; Payout</div>
+          <h3 class="hw-step-title">Get Paid. Every Week.</h3>
+          <p class="hw-step-desc">Collected COD funds are remitted to your account on a fixed weekly schedule — in LYD, IQD or LBP. No chasing payments. No bank surprises. Predictable, transparent, on time.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">Weekly fixed schedule</span>
+            <span class="hw-chip">LYD &middot; IQD &middot; LBP</span>
+            <span class="hw-chip">99.8% on-time rate</span>
+            <span class="hw-chip">Dashboard payout history</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-payout">
+            <div class="hw-pay-label">This week&rsquo;s payout</div>
+            <div class="hw-pay-amount" id="hwPayAmt">$0</div>
+            <div class="hw-pay-date">Thursday &middot; Direct transfer</div>
+            <div class="hw-pay-breakdown">
+              <div class="hw-pay-row"><span class="hw-pay-rkey">Orders delivered</span><span class="hw-pay-rval">142</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">Avg. order value</span><span class="hw-pay-rval">$31.20</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">Platform fee</span><span class="hw-pay-rval" style="color:#EF4444">&minus;$440</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">Net payout</span><span class="hw-pay-rval g">$3,990</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ WHAT YOU DON'T NEED -->
 <section class="block alt">
   <div class="wrap">
-    <div class="steps" style="grid-template-columns:1fr 1fr;gap:32px">
-      <div class="step"><div class="step-num">STEP 01</div><h3 style="font-size:26px">Connect &amp; Kickstart</h3><p style="font-size:15px">Sign up, pick your market, and configure your storefront. Our onboarding team gets you fully set up within 48 hours — from store integration to payment routing.</p><div class="step-vis" style="height:160px;margin-top:18px"><div class="req">🔌</div></div></div>
-      <div class="step"><div class="step-num">STEP 02</div><h3 style="font-size:26px">Find &amp; Choose Products</h3><p style="font-size:15px">Browse our curated catalog of validated COD products with live conversion data. Pick winners, push them to your funnel, and let our system handle the rest.</p><div class="step-vis" style="height:160px;margin-top:18px"><div class="req">🛒</div></div></div>
+    <div class="sec-head">
+      <span class="sec-tag">The Advantage</span>
+      <h2 class="title">Everything We Handle So You Don't Have To</h2>
+      <p class="sec-sub">MDM Express replaces six separate vendors. One contract, one dashboard, one point of contact.</p>
     </div>
-    <div style="margin-top:32px">
-      <div class="step" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center"><div><div class="step-num">STEP 03</div><h3 style="font-size:26px;margin-top:8px">Fast &amp; Secure Transactions</h3><p style="font-size:15px">Every COD order is confirmed by our call center, fulfilled by our warehouse, delivered by our logistics network, and paid out to you on a predictable schedule.</p></div><div class="step-vis" style="height:200px"><div class="chip-fund">$87,896 paid</div></div></div>
+    <div class="hw-bento">
+
+      <div class="hw-bc hw-wide hw-dark">
+        <div class="hw-bc-cross">&#128640;</div>
+        <div class="hw-bc-title" style="color:#fff">Six vendors replaced by one platform</div>
+        <div class="hw-bc-desc">A typical COD seller needs a sourcing agent, freight forwarder, warehouse operator, call center, delivery company, and remittance service — each with their own contract, pricing, and point of failure.</div>
+        <div class="hw-savings-grid">
+          <div class="hw-saving"><div class="hw-saving-num">6&rarr;1</div><div class="hw-saving-label">Vendors consolidated</div></div>
+          <div class="hw-saving"><div class="hw-saving-num">~40%</div><div class="hw-saving-label">Lower ops cost vs. separate</div></div>
+          <div class="hw-saving"><div class="hw-saving-num">1</div><div class="hw-saving-label">Dashboard for everything</div></div>
+        </div>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">&#10060;</div>
+        <div class="hw-bc-title">No Freight Agent</div>
+        <div class="hw-bc-desc">We ship directly from your supplier to our warehouse. No need to negotiate with freight forwarders or manage customs.</div>
+        <span class="hw-bc-tag">Handled by MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">&#10060;</div>
+        <div class="hw-bc-title">No Warehouse Lease</div>
+        <div class="hw-bc-desc">Your inventory lives in our fulfillment centers. No rent, no staff, no equipment — just pay per order fulfilled.</div>
+        <span class="hw-bc-tag">Handled by MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">&#10060;</div>
+        <div class="hw-bc-title">No Call Center Setup</div>
+        <div class="hw-bc-desc">Our Arabic-speaking confirmation team is already trained and ready. Every order confirmed before it ships.</div>
+        <span class="hw-bc-tag">Handled by MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">&#10060;</div>
+        <div class="hw-bc-title">No Remittance Headache</div>
+        <div class="hw-bc-desc">COD cash collected at delivery is automatically pooled and remitted to your account on the weekly schedule — no chasing funds.</div>
+        <span class="hw-bc-tag">Handled by MDM</span>
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ================================================ FAQ -->
 <section class="block lav">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-tag">FAQ</span>
-      <h2 class="title">Quick Answers to Key Questions</h2>
+      <h2 class="title">Common Questions</h2>
     </div>
-    <div class="faq-grid">
-      <aside class="faq-side">
-        <h3>Didn't get your answer yet?</h3>
-        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
-        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
+    <div class="hw-faq-grid">
+      <aside class="hw-faq-side">
+        <h3>Still unclear on something?</h3>
+        <p>Our team is happy to walk you through the full process before you commit to anything.</p>
+        <a href="#" class="hw-faq-contact">Talk to Us &rarr;</a>
       </aside>
-      <div class="faq-list">
-        <div class="faq-item open"><div class="faq-q">How does integration sync with my meeting platform? <span class="pl">+</span></div><div class="faq-a">We integrate directly with Shopify, WooCommerce, and custom funnels — orders flow straight into our fulfillment system.</div></div><div class="faq-item"><div class="faq-q">Can I access transcriptions after the meeting ends? <span class="pl">+</span></div><div class="faq-a">Yes — every call from our confirmation center is recorded and accessible in your dashboard.</div></div><div class="faq-item"><div class="faq-q">Is it possible to search for specific topics within the transcriptions? <span class="pl">+</span></div><div class="faq-a">Use the dashboard’s search to surface order events, customer feedback, and call notes.</div></div><div class="faq-item"><div class="faq-q">What formats are available for exporting the transcripts? <span class="pl">+</span></div><div class="faq-a">Export reports as PDF, CSV or XLSX directly from your dashboard.</div></div>
+      <div class="hw-faq-list">
+        <div class="hw-faq-item open">
+          <div class="hw-faq-q">How long does setup take? <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">From signup to your first live order typically takes 48 hours. Store connection is instant; onboarding for sourcing and warehousing takes 1&ndash;2 business days depending on your product category.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">Do I need to source products through MDM Express? <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">No. You can bring your own products to our warehouse. Sourcing through us is optional but recommended — you get verified suppliers, QC inspection, and typically 25&ndash;35% lower unit costs.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">What happens if a customer refuses the order on delivery? <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">Returned orders come back to our warehouse at no extra cost. You're only charged for the delivery attempt. Our call center confirmation step is specifically designed to reduce refusals.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">Can I sell in multiple countries at the same time? <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">Yes. You can activate Libya, Iraq and Lebanon simultaneously from one dashboard. Inventory can be split or pooled across our fulfillment centers depending on your sales volumes.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">When exactly do I receive my weekly payout? <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">Payouts are processed every Thursday and typically arrive in your account within 24 hours. You can see the exact schedule and breakdown in your dashboard before the transfer happens.</div>
+        </div>
       </div>
     </div>
   </div>
-</section><script src="shared.js"></script>
+</section>
+
+<!-- ================================================ CTA -->
+<section class="hw-cta">
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="hw-cta-tag"><span style="display:inline-block;width:7px;height:7px;background:#DC2626;border-radius:50%"></span>Ready to Start</div>
+    <h2 class="hw-cta-title">Your First Sale is<br>Closer Than You Think.</h2>
+    <p class="hw-cta-sub">Join hundreds of COD sellers across Libya, Iraq and Lebanon who run their entire business on MDM Express.</p>
+    <div class="hw-cta-btns">
+      <a href="#" class="hw-cta-primary">Get Started &mdash; Free &rarr;</a>
+      <a href="services.html" class="hw-cta-sec">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="animations.js"></script>
-
 <audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
-<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
-</button>
+<button class="music-toggle" id="musicToggle" aria-label="Toggle music"><span class="icon-play">&#9834;</span><span class="icon-pause">&#10074;&#10074;</span></button>
 <script>
+/* ---- Hero flow bar ---- */
+setTimeout(function(){var b=document.getElementById('hwFlowFill');if(b)b.style.width='83%';},700);
+
+/* ---- Payout counter ---- */
+setTimeout(function(){
+  var el=document.getElementById('hwPayAmt');if(!el)return;
+  var end=3990,dur=1800,st=null;
+  function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent='$'+Math.round(e*end).toLocaleString();if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+},800);
+
+/* ---- FAQ ---- */
+document.querySelectorAll('.hw-faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=this.parentElement,wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.hw-faq-item').forEach(function(i){i.classList.remove('open')});
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+
+/* ---- GSAP scroll animations ---- */
 (function(){
-  const audio = document.getElementById('hero-music');
-  const btn = document.getElementById('musicToggle');
-  const video = document.querySelector('.hero-video');
-  if (!audio || !btn) return;
-  audio.volume = 0.5;
-  let playing = false;
-  function tryStart(){
-    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
-      .catch(()=>{});
-  }
-  document.addEventListener('click', tryStart, {once:false});
-  btn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
-    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined')return;
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.hw-step').forEach(function(step,i){
+    ScrollTrigger.create({trigger:step,start:'top 85%',once:true,onEnter:function(){
+      gsap.from(step,{opacity:0,y:36,duration:.6,ease:'power3.out'});
+      gsap.from(step.querySelector('.hw-step-mock'),{opacity:0,x:30,duration:.65,delay:.1,ease:'power3.out'});
+    }});
   });
-  // Pause music when tab hidden
-  document.addEventListener('visibilitychange', ()=>{
-    if (document.hidden && playing) audio.pause();
-    else if (!document.hidden && playing) audio.play();
-  });
+  ScrollTrigger.create({trigger:'.hw-bento',start:'top 85%',once:true,onEnter:function(){
+    gsap.from('.hw-bc',{opacity:0,y:28,duration:.55,stagger:.1,ease:'power3.out'});
+  }});
+  ScrollTrigger.create({trigger:'.hw-faq-grid',start:'top 88%',once:true,onEnter:function(){
+    gsap.from('.hw-faq-item',{opacity:0,y:14,duration:.4,stagger:.08,ease:'power2.out'});
+  }});
+})();
+
+/* ---- Music toggle ---- */
+(function(){
+  var audio=document.getElementById('hero-music'),btn=document.getElementById('musicToggle');
+  if(!audio||!btn)return;audio.volume=.5;var playing=false;
+  document.addEventListener('click',function t(){audio.play().then(function(){playing=true;btn.classList.add('playing');document.removeEventListener('click',t);}).catch(function(){});},{once:false});
+  btn.addEventListener('click',function(e){e.stopPropagation();if(playing){audio.pause();playing=false;btn.classList.remove('playing');}else{audio.play().then(function(){playing=true;btn.classList.add('playing');});}});
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&playing)audio.pause();else if(!document.hidden&&playing)audio.play();});
 })();
 </script>
 </body>
