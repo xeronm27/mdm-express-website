@@ -6,7 +6,7 @@
     {label:'Affiliate',    href:'affiliate.html',   key:'affiliate'},
     {label:'Services',     href:'services.html',    key:'services'},
     {label:'Features',     href:'features.html',    key:'features'},
-    {label:'Capital',      href:'capital.html',     key:'capital'},
+    {label:'Advance',      href:'capital.html',     key:'capital'},
     {label:'About Us',     href:'about.html',       key:'about'},
     {label:'How it works', href:'how-it-works.html',key:'how'}
   ];
@@ -35,7 +35,7 @@
       icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`
     },
     {
-      label: 'Capital', sub: '$30M+ deployed', href: 'capital.html',
+      label: 'Advance', sub: '$5M+ advanced', href: 'capital.html',
       icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`
     },
   ];
@@ -84,7 +84,7 @@
   /* ── TRUST STRIP (scrolling marquee, all pages) ────────────── */
   const trustItems = [
     '9,000+ Active Sellers',
-    '$30M+ Capital Deployed',
+    '$5M+ Advanced to Sellers',
     'Libya · Iraq · Lebanon',
     '8+ Years Experience',
     '24/7 Call Centre Support',
@@ -113,7 +113,7 @@
           </div>
           <div class="sab-item">
             <div class="sab-num" data-target="30" data-prefix="$" data-suffix="M+">$0M+</div>
-            <div class="sab-label">Capital Deployed</div>
+            <div class="sab-label">Advanced to Sellers</div></div>
           </div>
           <div class="sab-item">
             <div class="sab-num" data-target="2" data-prefix="" data-suffix="+">0+</div>
@@ -160,7 +160,7 @@
             </div>
           </div>
           <div class="testi-card">
-            <p class="testi-quote">The Capital program gave me the inventory funding I needed to scale campaigns at the right moment. No equity lost — just pure growth fuel.</p>
+            <p class="testi-quote">The Sourcing Advance gave me the inventory funding I needed to scale at the right moment. No equity lost — just pure growth fuel.</p>
             <div class="testi-footer">
               <div class="testi-avatar">👤</div>
               <div>
@@ -197,7 +197,7 @@
             <span class="logo-mark">MDM</span>
             <span>MDM&nbsp;EXPRESS</span>
           </div>
-          <p style="font-size:13.5px;line-height:1.6;color:#A8A4BD">Your all-in-one logistics and eCommerce partner — sourcing, warehousing, shipping, remittance and capital, all in one place.</p>
+          <p style="font-size:13.5px;line-height:1.6;color:#A8A4BD">Your all-in-one logistics and eCommerce partner — sourcing, warehousing, shipping, remittance and advance financing, all in one place.</p>
           <div class="socials" style="margin-top:14px">
             <a href="#" aria-label="Facebook">f</a>
             <a href="#" aria-label="LinkedIn">in</a>
