@@ -172,38 +172,8 @@
     });
 
     /* ============================================================
-       11. STATS ACCENT BAND ITEMS + COUNTERS (home page)
+       11. STATS ACCENT BAND — no GSAP interference, inline styles used
     ============================================================ */
-    const sabItems = $$('.sab-item');
-    if (sabItems.length) {
-      gsap.set(sabItems, { opacity: 0, y: 32 });
-      ScrollTrigger.create({
-        trigger: '.stats-accent-band', start: 'top 80%', once: true,
-        onEnter: () => gsap.to(sabItems, {
-          opacity: 1, y: 0, duration: 0.72, stagger: 0.12,
-          ease: 'power2.out', clearProps: 'transform,opacity',
-        }),
-      });
-      document.querySelectorAll('.sab-num').forEach(el => {
-        const target = parseFloat(el.dataset.target || '0');
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const obj = { v: 0 };
-        el.innerHTML = `<span class="sab-prefix">${prefix}</span>0${suffix}`;
-        ScrollTrigger.create({
-          trigger: el, start: 'top 85%', once: true,
-          onEnter: () => gsap.to(obj, {
-            v: target, duration: 1.85, ease: 'power2.out',
-            onUpdate()  {
-              el.innerHTML = `<span class="sab-prefix">${prefix}</span>${Math.round(obj.v)}${suffix}`;
-            },
-            onComplete(){
-              el.innerHTML = `<span class="sab-prefix">${prefix}</span>${target}${suffix}`;
-            },
-          }),
-        });
-      });
-    }
 
     /* ============================================================
        12. STAT CELLS — stagger reveal (dashboard cards)
