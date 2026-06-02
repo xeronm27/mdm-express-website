@@ -3,7 +3,8 @@
 (function(){
   const NAV_ITEMS = [
     {label:'Home',         href:'index.html',       key:'home'},
-    {label:'Dropshipping', href:'affiliate.html',   key:'affiliate'},
+    {label:'Dropshipping', href:'affiliate.html',    key:'affiliate'},
+    {label:'Marketplace',  href:'marketplace.html', key:'marketplace'},
     {label:'Services',     href:'services.html',    key:'services'},
     {label:'Features',     href:'features.html',    key:'features'},
     {label:'Advance',      href:'capital.html',     key:'capital'},
