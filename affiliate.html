@@ -138,20 +138,44 @@
 .ds-req-cta-btn{display:block;padding:14px 24px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-align:center;text-decoration:none;transition:background .2s}
 .ds-req-cta-btn:hover{background:#B91C1C}
 .ds-req-cta-note{font-size:12px;color:rgba(255,255,255,.25);text-align:center}
-/* Products */
-.ds-prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
-.ds-prod-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:10px}
-.ds-prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px -14px rgba(20,20,40,.14)}
-.ds-prod-img{width:100%;aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px}
-.ds-prod-img.red{background:var(--accent-soft)}
-.ds-prod-img.lav{background:var(--lav-2)}
-.ds-prod-img.cream{background:#FFF8EC}
-.ds-prod-img.green{background:#E8FFF2}
-.ds-prod-name{font-size:13px;font-weight:700;color:var(--ink)}
-.ds-prod-cost{font-size:12px;color:var(--muted)}
-.ds-prod-price-row{display:flex;align-items:center;justify-content:space-between}
-.ds-prod-your-price{font-size:12px;color:var(--accent);font-weight:700}
-.ds-prod-profit-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:#E8FFF2;color:#15803D}
+/* Products — redesigned dark catalog */
+.ds-catalog{background:#09090B;padding:100px 0;border-top:1px solid rgba(255,255,255,.04)}
+.ds-catalog .sec-tag{background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)}
+.ds-catalog .title{color:#fff}
+.ds-catalog .sec-sub{color:rgba(255,255,255,.4)}
+/* Category filter tabs */
+.ds-cat-tabs{display:flex;align-items:center;gap:8px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+.ds-cat-tab{padding:7px 18px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);background:transparent;cursor:pointer;transition:all .18s;font-family:inherit}
+.ds-cat-tab:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.8)}
+.ds-cat-tab.active{background:#DC2626;border-color:#DC2626;color:#fff}
+/* Grid */
+.ds-prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.ds-prod-card{background:#111113;border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s;cursor:pointer;display:flex;flex-direction:column}
+.ds-prod-card:hover{transform:translateY(-5px);border-color:rgba(220,38,38,.35);box-shadow:0 20px 48px -16px rgba(220,38,38,.2)}
+/* Image zone */
+.ds-prod-img-zone{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:52px;overflow:hidden}
+.ds-prod-img-zone.red{background:linear-gradient(135deg,#1a0608 0%,#2a0c10 100%)}
+.ds-prod-img-zone.lav{background:linear-gradient(135deg,#0d0b1a 0%,#160e2a 100%)}
+.ds-prod-img-zone.cream{background:linear-gradient(135deg,#141008 0%,#201810 100%)}
+.ds-prod-img-zone.green{background:linear-gradient(135deg,#071410 0%,#0d2018 100%)}
+.ds-prod-img-zone::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.04) 0%,transparent 70%)}
+.ds-prod-profit-chip{position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:999px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);font-size:11px;font-weight:700;color:#22C55E;font-family:'JetBrains Mono',monospace}
+/* Card body */
+.ds-prod-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ds-prod-name{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.ds-prod-cost{font-size:12px;color:rgba(255,255,255,.3)}
+.ds-prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)}
+.ds-prod-sell-price{font-size:13px;font-weight:700;color:#EF4444}
+.ds-prod-add{width:28px;height:28px;border-radius:8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.25);display:flex;align-items:center;justify-content:center;color:#EF4444;font-size:16px;transition:background .15s}
+.ds-prod-card:hover .ds-prod-add{background:#DC2626;color:#fff;border-color:#DC2626}
+/* CTA row */
+.ds-catalog-cta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:48px}
+.ds-catalog-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s}
+.ds-catalog-cta-btn:hover{background:#B91C1C}
+.ds-catalog-count{font-size:13px;color:rgba(255,255,255,.3)}
+/* old prod classes kept for compat */
+.ds-prod-price-row{display:none}
+.ds-prod-your-price,.ds-prod-profit-badge{display:none}
 @media(max-width:960px){
   .ds-step{grid-template-columns:64px 1fr}
   .ds-step>*:last-child{display:none}
@@ -392,24 +416,117 @@
   </section>
 
   <!-- CATALOG -->
-  <section class="block alt">
+  <section class="ds-catalog" id="catalog">
     <div class="wrap">
       <div class="sec-head">
         <span class="sec-tag">Product Catalog</span>
-        <h2 class="title">10,000+ Products Ready to Dropship</h2>
-        <p class="sec-sub">Every product is already stocked in our Libya warehouse — ready for same-day dispatch the moment your order is confirmed.</p>
+        <h2 class="title">10,000+ Products<br/>Ready to Dropship</h2>
+        <p class="sec-sub">Every product is stocked in our Libya warehouse — same-day dispatch the moment your order is confirmed.</p>
       </div>
+      <!-- Category tabs -->
+      <div class="ds-cat-tabs">
+        <button class="ds-cat-tab active">All</button>
+        <button class="ds-cat-tab">Electronics</button>
+        <button class="ds-cat-tab">Fashion</button>
+        <button class="ds-cat-tab">Beauty</button>
+        <button class="ds-cat-tab">Home</button>
+        <button class="ds-cat-tab">Accessories</button>
+      </div>
+      <!-- Product grid -->
       <div class="ds-prod-grid">
-        <div class="ds-prod-card"><div class="ds-prod-img red">👟</div><div class="ds-prod-name">Running Sneakers</div><div class="ds-prod-cost">Your cost: $38.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $65+</span><span class="ds-prod-profit-badge">+$27 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img lav">⌚</div><div class="ds-prod-name">Smart Watch</div><div class="ds-prod-cost">Your cost: $29.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $55+</span><span class="ds-prod-profit-badge">+$26 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img cream">🎧</div><div class="ds-prod-name">Wireless Headphones</div><div class="ds-prod-cost">Your cost: $45.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $80+</span><span class="ds-prod-profit-badge">+$35 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img green">💄</div><div class="ds-prod-name">Beauty Kit</div><div class="ds-prod-cost">Your cost: $18.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $40+</span><span class="ds-prod-profit-badge">+$22 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img lav">📱</div><div class="ds-prod-name">Phone Case</div><div class="ds-prod-cost">Your cost: $8.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $20+</span><span class="ds-prod-profit-badge">+$12 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img cream">🏠</div><div class="ds-prod-name">Home Decor Set</div><div class="ds-prod-cost">Your cost: $22.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $45+</span><span class="ds-prod-profit-badge">+$23 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img red">👜</div><div class="ds-prod-name">Tote Bag</div><div class="ds-prod-cost">Your cost: $14.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $30+</span><span class="ds-prod-profit-badge">+$16 min</span></div></div>
-        <div class="ds-prod-card"><div class="ds-prod-img green">🥤</div><div class="ds-prod-name">Water Bottle</div><div class="ds-prod-cost">Your cost: $7.00</div><div class="ds-prod-price-row"><span class="ds-prod-your-price">Sell from $18+</span><span class="ds-prod-profit-badge">+$11 min</span></div></div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone red">👟<span class="ds-prod-profit-chip">+$27 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Running Sneakers</div>
+            <div class="ds-prod-cost">Your cost · $38.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $65+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone lav">⌚<span class="ds-prod-profit-chip">+$26 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Smart Watch</div>
+            <div class="ds-prod-cost">Your cost · $29.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $55+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone cream">🎧<span class="ds-prod-profit-chip">+$35 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Wireless Headphones</div>
+            <div class="ds-prod-cost">Your cost · $45.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $80+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone green">💄<span class="ds-prod-profit-chip">+$22 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Beauty Kit</div>
+            <div class="ds-prod-cost">Your cost · $18.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $40+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone lav">📱<span class="ds-prod-profit-chip">+$12 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Phone Case</div>
+            <div class="ds-prod-cost">Your cost · $8.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $20+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone cream">🏠<span class="ds-prod-profit-chip">+$23 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Home Decor Set</div>
+            <div class="ds-prod-cost">Your cost · $22.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $45+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone red">👜<span class="ds-prod-profit-chip">+$16 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Tote Bag</div>
+            <div class="ds-prod-cost">Your cost · $14.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $30+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone green">🥤<span class="ds-prod-profit-chip">+$11 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">Water Bottle</div>
+            <div class="ds-prod-cost">Your cost · $7.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">Sell from $18+</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="text-align:center;margin-top:32px;"><a href="#apply" class="btn-primary">Browse Full Catalog →</a></div>
+      <div class="ds-catalog-cta">
+        <a href="#apply" class="ds-catalog-cta-btn">Browse Full Catalog →</a>
+        <span class="ds-catalog-count">Showing 8 of 10,000+ products</span>
+      </div>
     </div>
   </section>
 
