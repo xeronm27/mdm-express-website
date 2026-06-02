@@ -8,89 +8,452 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
+<style>
+/* ── HERO */
+.ab-hero{position:relative;background:#0A0202;overflow:hidden;padding:160px 0 120px;display:flex;align-items:center;min-height:80vh}
+.ab-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 1000px 700px at 50% 100%,rgba(220,38,38,.18) 0%,transparent 65%),radial-gradient(ellipse 600px 400px at 10% 20%,rgba(220,38,38,.1) 0%,transparent 60%);pointer-events:none}
+.ab-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.ab-hero .wrap{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
+.ab-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:32px;backdrop-filter:blur(8px)}
+.ab-hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#EF4444}
+.ab-hero-h1{font-size:clamp(44px,6vw,80px);font-weight:800;color:#fff;letter-spacing:-.035em;line-height:1.06;margin:0 0 28px}
+.ab-hero-accent{color:#EF4444}
+.ab-hero-sub{font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.5);line-height:1.75;max-width:580px;margin:0 auto}
+
+/* ── PROBLEM / SOLUTION */
+.ab-ps{background:#fff;padding:100px 0}
+.ab-ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#EBEBF0;border:1px solid #EBEBF0;border-radius:24px;overflow:hidden;margin-top:56px}
+.ab-ps-col{background:#fff;padding:48px 44px}
+.ab-ps-col.dark{background:#0A0202}
+.ab-ps-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.ab-ps-col:not(.dark) .ab-ps-eyebrow{color:var(--muted)}
+.ab-ps-col.dark .ab-ps-eyebrow{color:rgba(255,255,255,.3)}
+.ab-ps-eyebrow-icon{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px}
+.ab-ps-col:not(.dark) .ab-ps-eyebrow-icon{background:#FEE2E2;color:#DC2626}
+.ab-ps-col.dark .ab-ps-eyebrow-icon{background:rgba(34,197,94,.15);color:#22C55E}
+.ab-ps-title{font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.2;margin:0 0 28px}
+.ab-ps-col:not(.dark) .ab-ps-title{color:var(--ink)}
+.ab-ps-col.dark .ab-ps-title{color:#fff}
+.ab-ps-list{display:flex;flex-direction:column;gap:14px}
+.ab-ps-item{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;line-height:1.65}
+.ab-ps-col:not(.dark) .ab-ps-item{color:var(--muted)}
+.ab-ps-col.dark .ab-ps-item{color:rgba(255,255,255,.55)}
+.ab-ps-item-icon{font-size:14px;flex-shrink:0;margin-top:2px}
+@media(max-width:760px){.ab-ps-grid{grid-template-columns:1fr}}
+
+/* ── STATS BAND */
+.ab-stats{background:#0A0202;padding:80px 0;border-top:1px solid rgba(255,0,19,.08)}
+.ab-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;margin-top:56px}
+.ab-stat{background:#0A0202;padding:40px 36px;display:flex;flex-direction:column;gap:10px;transition:background .2s}
+.ab-stat:hover{background:#130404}
+.ab-stat-num{font-size:42px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-.03em;line-height:1}
+.ab-stat-num span{color:#EF4444}
+.ab-stat-label{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5}
+@media(max-width:760px){.ab-stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── MISSION */
+.ab-mission{background:#F8F8FB;padding:100px 0}
+.ab-mission-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;margin-top:56px}
+.ab-mission-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:16px}
+.ab-mission-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1.15;margin:0}
+.ab-mission-quote{position:relative;padding:40px 44px;background:#fff;border:1px solid #EBEBF0;border-radius:22px;border-left:4px solid var(--accent)}
+.ab-mission-quote p{font-size:clamp(16px,1.8vw,20px);font-weight:500;color:var(--ink);line-height:1.7;margin:0;font-style:italic}
+.ab-mission-quote-author{margin-top:24px;display:flex;align-items:center;gap:12px}
+.ab-mission-quote-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);border:2px solid rgba(220,38,38,.2);display:flex;align-items:center;justify-content:center;font-size:18px}
+.ab-mission-quote-name{font-size:13px;font-weight:700;color:var(--ink)}
+.ab-mission-quote-role{font-size:12px;color:var(--muted);margin-top:2px}
+@media(max-width:760px){.ab-mission-inner{grid-template-columns:1fr}}
+
+/* ── SERVICES GRID */
+.ab-services{background:#fff;padding:100px 0;border-top:1px solid #EBEBF0}
+.ab-services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.ab-svc-card{background:#F8F8FB;border:1px solid #EBEBF0;border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;text-decoration:none;transition:transform .22s,border-color .22s,box-shadow .22s,background .22s}
+.ab-svc-card:hover{transform:translateY(-5px);border-color:rgba(220,38,38,.2);box-shadow:0 20px 40px -12px rgba(220,38,38,.1);background:#fff}
+.ab-svc-icon{width:52px;height:52px;border-radius:15px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s}
+.ab-svc-card:hover .ab-svc-icon{transform:scale(1.1)}
+.ab-svc-name{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin:0}
+.ab-svc-desc{font-size:13.5px;color:var(--muted);line-height:1.65;margin:0}
+.ab-svc-link{font-size:13px;font-weight:700;color:var(--accent);margin-top:auto;display:flex;align-items:center;gap:4px;transition:gap .2s}
+.ab-svc-card:hover .ab-svc-link{gap:8px}
+@media(max-width:860px){.ab-services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.ab-services-grid{grid-template-columns:1fr}}
+
+/* ── VALUES */
+.ab-values{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
+.ab-values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#EBEBF0;border:1px solid #EBEBF0;border-radius:24px;overflow:hidden;margin-top:48px}
+.ab-value{background:#fff;padding:44px 32px;display:flex;flex-direction:column;gap:18px;transition:background .2s}
+.ab-value:hover{background:#FAFAFA}
+.ab-value-icon{width:52px;height:52px;border-radius:15px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px}
+.ab-value-title{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin:0}
+.ab-value-desc{font-size:13.5px;color:var(--muted);line-height:1.7;margin:0}
+@media(max-width:860px){.ab-values-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.ab-values-grid{grid-template-columns:1fr}}
+
+/* ── MARKETS */
+.ab-markets{background:#080608;padding:100px 0;border-top:1px solid rgba(255,0,19,.08)}
+.ab-markets .sec-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)}
+.ab-markets .title{color:#fff}
+.ab-markets .sec-sub{color:rgba(255,255,255,.4)}
+.ab-markets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+.ab-market-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
+.ab-market-card.live{background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2)}
+.ab-market-card.live:hover{border-color:rgba(34,197,94,.45);transform:translateY(-3px)}
+.ab-market-card:not(.live):hover{transform:translateY(-3px)}
+.ab-market-flag{font-size:30px;line-height:1}
+.ab-market-name{font-size:16px;font-weight:800;color:#fff}
+.ab-market-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;width:fit-content}
+.ab-market-badge.live{background:rgba(34,197,94,.15);color:#22C55E}
+.ab-market-badge.soon{background:rgba(255,255,255,.06);color:rgba(255,255,255,.35)}
+.ab-market-dot{width:6px;height:6px;border-radius:50%}
+@keyframes abPulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.25)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08)}}
+.ab-market-badge.live .ab-market-dot{background:#22C55E;animation:abPulse 2s ease-in-out infinite}
+.ab-market-badge.soon .ab-market-dot{background:rgba(255,255,255,.2)}
+.ab-market-desc{font-size:12.5px;color:rgba(255,255,255,.35);line-height:1.55}
+@media(max-width:760px){.ab-markets-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── CTA */
+.ab-cta{background:#fff;padding:100px 0;border-top:1px solid #EBEBF0}
+.ab-cta-inner{background:var(--ink);border-radius:28px;padding:72px 64px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.ab-cta-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.15;margin:0 0 14px}
+.ab-cta-sub{font-size:16px;color:rgba(255,255,255,.4);line-height:1.6;margin:0}
+.ab-cta-btns{display:flex;flex-direction:column;gap:12px;flex-shrink:0}
+.ab-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap;transition:background .2s;justify-content:center}
+.ab-cta-btn:hover{background:#B91C1C}
+.ab-cta-ghost{display:inline-flex;align-items:center;gap:6px;padding:15px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:border-color .2s,color .2s;justify-content:center}
+.ab-cta-ghost:hover{border-color:rgba(255,255,255,.35);color:#fff}
+@media(max-width:760px){.ab-cta-inner{grid-template-columns:1fr;padding:44px 32px}.ab-cta-btns{flex-direction:row;flex-wrap:wrap}}
+</style>
 </head>
 <body data-page="about">
-<section class="hero">
-  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video><div class="hero-veil"></div><div class="wrap">
-    <div class="hero-inner">
-      <span class="eyebrow"><span class="dot"></span> About Us</span>
-      <h1 class="headline">A Partner Made for <span class="accent">E-commerce Sellers</span></h1>
-      <p class="hero-sub">Over a decade of expertise in COD e-commerce and logistics — built by operators, for operators.</p>
-      <div class="cta-row">
-        <a href="#cta" class="btn-primary">Get Started →</a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="block alt">
+
+<!-- HERO -->
+<section class="ab-hero">
   <div class="wrap">
-    <div class="stat-band" style="grid-template-columns:repeat(4,1fr);text-align:center">
-      <div class="stat-cell" style="border:none"><div class="stat-amount">9K+</div><h4 style="color:var(--ink)">Sellers Onboarded</h4></div>
-      <div class="stat-cell" style="border:none"><div class="stat-amount">8+</div><h4 style="color:var(--ink)">Years Experience</h4></div>
-      <div class="stat-cell" style="border:none"><div class="stat-amount">2+</div><h4 style="color:var(--ink)">Markets Live</h4></div>
-      <div class="stat-cell" style="border:none"><div class="stat-amount">9+</div><h4 style="color:var(--ink)">Awards</h4></div>
-    </div>
+    <div class="ab-hero-badge"><span class="ab-hero-badge-dot"></span>MDM Express · Our Story</div>
+    <h1 class="ab-hero-h1">Built for the<br/><span class="ab-hero-accent">MENA Seller.</span></h1>
+    <p class="ab-hero-sub">We built the logistics infrastructure that e-commerce in Libya and the MENA region was missing — so every seller can focus on selling, not operations.</p>
   </div>
 </section>
 
-<section class="block">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-tag">Leadership</span><h2 class="title">Over A Decade Of Expertise In COD E-Commerce and Logistics</h2><p class="sec-sub">A team of operators, technologists and logistics veterans building the COD stack we always wished existed.</p></div>
-    <div class="feat-grid" style="grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto">
-      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:120px;font-size:42px">👤</div><h4>Mohammed Abdullah</h4><p>CEO &amp; Founder</p></div>
-      <div class="feat" style="text-align:center"><div class="feat-vis" style="height:120px;font-size:42px">👤</div><h4>Karim Al-Hijazi</h4><p>COO</p></div>
-      <div class="feat" style="text-align:center"><div class="feat-vis r" style="height:120px;font-size:42px">👤</div><h4>Sarah Al-Tahir</h4><p>Head of Logistics</p></div>
-    </div>
-  </div>
-</section>
-<section class="block lav">
+<main id="main-content">
+
+<!-- PROBLEM / SOLUTION -->
+<section class="ab-ps">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-tag">FAQ</span>
-      <h2 class="title">Quick Answers to Key Questions</h2>
+      <span class="sec-tag">Why We Exist</span>
+      <h2 class="title">E-Commerce in MENA Was Broken.</h2>
+      <p class="sec-sub">Before MDM, sellers in Libya had to figure out warehousing, delivery, call centers, and supplier networks all on their own. Most gave up before they ever got started.</p>
     </div>
-    <div class="faq-grid">
-      <aside class="faq-side">
-        <h3>Didn't get your answer yet?</h3>
-        <p>We haven't received your response yet. Please let us know if you need any further assistance.</p>
-        <a href="#" class="btn-primary" style="display:inline-block">Contact Us</a>
-      </aside>
-      <div class="faq-list">
-        <div class="faq-item open"><div class="faq-q">What are the expenses associated with the service? <span class="pl">+</span></div><div class="faq-a">Check our comprehensive fee guide on the platform for current pricing across all services.</div></div><div class="faq-item"><div class="faq-q">How is inventory handled? <span class="pl">+</span></div><div class="faq-a">We provide warehouse storage, packaging and order picking out of our regional fulfillment centers.</div></div><div class="faq-item"><div class="faq-q">What are MDM Express’s warehousing policies? <span class="pl">+</span></div><div class="faq-a">Standard storage for active SKUs is included; long-term storage fees apply after 60 days of inactivity.</div></div><div class="faq-item"><div class="faq-q">How can I benefit from cash credit offered by MDM Express? <span class="pl">+</span></div><div class="faq-a">Active operators with consistent sales volume qualify for performance-based financing on the Capital page.</div></div>
+    <div class="ab-ps-grid">
+      <div class="ab-ps-col">
+        <div class="ab-ps-eyebrow"><div class="ab-ps-eyebrow-icon">✕</div>Before MDM</div>
+        <h3 class="ab-ps-title">Sellers carried all the risk — alone.</h3>
+        <div class="ab-ps-list">
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>Pay for stock upfront before a single sale</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>No reliable delivery network in Libya or MENA</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>Manage your own warehouse, packing, and fulfillment</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>Handle every customer call and return yourself</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>No access to verified local suppliers at scale</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">❌</span>Lose money on undelivered orders with no safety net</div>
+        </div>
+      </div>
+      <div class="ab-ps-col dark">
+        <div class="ab-ps-eyebrow"><div class="ab-ps-eyebrow-icon">✓</div>With MDM Express</div>
+        <h3 class="ab-ps-title">We handle everything. You just sell.</h3>
+        <div class="ab-ps-list">
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>Pay only after the order is delivered and cash collected</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>Last-mile delivery across Libya, Iraq and Lebanon</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>Full warehousing, packing, and fulfillment — hands-free</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>Dedicated call center confirming every order for you</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>500+ verified local suppliers via MDM Marketplace</div>
+          <div class="ab-ps-item"><span class="ab-ps-item-icon">✅</span>Sourcing advance to fund your inventory with no interest</div>
+        </div>
       </div>
     </div>
   </div>
-</section><script src="shared.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="animations.js"></script>
+</section>
 
-<audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
-<button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
-</button>
+<!-- STATS -->
+<section class="ab-stats">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:left">
+      <span class="sec-tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)">By the Numbers</span>
+      <h2 class="title" style="color:#fff">MDM in Numbers</h2>
+    </div>
+    <div class="ab-stats-grid">
+      <div class="ab-stat">
+        <div class="ab-stat-num" data-target="9" data-suffix="K+">9<span>K+</span></div>
+        <div class="ab-stat-label">Orders delivered across Libya, Iraq &amp; Lebanon</div>
+      </div>
+      <div class="ab-stat">
+        <div class="ab-stat-num" data-target="98" data-suffix="%">98<span>%</span></div>
+        <div class="ab-stat-label">Delivery success rate across all active markets</div>
+      </div>
+      <div class="ab-stat">
+        <div class="ab-stat-num" data-target="500" data-suffix="+">500<span>+</span></div>
+        <div class="ab-stat-label">Verified local suppliers on MDM Marketplace</div>
+      </div>
+      <div class="ab-stat">
+        <div class="ab-stat-num" data-target="3" data-suffix="">3<span></span></div>
+        <div class="ab-stat-label">Active markets — Libya, Iraq, Lebanon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="ab-mission">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Our Mission</span>
+      <h2 class="title">Why We Built MDM</h2>
+    </div>
+    <div class="ab-mission-inner">
+      <div>
+        <div class="ab-mission-tag">Our Mission</div>
+        <h2 class="ab-mission-title">Make selling accessible for every entrepreneur in the region.</h2>
+      </div>
+      <div class="ab-mission-quote">
+        <p>"We started MDM because we saw talented sellers in Libya failing — not because of their products or their effort — but because the infrastructure wasn't there. No reliable delivery. No warehousing. No way to scale. We built MDM to remove every operational barrier so that anyone with a good product and the will to sell can build a real business."</p>
+        <div class="ab-mission-quote-author">
+          <div class="ab-mission-quote-avatar">👤</div>
+          <div>
+            <div class="ab-mission-quote-name">MDM Express Founding Team</div>
+            <div class="ab-mission-quote-role">Tripoli, Libya</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="ab-services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">What We Offer</span>
+      <h2 class="title">Everything a Seller Needs</h2>
+      <p class="sec-sub">Six integrated services — all under one platform, all built for the MENA market.</p>
+    </div>
+    <div class="ab-services-grid">
+      <a href="affiliate.html" class="ab-svc-card">
+        <div class="ab-svc-icon">📦</div>
+        <h3 class="ab-svc-name">Dropshipping</h3>
+        <p class="ab-svc-desc">Sell any product from our catalog at your own price. MDM handles fulfillment and delivery — you pay only after the order is delivered.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+      <a href="marketplace.html" class="ab-svc-card">
+        <div class="ab-svc-icon">🏪</div>
+        <h3 class="ab-svc-name">Marketplace</h3>
+        <p class="ab-svc-desc">Source bulk products (min 50 pcs) from 500+ verified local Libyan suppliers. Stock delivered to you within 24–48 hours.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+      <a href="warehousing.html" class="ab-svc-card">
+        <div class="ab-svc-icon">🏭</div>
+        <h3 class="ab-svc-name">Warehousing</h3>
+        <p class="ab-svc-desc">Store your inventory in our facilities across Libya and MENA. Professional packing, quality control, and same-day dispatch.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+      <a href="call-center.html" class="ab-svc-card">
+        <div class="ab-svc-icon">📞</div>
+        <h3 class="ab-svc-name">Call Center</h3>
+        <p class="ab-svc-desc">Our team calls every customer to confirm orders before dispatch — reducing failed deliveries and protecting your margins.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+      <a href="delivery.html" class="ab-svc-card">
+        <div class="ab-svc-icon">🚚</div>
+        <h3 class="ab-svc-name">Last-Mile Delivery</h3>
+        <p class="ab-svc-desc">Fast, reliable delivery across Libya, Iraq, and Lebanon with real-time tracking and 98% success rate on every route.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+      <a href="capital.html" class="ab-svc-card">
+        <div class="ab-svc-icon">💳</div>
+        <h3 class="ab-svc-name">Sourcing Advance</h3>
+        <p class="ab-svc-desc">Need stock but short on capital? MDM funds your inventory upfront so you can scale without waiting — repaid from your sales.</p>
+        <span class="ab-svc-link">Learn more →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="ab-values">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Our Values</span>
+      <h2 class="title">How We Work</h2>
+      <p class="sec-sub">Four principles that guide every decision we make — from product features to how we treat our sellers.</p>
+    </div>
+    <div class="ab-values-grid">
+      <div class="ab-value">
+        <div class="ab-value-icon">🤝</div>
+        <h3 class="ab-value-title">Seller First</h3>
+        <p class="ab-value-desc">Every feature we build starts with one question: does this make life easier for the seller? Their success is our success.</p>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">🔍</div>
+        <h3 class="ab-value-title">Full Transparency</h3>
+        <p class="ab-value-desc">No hidden fees. No surprise charges. Every cost is shown upfront so sellers know their exact profit before confirming an order.</p>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">⚡</div>
+        <h3 class="ab-value-title">Speed Obsessed</h3>
+        <p class="ab-value-desc">Same-day dispatch. 24–48h sourcing. Real-time tracking. In a fast-moving market, speed is not a feature — it's the foundation.</p>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">🌍</div>
+        <h3 class="ab-value-title">Local Expertise</h3>
+        <p class="ab-value-desc">We are from this region. We understand the roads, the culture, the cash-on-delivery model. That local knowledge is our biggest advantage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="ab-markets">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Our Markets</span>
+      <h2 class="title">Operating Across the Region.</h2>
+      <p class="sec-sub">Live in Libya with active operations in Iraq and Lebanon — and expanding across MENA.</p>
+    </div>
+    <div class="ab-markets-grid">
+      <div class="ab-market-card live">
+        <div class="ab-market-flag">🇱🇾</div>
+        <div class="ab-market-name">Libya</div>
+        <div class="ab-market-badge live"><span class="ab-market-dot"></span>Live Now</div>
+        <div class="ab-market-desc">Full platform — dropshipping, marketplace, warehousing, call center, and delivery all active.</div>
+      </div>
+      <div class="ab-market-card live">
+        <div class="ab-market-flag">🇮🇶</div>
+        <div class="ab-market-name">Iraq</div>
+        <div class="ab-market-badge live"><span class="ab-market-dot"></span>Live Now</div>
+        <div class="ab-market-desc">Delivery and fulfillment services active. Full platform expansion underway.</div>
+      </div>
+      <div class="ab-market-card live">
+        <div class="ab-market-flag">🇱🇧</div>
+        <div class="ab-market-name">Lebanon</div>
+        <div class="ab-market-badge live"><span class="ab-market-dot"></span>Live Now</div>
+        <div class="ab-market-desc">Delivery and fulfillment services active. Full platform expansion underway.</div>
+      </div>
+      <div class="ab-market-card">
+        <div class="ab-market-flag">🌍</div>
+        <div class="ab-market-name">More Markets</div>
+        <div class="ab-market-badge soon"><span class="ab-market-dot"></span>Expanding</div>
+        <div class="ab-market-desc">Actively growing the MDM network across the MENA region.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ab-cta">
+  <div class="wrap">
+    <div class="ab-cta-inner">
+      <div>
+        <h2 class="ab-cta-title">Ready to start selling<br/>with MDM?</h2>
+        <p class="ab-cta-sub">Join thousands of sellers across Libya, Iraq, and Lebanon already building their business on the MDM platform.</p>
+      </div>
+      <div class="ab-cta-btns">
+        <a href="https://app.mdm.express" target="_blank" class="ab-cta-btn">Get Started →</a>
+        <a href="how-it-works.html" class="ab-cta-ghost">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="shared.js"></script>
+<script src="animations.js"></script>
 <script>
 (function(){
-  const audio = document.getElementById('hero-music');
-  const btn = document.getElementById('musicToggle');
-  const video = document.querySelector('.hero-video');
-  if (!audio || !btn) return;
-  audio.volume = 0.5;
-  let playing = false;
-  function tryStart(){
-    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); document.removeEventListener('click', tryStart); })
-      .catch(()=>{});
-  }
-  document.addEventListener('click', tryStart, {once:false});
-  btn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    if (playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
-    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero stagger */
+  gsap.from('.ab-hero .wrap > *',{
+    y:52, opacity:0, duration:1.1, stagger:0.16,
+    ease:'power3.out', delay:0.2, clearProps:'transform,opacity'
   });
-  // Pause music when tab hidden
-  document.addEventListener('visibilitychange', ()=>{
-    if (document.hidden && playing) audio.pause();
-    else if (!document.hidden && playing) audio.play();
+
+  /* Before/After columns */
+  gsap.from('.ab-ps-col',{
+    y:48, opacity:0, duration:0.85, stagger:0.2,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-ps-grid', start:'top 78%', once:true}
+  });
+  gsap.from('.ab-ps-item',{
+    x:-20, opacity:0, duration:0.5, stagger:0.06,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-ps-grid', start:'top 72%', once:true}
+  });
+
+  /* Stat counters */
+  function countUp(el){
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    const obj = {val:0};
+    gsap.to(obj,{
+      val:target, duration:2, ease:'power2.out',
+      onUpdate(){ el.innerHTML = Math.round(obj.val)+'<span>'+suffix+'</span>'; }
+    });
+  }
+  ScrollTrigger.create({
+    trigger:'.ab-stats-grid', start:'top 80%', once:true,
+    onEnter(){ document.querySelectorAll('.ab-stat-num[data-target]').forEach(countUp); }
+  });
+  gsap.from('.ab-stat',{
+    y:40, opacity:0, duration:0.7, stagger:0.12,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-stats-grid', start:'top 82%', once:true}
+  });
+
+  /* Mission */
+  gsap.from('.ab-mission-inner > *',{
+    y:48, opacity:0, duration:0.85, stagger:0.22,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-mission-inner', start:'top 78%', once:true}
+  });
+
+  /* Service cards */
+  gsap.from('.ab-svc-card',{
+    y:44, opacity:0, scale:0.97, duration:0.7, stagger:0.1,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-services-grid', start:'top 80%', once:true}
+  });
+
+  /* Values */
+  gsap.from('.ab-value',{
+    y:40, opacity:0, duration:0.7, stagger:0.12,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-values-grid', start:'top 80%', once:true}
+  });
+
+  /* Markets */
+  gsap.from('.ab-market-card',{
+    scale:0.88, opacity:0, duration:0.65, stagger:0.12,
+    ease:'back.out(1.4)', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-markets-grid', start:'top 80%', once:true}
+  });
+
+  /* CTA */
+  gsap.from('.ab-cta-inner',{
+    y:40, opacity:0, duration:0.85,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-cta-inner', start:'top 82%', once:true}
+  });
+
+  /* Section headings */
+  document.querySelectorAll('.sec-head').forEach(h=>{
+    gsap.from(Array.from(h.children),{
+      y:28, opacity:0, duration:0.7, stagger:0.11,
+      ease:'power2.out', clearProps:'transform,opacity',
+      scrollTrigger:{trigger:h, start:'top 84%', once:true}
+    });
   });
 })();
 </script>
