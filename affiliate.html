@@ -11,14 +11,23 @@
 <style>
 /* PAGE HERO (no video) */
 .ds-page-hero{position:relative;background:#0A0202;overflow:hidden;padding:140px 0 100px;min-height:90vh;display:flex;align-items:center}
-.ds-page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 600px at 5% 65%,rgba(220,38,38,.16) 0%,transparent 65%),radial-gradient(ellipse 400px 400px at 90% 10%,rgba(220,38,38,.08) 0%,transparent 60%);pointer-events:none}
-.ds-page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.ds-page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 900px 700px at 0% 60%,rgba(220,38,38,.22) 0%,transparent 60%),radial-gradient(ellipse 500px 500px at 85% 15%,rgba(220,38,38,.12) 0%,transparent 55%);pointer-events:none}
+.ds-page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.05) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
 .ds-page-hero .wrap{position:relative;z-index:2;width:100%}
 .ds-page-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
 @media(max-width:900px){.ds-page-hero-inner{grid-template-columns:1fr}.ds-page-hero-inner>div:last-child{display:none}}
 @keyframes dsPulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.25)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08)}}
-.ds-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:28px;backdrop-filter:blur(8px)}
+.ds-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:28px;backdrop-filter:blur(8px)}
 .ds-hero-badge-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;box-shadow:0 0 0 3px rgba(34,197,94,.25);animation:dsPulse 2s ease-in-out infinite}
+/* Hero text — self-contained so no dependency on hw-* classes */
+.ds-hero-h1{font-size:clamp(40px,5.5vw,72px);font-weight:800;color:#ffffff;letter-spacing:-.03em;line-height:1.08;margin:0 0 24px}
+.ds-hero-accent{color:#EF4444}
+.ds-hero-sub{font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.6);line-height:1.75;max-width:480px;margin:0 0 36px}
+.ds-hero-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ds-hero-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s,transform .15s}
+.ds-hero-btn:hover{background:#B91C1C;transform:translateY(-1px)}
+.ds-hero-ghost{display:inline-flex;align-items:center;gap:6px;padding:14px 22px;border-radius:12px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);font-weight:600;font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}
+.ds-hero-ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
 .ds-hero-mock{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px;backdrop-filter:blur(12px);width:320px}
 .ds-mock-bar{display:flex;gap:5px;margin-bottom:18px}
 .ds-mock-bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15)}
@@ -137,11 +146,11 @@
     <div class="ds-page-hero-inner">
       <div>
         <div class="ds-hero-badge"><span class="ds-hero-badge-dot"></span>Dropshipping · Live in Libya</div>
-        <h1 class="hw-headline">Sell Products.<br/>Pay Only After<br/><span class="hw-accent">Delivery.</span></h1>
-        <p class="hw-sub">Pick any product from our catalog, set your own price, and start selling. MDM Express handles sourcing, warehousing, call center, and delivery — you pay only after the order is delivered and keep the profit.</p>
-        <div class="hw-cta-row">
-          <a href="#apply" class="hw-btn">Start Selling →</a>
-          <a href="#how-it-works" class="hw-ghost">How it works</a>
+        <h1 class="ds-hero-h1">Sell Products.<br/>Pay Only After<br/><span class="ds-hero-accent">Delivery.</span></h1>
+        <p class="ds-hero-sub">Pick any product from our catalog, set your own price, and start selling. MDM Express handles sourcing, warehousing, call center, and delivery — you pay only after the order is delivered and keep the profit.</p>
+        <div class="ds-hero-cta-row">
+          <a href="#apply" class="ds-hero-btn">Start Selling →</a>
+          <a href="#how-it-works" class="ds-hero-ghost">How it works</a>
         </div>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;">
