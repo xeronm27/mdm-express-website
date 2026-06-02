@@ -309,15 +309,14 @@
     wrap.addEventListener('mouseenter', open);
     wrap.addEventListener('mouseleave', close);
 
-    // Also support click/tap for mobile
+    // On mobile (no hover): chevron click toggles dropdown; link click navigates
     const trigger = wrap.querySelector('.nav-drop-trigger');
-    if (trigger) {
-      trigger.addEventListener('click', (e)=>{
-        // If clicking the trigger itself (not a link inside it)
-        if (e.target === trigger || e.target === wrap.querySelector('.nav-drop-chevron')) {
-          e.preventDefault();
-          wrap.classList.toggle('dd-open');
-        }
+    const chevron = wrap.querySelector('.nav-drop-chevron');
+    if (trigger && chevron) {
+      chevron.addEventListener('click', (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        wrap.classList.toggle('dd-open');
       });
     }
 
