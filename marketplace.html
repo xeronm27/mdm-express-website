@@ -78,17 +78,19 @@
 
 /* ── HOW IT WORKS ──────────────────────────────────────── */
 .mp-steps-section{background:#fff;padding:100px 0}
-.mp-steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#EBEBF0;border:1px solid #EBEBF0;border-radius:24px;overflow:hidden;margin-top:48px}
-.mp-step-card{background:#fff;padding:44px 36px;display:flex;flex-direction:column;gap:20px;position:relative}
-.mp-step-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(220,38,38,.6);font-family:'JetBrains Mono',monospace;margin-bottom:4px}
-.mp-step-icon{width:52px;height:52px;border-radius:16px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px}
-.mp-step-title{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin:0}
-.mp-step-desc{font-size:14.5px;color:var(--muted);line-height:1.72;margin:0}
-.mp-step-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;width:fit-content;margin-top:auto}
-.mp-step-tag.amber{background:rgba(245,158,11,.1);color:#D97706;border:1px solid rgba(245,158,11,.2)}
-.mp-step-tag.green{background:#E8FFF2;color:#15803D;border:1px solid rgba(21,128,61,.15)}
-.mp-step-tag.red{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(220,38,38,.15)}
-@media(max-width:860px){.mp-steps-grid{grid-template-columns:1fr}}
+.mp-steps{margin-top:56px;position:relative}
+.mp-steps::before{content:'';position:absolute;left:31px;top:40px;bottom:40px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.2) 10%,rgba(220,38,38,.2) 90%,transparent)}
+.mp-step{display:grid;grid-template-columns:64px 1fr 1fr;gap:48px;align-items:center;padding:52px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.mp-step:last-child{border-bottom:none}
+.mp-step-circle{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--ink);position:relative;z-index:1;transition:border-color .25s,background .25s;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.mp-step:hover .mp-step-circle{border-color:var(--accent);background:var(--accent-soft)}
+.mp-step-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+.mp-step-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin:0 0 10px}
+.mp-step-desc{font-size:15px;color:var(--muted);line-height:1.72;margin:0}
+.mp-step-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.mp-step-card-bar{display:flex;gap:5px;margin-bottom:16px}
+.mp-step-card-bar span{width:9px;height:9px;border-radius:50%;background:var(--line)}
+@media(max-width:900px){.mp-step{grid-template-columns:64px 1fr}.mp-step>div:last-child{display:none}.mp-steps::before{display:none}}
 
 /* ── WHY LOCAL ─────────────────────────────────────────── */
 .mp-why{background:#F8F8FB;padding:100px 0}
@@ -265,28 +267,87 @@
       <h2 class="title">Three Steps from Request to Stock</h2>
       <p class="sec-sub">No supplier negotiations. No import headaches. Just pick what you want to sell and let MDM handle the rest.</p>
     </div>
-    <div class="mp-steps-grid">
-      <div class="mp-step-card">
-        <div class="mp-step-num">Step 01</div>
-        <div class="mp-step-icon">🔍</div>
-        <h3 class="mp-step-title">Browse & Request</h3>
-        <p class="mp-step-desc">Browse products from hundreds of verified local suppliers across Libya. Find what sells in your market, set your quantity (min 50 pcs), and submit a request in minutes.</p>
-        <span class="mp-step-tag red">Min 50 pcs per request</span>
+    <div class="mp-steps">
+
+      <!-- STEP 1 -->
+      <div class="mp-step">
+        <div class="mp-step-circle">01</div>
+        <div>
+          <div class="mp-step-label">Browse</div>
+          <h3 class="mp-step-title">Pick a product & submit a request</h3>
+          <p class="mp-step-desc">Browse hundreds of products from verified local Libyan suppliers. Choose what you want to sell, set your quantity (minimum 50 pcs), and submit a sourcing request in under two minutes.</p>
+        </div>
+        <div>
+          <div class="mp-step-card">
+            <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
+            <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Select Product</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--accent-soft);border:1px solid rgba(220,38,38,.15);border-radius:10px;border-left:3px solid var(--accent);">
+                <span style="font-size:18px;">🧴</span>
+                <div><div style="font-size:13px;font-weight:700;color:var(--ink);">Natural Body Lotion</div><div style="font-size:11px;color:var(--muted);">Al-Waha Trading · Tripoli</div></div>
+                <span style="margin-left:auto;font-size:11px;font-weight:700;color:var(--accent);">Selected</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F8F8FC;border:1px solid var(--line);border-radius:10px;">
+                <span style="font-size:18px;">👗</span>
+                <div><div style="font-size:13px;font-weight:700;color:var(--ink);">Linen Dress Set</div><div style="font-size:11px;color:var(--muted);">Benghazi Textile Co.</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F8F8FC;border:1px solid var(--line);border-radius:10px;">
+                <span style="font-size:18px;">🔌</span>
+                <div><div style="font-size:13px;font-weight:700;color:var(--ink);">USB Power Bank</div><div style="font-size:11px;color:var(--muted);">TechSource Libya</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mp-step-card">
-        <div class="mp-step-num">Step 02</div>
-        <div class="mp-step-icon">🤝</div>
-        <h3 class="mp-step-title">MDM Sources It</h3>
-        <p class="mp-step-desc">Our team contacts the supplier, confirms availability, negotiates on your behalf, and arranges pickup. You don't talk to anyone — we handle the entire sourcing process.</p>
-        <span class="mp-step-tag amber">Sourcing in progress · 24h</span>
+
+      <!-- STEP 2 -->
+      <div class="mp-step">
+        <div class="mp-step-circle">02</div>
+        <div>
+          <div class="mp-step-label">Sourcing</div>
+          <h3 class="mp-step-title">MDM contacts the supplier for you</h3>
+          <p class="mp-step-desc">Our team reaches out to the local supplier, verifies stock availability, confirms final pricing, and arranges collection — all within hours. You don't talk to anyone.</p>
+        </div>
+        <div>
+          <div class="mp-step-card">
+            <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
+            <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Request #MP-1082 · Status</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Received</span><span style="font-size:12px;color:#15803D;">Request confirmed ✓</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Supplier</span><span style="font-size:12px;color:#15803D;">Stock verified ✓</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(245,158,11,.08);border-radius:9px;border-left:3px solid #F59E0B;"><span style="font-size:12px;font-weight:700;color:#D97706;min-width:88px;">Collection</span><span style="font-size:12px;color:#D97706;">● In progress</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F8F8FC;border-radius:9px;border-left:3px solid var(--line);"><span style="font-size:12px;font-weight:700;color:var(--muted);min-width:88px;">Delivery</span><span style="font-size:12px;color:var(--muted);">Pending</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mp-step-card">
-        <div class="mp-step-num">Step 03</div>
-        <div class="mp-step-icon">📦</div>
-        <h3 class="mp-step-title">Stock Delivered. Start Selling.</h3>
-        <p class="mp-step-desc">Your order is picked, quality-checked, and delivered to you within 24–48 hours of confirmation. Stock in hand — ready to sell immediately through any channel.</p>
-        <span class="mp-step-tag green">Ready in 24–48h</span>
+
+      <!-- STEP 3 -->
+      <div class="mp-step">
+        <div class="mp-step-circle">03</div>
+        <div>
+          <div class="mp-step-label">Delivery</div>
+          <h3 class="mp-step-title">Stock in your hands. Start selling.</h3>
+          <p class="mp-step-desc">Quality-checked stock is delivered directly to you within 24–48 hours of confirmation. Pay MDM once you receive the goods — then start selling through your own channels immediately.</p>
+        </div>
+        <div>
+          <div class="mp-step-card">
+            <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
+            <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Request #MP-1082 · Complete</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Received</span><span style="font-size:12px;color:#15803D;">Request confirmed ✓</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Supplier</span><span style="font-size:12px;color:#15803D;">Stock verified ✓</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Collection</span><span style="font-size:12px;color:#15803D;">Picked up ✓</span></div>
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-left:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:88px;">Delivered</span><span style="font-size:12px;color:#15803D;">100 pcs · 36h ✓</span></div>
+            </div>
+            <div style="margin-top:14px;padding:12px 16px;background:var(--accent-soft);border:1px solid rgba(220,38,38,.15);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:13px;font-weight:700;color:var(--ink);">Time to delivery</span>
+              <span style="font-size:16px;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;">36h</span>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -575,11 +636,21 @@ document.querySelectorAll('.mp-faq-q').forEach(q=>{
     scrollTrigger:{trigger:'.mp-stats', start:'top 90%', once:true}
   });
 
-  /* 3. STEPS — slide up staggered */
-  gsap.from('.mp-step-card',{
-    y:56, opacity:0, duration:0.85, stagger:0.18,
-    ease:'power3.out', clearProps:'transform,opacity',
-    scrollTrigger:{trigger:'.mp-steps-grid', start:'top 78%', once:true}
+  /* 3. STEPS — each row animates as it scrolls into view */
+  document.querySelectorAll('.mp-step').forEach((step, i) => {
+    const children = Array.from(step.children);
+    gsap.from(children, {
+      x: (j) => j === 0 ? -30 : j === 1 ? -20 : 30,
+      opacity: 0, duration: 0.75, stagger: 0.1,
+      ease: 'power2.out', clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: step, start: 'top 82%', once: true }
+    });
+  });
+  /* Vertical line draw */
+  gsap.from('.mp-steps::before', {
+    scaleY: 0, transformOrigin: 'top center', duration: 1.8,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.mp-steps', start: 'top 75%', once: true }
   });
 
   /* 4. WHY CARDS — fan in from bottom */
