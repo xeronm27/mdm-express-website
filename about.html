@@ -200,18 +200,34 @@
 .ab-market-desc{font-size:12.5px;color:rgba(255,255,255,.35);line-height:1.55}
 @media(max-width:760px){.ab-markets-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* ── CTA ───────────────────────────────────────────────── */
-.ab-cta{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
-.ab-cta-inner{background:var(--ink);border-radius:28px;padding:80px 64px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;overflow:hidden}
-.ab-cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 100% 50%,rgba(220,38,38,.12) 0%,transparent 65%);pointer-events:none}
-.ab-cta-title{font-size:clamp(28px,3.5vw,48px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.12;margin:0 0 14px}
-.ab-cta-sub{font-size:16px;color:rgba(255,255,255,.4);line-height:1.6;margin:0}
-.ab-cta-btns{display:flex;flex-direction:column;gap:12px;flex-shrink:0;position:relative;z-index:1}
-.ab-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 34px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap;transition:background .2s;justify-content:center}
-.ab-cta-btn:hover{background:#B91C1C}
-.ab-cta-ghost{display:inline-flex;align-items:center;gap:6px;padding:16px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:border-color .2s,color .2s;justify-content:center}
-.ab-cta-ghost:hover{border-color:rgba(255,255,255,.35);color:#fff}
-@media(max-width:760px){.ab-cta-inner{grid-template-columns:1fr;padding:44px 32px}.ab-cta-btns{flex-direction:row;flex-wrap:wrap}}
+/* ── CTA — alive ───────────────────────────────────────── */
+.ab-cta{background:#0A0202;padding:100px 0;position:relative;overflow:hidden;border-top:1px solid rgba(255,0,19,.08)}
+.ab-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 900px 600px at 50% 100%,rgba(220,38,38,.22) 0%,transparent 60%),radial-gradient(ellipse 400px 400px at 5% 50%,rgba(220,38,38,.08) 0%,transparent 60%);pointer-events:none}
+.ab-cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.ab-cta .wrap{position:relative;z-index:2;text-align:center}
+.ab-cta-title{font-size:clamp(32px,4.5vw,60px);font-weight:800;color:#fff;letter-spacing:-.035em;line-height:1.08;margin:0 0 20px}
+.ab-cta-title em{color:#EF4444;font-style:normal}
+.ab-cta-sub{font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.45);line-height:1.7;max-width:500px;margin:0 auto 40px}
+.ab-cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.ab-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 34px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s,transform .15s}
+.ab-cta-btn:hover{background:#B91C1C;transform:translateY(-2px)}
+.ab-cta-ghost{display:inline-flex;align-items:center;gap:6px;padding:16px 26px;border-radius:12px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.65);font-weight:600;font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}
+.ab-cta-ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
+/* floating product cards */
+.ab-cta-cards{position:relative;height:160px;pointer-events:none;max-width:700px;margin:0 auto}
+.ab-cta-card{position:absolute;background:#fff;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 48px -12px rgba(0,0,0,.5);white-space:nowrap}
+.ab-cta-card-emoji{font-size:26px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ab-cta-card-emoji.r{background:#FFF0F0}
+.ab-cta-card-emoji.l{background:#F3F0FF}
+.ab-cta-card-emoji.g{background:#F0FFF8}
+.ab-cta-card-emoji.c{background:#FFFBF0}
+.ab-cta-card-name{font-size:13px;font-weight:700;color:var(--ink)}
+.ab-cta-card-profit{font-size:11px;font-weight:700;color:#15803D;margin-top:2px}
+/* individual positions & tilts */
+.ab-cta-card:nth-child(1){left:0;top:20px;transform:rotate(-4deg)}
+.ab-cta-card:nth-child(2){left:200px;top:60px;transform:rotate(2deg)}
+.ab-cta-card:nth-child(3){right:180px;top:10px;transform:rotate(-2deg)}
+.ab-cta-card:nth-child(4){right:0;top:55px;transform:rotate(3.5deg)}
 </style>
 </head>
 <body data-page="about">
@@ -553,6 +569,36 @@
   </div>
 </section>
 
+<!-- ── CTA ────────────────────────────────────────────── -->
+<section class="ab-cta">
+  <div class="wrap">
+    <h2 class="ab-cta-title">Ready to build your business<br/>with <em>MDM Express?</em></h2>
+    <p class="ab-cta-sub">Join thousands of sellers across Libya, Iraq, and Lebanon already selling on the MDM platform.</p>
+    <div class="ab-cta-btns">
+      <a href="https://app.mdm.express" target="_blank" class="ab-cta-btn">Get Started →</a>
+      <a href="how-it-works.html" class="ab-cta-ghost">How it works</a>
+    </div>
+    <!-- Floating product cards -->
+    <div class="ab-cta-cards">
+      <div class="ab-cta-card">
+        <div class="ab-cta-card-emoji r">👟</div>
+        <div><div class="ab-cta-card-name">Running Sneakers</div><div class="ab-cta-card-profit">+$27 profit / order</div></div>
+      </div>
+      <div class="ab-cta-card">
+        <div class="ab-cta-card-emoji l">⌚</div>
+        <div><div class="ab-cta-card-name">Smart Watch</div><div class="ab-cta-card-profit">+$26 profit / order</div></div>
+      </div>
+      <div class="ab-cta-card">
+        <div class="ab-cta-card-emoji g">💄</div>
+        <div><div class="ab-cta-card-name">Beauty Kit</div><div class="ab-cta-card-profit">+$22 profit / order</div></div>
+      </div>
+      <div class="ab-cta-card">
+        <div class="ab-cta-card-emoji c">🎧</div>
+        <div><div class="ab-cta-card-name">Headphones</div><div class="ab-cta-card-profit">+$35 profit / order</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -670,10 +716,27 @@
     scrollTrigger:{trigger:'.ab-markets-grid', start:'top 80%', once:true}
   });
 
-  /* CTA */
-  gsap.from('.ab-cta-inner',{
-    y:40, opacity:0, duration:0.85, ease:'power2.out', clearProps:'transform,opacity',
-    scrollTrigger:{trigger:'.ab-cta-inner', start:'top 82%', once:true}
+  /* CTA text */
+  gsap.from(['.ab-cta-title','.ab-cta-sub','.ab-cta-btns'],{
+    y:36, opacity:0, duration:0.8, stagger:0.15,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.ab-cta', start:'top 78%', once:true}
+  });
+  /* Floating product cards pop in then float */
+  const ctaCards = document.querySelectorAll('.ab-cta-card');
+  gsap.from(ctaCards,{
+    scale:0.7, opacity:0, duration:0.6, stagger:0.12,
+    ease:'back.out(1.8)', clearProps:'opacity',
+    scrollTrigger:{trigger:'.ab-cta-cards', start:'top 85%', once:true}
+  });
+  const floatAmounts = [12,9,14,10];
+  const floatDurs   = [3.2,2.8,3.6,3.0];
+  const floatDelays = [0.0,0.6,0.3,0.9];
+  ctaCards.forEach((card,i)=>{
+    gsap.to(card,{
+      y: floatAmounts[i], duration: floatDurs[i],
+      ease:'sine.inOut', repeat:-1, yoyo:true, delay: floatDelays[i]
+    });
   });
 
   /* Section headings */
