@@ -7,7 +7,6 @@
     {label:'Marketplace',  href:'marketplace.html', key:'marketplace'},
     {label:'Services',     href:'services.html',    key:'services'},
     {label:'Features',     href:'features.html',    key:'features'},
-    {label:'Advance',      href:'capital.html',     key:'capital'},
     {label:'About Us',     href:'about.html',       key:'about'},
     {label:'How it works', href:'how-it-works.html',key:'how'}
   ];
@@ -227,6 +226,7 @@
             <li><a href="index.html" style="color:inherit">Home</a></li>
             <li><a href="about.html" style="color:inherit">About</a></li>
             <li><a href="services.html" style="color:inherit">Services</a></li>
+            <li><a href="capital.html" style="color:inherit">Advance</a></li>
             <li><a href="how-it-works.html" style="color:inherit">How it works</a></li>
           </ul>
         </div>
