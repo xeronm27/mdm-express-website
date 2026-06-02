@@ -24,12 +24,19 @@
 .ds-hero-stat-num{font-size:22px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em;display:block;line-height:1}
 .ds-hero-stat-label{font-size:11.5px;color:rgba(255,255,255,.4);margin-top:4px;display:block}
 .ds-hero-stat-divider{width:1px;height:32px;background:rgba(255,255,255,.1);flex-shrink:0}
-/* Floating notification badge on mock */
-.ds-hero-mock-wrap{position:relative;display:flex;align-items:center;justify-content:center}
-.ds-mock-notif{position:absolute;top:-18px;right:-12px;background:#1A1A1A;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 32px rgba(0,0,0,.5);backdrop-filter:blur(8px);white-space:nowrap}
+/* Floating notification badges on mock */
+.ds-hero-mock-wrap{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0}
+.ds-mock-notif{position:absolute;background:rgba(20,20,20,.95);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 16px 40px rgba(0,0,0,.6);backdrop-filter:blur(12px);white-space:nowrap;z-index:10}
+.ds-mock-notif.top{top:0;left:-20px;animation:dsFloat1 4s ease-in-out infinite}
+.ds-mock-notif.bottom{bottom:0;right:-20px;animation:dsFloat2 4s ease-in-out infinite 1.2s}
+@keyframes dsFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes dsFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.ds-mock-notif-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ds-mock-notif-icon.green{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.2)}
+.ds-mock-notif-icon.red{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.2)}
 .ds-mock-notif-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:dsPulse 2s ease-in-out infinite}
-.ds-mock-notif-text{font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
-.ds-mock-notif-sub{font-size:11px;color:rgba(255,255,255,.4)}
+.ds-mock-notif-text{font-size:12.5px;font-weight:700;color:#fff;line-height:1.2}
+.ds-mock-notif-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
 /* Scroll cue */
 .ds-scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.35;animation:dsScrollBob 2s ease-in-out infinite}
 @keyframes dsScrollBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
@@ -187,12 +194,20 @@
         </div>
       </div>
       <div class="ds-hero-mock-wrap">
-        <!-- Floating delivery notification -->
-        <div class="ds-mock-notif">
-          <span class="ds-mock-notif-dot"></span>
+        <!-- Badge 1: top-left — delivery confirmation -->
+        <div class="ds-mock-notif top">
+          <div class="ds-mock-notif-icon green">✓</div>
           <div>
-            <div class="ds-mock-notif-text">Order Delivered ✓</div>
-            <div class="ds-mock-notif-sub">Profit credited · LYD 112</div>
+            <div class="ds-mock-notif-text">Order Delivered</div>
+            <div class="ds-mock-notif-sub">Profit credited · +LYD 112</div>
+          </div>
+        </div>
+        <!-- Badge 2: bottom-right — new order alert -->
+        <div class="ds-mock-notif bottom">
+          <div class="ds-mock-notif-icon red">🛒</div>
+          <div>
+            <div class="ds-mock-notif-text">New Order Placed</div>
+            <div class="ds-mock-notif-sub">Call center confirmed · Libya</div>
           </div>
         </div>
         <div class="ds-hero-mock">
