@@ -26,16 +26,7 @@
 .sv-hero-chip-num{font-size:17px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em}
 .sv-hero-chip-label{font-size:11.5px;color:rgba(255,255,255,.4)}
 
-/* ── STATS STRIP ───────────────────────────────────────── */
-.sv-stats{background:#fff;border-bottom:1px solid #EBEBF0;padding:0}
-.sv-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid #EBEBF0}
-.sv-stat{padding:36px 32px;border-right:1px solid #EBEBF0;display:flex;flex-direction:column;gap:6px}
-.sv-stat-num{font-size:38px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--ink);letter-spacing:-.04em;line-height:1}
-.sv-stat-num span{color:var(--accent)}
-.sv-stat-label{font-size:13px;font-weight:600;color:var(--ink)}
-.sv-stat-sub{font-size:12px;color:var(--muted);line-height:1.5}
-@media(max-width:760px){.sv-stats-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:420px){.sv-stats-grid{grid-template-columns:1fr}}
+/* stats strip removed */
 
 /* ── SERVICES BENTO ────────────────────────────────────── */
 .sv-bento-section{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
@@ -98,21 +89,60 @@
 }
 
 /* ── HOW IT ALL CONNECTS ────────────────────────────────── */
-.sv-flow{background:#fff;padding:100px 0;border-top:1px solid #EBEBF0}
-.sv-flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#EBEBF0;border:1px solid #EBEBF0;border-radius:24px;overflow:hidden;margin-top:56px;position:relative}
-.sv-flow-step{background:#fff;padding:44px 36px;display:flex;flex-direction:column;gap:18px;position:relative;transition:background .2s}
-.sv-flow-step:hover{background:#FAFAFA}
-.sv-flow-num{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
-.sv-flow-icon{width:52px;height:52px;border-radius:15px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .2s}
-.sv-flow-step:hover .sv-flow-icon{transform:scale(1.1)}
-.sv-flow-title{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.015em;margin:0}
-.sv-flow-desc{font-size:13px;color:var(--muted);line-height:1.7;margin:0}
-.sv-flow-link{font-size:12px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:5px;text-decoration:none;margin-top:auto;transition:gap .15s}
-.sv-flow-step:hover .sv-flow-link{gap:8px}
-/* connector arrow between steps */
-.sv-flow-step:not(:nth-child(3n))::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);width:28px;height:28px;background:#fff;border:1px solid #EBEBF0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--accent);z-index:2;line-height:28px;text-align:center}
-@media(max-width:860px){.sv-flow-grid{grid-template-columns:repeat(2,1fr)}.sv-flow-step:not(:nth-child(3n))::after{display:none}}
-@media(max-width:540px){.sv-flow-grid{grid-template-columns:1fr}.sv-flow-step::after{display:none!important}}
+.sv-flow{background:#0A0202;padding:100px 0;position:relative;overflow:hidden}
+.sv-flow::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 900px 600px at 50% 0%,rgba(220,38,38,.12) 0%,transparent 60%),radial-gradient(ellipse 600px 500px at 0% 100%,rgba(220,38,38,.07) 0%,transparent 60%);pointer-events:none}
+.sv-flow::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.sv-flow .wrap{position:relative;z-index:1}
+.sv-flow .sec-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)}
+.sv-flow .title{color:#fff}
+.sv-flow .sec-sub{color:rgba(255,255,255,.4)}
+
+/* vertical red line */
+.sv-flow-steps{position:relative;margin-top:64px;padding-left:72px}
+.sv-flow-line{position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent 0%,rgba(220,38,38,.8) 6%,rgba(220,38,38,.8) 94%,transparent 100%);transform-origin:top center}
+
+/* each step row */
+.sv-flow-step{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:52px 0;border-bottom:1px solid rgba(255,255,255,.06);position:relative}
+.sv-flow-step:last-child{border-bottom:none}
+
+/* dot on the line */
+.sv-flow-dot{position:absolute;left:-60px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:#DC2626;border:3px solid #0A0202;box-shadow:0 0 0 4px rgba(220,38,38,.25);z-index:2;transition:box-shadow .3s}
+.sv-flow-step:hover .sv-flow-dot{box-shadow:0 0 0 8px rgba(220,38,38,.15)}
+
+/* left: text side */
+.sv-flow-text{display:flex;flex-direction:column;gap:14px}
+.sv-flow-num{font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;color:rgba(220,38,38,.7);letter-spacing:.12em;text-transform:uppercase}
+.sv-flow-title{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.025em;line-height:1.2;margin:0}
+.sv-flow-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;margin:0}
+.sv-flow-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#EF4444;text-decoration:none;transition:gap .15s;width:fit-content}
+.sv-flow-link:hover{gap:10px}
+
+/* right: live UI preview card */
+.sv-flow-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(8px);transition:border-color .25s,transform .25s}
+.sv-flow-step:hover .sv-flow-card{border-color:rgba(220,38,38,.25);transform:translateY(-4px)}
+
+/* card chrome — top bar */
+.sv-fc-bar{display:flex;align-items:center;gap:6px;margin-bottom:18px}
+.sv-fc-dot{width:8px;height:8px;border-radius:50%}
+.sv-fc-dot:nth-child(1){background:rgba(255,255,255,.2)}
+.sv-fc-dot:nth-child(2){background:rgba(255,255,255,.12)}
+.sv-fc-dot:nth-child(3){background:rgba(255,255,255,.07)}
+.sv-fc-title{font-size:11px;font-weight:600;color:rgba(255,255,255,.3);margin-left:6px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+/* generic card internals */
+.sv-fc-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);margin-bottom:8px}
+.sv-fc-row:last-child{margin-bottom:0}
+.sv-fc-row-left{display:flex;align-items:center;gap:10px}
+.sv-fc-row-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sv-fc-row-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
+.sv-fc-row-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+.sv-fc-pill{font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px}
+.sv-fc-pill.green{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.2)}
+.sv-fc-pill.red{background:rgba(220,38,38,.15);color:#EF4444;border:1px solid rgba(220,38,38,.2)}
+.sv-fc-pill.muted{background:rgba(255,255,255,.06);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.08)}
+
+@media(max-width:860px){.sv-flow-step{grid-template-columns:1fr}.sv-flow-card{display:none}}
+@media(max-width:580px){.sv-flow-steps{padding-left:48px}.sv-flow-dot{left:-38px}}
 
 /* ── PROOF BAND ─────────────────────────────────────────── */
 .sv-proof{background:#0A0202;padding:80px 0;position:relative;overflow:hidden}
@@ -167,33 +197,6 @@
 
 <main id="main-content">
 
-<!-- ── STATS STRIP ───────────────────────────────────────── -->
-<div class="sv-stats">
-  <div class="wrap" style="padding:0">
-    <div class="sv-stats-grid">
-      <div class="sv-stat">
-        <div class="sv-stat-num" data-count="9" data-suffix="K+">9<span>K+</span></div>
-        <div class="sv-stat-label">Orders Delivered</div>
-        <div class="sv-stat-sub">Across Libya, Iraq & Lebanon</div>
-      </div>
-      <div class="sv-stat">
-        <div class="sv-stat-num" data-count="98" data-suffix="%">98<span>%</span></div>
-        <div class="sv-stat-label">Delivery Success Rate</div>
-        <div class="sv-stat-sub">Industry-leading reliability</div>
-      </div>
-      <div class="sv-stat">
-        <div class="sv-stat-num" data-count="5" data-prefix="$" data-suffix="M+">$5<span>M+</span></div>
-        <div class="sv-stat-label">Advanced to Sellers</div>
-        <div class="sv-stat-sub">No equity required</div>
-      </div>
-      <div class="sv-stat">
-        <div class="sv-stat-num" data-count="500" data-suffix="+">500<span>+</span></div>
-        <div class="sv-stat-label">Verified Suppliers</div>
-        <div class="sv-stat-sub">Sourced locally across MENA</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ── SERVICES BENTO ────────────────────────────────────── -->
 <section class="sv-bento-section">
@@ -305,56 +308,166 @@
     <div class="sec-head">
       <span class="sec-tag">The Full Stack</span>
       <h2 class="title">How the Services Work Together.</h2>
-      <p class="sec-sub">Each step in the seller journey is covered. Use one service or the whole chain — it's designed to connect seamlessly.</p>
+      <p class="sec-sub">Each step in the seller journey is covered. Use one service or the whole chain — it connects seamlessly end to end.</p>
     </div>
-    <div class="sv-flow-grid">
 
+    <div class="sv-flow-steps">
+      <div class="sv-flow-line"></div>
+
+      <!-- Step 01 — Sourcing -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 01</div>
-        <div class="sv-flow-icon">🔍</div>
-        <div class="sv-flow-title">Find Your Product</div>
-        <p class="sv-flow-desc">Browse 10,000+ products via Sourcing or request directly from 500+ local suppliers on the Marketplace.</p>
-        <a href="sourcing.html" class="sv-flow-link">Explore Sourcing →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 01</span>
+          <h3 class="sv-flow-title">Find Your Product</h3>
+          <p class="sv-flow-desc">Browse 10,000+ winning products from our catalogue or request direct from 500+ verified local suppliers on the MDM Marketplace — at the best landed prices.</p>
+          <a href="sourcing.html" class="sv-flow-link">Explore Sourcing →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">mdm.express / sourcing</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,200,100,.1)">👟</div><div><div class="sv-fc-row-name">Running Sneakers</div><div class="sv-fc-row-sub">500 units · Libya stock</div></div></div>
+            <span class="sv-fc-pill green">In Stock</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(100,180,255,.1)">⌚</div><div><div class="sv-fc-row-name">Smart Watch Pro</div><div class="sv-fc-row-sub">200 units · Ready</div></div></div>
+            <span class="sv-fc-pill green">In Stock</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,150,200,.1)">💄</div><div><div class="sv-fc-row-name">Beauty Serum Kit</div><div class="sv-fc-row-sub">1,200 units · Bestseller</div></div></div>
+            <span class="sv-fc-pill red">Low Stock</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Step 02 — Warehousing -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 02</div>
-        <div class="sv-flow-icon">🏬</div>
-        <div class="sv-flow-title">Store & Prepare</div>
-        <p class="sv-flow-desc">Your stock lands in our warehouses. We inspect, pack and prep every order for dispatch — hands-free.</p>
-        <a href="warehousing.html" class="sv-flow-link">Explore Warehousing →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 02</span>
+          <h3 class="sv-flow-title">Store & Prepare</h3>
+          <p class="sv-flow-desc">Your stock is received in our secure Libya and Iraq warehouses. Every order is quality-checked, professionally packed and queued for same-day dispatch — completely hands-free.</p>
+          <a href="warehousing.html" class="sv-flow-link">Explore Warehousing →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">Warehouse · Tripoli Hub</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">📦</div><div><div class="sv-fc-row-name">Orders packed today</div><div class="sv-fc-row-sub">Ready for dispatch</div></div></div>
+            <span class="sv-fc-pill green">247 units</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(220,38,38,.1)">🔍</div><div><div class="sv-fc-row-name">Quality checks passed</div><div class="sv-fc-row-sub">This week</div></div></div>
+            <span class="sv-fc-pill green">99.2%</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,200,50,.1)">⏱</div><div><div class="sv-fc-row-name">Avg dispatch time</div><div class="sv-fc-row-sub">After order confirmed</div></div></div>
+            <span class="sv-fc-pill muted">3.2 hrs</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Step 03 — Call Centre -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 03</div>
-        <div class="sv-flow-icon">🎧</div>
-        <div class="sv-flow-title">Confirm Orders</div>
-        <p class="sv-flow-desc">Our 24/7 call centre contacts every customer before dispatch, dramatically reducing return rates.</p>
-        <a href="call-center.html" class="sv-flow-link">Explore Call Centre →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 03</span>
+          <h3 class="sv-flow-title">Confirm Every Order</h3>
+          <p class="sv-flow-desc">Before anything ships, our 24/7 multilingual call centre reaches every customer to confirm the order. This dramatically cuts failed deliveries and return rates.</p>
+          <a href="call-center.html" class="sv-flow-link">Explore Call Centre →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">Call Centre · Live</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">✅</div><div><div class="sv-fc-row-name">Ahmed K. — Tripoli</div><div class="sv-fc-row-sub">Order #4821 · Confirmed</div></div></div>
+            <span class="sv-fc-pill green">Confirmed</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(220,38,38,.1)">📞</div><div><div class="sv-fc-row-name">Sara M. — Benghazi</div><div class="sv-fc-row-sub">Order #4822 · Calling…</div></div></div>
+            <span class="sv-fc-pill muted">In Call</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">✅</div><div><div class="sv-fc-row-name">Omar F. — Baghdad</div><div class="sv-fc-row-sub">Order #4820 · Confirmed</div></div></div>
+            <span class="sv-fc-pill green">Confirmed</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Step 04 — Delivery -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 04</div>
-        <div class="sv-flow-icon">🚚</div>
-        <div class="sv-flow-title">Deliver Fast</div>
-        <p class="sv-flow-desc">Next-day last-mile delivery across Libya, Iraq and Lebanon with live tracking on every parcel.</p>
-        <a href="delivery.html" class="sv-flow-link">Explore Delivery →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 04</span>
+          <h3 class="sv-flow-title">Deliver Next Day</h3>
+          <p class="sv-flow-desc">Our last-mile network covers all of Libya, Iraq and Lebanon. Every shipment gets a tracking ID and customers receive real-time updates until delivery.</p>
+          <a href="delivery.html" class="sv-flow-link">Explore Delivery →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">Tracking · #MDM-4821</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">✅</div><div><div class="sv-fc-row-name">Order Dispatched</div><div class="sv-fc-row-sub">Tripoli Hub · 08:14 AM</div></div></div>
+            <span class="sv-fc-pill green">Done</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(220,38,38,.15)">🚚</div><div><div class="sv-fc-row-name">Out for Delivery</div><div class="sv-fc-row-sub">Driver: Hassan · ETA 2h</div></div></div>
+            <span class="sv-fc-pill red">Live</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,255,255,.04)">🏠</div><div><div class="sv-fc-row-name">Delivered to Customer</div><div class="sv-fc-row-sub">Awaiting confirmation</div></div></div>
+            <span class="sv-fc-pill muted">Pending</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Step 05 — Remittance -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 05</div>
-        <div class="sv-flow-icon">💸</div>
-        <div class="sv-flow-title">Get Paid</div>
-        <p class="sv-flow-desc">Cash collected on delivery is remitted to you weekly — transparent, predictable and on time every time.</p>
-        <a href="remittance.html" class="sv-flow-link">Explore Remittance →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 05</span>
+          <h3 class="sv-flow-title">Get Paid Weekly</h3>
+          <p class="sv-flow-desc">Cash collected at the door is tallied and remitted directly to your account every week. Transparent breakdowns, zero surprises — always on schedule.</p>
+          <a href="remittance.html" class="sv-flow-link">Explore Remittance →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">Remittance · Week 23</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">💰</div><div><div class="sv-fc-row-name">Total Collected</div><div class="sv-fc-row-sub">184 orders · Libya</div></div></div>
+            <span class="sv-fc-pill green">LYD 9,240</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(220,38,38,.1)">📤</div><div><div class="sv-fc-row-name">Transferred to You</div><div class="sv-fc-row-sub">Every Thursday</div></div></div>
+            <span class="sv-fc-pill green">LYD 8,180</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,200,50,.1)">📊</div><div><div class="sv-fc-row-name">Delivery Rate</div><div class="sv-fc-row-sub">This week</div></div></div>
+            <span class="sv-fc-pill muted">97.8%</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Step 06 — Advance -->
       <div class="sv-flow-step">
-        <div class="sv-flow-num">Step 06</div>
-        <div class="sv-flow-icon">⚡</div>
-        <div class="sv-flow-title">Scale Faster</div>
-        <p class="sv-flow-desc">Use your performance data to unlock inventory funding — reinvest before your next payout arrives.</p>
-        <a href="capital.html" class="sv-flow-link">Explore Advance →</a>
+        <div class="sv-flow-dot"></div>
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">Step 06</span>
+          <h3 class="sv-flow-title">Scale with Advance</h3>
+          <p class="sv-flow-desc">Your MDM performance unlocks inventory funding before your next payout. Reinvest in stock and ads immediately — no equity, no collateral, no waiting.</p>
+          <a href="capital.html" class="sv-flow-link">Explore Advance →</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><div class="sv-fc-dot"></div><span class="sv-fc-title">Sourcing Advance</span></div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(220,38,38,.15)">⚡</div><div><div class="sv-fc-row-name">Approved Advance</div><div class="sv-fc-row-sub">Based on performance score</div></div></div>
+            <span class="sv-fc-pill green">LYD 15,000</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(34,197,94,.1)">📈</div><div><div class="sv-fc-row-name">Performance Score</div><div class="sv-fc-row-sub">98% delivery · 6mo history</div></div></div>
+            <span class="sv-fc-pill green">Excellent</span>
+          </div>
+          <div class="sv-fc-row">
+            <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:rgba(255,200,50,.1)">🔄</div><div><div class="sv-fc-row-name">Repayment method</div><div class="sv-fc-row-sub">Auto-deducted from payouts</div></div></div>
+            <span class="sv-fc-pill muted">Auto</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -464,8 +577,10 @@
   gsap.from('.sv-feat',{y:40,opacity:0,duration:.9,ease:'power2.out',scrollTrigger:{trigger:'.sv-bento',start:'top 80%',once:true}});
   gsap.from('.sv-sm',{y:32,opacity:0,duration:.7,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.sv-bento',start:'top 75%',once:true}});
 
-  /* Flow steps */
-  gsap.from('.sv-flow-step',{y:28,opacity:0,duration:.65,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-grid',start:'top 80%',once:true}});
+  /* Flow — line draw + steps stagger */
+  gsap.from('.sv-flow-line',{scaleY:0,duration:2,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 80%',once:true}});
+  gsap.from('.sv-flow-step',{x:-24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
+  gsap.from('.sv-flow-card',{x:24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
 
   /* Proof band */
   gsap.from('.sv-proof-item',{y:24,opacity:0,duration:.7,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.sv-proof-inner',start:'top 82%',once:true}});
