@@ -19,6 +19,22 @@
 @keyframes dsPulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.25)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08)}}
 .ds-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:28px;backdrop-filter:blur(8px)}
 .ds-hero-badge-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;box-shadow:0 0 0 3px rgba(34,197,94,.25);animation:dsPulse 2s ease-in-out infinite}
+/* Hero stats strip */
+.ds-hero-stats{display:flex;align-items:center;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
+.ds-hero-stat-num{font-size:22px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em;display:block;line-height:1}
+.ds-hero-stat-label{font-size:11.5px;color:rgba(255,255,255,.4);margin-top:4px;display:block}
+.ds-hero-stat-divider{width:1px;height:32px;background:rgba(255,255,255,.1);flex-shrink:0}
+/* Floating notification badge on mock */
+.ds-hero-mock-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.ds-mock-notif{position:absolute;top:-18px;right:-12px;background:#1A1A1A;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 32px rgba(0,0,0,.5);backdrop-filter:blur(8px);white-space:nowrap}
+.ds-mock-notif-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:dsPulse 2s ease-in-out infinite}
+.ds-mock-notif-text{font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
+.ds-mock-notif-sub{font-size:11px;color:rgba(255,255,255,.4)}
+/* Scroll cue */
+.ds-scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.35;animation:dsScrollBob 2s ease-in-out infinite}
+@keyframes dsScrollBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.ds-scroll-cue svg{width:20px;height:20px;color:#fff}
+.ds-scroll-cue span{font-size:10px;color:#fff;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
 /* Hero text — self-contained so no dependency on hw-* classes */
 .ds-hero-h1{font-size:clamp(40px,5.5vw,72px);font-weight:800;color:#ffffff;letter-spacing:-.03em;line-height:1.08;margin:0 0 24px}
 .ds-hero-accent{color:#EF4444}
@@ -152,8 +168,33 @@
           <a href="#apply" class="ds-hero-btn">Start Selling →</a>
           <a href="#how-it-works" class="ds-hero-ghost">How it works</a>
         </div>
+        <!-- Stats strip -->
+        <div class="ds-hero-stats">
+          <div>
+            <span class="ds-hero-stat-num">10K+</span>
+            <span class="ds-hero-stat-label">Products ready to sell</span>
+          </div>
+          <div class="ds-hero-stat-divider"></div>
+          <div>
+            <span class="ds-hero-stat-num">98%</span>
+            <span class="ds-hero-stat-label">Delivery success rate</span>
+          </div>
+          <div class="ds-hero-stat-divider"></div>
+          <div>
+            <span class="ds-hero-stat-num">0 LYD</span>
+            <span class="ds-hero-stat-label">Upfront cost to start</span>
+          </div>
+        </div>
       </div>
-      <div style="display:flex;align-items:center;justify-content:center;">
+      <div class="ds-hero-mock-wrap">
+        <!-- Floating delivery notification -->
+        <div class="ds-mock-notif">
+          <span class="ds-mock-notif-dot"></span>
+          <div>
+            <div class="ds-mock-notif-text">Order Delivered ✓</div>
+            <div class="ds-mock-notif-sub">Profit credited · LYD 112</div>
+          </div>
+        </div>
         <div class="ds-hero-mock">
           <div class="ds-mock-bar"><span></span><span></span><span></span></div>
           <div class="ds-mock-label">New Dropship Request</div>
@@ -176,6 +217,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- Scroll cue -->
+  <div class="ds-scroll-cue">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
