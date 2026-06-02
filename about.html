@@ -201,8 +201,8 @@
 @media(max-width:760px){.ab-markets-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* ── CTA — alive ───────────────────────────────────────── */
-.ab-cta{background:#0A0202;border-top:1px solid rgba(255,0,19,.08)}
-.ab-cta-bg{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:100px 0}
+.ab-cta{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
+.ab-cta-bg{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:80px 48px;background:#0A0202;border-radius:28px;max-width:1200px;margin:0 auto}
 .ab-cta-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 500px at 50% 50%,rgba(220,38,38,.18) 0%,transparent 65%);pointer-events:none}
 .ab-cta-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
 /* center text block */
@@ -573,6 +573,7 @@
 
 <!-- ── CTA ────────────────────────────────────────────── -->
 <section class="ab-cta">
+  <div class="wrap">
   <div class="ab-cta-bg">
     <!-- floating cards — left side -->
     <div class="ab-fc ab-fc-1"><div class="ab-fc-emoji r">👟</div><div><div class="ab-fc-name">Running Sneakers</div><div class="ab-fc-profit">+$27 profit</div></div></div>
@@ -589,6 +590,7 @@
         <a href="how-it-works.html" class="ab-cta-ghost">How it works</a>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
