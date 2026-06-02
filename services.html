@@ -98,11 +98,6 @@
 .sv-road-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .sv-road-bg svg{width:100%;height:100%}
 
-/* truck — BEHIND content (z-index:1), cards sit above */
-.sv-flow-truck{position:absolute;top:0;left:0;width:52px;z-index:1;pointer-events:none;transform:translate(-50%,-50%);opacity:.9}
-@keyframes wheelSpin{to{transform:rotate(360deg)}}
-.sv-truck-wheel{animation:wheelSpin .5s linear infinite;transform-origin:center center}
-.sv-flow-truck::after{content:'';position:absolute;inset:-12px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.22) 0%,transparent 65%);z-index:-1}
 
 /* each step row */
 .sv-flow-step{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:60px 0;border-bottom:1px solid #EBEBF0;position:relative;z-index:3}
@@ -160,7 +155,7 @@
 .sv-fc-progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#DC2626,#EF4444)}
 
 @media(max-width:860px){.sv-flow-step{grid-template-columns:1fr}.sv-flow-card{display:none}}
-@media(max-width:580px){.sv-road-bg{display:none}.sv-flow-truck{display:none}}
+@media(max-width:580px){.sv-road-bg{display:none}}
 
 /* ── PROOF BAND ─────────────────────────────────────────── */
 .sv-proof{background:#0A0202;padding:80px 0;position:relative;overflow:hidden}
@@ -353,48 +348,26 @@
                C180 520, 150 680, 500 800
                C820 920, 800 1080, 500 1200"
             fill="none"
-            stroke="rgba(220,38,38,.2)"
-            stroke-width="2"
+            stroke="rgba(220,38,38,.3)"
+            stroke-width="2.5"
             stroke-dasharray="24 16"
             stroke-linecap="round"
           />
-          <!-- traveled path fill (clip via JS) -->
+          <!-- traveled path — draws on scroll -->
           <path id="svTraveledPath"
             d="M500 0
                C780 120, 820 280, 500 400
                C180 520, 150 680, 500 800
                C820 920, 800 1080, 500 1200"
             fill="none"
-            stroke="rgba(220,38,38,.35)"
-            stroke-width="36"
+            stroke="rgba(220,38,38,.5)"
+            stroke-width="3"
             stroke-linecap="round"
             stroke-dasharray="0 9999"
           />
         </svg>
       </div>
 
-      <!-- TRUCK — positioned by MotionPathPlugin -->
-      <div class="sv-flow-truck" id="svTruck">
-        <svg viewBox="0 0 48 76" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="76">
-          <ellipse cx="24" cy="70" rx="15" ry="4" fill="rgba(0,0,0,.12)"/>
-          <rect x="7" y="20" width="34" height="42" rx="3" fill="#DC2626"/>
-          <rect x="9" y="22" width="30" height="38" rx="2" fill="#B91C1C"/>
-          <rect x="11" y="28" width="26" height="13" rx="2" fill="rgba(255,255,255,.1)"/>
-          <text x="24" y="38" text-anchor="middle" font-size="6.5" font-weight="800" fill="white" font-family="sans-serif" opacity=".85">MDM</text>
-          <line x1="24" y1="22" x2="24" y2="60" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
-          <rect x="10" y="7" width="28" height="17" rx="4" fill="#EF4444"/>
-          <rect x="13" y="9" width="22" height="11" rx="2" fill="rgba(180,225,255,.75)"/>
-          <line x1="24" y1="9" x2="24" y2="20" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
-          <rect x="10" y="3" width="8" height="5" rx="1.5" fill="#FFF176"/>
-          <rect x="30" y="3" width="8" height="5" rx="1.5" fill="#FFF176"/>
-          <rect x="8" y="59" width="7" height="3" rx="1" fill="#FF8A80"/>
-          <rect x="33" y="59" width="7" height="3" rx="1" fill="#FF8A80"/>
-          <g class="sv-truck-wheel" style="transform-box:fill-box"><rect x="2" y="23" width="7" height="11" rx="2.5" fill="#1E1E30"/><circle cx="5.5" cy="28.5" r="2" fill="#44445A"/></g>
-          <g class="sv-truck-wheel" style="transform-box:fill-box"><rect x="2" y="40" width="7" height="11" rx="2.5" fill="#1E1E30"/><circle cx="5.5" cy="45.5" r="2" fill="#44445A"/></g>
-          <g class="sv-truck-wheel" style="transform-box:fill-box"><rect x="39" y="23" width="7" height="11" rx="2.5" fill="#1E1E30"/><circle cx="42.5" cy="28.5" r="2" fill="#44445A"/></g>
-          <g class="sv-truck-wheel" style="transform-box:fill-box"><rect x="39" y="40" width="7" height="11" rx="2.5" fill="#1E1E30"/><circle cx="42.5" cy="45.5" r="2" fill="#44445A"/></g>
-        </svg>
-      </div>
 
       <!-- Step 01 — Sourcing -->
       <div class="sv-flow-step">
@@ -649,51 +622,23 @@
   gsap.from('.sv-flow-step',{x:-24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
   gsap.from('.sv-flow-card',{x:24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
 
-  /* Truck — follows zigzag path on scroll via MotionPathPlugin */
+  /* Draw traveled road line on scroll */
   (function(){
-    if(typeof MotionPathPlugin === 'undefined') return;
-    gsap.registerPlugin(MotionPathPlugin);
-
-    const truck = document.getElementById('svTruck');
     const steps = document.querySelector('.sv-flow-steps');
     const traveled = document.getElementById('svTraveledPath');
-    if(!truck || !steps) return;
-
-    /* animate truck along the SVG path, scrubbed to scroll */
-    gsap.to(truck, {
-      motionPath:{
-        path:'#svRoadPath',
-        align:'#svRoadPath',
-        alignOrigin:[0.5, 0.5],
-        autoRotate: true
-      },
-      ease:'none',
-      scrollTrigger:{
-        trigger: steps,
-        start:'top 85%',
-        end:'bottom 15%',
-        scrub: 1.4
+    if(!steps || !traveled) return;
+    const pathLen = traveled.getTotalLength();
+    traveled.style.strokeDasharray = pathLen;
+    traveled.style.strokeDashoffset = pathLen;
+    ScrollTrigger.create({
+      trigger: steps,
+      start:'top 85%',
+      end:'bottom 15%',
+      scrub: 1.4,
+      onUpdate(self){
+        traveled.style.strokeDashoffset = pathLen * (1 - self.progress);
       }
     });
-
-    /* draw traveled path as truck moves */
-    if(traveled){
-      const pathLen = traveled.getTotalLength();
-      traveled.style.strokeDasharray = pathLen;
-      traveled.style.strokeDashoffset = pathLen;
-      ScrollTrigger.create({
-        trigger: steps,
-        start:'top 85%',
-        end:'bottom 15%',
-        scrub: 1.4,
-        onUpdate(self){
-          traveled.style.strokeDashoffset = pathLen * (1 - self.progress);
-        }
-      });
-    }
-
-    /* idle bob when not scrolling */
-    gsap.to(truck,{y:'-=4',duration:0.5,ease:'sine.inOut',yoyo:true,repeat:-1});
   })();
 
   /* Proof band */
