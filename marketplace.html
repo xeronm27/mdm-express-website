@@ -149,6 +149,13 @@
 .mp-req-cta-note{font-size:12px;color:rgba(255,255,255,.22);text-align:center}
 @media(max-width:860px){.mp-req-grid{grid-template-columns:1fr}}
 
+/* ── Hover micro-interactions ──────────────────────────── */
+.mp-step-card{transition:transform .25s,box-shadow .25s}
+.mp-step-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px -16px rgba(220,38,38,.12)}
+.mp-cat-card:hover .mp-cat-arrow{transform:translateX(4px)}
+.mp-cat-arrow{transition:transform .2s}
+.mp-market-card{transition:border-color .2s,transform .2s}
+.mp-market-card:not(.live):hover{transform:translateY(-3px)}
 /* ── FAQ ───────────────────────────────────────────────── */
 .mp-faq{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
 .mp-faq-list{max-width:720px;margin:48px auto 0;display:flex;flex-direction:column;gap:12px}
@@ -499,10 +506,12 @@
 
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="shared.js"></script>
 <script src="animations.js"></script>
 <script>
-// FAQ accordion
+/* ── FAQ accordion ─────────────────────────────────────── */
 document.querySelectorAll('.mp-faq-q').forEach(q=>{
   q.addEventListener('click',()=>{
     const item=q.parentElement;
@@ -511,6 +520,129 @@ document.querySelectorAll('.mp-faq-q').forEach(q=>{
     if(!wasOpen) item.classList.add('open');
   });
 });
+
+/* ── Marketplace Animations ────────────────────────────── */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 1. HERO — stagger badge → h1 → sub → cta → stats */
+  const heroLeft = document.querySelector('.mp-hero-inner > div:first-child');
+  if(heroLeft){
+    const kids = Array.from(heroLeft.children);
+    gsap.from(kids,{
+      y:48, opacity:0, duration:1, stagger:0.13,
+      ease:'power3.out', delay:0.2, clearProps:'transform,opacity'
+    });
+  }
+  /* Mock card slides in from right */
+  const mockWrap = document.querySelector('.mp-mock-wrap');
+  if(mockWrap){
+    gsap.from(mockWrap,{
+      x:60, opacity:0, duration:1.1,
+      ease:'power3.out', delay:0.45, clearProps:'transform,opacity'
+    });
+  }
+  /* Notification badges pop in after mock */
+  document.querySelectorAll('.mp-mock-notif').forEach((el,i)=>{
+    gsap.from(el,{
+      scale:0.7, opacity:0, duration:0.55,
+      ease:'back.out(1.8)', delay:0.95 + i*0.2, clearProps:'transform,opacity'
+    });
+  });
+
+  /* 2. STAT COUNTERS roll up */
+  function animateCounter(el, target, suffix){
+    const obj = {val:0};
+    gsap.to(obj,{
+      val: target, duration:1.8, ease:'power2.out',
+      onUpdate(){ el.textContent = Math.round(obj.val) + suffix; }
+    });
+  }
+  ScrollTrigger.create({
+    trigger:'.mp-stats', start:'top 85%', once:true,
+    onEnter(){
+      const nums = document.querySelectorAll('.mp-stat-num');
+      if(nums[0]) animateCounter(nums[0], 500, '+');
+      /* 24-48h stays as text — just fade it in */
+      if(nums[2]) animateCounter(nums[2], 50, ' pcs');
+    }
+  });
+  /* Stat strip fade */
+  gsap.from('.mp-stats', {
+    opacity:0, y:24, duration:0.8, ease:'power2.out',
+    scrollTrigger:{trigger:'.mp-stats', start:'top 90%', once:true}
+  });
+
+  /* 3. STEPS — slide up staggered */
+  gsap.from('.mp-step-card',{
+    y:56, opacity:0, duration:0.85, stagger:0.18,
+    ease:'power3.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-steps-grid', start:'top 78%', once:true}
+  });
+
+  /* 4. WHY CARDS — fan in from bottom */
+  gsap.from('.mp-why-card',{
+    y:48, opacity:0, scale:0.96, duration:0.75, stagger:0.12,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-why-grid', start:'top 80%', once:true}
+  });
+
+  /* 5. CATEGORY CARDS — wave stagger */
+  gsap.from('.mp-cat-card',{
+    y:40, opacity:0, duration:0.65, stagger:0.08,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-cats-grid', start:'top 80%', once:true}
+  });
+
+  /* 6. MARKET CARDS — scale + fade */
+  gsap.from('.mp-market-card',{
+    scale:0.88, opacity:0, duration:0.7, stagger:0.12,
+    ease:'back.out(1.4)', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-markets-grid', start:'top 80%', once:true}
+  });
+
+  /* 7. REQUIREMENTS LIST — slide from left */
+  gsap.from('.mp-req-item',{
+    x:-32, opacity:0, duration:0.65, stagger:0.12,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-req-list', start:'top 80%', once:true}
+  });
+  /* CTA card slides from right */
+  gsap.from('.mp-req-cta-card',{
+    x:40, opacity:0, duration:0.85,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-req-cta-card', start:'top 82%', once:true}
+  });
+
+  /* 8. FAQ ITEMS — stagger fade */
+  gsap.from('.mp-faq-item',{
+    y:28, opacity:0, duration:0.6, stagger:0.1,
+    ease:'power2.out', clearProps:'transform,opacity',
+    scrollTrigger:{trigger:'.mp-faq-list', start:'top 82%', once:true}
+  });
+
+  /* 9. SECTION HEADINGS — universal */
+  document.querySelectorAll('.sec-head').forEach(h=>{
+    gsap.from(h.children,{
+      y:32, opacity:0, duration:0.75, stagger:0.12,
+      ease:'power2.out', clearProps:'transform,opacity',
+      scrollTrigger:{trigger:h, start:'top 82%', once:true}
+    });
+  });
+
+  /* 10. MOCK CARD BUTTON — pulse loop to draw CTA attention */
+  gsap.to('.mp-mock-req-btn',{
+    boxShadow:'0 0 0 8px rgba(220,38,38,0)', duration:1.2,
+    ease:'power2.out', repeat:-1, delay:2.5,
+    keyframes:[
+      {boxShadow:'0 0 0 0px rgba(220,38,38,0.5)', duration:0},
+      {boxShadow:'0 0 0 10px rgba(220,38,38,0)', duration:1.2}
+    ]
+  });
+
+})();
 </script>
 </body>
 </html>
