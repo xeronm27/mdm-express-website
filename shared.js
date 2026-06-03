@@ -87,8 +87,32 @@
       <!-- mobile drawer -->
       <div class="nav-drawer" id="navDrawer" aria-hidden="true">
         <div class="nav-drawer-inner">
-          ${navLinksHtml}
-          <a href="index.html#cta" class="btn-primary" style="margin-top:16px;text-align:center">Get Started →</a>
+          <a href="index.html" class="${active==='home'?'active':''}">Home</a>
+          <a href="affiliate.html" class="${active==='affiliate'?'active':''}">Dropshipping</a>
+          <a href="marketplace.html" class="${active==='marketplace'?'active':''}">Marketplace</a>
+
+          <!-- Services accordion -->
+          <div class="mdr-services-wrap">
+            <button class="mdr-services-btn" id="mdrServicesBtn">
+              Services
+              <svg class="mdr-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mdr-services-list" id="mdrServicesList">
+              ${SERVICE_ITEMS.map(s=>`
+              <a href="${s.href}" class="mdr-service-item">
+                <div class="mdr-service-icon">${s.icon}</div>
+                <div>
+                  <div class="mdr-service-name">${s.label}</div>
+                  <div class="mdr-service-sub">${s.sub}</div>
+                </div>
+              </a>`).join('')}
+            </div>
+          </div>
+
+          <a href="features.html" class="${active==='features'?'active':''}">Features</a>
+          <a href="about.html" class="${active==='about'?'active':''}">About Us</a>
+          <a href="how-it-works.html" class="${active==='how'?'active':''}">How it works</a>
+          <a href="index.html#cta" class="mdr-cta">Get Started →</a>
         </div>
       </div>
     </header>`;
@@ -366,14 +390,13 @@
       if (header && !header.contains(e.target)) toggleMenu(false);
     });
 
-    // Wire entire Services row in drawer as toggle (not a link)
-    const drawerWrap = drawer.querySelector('.nav-drop-wrap');
-    const drawerTrigger = drawerWrap && drawerWrap.querySelector('.nav-drop-trigger');
-    if (drawerTrigger) {
-      drawerTrigger.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        drawerWrap.classList.toggle('dd-open');
+    // Wire Services accordion button
+    const svcBtn  = document.getElementById('mdrServicesBtn');
+    const svcList = document.getElementById('mdrServicesList');
+    if (svcBtn && svcList) {
+      svcBtn.addEventListener('click', () => {
+        const open = svcBtn.classList.toggle('open');
+        svcList.classList.toggle('open', open);
       });
     }
   })();
