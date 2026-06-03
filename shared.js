@@ -74,11 +74,23 @@
           <span class="logo-mark">MDM</span>
           <span>MDM&nbsp;EXPRESS</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
           ${navLinksHtml}
         </div>
-        <a href="index.html#cta" class="nav-cta">Get Started</a>
+        <div style="display:flex;align-items:center;gap:10px">
+          <a href="index.html#cta" class="nav-cta">Get Started</a>
+          <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </nav>
+      <!-- mobile drawer -->
+      <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+        <div class="nav-drawer-inner">
+          ${navLinksHtml}
+          <a href="index.html#cta" class="btn-primary" style="margin-top:16px;text-align:center">Get Started →</a>
+        </div>
+      </div>
     </header>`;
 
   /* ── TRUST STRIP (scrolling marquee, all pages) ────────────── */
@@ -324,6 +336,46 @@
     document.addEventListener('click', (e)=>{
       if (!wrap.contains(e.target)) wrap.classList.remove('dd-open');
     });
+  })();
+
+  /* ── MOBILE HAMBURGER ───────────────────────────────────────── */
+  (function(){
+    const btn    = document.getElementById('navHamburger');
+    const drawer = document.getElementById('navDrawer');
+    if (!btn || !drawer) return;
+
+    function toggleMenu(force){
+      const open = force !== undefined ? force : !drawer.classList.contains('open');
+      drawer.classList.toggle('open', open);
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    btn.addEventListener('click', () => toggleMenu());
+
+    // Close when a drawer link is tapped
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // Close on outside tap
+    document.addEventListener('click', e => {
+      const header = document.querySelector('.nav-bar');
+      if (header && !header.contains(e.target)) toggleMenu(false);
+    });
+
+    // Also wire drawer Services chevron
+    const drawerWrap = drawer.querySelector('.nav-drop-wrap');
+    const drawerChevron = drawerWrap && drawerWrap.querySelector('.nav-drop-chevron');
+    if (drawerChevron) {
+      drawerChevron.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        drawerWrap.classList.toggle('dd-open');
+      });
+    }
   })();
 
   /* ── FAQ TOGGLE ─────────────────────────────────────────────── */
