@@ -198,6 +198,48 @@
 .hw-faq-a{font-size:.86rem;color:#666;line-height:1.7;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease;padding-bottom:0}
 .hw-faq-item.open .hw-faq-a{max-height:200px;padding-bottom:16px}
 
+/* ── MOBILE ─────────────────────────────────────────────────── */
+@media(max-width:860px){
+  /* Hero: stack */
+  .hw-hero{padding:100px 0 60px;min-height:auto}
+  .hw-hero-inner{grid-template-columns:1fr!important;gap:36px}
+  .hw-flow-preview{display:none}
+
+  /* Stats: 2×2 */
+  .hw-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .hw-stat{border-right:none!important;border-bottom:1px solid rgba(0,0,0,.07)}
+  .hw-stat:nth-child(odd){border-right:1px solid rgba(0,0,0,.07)!important}
+  .hw-stat:nth-child(3),.hw-stat:nth-child(4){border-bottom:none}
+  .hw-stat-val{font-size:1.6rem}
+
+  /* Journey steps: single col */
+  .hw-steps-wrap::before{display:none}
+  .hw-step{grid-template-columns:1fr!important;gap:20px;padding:36px 0}
+  .hw-step-num{display:none}
+  .hw-step-mock{order:0}
+  .hw-step-content{order:1}
+
+  /* Bento */
+  .hw-bento{grid-template-columns:1fr!important}
+  .hw-bc.hw-wide{grid-column:auto!important}
+  .hw-savings-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* FAQ */
+  .hw-faq-grid{grid-template-columns:1fr!important;gap:32px}
+  .hw-faq-side{position:static!important}
+
+  /* CTA buttons */
+  .hw-cta-btns{flex-direction:column;align-items:stretch}
+  .hw-cta-primary,.hw-cta-sec{text-align:center}
+  .hw-cta-row{flex-direction:column;align-items:flex-start;gap:12px}
+}
+
+@media(max-width:480px){
+  .hw-savings-grid{grid-template-columns:1fr!important}
+  .hw-step-chips{gap:6px}
+  .hw-chip{font-size:.7rem;padding:4px 10px}
+}
+
 /* ---------- CTA ---------- */
 .hw-cta{background:#0A0202;padding:110px 0;text-align:center;position:relative;overflow:hidden}
 .hw-cta::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(220,38,38,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
