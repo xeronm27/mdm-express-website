@@ -4932,3 +4932,194 @@ footer li{transition:color .18s ease;cursor:default}
 @media(max-width:980px){
   .nav-hamburger{display:flex}
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL MOBILE RESPONSIVE — all pages ≤768px
+═══════════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+
+  /* ── Wrap padding ── */
+  .wrap{padding-left:18px;padding-right:18px}
+
+  /* ── Section spacing ── */
+  .block{padding:64px 0}
+  .block.alt{padding:64px 0}
+
+  /* ── Section headers ── */
+  .sec-head{margin-bottom:32px}
+  .title{font-size:clamp(1.6rem,6vw,2.2rem)!important}
+  .sec-sub{font-size:.9rem}
+
+  /* ── Footer ── */
+  footer .wrap{grid-template-columns:1fr!important;gap:28px}
+
+  /* ── Testimonials ── */
+  .testi-grid{grid-template-columns:1fr!important}
+
+  /* ── Stats accent band ── */
+  .sab-grid{grid-template-columns:1fr 1fr!important}
+
+  /* ─────────────────────────────────────────
+     CALL CENTRE  (cc-*)
+  ───────────────────────────────────────── */
+  .cc-hero-inner,.cc-call-layout,.cc-elig-grid,
+  .cc-compare,.cc-faq-layout{
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+  }
+  .cc-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .cc-bullets{grid-template-columns:1fr!important}
+  .cc-agents{grid-template-columns:1fr 1fr!important}
+  .cc-bars-grid,.cc-bento{grid-template-columns:1fr!important}
+  .cc-hero-right,.cc-chat,.cc-compare-right{display:none!important}
+  .cc-b1,.cc-b2,.cc-b3,.cc-b4{grid-column:auto!important}
+  .cc-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     DELIVERY  (dl-*)
+  ───────────────────────────────────────── */
+  .dl-hero-inner,.dl-split,.dl-elig-layout,
+  .dl-proof-grid,.dl-faq-layout{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .dl-stats{grid-template-columns:repeat(2,1fr)!important}
+  .dl-steps{grid-template-columns:1fr!important}
+  .dl-cover-grid{grid-template-columns:1fr 1fr!important}
+  .dl-hero-right,.dl-map-wrap{display:none!important}
+  .dl-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     WAREHOUSING  (wh-*)
+  ───────────────────────────────────────── */
+  .wh-hero-inner,.wh-split,.wh-faq-grid{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .wh-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .wh-bento{grid-template-columns:1fr!important}
+  .wh-process-grid{grid-template-columns:1fr!important}
+  .wh-hero-right,.wh-activity{display:none!important}
+  .wh-faq-side{position:static!important}
+  .wh-wide,.wh-tall{grid-column:auto!important;grid-row:auto!important}
+
+  /* ─────────────────────────────────────────
+     HOW IT WORKS  (hiw-*)
+  ───────────────────────────────────────── */
+  .hiw-steps{grid-template-columns:1fr!important}
+  .hiw-step{grid-template-columns:1fr!important}
+  .hiw-step-num{display:none!important}
+  .hiw-prod-grid{grid-template-columns:1fr 1fr!important}
+  .market-kpis{grid-template-columns:1fr 1fr!important}
+  .catalog-grid{grid-template-columns:repeat(2,1fr)!important}
+
+  /* ─────────────────────────────────────────
+     INDEX / HOMEPAGE
+  ───────────────────────────────────────── */
+  .hero-inner,.feat-section-inner,.split-section{
+    grid-template-columns:1fr!important;gap:32px!important
+  }
+  .feat-grid{grid-template-columns:1fr!important}
+  .stat-grid{grid-template-columns:1fr 1fr!important}
+  .float-cards{display:none!important}
+  .hero-buttons{flex-direction:column;align-items:flex-start}
+  .hp-svc-grid{grid-template-columns:1fr 1fr!important}
+  .hp-how-grid{grid-template-columns:1fr!important}
+  .hp-bento{grid-template-columns:1fr!important}
+
+  /* ─────────────────────────────────────────
+     FEATURES  (ft-* / fc-* / fb-*)
+  ───────────────────────────────────────── */
+  .ft-hero-inner,.ft-split,.ft-faq-layout{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .fc-grid,.fb-grid{grid-template-columns:1fr!important}
+  .ft-stats{grid-template-columns:repeat(2,1fr)!important}
+  .ft-hero-right{display:none!important}
+
+  /* ─────────────────────────────────────────
+     AFFILIATE / DROPSHIPPING  (ds-*)
+  ───────────────────────────────────────── */
+  .ds-page-hero-inner{grid-template-columns:1fr!important}
+  .ds-page-hero-inner>div:last-child{display:none!important}
+  .ds-steps-grid{grid-template-columns:1fr!important}
+  .ds-fee-grid{grid-template-columns:1fr 1fr!important}
+  .ds-faq-layout{grid-template-columns:1fr!important}
+  .ds-stats{grid-template-columns:repeat(2,1fr)!important}
+  .ds-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     REMITTANCE  (rm-*)
+  ───────────────────────────────────────── */
+  .rm-hero-inner,.rm-split,.rm-faq-layout{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .rm-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .rm-how-grid,.rm-bento{grid-template-columns:1fr!important}
+  .rm-hero-right{display:none!important}
+  .rm-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     SOURCING  (sc-*)
+  ───────────────────────────────────────── */
+  .sc-hero-inner,.sc-split,.sc-faq-layout{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .sc-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .sc-how-grid,.sc-bento,.sc-cat-grid{grid-template-columns:1fr!important}
+  .sc-hero-right{display:none!important}
+  .sc-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     MARKETPLACE  (mp-*)
+  ───────────────────────────────────────── */
+  .mp-hero-inner,.mp-split{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .mp-stats{grid-template-columns:repeat(2,1fr)!important}
+  .mp-bento,.mp-how-grid,.mp-cat-grid{grid-template-columns:1fr!important}
+  .mp-hero-right{display:none!important}
+
+  /* ─────────────────────────────────────────
+     ABOUT  (ab-*)
+  ───────────────────────────────────────── */
+  .ab-hero-inner,.ab-mission-inner,.ab-elig-grid{
+    grid-template-columns:1fr!important;gap:24px!important
+  }
+  .ab-bento{grid-template-columns:1fr!important}
+  .ab-team-grid{grid-template-columns:1fr 1fr!important}
+  .ab-values-grid{grid-template-columns:1fr!important}
+  .ab-markets{grid-template-columns:1fr 1fr!important}
+  .ab-hero-right{display:none!important}
+  .ab-cta-bg{padding:48px 24px!important;border-radius:18px!important}
+  .ab-wide,.ab-tall{grid-column:auto!important;grid-row:auto!important}
+
+  /* ─────────────────────────────────────────
+     SERVICES  (sv-*)
+  ───────────────────────────────────────── */
+  .sv-bento{grid-template-columns:1fr!important}
+  .sv-feat,.sv-sm1,.sv-sm2,.sv-sm3,.sv-sm4,.sv-sm5,.sv-sm6,
+  .sv-marketplace{grid-column:1/-1!important;grid-row:auto!important}
+  .sv-faq-layout{grid-template-columns:1fr!important}
+  .sv-faq-side{position:static!important}
+
+  /* ─────────────────────────────────────────
+     COMMON HERO overrides
+  ───────────────────────────────────────── */
+  .hero{padding:100px 0 60px!important;min-height:auto!important}
+  .hero-sub{font-size:.95rem}
+  .cta-row,.sa-cta-row,.hero-buttons{
+    flex-direction:column;align-items:flex-start;gap:12px
+  }
+  .faq-grid,.faq-layout{grid-template-columns:1fr!important;gap:24px!important}
+  .faq-side{position:static!important}
+}
+
+@media(max-width:480px){
+  .sab-grid{grid-template-columns:1fr!important}
+  .cc-agents{grid-template-columns:1fr!important}
+  .ab-team-grid{grid-template-columns:1fr!important}
+  .ab-markets{grid-template-columns:1fr!important}
+  .ds-fee-grid{grid-template-columns:1fr!important}
+  .sa-stats-grid{grid-template-columns:1fr!important}
+  .dl-cover-grid{grid-template-columns:1fr!important}
+  footer .wrap{gap:20px}
+}
