@@ -78,7 +78,7 @@
           ${navLinksHtml}
         </div>
         <div style="display:flex;align-items:center;gap:10px">
-          <a href="index.html#cta" class="nav-cta">Get Started</a>
+          <a href="https://app.mdm.express/en/auth/register" class="nav-cta">Get Started</a>
           <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -112,7 +112,7 @@
           <a href="features.html" class="${active==='features'?'active':''}">Features</a>
           <a href="about.html" class="${active==='about'?'active':''}">About Us</a>
           <a href="how-it-works.html" class="${active==='how'?'active':''}">How it works</a>
-          <a href="index.html#cta" class="mdr-cta">Get Started →</a>
+          <a href="https://app.mdm.express/en/auth/register" class="mdr-cta">Get Started →</a>
         </div>
       </div>
     </header>`;
@@ -235,7 +235,7 @@
       <div class="cta-tile t4">☕</div>
       <div class="wrap">
         <h2>Ready to Sell?<br/>Your Journey Starts Here</h2>
-        <a href="#" class="btn-primary">Sign Up For Free</a>
+        <a href="https://app.mdm.express/en/auth/register" class="btn-primary">Sign Up For Free</a>
         <div class="cta-note">No credit card required.</div>
       </div>
     </section>`;
