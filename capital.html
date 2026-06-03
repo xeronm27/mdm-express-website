@@ -261,6 +261,67 @@
 .sa-faq-item.open .sa-faq-plus{background:#DC2626;color:#fff;transform:rotate(45deg)}
 .sa-faq-a{font-size:.87rem;color:#666;line-height:1.7;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease;padding-bottom:0}
 .sa-faq-item.open .sa-faq-a{max-height:200px;padding-bottom:18px}
+/* ── MOBILE FIXES ──────────────────────────────────────────── */
+@media(max-width:860px){
+  /* Hero: stack vertically */
+  .sa-hero{padding:100px 0 60px;min-height:auto}
+  .sa-hero-inner{grid-template-columns:1fr;gap:48px}
+  .sa-headline{font-size:clamp(2rem,8vw,3rem)}
+  .sa-card-wrap{display:none} /* hide card on small screens */
+
+  /* Stats: 2×2 */
+  .sa-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .sa-stat{padding:16px;border-right:none;border-bottom:1px solid rgba(0,0,0,.07)}
+  .sa-stat:nth-child(odd){border-right:1px solid rgba(0,0,0,.07)}
+  .sa-stat:nth-child(3),.sa-stat:nth-child(4){border-bottom:none}
+  .sa-stat-val{font-size:1.7rem}
+
+  /* How: stack */
+  .sa-how-grid{grid-template-columns:1fr;gap:16px}
+  .sa-how-grid::before{display:none}
+
+  /* Fund: 2-col */
+  .sa-fund-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+
+  /* Tiers: stack as cards */
+  .sa-band{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto auto;
+    gap:12px;
+    padding:20px;
+  }
+  .sa-band-tier{grid-column:1;grid-row:1}
+  .sa-band-limit{grid-column:2;grid-row:1;border-right:none;margin-right:0;padding-right:0;text-align:right}
+  .sa-band-chips{grid-column:1/-1;grid-row:2}
+  .sa-band-action{grid-column:1/-1;grid-row:3;padding-left:0}
+  .sa-band-btn{display:block;text-align:center;width:100%;box-sizing:border-box}
+  .sa-band-amount{font-size:1.4rem}
+
+  /* Eligibility: stack */
+  .sa-elig-grid{grid-template-columns:1fr;gap:32px}
+
+  /* Bento: stack */
+  .sa-bento{grid-template-columns:1fr;gap:14px}
+  .sa-bc.sa-wide{grid-column:auto}
+
+  /* FAQ: stack */
+  .sa-faq-grid{grid-template-columns:1fr;gap:32px}
+  .sa-faq-side{position:static}
+
+  /* CTA section */
+  .sa-cta-sec{padding:80px 0}
+  .sa-cta-buttons{flex-direction:column;align-items:stretch}
+  .sa-cta-primary,.sa-cta-secondary{text-align:center}
+}
+
+@media(max-width:540px){
+  .sa-fund-grid{grid-template-columns:1fr}
+  .sa-cta-row{flex-direction:column;align-items:flex-start}
+  .sa-trust-row{gap:12px}
+  .sa-band{grid-template-columns:1fr}
+  .sa-band-limit{text-align:left}
+}
+
 /* CTA */
 .sa-cta-sec{background:#030D09;padding:120px 0;text-align:center;position:relative;overflow:hidden}
 .sa-cta-sec::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(220,38,38,.2) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
