@@ -366,11 +366,11 @@
       if (header && !header.contains(e.target)) toggleMenu(false);
     });
 
-    // Also wire drawer Services chevron
+    // Wire entire Services row in drawer as toggle (not a link)
     const drawerWrap = drawer.querySelector('.nav-drop-wrap');
-    const drawerChevron = drawerWrap && drawerWrap.querySelector('.nav-drop-chevron');
-    if (drawerChevron) {
-      drawerChevron.addEventListener('click', e => {
+    const drawerTrigger = drawerWrap && drawerWrap.querySelector('.nav-drop-trigger');
+    if (drawerTrigger) {
+      drawerTrigger.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
         drawerWrap.classList.toggle('dd-open');
