@@ -4895,10 +4895,18 @@ footer li{transition:color .18s ease;cursor:default}
 .nav-drawer-inner .nav-drop-chevron{transition:transform .25s}
 .nav-drawer-inner .nav-drop-wrap.dd-open .nav-drop-chevron{transform:rotate(180deg)}
 .nav-drawer-inner .nav-dd-panel{
+  /* reset all desktop absolute/opacity overrides */
+  position:static!important;
+  top:auto!important;left:auto!important;right:auto!important;
+  opacity:1!important;pointer-events:auto!important;
+  transform:none!important;box-shadow:none!important;
+  border:none!important;border-radius:0!important;
+  background:transparent!important;
+  /* hidden by default in drawer */
   display:none;flex-direction:column;gap:2px;
   padding:4px 0 4px 16px;
 }
-.nav-drawer-inner .nav-drop-wrap.dd-open .nav-dd-panel{display:flex}
+.nav-drawer-inner .nav-drop-wrap.dd-open .nav-dd-panel{display:flex!important}
 .nav-drawer-inner .nav-dd-item{
   display:flex;align-items:center;gap:10px;padding:10px 12px;
   border-radius:10px;text-decoration:none;color:var(--ink);
