@@ -278,9 +278,9 @@
         <div>
           <h5>Legal</h5>
           <ul>
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
-            <li>Cookie Policy</li>
+            <li><a href="terms.html" style="color:inherit">Terms of Service</a></li>
+            <li><a href="privacy.html" style="color:inherit">Privacy Policy</a></li>
+            <li><a href="cookies.html" style="color:inherit">Cookie Policy</a></li>
           </ul>
         </div>
         <div>
