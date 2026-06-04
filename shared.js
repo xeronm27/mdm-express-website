@@ -79,6 +79,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <a href="https://app.mdm.express/en/auth/register" class="nav-cta">Get Started</a>
+          <a href="ar/index.html" class="lang-switch" id="langSwitchAr" title="عربي">عربي</a>
           <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -251,9 +252,18 @@
           </div>
           <p style="font-size:13.5px;line-height:1.6;color:#A8A4BD">Your all-in-one logistics and eCommerce partner — sourcing, warehousing, shipping, remittance and advance financing, all in one place.</p>
           <div class="socials" style="margin-top:14px">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.73a8.18 8.18 0 0 0 4.78 1.52V6.79a4.85 4.85 0 0 1-1.01-.1z"/></svg>
+            </a>
           </div>
         </div>
         <div>
@@ -293,8 +303,8 @@
         </div>
       </div>
       <div class="bottom">
-        <span class="copy">© 2022–2025 MDM EXPRESS. All rights reserved.</span>
-        <span class="copy">Made for entrepreneurs.</span>
+        <span class="copy">© 2022–2026 MDM EXPRESS. All rights reserved.</span>
+        <span class="copy">Made for entrepreneurs across Libya, Iraq &amp; Lebanon.</span>
       </div>
     </footer>`;
 
@@ -310,16 +320,37 @@
   navWrap.innerHTML = navHtml;
   document.body.insertBefore(navWrap.firstElementChild, document.body.firstChild);
 
+  /* ── Update language switcher to point to current page's Arabic version */
+  (function(){
+    const link = document.getElementById('langSwitchAr');
+    if (!link) return;
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    link.href = 'ar/' + (currentFile === '' ? 'index.html' : currentFile);
+  })();
+
   /* ── INJECT: trust strip after .hero ─────────────────────── */
   const hero = document.querySelector('section.hero');
   if (hero) {
     const trustWrap = document.createElement('div');
     trustWrap.innerHTML = trustHtml;
-    hero.after(trustWrap.firstElementChild);
+    const trustEl = trustWrap.firstElementChild;
+    hero.after(trustEl);
+    /* Home page: inject stats accent band directly after trust strip */
+    if (active === 'home') {
+      const statsWrap = document.createElement('div');
+      statsWrap.innerHTML = statsHtml;
+      trustEl.after(statsWrap.firstElementChild);
+    }
   }
 
   /* ── INJECT: CTA strip + footer at bottom ─────────────────── */
   if (!document.body.dataset.noCta) {
+    /* Home page: inject testimonials section just before CTA strip */
+    if (active === 'home') {
+      const testiWrap = document.createElement('div');
+      testiWrap.innerHTML = testiHtml;
+      document.body.appendChild(testiWrap.firstElementChild);
+    }
     const ctaWrap = document.createElement('div');
     ctaWrap.innerHTML = ctaHtml;
     document.body.appendChild(ctaWrap.firstElementChild);

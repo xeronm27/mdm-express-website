@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>توريد المنتجات · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"/>
+<link rel="stylesheet" href="ar-styles.css"/>
+<link rel="alternate" hreflang="en" href="https://mdm.express/sourcing.html"/>
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/sourcing.html"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   SOURCING PAGE — sc-* prefix · Amber/Gold accent
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── HERO ── */
+.sc-hero {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, #0A0800 0%, #120F02 40%, #0C0A00 70%, #08090F 100%);
+  overflow: hidden; position: relative;
+}
+.sc-hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.sc-bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(245,158,11,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.sc-bg-glow-1 {
+  position: absolute; top: -120px; right: -80px;
+  width: 680px; height: 680px;
+  background: radial-gradient(circle, rgba(245,158,11,0.14) 0%, transparent 60%);
+  border-radius: 50%;
+}
+.sc-bg-glow-2 {
+  position: absolute; bottom: -120px; left: -60px;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(217,119,6,0.09) 0%, transparent 60%);
+  border-radius: 50%;
+}
+.sc-hero-wrap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+  padding: 128px 0 88px;
+  direction: rtl;
+}
+
+/* Right copy (RTL) */
+.sc-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: rgba(251,191,36,0.9);
+  margin-bottom: 20px;
+}
+.sc-eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #F59E0B; box-shadow: 0 0 8px rgba(245,158,11,0.8);
+  animation: scDot 2s ease-in-out infinite;
+}
+@keyframes scDot {
+  0%,100% { opacity:1; box-shadow:0 0 8px rgba(245,158,11,0.8); }
+  50%      { opacity:0.5; box-shadow:0 0 18px rgba(245,158,11,0.3); }
+}
+.sc-headline {
+  font-size: clamp(34px,5vw,56px); font-weight: 800;
+  line-height: 1.08; color: #fff;
+  margin: 0 0 22px; letter-spacing: -1.5px;
+}
+.sc-headline em {
+  font-style: normal;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 45%, #D97706 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sc-hero-sub {
+  font-size: 17px; line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 36px; max-width: 460px;
+}
+.sc-cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.sc-cta-note { font-size: 12.5px; color: rgba(255,255,255,0.28); margin-top: 14px; }
+
+/* ── Sourcing brief card ── */
+.sc-hero-right { display: flex; justify-content: center; align-items: center; }
+.sc-card-scene { position: relative; width: 365px; max-width: 100%; }
+
+.sc-brief-card {
+  background: linear-gradient(145deg, #16130A, #1E1B0C);
+  border: 1px solid rgba(245,158,11,0.22);
+  border-radius: 24px; padding: 30px 28px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 24px 60px rgba(0,0,0,0.6),
+    0 0 80px rgba(245,158,11,0.06);
+  position: relative; z-index: 2;
+  direction: ltr;
+}
+.sc-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 22px;
+}
+.sc-card-brand { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+.sc-card-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 20px; padding: 4px 11px;
+  font-size: 11px; font-weight: 700; color: #F59E0B;
+}
+.sc-card-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #F59E0B; animation: scLive 1.8s ease-in-out infinite;
+}
+@keyframes scLive { 0%,100% { opacity:1; } 50% { opacity:0.2; } }
+
+.sc-card-product {
+  background: rgba(245,158,11,0.07);
+  border: 1px solid rgba(245,158,11,0.14);
+  border-radius: 14px; padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.sc-card-product-name {
+  font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;
+}
+.sc-card-product-cat {
+  font-size: 11.5px; color: rgba(255,255,255,0.38);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.sc-price-row {
+  display: flex; gap: 12px; align-items: center; margin-bottom: 18px;
+}
+.sc-price-box {
+  flex: 1; border-radius: 12px; padding: 12px 14px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+}
+.sc-price-label { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 4px; }
+.sc-price-val { font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.sc-price-val.target { color: rgba(255,255,255,0.45); text-decoration: line-through; font-size: 18px; }
+.sc-price-val.found  { color: #F59E0B; }
+.sc-price-arrow { font-size: 20px; color: rgba(255,255,255,0.2); }
+.sc-saving-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 11px; font-weight: 700; color: #22C55E;
+  flex-shrink: 0;
+}
+
+.sc-card-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px; }
+
+.sc-status-rows { display: flex; flex-direction: column; gap: 10px; }
+.sc-status-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 12px; border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  transition: background 0.3s ease;
+}
+.sc-status-row.active { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); }
+.sc-status-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500; }
+.sc-status-val { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.55); font-family: 'JetBrains Mono', monospace; }
+.sc-status-val.done   { color: #22C55E; }
+.sc-status-val.active { color: #F59E0B; }
+.sc-status-val.pulse  { color: #F59E0B; animation: scPulse 1.5s ease-in-out infinite; }
+@keyframes scPulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+/* Floating chips */
+.sc-float-chip {
+  position: absolute;
+  background: rgba(10,9,0,0.92); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78);
+  white-space: nowrap; z-index: 4;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+}
+.sc-chip-1 { top: -18px; left: -14px; animation: scFloat 4s ease-in-out infinite; }
+.sc-chip-2 { bottom: 36px; right: -22px; animation: scFloat 4s ease-in-out infinite 2.2s; }
+@keyframes scFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+.sc-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sc-chip-dot.amber { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.7); }
+.sc-chip-dot.green { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.7); }
+
+/* ── STATS BAR ── */
+.sc-stats-bar { background: #0A0900; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 30px 0; }
+.sc-stats-inner { display: grid; grid-template-columns: repeat(4,1fr); direction: ltr; }
+.sc-stat { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 10px 0; border-right: 1px solid rgba(255,255,255,0.07); direction: rtl; }
+.sc-stat:last-child { border-right: none; }
+.sc-stat-num { font-size: 30px; font-weight: 800; letter-spacing: -1px; font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 5px; }
+.sc-stat-num.amber { color: #F59E0B; }
+.sc-stat-num.green { color: #22C55E; }
+.sc-stat-num.white { color: #fff; }
+.sc-stat-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.35); }
+
+/* ── HOW IT WORKS ── */
+.sc-flow-wrap { margin-top: 56px; position: relative; }
+.sc-flow-track {
+  position: absolute; top: 32px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    rgba(245,158,11,0.5) 0%,
+    rgba(251,191,36,0.55) 25%,
+    rgba(217,119,6,0.55) 50%,
+    rgba(34,197,94,0.5) 75%,
+    rgba(16,185,129,0.5) 100%);
+}
+.sc-flow { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; position: relative; z-index: 1; direction: ltr; }
+.sc-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 12px; direction: rtl; }
+.sc-step-node { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; position: relative; flex-shrink: 0; }
+.sc-step-node::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1.5px solid; opacity: 0.3; }
+.sc-step-chip { font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; }
+.sc-step-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.sc-step-desc { font-size: 12.5px; line-height: 1.58; color: var(--muted); }
+
+.sc-st1 .sc-step-node { background: rgba(245,158,11,0.1); }
+.sc-st1 .sc-step-node::after { border-color: #F59E0B; }
+.sc-st1 .sc-step-chip { background: rgba(245,158,11,0.1); color: #D97706; }
+.sc-st2 .sc-step-node { background: rgba(251,191,36,0.1); }
+.sc-st2 .sc-step-node::after { border-color: #FBBF24; }
+.sc-st2 .sc-step-chip { background: rgba(251,191,36,0.1); color: #B45309; }
+.sc-st3 .sc-step-node { background: rgba(217,119,6,0.1); }
+.sc-st3 .sc-step-node::after { border-color: #D97706; }
+.sc-st3 .sc-step-chip { background: rgba(217,119,6,0.1); color: #92400E; }
+.sc-st4 .sc-step-node { background: rgba(245,158,11,0.12); }
+.sc-st4 .sc-step-node::after { border-color: #F59E0B; }
+.sc-st4 .sc-step-chip { background: rgba(245,158,11,0.1); color: #D97706; }
+.sc-st5 .sc-step-node { background: rgba(34,197,94,0.1); }
+.sc-st5 .sc-step-node::after { border-color: #22C55E; }
+.sc-st5 .sc-step-chip { background: rgba(34,197,94,0.1); color: #15803D; }
+
+/* ── SUPPLIER ORIGINS ── */
+.sc-origin-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 52px; }
+.sc-origin-card { border-radius: 22px; padding: 30px 24px; border: 1.5px solid; position: relative; overflow: hidden; }
+.sc-origin-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; }
+.sc-or-cn { border-color: rgba(239,68,68,0.2); background: linear-gradient(160deg,rgba(239,68,68,0.04),transparent 60%); }
+.sc-or-cn::before { background: linear-gradient(90deg,#EF4444,#F87171); }
+.sc-or-tr { border-color: rgba(239,68,68,0.18); background: linear-gradient(160deg,rgba(239,68,68,0.04),transparent 60%); }
+.sc-or-tr::before { background: linear-gradient(90deg,#DC2626,#EF4444); }
+.sc-or-ae { border-color: rgba(245,158,11,0.22); background: linear-gradient(160deg,rgba(245,158,11,0.06),transparent 60%); }
+.sc-or-ae::before { background: linear-gradient(90deg,#F59E0B,#FCD34D); }
+.sc-or-mn { border-color: rgba(34,197,94,0.22); background: linear-gradient(160deg,rgba(34,197,94,0.05),transparent 60%); }
+.sc-or-mn::before { background: linear-gradient(90deg,#22C55E,#4ADE80); }
+
+.sc-or-flag { font-size: 36px; margin-bottom: 12px; display: block; }
+.sc-or-country { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.sc-or-cats { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin-bottom: 14px; }
+.sc-or-lead { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.sc-or-cn .sc-or-lead, .sc-or-tr .sc-or-lead { background: rgba(239,68,68,0.1); color: #B91C1C; }
+.sc-or-ae .sc-or-lead { background: rgba(245,158,11,0.1); color: #B45309; }
+.sc-or-mn .sc-or-lead { background: rgba(34,197,94,0.1); color: #15803D; }
+
+/* ── CATEGORY CHIPS ── */
+.sc-cat-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; justify-content: center; }
+.sc-cat-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(245,158,11,0.07);
+  border: 1px solid rgba(245,158,11,0.18);
+  border-radius: 100px; padding: 8px 18px;
+  font-size: 13.5px; font-weight: 600;
+  color: var(--ink);
+  transition: background 0.2s, border-color 0.2s;
+}
+.sc-cat-chip:hover { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.35); }
+.sc-cat-icon { font-size: 16px; }
+
+/* ── FEATURES BENTO ── */
+.sc-bento { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px; direction: ltr; }
+.sc-bc { border-radius: 20px; padding: 28px 26px; border: 1px solid var(--line); background: #fff; position: relative; overflow: hidden; direction: rtl; }
+.sc-bc.sc-wide { grid-column: span 2; display: flex; gap: 32px; align-items: center; direction: rtl; }
+.sc-bc.sc-dark { background: #09080A; border-color: rgba(255,255,255,0.08); }
+.sc-bc-icon { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; flex-shrink: 0; }
+.sc-bc-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.sc-dark .sc-bc-title { color: #fff; }
+.sc-bc-desc { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+.sc-dark .sc-bc-desc { color: rgba(255,255,255,0.42); }
+.sc-bc-body { flex: 1; }
+
+/* Private label mockup in wide card */
+.sc-label-mock { flex-shrink: 0; width: 180px; direction: ltr; }
+.sc-label-product {
+  background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.18);
+  border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 10px;
+}
+.sc-label-box { font-size: 36px; margin-bottom: 8px; }
+.sc-label-name { font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #F59E0B; text-transform: uppercase; margin-bottom: 2px; }
+.sc-label-sub { font-size: 10px; color: rgba(255,255,255,0.35); font-family: 'JetBrains Mono', monospace; }
+.sc-label-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.sc-label-tag { font-size: 9.5px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(245,158,11,0.12); color: #F59E0B; }
+
+/* ── CTA SECTION ── */
+.sc-cta-sec {
+  text-align: center; padding: 110px 0 100px;
+  background: linear-gradient(160deg, #0A0800 0%, #140E01 50%, #0A0800 100%);
+  position: relative; overflow: hidden;
+}
+.sc-cta-sec::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 450px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.sc-cta-sec .sc-headline { font-size: clamp(28px,4vw,48px); margin-bottom: 16px; }
+.sc-cta-sec .sc-hero-sub { max-width: 520px; margin: 0 auto 36px; }
+.sc-cta-note-dark { font-size: 12.5px; color: rgba(255,255,255,0.22); margin-top: 16px; }
+
+/* ── FAQ RTL ── */
+.faq-grid { grid-template-columns: 1fr 260px; }
+.faq-side { text-align: right; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .sc-flow { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .sc-flow-track { display: none; }
+  .sc-origin-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 960px) {
+  .sc-hero-wrap { grid-template-columns: 1fr; gap: 48px; padding: 100px 0 64px; }
+  .sc-hero-right { display: none; }
+  .sc-stats-inner { grid-template-columns: repeat(2,1fr); }
+  .sc-stat:nth-child(2) { border-right: none; }
+  .sc-stat:nth-child(3),.sc-stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.07); }
+  .sc-bento { grid-template-columns: 1fr; }
+  .sc-bc.sc-wide { flex-direction: column; grid-column: span 1; }
+  .sc-label-mock { width: 100%; }
+}
+@media (max-width: 640px) {
+  .sc-origin-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-page="services">
+
+<!-- ═══ HERO ════════════════════════════════════════════════════════ -->
+<section class="hero sc-hero">
+  <div class="sc-hero-bg" aria-hidden="true">
+    <div class="sc-bg-grid"></div>
+    <div class="sc-bg-glow-1"></div>
+    <div class="sc-bg-glow-2"></div>
+  </div>
+  <div class="wrap">
+    <div class="sc-hero-wrap">
+
+      <!-- Right copy (RTL = visual right) -->
+      <div class="sc-hero-left">
+        <span class="sc-eyebrow"><span class="dot"></span> توريد المنتجات</span>
+        <h1 class="sc-headline">
+          من أرضية المصنع<br/>
+          <em>إلى باب<br/>عميلك.</em>
+        </h1>
+        <p class="sc-hero-sub">أخبرنا بما تريد بيعه. نحن نجد أفضل مورد، نتفاوض على السعر، نفحص الجودة، ونشحنه مباشرةً إلى مستودعاتنا في ليبيا والعراق ولبنان — جاهزاً للتوصيل.</p>
+        <div class="sc-cta-row">
+          <a href="https://app.mdm.express/en/auth/register" class="btn-primary">أرسل طلب توريد ←</a>
+          <a href="warehousing.html" class="btn-outline">استكشف التخزين ←</a>
+        </div>
+        <p class="sc-cta-note">✓ الصين · تركيا · الإمارات · محلي &nbsp;·&nbsp; ✓ فحص الجودة شامل &nbsp;·&nbsp; ✓ علامة تجارية خاصة متاحة</p>
+      </div>
+
+      <!-- Left: Sourcing brief card (RTL visual left) -->
+      <div class="sc-hero-right">
+        <div class="sc-card-scene">
+
+          <div class="sc-float-chip sc-chip-1">
+            <div class="sc-chip-dot green"></div>
+            <span>QC inspection passed ✓</span>
+          </div>
+          <div class="sc-float-chip sc-chip-2">
+            <div class="sc-chip-dot amber"></div>
+            <span>Supplier matched — Guangzhou</span>
+          </div>
+
+          <div class="sc-brief-card">
+            <div class="sc-card-header">
+              <div class="sc-card-brand">MDM Express</div>
+              <div class="sc-card-badge">Sourcing Brief</div>
+            </div>
+
+            <div class="sc-card-product">
+              <div class="sc-card-product-name">Wireless Earbuds — Gen 4</div>
+              <div class="sc-card-product-cat">Electronics · SKU-0247 · Qty: 500 units</div>
+            </div>
+
+            <div class="sc-price-row">
+              <div class="sc-price-box">
+                <div class="sc-price-label">Target price</div>
+                <div class="sc-price-val target">$18.00</div>
+              </div>
+              <div class="sc-price-arrow">→</div>
+              <div class="sc-price-box">
+                <div class="sc-price-label">Found price</div>
+                <div class="sc-price-val found">$11.40</div>
+              </div>
+              <div class="sc-saving-pill">−37%</div>
+            </div>
+
+            <hr class="sc-card-divider"/>
+
+            <div class="sc-status-rows">
+              <div class="sc-status-row">
+                <div class="sc-status-label">Product research</div>
+                <div class="sc-status-val done">✓ Complete</div>
+              </div>
+              <div class="sc-status-row">
+                <div class="sc-status-label">Supplier matched</div>
+                <div class="sc-status-val done">✓ Guangzhou factory</div>
+              </div>
+              <div class="sc-status-row">
+                <div class="sc-status-label">QC inspection</div>
+                <div class="sc-status-val done">✓ 498/500 passed</div>
+              </div>
+              <div class="sc-status-row active" id="scActiveRow">
+                <div class="sc-status-label">Freight to warehouse</div>
+                <div class="sc-status-val pulse" id="scFreightStatus">⬤ In transit · Day 8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ════════════════════════════════════════════════════ -->
+<div class="sc-stats-bar" id="scStatsBar">
+  <div class="wrap">
+    <div class="sc-stats-inner">
+      <div class="sc-stat">
+        <div class="sc-stat-num amber" id="scS1">0+</div>
+        <div class="sc-stat-label">مورد معتمد حول العالم</div>
+      </div>
+      <div class="sc-stat">
+        <div class="sc-stat-num white" id="scS2">0+</div>
+        <div class="sc-stat-label">SKU تم توريده حتى الآن</div>
+      </div>
+      <div class="sc-stat">
+        <div class="sc-stat-num green" id="scS3">0%</div>
+        <div class="sc-stat-label">متوسط التوفير مقارنةً بالشراء المباشر</div>
+      </div>
+      <div class="sc-stat">
+        <div class="sc-stat-num amber" id="scS4">0</div>
+        <div class="sc-stat-label">دول توريد متاحة</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ════════════════════════════════════════════════ -->
+<section class="block alt" id="scHow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">كيف يعمل</span>
+      <h2 class="title">خمس خطوات من الطلب إلى المستودع</h2>
+      <p class="sec-sub">أخبرنا بما تريد. نحن نتولى كل خطوة بينهما — لتتفرغ للبيع لا للتوريد.</p>
+    </div>
+    <div class="sc-flow-wrap">
+      <div class="sc-flow-track"></div>
+      <div class="sc-flow">
+
+        <div class="sc-step sc-st1">
+          <div class="sc-step-node">📋</div>
+          <div class="sc-step-chip">الخطوة 1</div>
+          <div class="sc-step-title">أرسل طلبك</div>
+          <p class="sc-step-desc">أخبرنا بالمنتج والسعر المستهدف والكمية وأي متطلبات تقنية. يستغرق أقل من 5 دقائق عبر لوحتك.</p>
+        </div>
+
+        <div class="sc-step sc-st2">
+          <div class="sc-step-node">🔍</div>
+          <div class="sc-step-chip">الخطوة 2</div>
+          <div class="sc-step-title">بحث عن المنتج</div>
+          <p class="sc-step-desc">يبحث فريقنا في الصين وتركيا والإمارات والأسواق المحلية للعثور على أفضل الموردين — مع الأسعار وأوقات التسليم والحد الأدنى للطلب.</p>
+        </div>
+
+        <div class="sc-step sc-st3">
+          <div class="sc-step-node">🤝</div>
+          <div class="sc-step-chip">الخطوة 3</div>
+          <div class="sc-step-title">التفاوض مع الموردين</div>
+          <p class="sc-step-desc">نتفاوض مباشرةً مع المصانع نيابةً عنك للحصول على أسعار أقل من السوق. تعتمد العرض النهائي قبل المضي قدماً.</p>
+        </div>
+
+        <div class="sc-step sc-st4">
+          <div class="sc-step-node">🔬</div>
+          <div class="sc-step-chip">الخطوة 4</div>
+          <div class="sc-step-title">فحص الجودة</div>
+          <p class="sc-step-desc">فحص جودة مادي في منشأة المورد قبل شحن أي وحدة. العناصر المعيبة تُوضَّع علامة عليها وتُستبدل — ليست مشكلتك.</p>
+        </div>
+
+        <div class="sc-step sc-st5">
+          <div class="sc-step-node">📦</div>
+          <div class="sc-step-chip">الخطوة 5</div>
+          <div class="sc-step-title">الشحن إلى المستودع</div>
+          <p class="sc-step-desc">نتولى الشحن من المورد إلى مستودعاتنا في ليبيا والعراق ولبنان. تتبع كامل من المصنع إلى الرف. جاهز للتوصيل فور الوصول.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SUPPLIER ORIGINS ══════════════════════════════════════════════ -->
+<section class="block lav" id="scOrigins">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">شبكة الموردين</span>
+      <h2 class="title">نوفر من أي مكان يناسبك</h2>
+      <p class="sec-sub">مباشرةً من المصنع في الصين للكميات الكبيرة. تسليم سريع من تركيا أو الإمارات. محلي عندما يكون الخيار الأذكى. نختار دائماً المصدر المناسب لمنتجك وسعرك وجدولك الزمني.</p>
+    </div>
+    <div class="sc-origin-grid">
+
+      <div class="sc-origin-card sc-or-cn">
+        <span class="sc-or-flag">🇨🇳</span>
+        <div class="sc-or-country">الصين</div>
+        <p class="sc-or-cats">إلكترونيات، أزياء، مستحضرات جمال، منتجات منزلية، مطبخ، منتجات أطفال، رياضة، أدوات. أفضل أسعار وأوسع نطاق منتجات.</p>
+        <span class="sc-or-lead">15–25 يوم إلى المستودع</span>
+      </div>
+
+      <div class="sc-origin-card sc-or-tr">
+        <span class="sc-or-flag">🇹🇷</span>
+        <div class="sc-or-country">تركيا</div>
+        <p class="sc-or-cats">ملابس، منسوجات، جلود، أحذية، سيراميك. معايير تصنيع أوروبية بأسعار تنافسية وشحن أسرع من آسيا.</p>
+        <span class="sc-or-lead">7–12 يوم إلى المستودع</span>
+      </div>
+
+      <div class="sc-origin-card sc-or-ae">
+        <span class="sc-or-flag">🇦🇪</span>
+        <div class="sc-or-country">الإمارات / دبي</div>
+        <p class="sc-or-cats">فئات متعددة، بضاعة إعادة تصدير، منتجات ذات علامات تجارية، إلكترونيات، FMCG. مركز إقليمي — أسرع تسليم دولي للمخزون الجاهز.</p>
+        <span class="sc-or-lead">3–7 أيام إلى المستودع</span>
+      </div>
+
+      <div class="sc-origin-card sc-or-mn">
+        <span class="sc-or-flag">🌍</span>
+        <div class="sc-or-country">المنطقة العربية المحلية</div>
+        <p class="sc-or-cats">بضاعة طازجة، FMCG، منتجات قابلة للتلف، مواد بناء، علامات محلية. موردون محليون من ليبيا والعراق ولبنان.</p>
+        <span class="sc-or-lead">1–3 أيام إلى المستودع</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT CATEGORIES ══════════════════════════════════════════ -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">ما نوفره</span>
+      <h2 class="title">+40 فئة. إذا كان يُباع، يمكننا توريده.</h2>
+      <p class="sec-sub">وفّرنا منتجات في كل فئة تجارة إلكترونية تقريباً في سوق المنطقة العربية. إذا كان العملاء في ليبيا والعراق ولبنان يشترونه — نعرف من أين نجده.</p>
+    </div>
+    <div class="sc-cat-strip" id="scCatStrip">
+      <div class="sc-cat-chip"><span class="sc-cat-icon">📱</span> إلكترونيات وأجهزة</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">👗</span> أزياء وملابس</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">💄</span> جمال وعناية بالبشرة</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">🏠</span> منزل ومطبخ</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">⚽</span> رياضة وخارج المنزل</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">👶</span> أطفال ورضع</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">💊</span> صحة ولياقة</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">🚗</span> إكسسوارات سيارات</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">🧸</span> ألعاب وترفيه</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">🔧</span> أدوات وعدة</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">📚</span> كتب وقرطاسية</div>
+      <div class="sc-cat-chip"><span class="sc-cat-icon">🌿</span> غذاء و FMCG</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES BENTO ═══════════════════════════════════════════════ -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">ما هو مشمول</span>
+      <h2 class="title">من الألف إلى الياء. بلا ثغرات. بلا وسطاء.</h2>
+      <p class="sec-sub">كل طلب توريد يشمل البحث والتفاوض وفحص الجودة والشحن — مع خيار العلامة التجارية الخاصة للتجار الراغبين في وضع اسمهم على المنتج.</p>
+    </div>
+    <div class="sc-bento">
+
+      <!-- Wide dark card: Private Label -->
+      <div class="sc-bc sc-wide sc-dark">
+        <div class="sc-label-mock" aria-hidden="true">
+          <div class="sc-label-product">
+            <div class="sc-label-box">📦</div>
+            <div class="sc-label-name">Your Brand</div>
+            <div class="sc-label-sub">Custom · Logo · Packaged</div>
+          </div>
+          <div class="sc-label-tags">
+            <div class="sc-label-tag">Custom box</div>
+            <div class="sc-label-tag">Logo print</div>
+            <div class="sc-label-tag">Insert card</div>
+            <div class="sc-label-tag">Shrink wrap</div>
+            <div class="sc-label-tag">Barcode</div>
+            <div class="sc-label-tag">Labels</div>
+          </div>
+        </div>
+        <div class="sc-bc-body">
+          <div class="sc-bc-icon" style="background:rgba(245,158,11,0.12)">🏷️</div>
+          <div class="sc-bc-title">علامة تجارية خاصة وتغليف مخصص</div>
+          <p class="sc-bc-desc">لا تكتفِ بإعادة البيع — امتلك علامتك التجارية. نتعاون مع المصانع لوضع شعارك وتغليفك المخصص وبطاقات الإدراج والباركود على أي منتج تورّده. بلا رسوم تصميم دنيا. منتجك، علامتك، جاهز للبيع باسمك.</p>
+        </div>
+      </div>
+
+      <!-- QC Inspection -->
+      <div class="sc-bc">
+        <div class="sc-bc-icon" style="background:rgba(34,197,94,0.1)">🔬</div>
+        <div class="sc-bc-title">فحص الجودة قبل الشحن</div>
+        <p class="sc-bc-desc">كل دفعة تُفحص مادياً في منشأة المورد قبل الشحن. نتحقق من مطابقة المواصفات ومعدلات العيوب وجودة التغليف. فقط الوحدات التي تجتاز الفحص تُشحن — العيوب تُستبدل على نفقة المورد.</p>
+      </div>
+
+      <!-- Market Demand -->
+      <div class="sc-bc">
+        <div class="sc-bc-icon" style="background:rgba(99,102,241,0.1)">📊</div>
+        <div class="sc-bc-title">تحليل الطلب في السوق</div>
+        <p class="sc-bc-desc">لست متأكداً مما ستبيع؟ نستخرج بيانات الطلبات من شبكة التوصيل لدينا في ليبيا والعراق ولبنان لتحديد الفئات الرائجة — ونخبرك بما يُباع فعلاً الآن.</p>
+      </div>
+
+      <!-- Price Negotiation -->
+      <div class="sc-bc">
+        <div class="sc-bc-icon" style="background:rgba(245,158,11,0.1)">💰</div>
+        <div class="sc-bc-title">أسعار مباشرة من المصنع</div>
+        <p class="sc-bc-desc">نتفاوض مباشرةً مع الصانعين — لا مع الموزعين أو شركات التجارة. حجمنا عبر جميع العملاء يمنحنا نفوذاً لا تستطيع الحصول عليه بمفردك. متوسط التوفير: 30% دون أسعار التجزئة.</p>
+      </div>
+
+      <!-- Freight -->
+      <div class="sc-bc">
+        <div class="sc-bc-icon" style="background:rgba(6,182,212,0.1)">✈️</div>
+        <div class="sc-bc-title">شحن من الألف إلى الياء</div>
+        <p class="sc-bc-desc">جواً أو بحراً أو براً — نتولى التخليص الجمركي والمستندات والتوصيل للمستودعات. تتبع كامل من باب المصنع إلى الرف. بلا مفاجآت في الشحن.</p>
+      </div>
+
+      <!-- Agent -->
+      <div class="sc-bc">
+        <div class="sc-bc-icon" style="background:rgba(139,92,246,0.1)">🧑‍💼</div>
+        <div class="sc-bc-title">مسؤول توريد مخصص</div>
+        <p class="sc-bc-desc">تحصل على مسؤول توريد مخصص كنقطة اتصال وحيدة — من إرسال الطلب حتى وصول المخزون. تحديثات على واتساب عند كل مرحلة، بلا انتظار طويل.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════════════════ -->
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الأسئلة الشائعة</span>
+      <h2 class="title">أسئلة التوريد، مُجابة</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>تحتاج شيئاً محدداً؟</h3>
+        <p>يتعامل فريق التوريد لدينا مع الطلبات غير المعتادة والمنتجات المتخصصة والطلبات الكبيرة. تواصل معنا مباشرةً وسنحدد النطاق لك.</p>
+        <a href="https://app.mdm.express/en/auth/register" class="btn-primary" style="display:inline-block">تحدث مع مسؤول التوريد</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-q">كيف أقدم طلب توريد؟ <span class="pl">+</span></div>
+          <div class="faq-a">قدّم طلباً عبر لوحة MDM Express — اسم المنتج والسعر المستهدف والكمية وأي مواصفات. بدلاً من ذلك، تواصل مع مدير حسابك مباشرةً عبر واتساب. سنرد عليك بخيارات المورد الأولية خلال 48 ساعة.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">هل يوجد حد أدنى لكمية الطلب (MOQ)؟ <span class="pl">+</span></div>
+          <div class="faq-a">يعتمد الحد الأدنى على المنتج والمورد — عادةً 50–200 وحدة لطلبات مصانع الصين، وأقل لمخزون تركيا والإمارات. سنخبرك دائماً بالحد الأدنى مسبقاً قبل التزامك. طلبات العينات من 1–5 وحدات متاحة لمعظم الفئات.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">هل يمكنني طلب عينات قبل الطلب الكبير؟ <span class="pl">+</span></div>
+          <div class="faq-a">نعم — ننصح بذلك بشدة. طلبات العينات متاحة لمعظم المنتجات بـ 2–3× تكلفة الوحدة لتغطية تكاليف الشحن الثابتة. تصل العينات إلى مستودعنا ويمكن إعادة إرسالها إليك مباشرةً للفحص قبل تقديم الطلب الكبير.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ماذا لو لم يكن المنتج الذي أريده في الكتالوج؟ <span class="pl">+</span></div>
+          <div class="faq-a">قدّم الطلب على أي حال. يتعامل فريقنا مع طلبات التوريد المخصصة للمنتجات التي لم نوفدها من قبل. إذا كان موجوداً ويمكن تصنيعه أو شراؤه بكميات كبيرة، يمكننا إيجاده — في الصين وتركيا والإمارات وأسواق المنطقة المحلية.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ════════════════════════════════════════════════════════════ -->
+<section class="sc-cta-sec" id="cta">
+  <div class="wrap">
+    <h2 class="sc-headline">
+      منتجك الأكثر مبيعاً<br/>
+      <em>على بُعد طلب واحد.</em>
+    </h2>
+    <p class="sc-hero-sub">أرسل طلب منتجك اليوم. سنوافقك على موردين معتمدين، نتولى فحص الجودة، ونجعل المخزون جاهزاً في مستودع السوق الذي تختاره — دون أن تلمس شحنةً واحدة.</p>
+    <div class="sc-cta-row" style="justify-content:center">
+      <a href="https://app.mdm.express/en/auth/register" class="btn-primary" style="font-size:16px;padding:14px 32px">أرسل طلب توريد ←</a>
+      <a href="warehousing.html" class="btn-outline" style="color:rgba(255,255,255,0.65);border-color:rgba(255,255,255,0.18)">استكشف التخزين ←</a>
+    </div>
+    <p class="sc-cta-note-dark">بلا رسوم توريد مسبقة · طلبات عينات متاحة · مسؤول مخصص من اليوم الأول</p>
+  </div>
+</section>
+
+<script src="../ar-shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../animations.js"></script>
+
+<audio id="hero-music" src="../hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="تشغيل/إيقاف الموسيقى">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn   = document.getElementById('musicToggle');
+  if(audio && btn){
+    audio.volume = 0.5; let playing = false;
+    document.addEventListener('click', function(){
+      audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }).catch(()=>{});
+    }, {once:false});
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      if(playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+      else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+    });
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden && playing) audio.pause();
+      else if(!document.hidden && playing) audio.play();
+    });
+  }
+
+  /* ── Hero card — freight day counter ──────────────────────── */
+  const freightEl = document.getElementById('scFreightStatus');
+  if(freightEl){
+    let day = 8;
+    setTimeout(()=>{
+      const tick = setInterval(()=>{
+        day++;
+        if(day > 20){
+          clearInterval(tick);
+          freightEl.textContent = '✓ وصل إلى المستودع';
+          freightEl.classList.remove('pulse'); freightEl.classList.add('done');
+          const row = document.getElementById('scActiveRow');
+          if(row){ row.classList.remove('active'); }
+          return;
+        }
+        freightEl.textContent = '⬤ في الطريق · اليوم ' + day;
+      }, 1800);
+    }, 1200);
+  }
+
+  /* ── Stats bar counters ──────────────────────────────────────── */
+  const statsObs = new IntersectionObserver((entries)=>{
+    if(!entries[0].isIntersecting) return;
+    statsObs.disconnect();
+    const s1=document.getElementById('scS1'), s2=document.getElementById('scS2');
+    const s3=document.getElementById('scS3'), s4=document.getElementById('scS4');
+    if(window.gsap){
+      let o1={v:0}; gsap.to(o1,{v:500, duration:1.6, ease:'power2.out', onUpdate(){ if(s1) s1.textContent=Math.round(o1.v)+'+'; }});
+      let o2={v:0}; gsap.to(o2,{v:2000,duration:1.7, ease:'power2.out', onUpdate(){ if(s2) s2.textContent=Math.round(o2.v).toLocaleString('ar')+'+'; }});
+      let o3={v:0}; gsap.to(o3,{v:30,  duration:1.4, ease:'power2.out', onUpdate(){ if(s3) s3.textContent=Math.round(o3.v)+'%'; }});
+      let o4={v:0}; gsap.to(o4,{v:4,   duration:1.0, ease:'power2.out', onUpdate(){ if(s4) s4.textContent=Math.round(o4.v); }});
+    } else {
+      if(s1) s1.textContent='500+'; if(s2) s2.textContent='2,000+';
+      if(s3) s3.textContent='30%';  if(s4) s4.textContent='4';
+    }
+  }, {threshold:0.4});
+  const sb = document.getElementById('scStatsBar');
+  if(sb) statsObs.observe(sb);
+
+  /* ── GSAP scroll animations ──────────────────────────────────── */
+  if(window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.sc-hero-left > *', { y:40, opacity:0, duration:0.7, stagger:0.1, ease:'power3.out', delay:0.2 });
+    gsap.from('.sc-card-scene',    { y:60, opacity:0, duration:0.9, ease:'power3.out', delay:0.5 });
+
+    ScrollTrigger.create({ trigger:'#scHow', start:'top 80%', once:true, onEnter:()=>{
+      gsap.from('.sc-step', { y:30, opacity:0, duration:0.55, stagger:0.1, ease:'power2.out' });
+    }});
+
+    ScrollTrigger.create({ trigger:'#scOrigins', start:'top 82%', once:true, onEnter:()=>{
+      gsap.from('.sc-origin-card', { y:30, opacity:0, duration:0.5, stagger:0.1, ease:'power2.out' });
+    }});
+
+    ScrollTrigger.create({ trigger:'#scCatStrip', start:'top 88%', once:true, onEnter:()=>{
+      gsap.from('.sc-cat-chip', { y:16, opacity:0, duration:0.4, stagger:0.04, ease:'power2.out' });
+    }});
+
+    ScrollTrigger.create({ trigger:'.sc-bento', start:'top 85%', once:true, onEnter:()=>{
+      gsap.from('.sc-bc', { y:28, opacity:0, duration:0.5, stagger:0.07, ease:'power2.out' });
+    }});
+
+    ScrollTrigger.create({ trigger:'.sc-cta-sec', start:'top 85%', once:true, onEnter:()=>{
+      gsap.from('.sc-cta-sec .wrap > *', { y:30, opacity:0, duration:0.6, stagger:0.1, ease:'power3.out' });
+    }});
+  }
+})();
+</script>
+</body>
+</html>

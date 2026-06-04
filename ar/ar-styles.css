@@ -1,0 +1,167 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   ar-styles.css — Arabic / RTL overrides for MDM Express
+   Loads AFTER styles.css. Adds Cairo font and flips all directional properties.
+─────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+/* ── 1. Base RTL & Font ────────────────────────────────────────────────── */
+html { direction: rtl; }
+
+body {
+  font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+  direction: rtl;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, span, div {
+  font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Keep mono font for code-style labels */
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ── 2. Navigation ─────────────────────────────────────────────────────── */
+.nav { flex-direction: row-reverse; }
+.nav-links { flex-direction: row-reverse; }
+
+/* Services dropdown — keep panel aligned to its trigger */
+.nav-dd-panel {
+  right: 0;
+  left: auto;
+}
+.nav-drop-chevron { transform: scaleX(-1); }
+
+/* Language switcher pill */
+.lang-switch {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 99px;
+  transition: all .15s;
+  letter-spacing: 0;
+}
+.lang-switch:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.3);
+}
+
+/* ── 3. Mobile Drawer ──────────────────────────────────────────────────── */
+.nav-drawer-inner { text-align: right; }
+.mdr-services-btn { flex-direction: row-reverse; }
+.mdr-chevron { transform: scaleX(-1); }
+.mdr-service-item { flex-direction: row-reverse; text-align: right; }
+.mdr-service-icon { margin-right: 0; margin-left: 12px; }
+.mdr-services-list a { padding-right: 16px; padding-left: 8px; }
+
+/* ── 4. Trust Strip — reverse marquee ──────────────────────────────────── */
+.trust-marquee { animation-direction: reverse; }
+.trust-item { flex-direction: row-reverse; }
+
+/* ── 5. Hero / Eyebrow ─────────────────────────────────────────────────── */
+.eyebrow {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+.hero-inner { text-align: right; }
+.cta-row {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+/* ── 6. Section headers ────────────────────────────────────────────────── */
+.sec-head { text-align: right; }
+.sec-head .sec-tag { display: inline-block; }
+
+/* ── 7. Bento grid arrows ──────────────────────────────────────────────── */
+.bento-arrow { transform: scaleX(-1); margin-right: auto; margin-left: 0; }
+
+/* ── 8. How-it-works rows ──────────────────────────────────────────────── */
+.hiw-row { flex-direction: row-reverse; }
+.hiw-row.hiw-row-rev { flex-direction: row; }
+.hiw-text { text-align: right; }
+.hiw-num { text-align: right; }
+
+/* ── 9. Services chip strip ────────────────────────────────────────────── */
+.svc-chip { flex-direction: row-reverse; text-align: right; }
+.svc-chip-icon { margin-right: 0; margin-left: 14px; }
+
+/* ── 10. Platform stats ────────────────────────────────────────────────── */
+.psc-top { flex-direction: row-reverse; }
+.psc-bar { direction: ltr; } /* keep bar filling left→right */
+.psc-lab { text-align: right; }
+
+/* ── 11. Stats accent band ─────────────────────────────────────────────── */
+.sab-item { text-align: right; }
+
+/* ── 12. Markets ───────────────────────────────────────────────────────── */
+.markets-text { text-align: right; }
+.market-chips { justify-content: flex-start; }
+.market-kpis { justify-content: flex-start; }
+
+/* ── 13. FAQ ───────────────────────────────────────────────────────────── */
+.faq-q { text-align: right; }
+.faq-side { text-align: right; }
+.pl { margin-left: 0; margin-right: auto; }
+
+/* ── 14. Testimonials ──────────────────────────────────────────────────── */
+.testi-card { text-align: right; }
+.testi-footer { flex-direction: row-reverse; }
+.testi-stat { margin-right: auto; margin-left: 0; }
+
+/* ── 15. Legal pages — TOC border on right ─────────────────────────────── */
+.legal-layout { grid-template-columns: 1fr 240px; }
+.legal-toc {
+  order: 2;
+  border-left: none;
+}
+.legal-toc a {
+  border-left: none;
+  border-right: 2px solid transparent;
+  text-align: right;
+}
+.legal-toc a:hover,
+.legal-toc a.active {
+  border-right-color: #DC2626;
+  border-left-color: transparent;
+}
+.legal-content { order: 1; }
+
+/* ── 16. Cookie cards ──────────────────────────────────────────────────── */
+.cookie-card-head { flex-direction: row-reverse; }
+
+/* ── 17. Footer ────────────────────────────────────────────────────────── */
+footer .wrap { text-align: right; }
+footer ul { padding-left: 0; padding-right: 0; }
+.socials { justify-content: flex-start; }
+.bottom { flex-direction: row-reverse; }
+
+/* ── 18. Hiw-link arrow flip ────────────────────────────────────────────── */
+.hiw-link { direction: rtl; }
+.hiw-connect-bar { flex-direction: row-reverse; }
+.hiw-dot-line { transform: scaleX(-1); }
+
+/* ── 19. Capital page (sa-*) ────────────────────────────────────────────── */
+.sa-hero-inner { text-align: right; }
+.sa-stat-grid { direction: ltr; } /* keep number alignment */
+.sa-how-grid .sa-step { text-align: right; }
+.sa-band-inner { text-align: right; }
+.sa-elig-grid { direction: rtl; }
+
+/* ── 20. Responsive RTL ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hiw-row,
+  .hiw-row.hiw-row-rev { flex-direction: column; }
+  .legal-layout { grid-template-columns: 1fr; }
+  .nav { flex-direction: row-reverse; }
+}
+
+@media (max-width: 768px) {
+  .nav { flex-direction: row-reverse; }
+  .cta-row { flex-direction: column; align-items: flex-start; }
+  .sec-head { text-align: right; }
+  .svc-chip { flex-direction: row-reverse; }
+}

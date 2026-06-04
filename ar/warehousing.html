@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>التخزين والوفاء بالطلبات · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="ar-styles.css" />
+<link rel="alternate" hreflang="en" href="https://mdm.express/warehousing.html" />
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/warehousing.html" />
+<style>
+/* RTL overrides — warehousing */
+.wh-hero-wrap            { flex-direction: row-reverse; }
+.wh-hero-metrics         { direction: ltr; }
+.wh-metric               { direction: rtl; }
+.wh-sync-layout          { flex-direction: row-reverse; }
+.wh-sync-bullets         { direction: rtl; }
+.wh-sync-bullet          { flex-direction: row-reverse; text-align: right; }
+.wh-sync-screen-body     { direction: ltr; }
+.wh-hub-top              { flex-direction: row-reverse; }
+.wh-hub-cap-label        { flex-direction: row-reverse; }
+.wh-hub-tags             { justify-content: flex-end; }
+.wh-hub-stats            { direction: ltr; }
+.wh-hub-stat             { direction: rtl; }
+.faq-grid                { grid-template-columns: 1fr 260px; }
+.faq-side                { text-align: right; }
+.wh-dashboard            { direction: ltr; }
+.wh-sku-head, .wh-sku-row { direction: ltr; }
+.wh-act-row              { direction: ltr; }
+.wh-scan-text            { direction: rtl; text-align: right; }
+.wh-flow-track           { right: 28px; left: auto; }
+.wh-step                 { flex-direction: row-reverse; text-align: right; }
+.wh-step-content         { text-align: right; }
+.wh-feat-grid            { direction: ltr; }
+.wh-feat-card            { direction: rtl; }
+</style>
+</head>
+<body data-page="services">
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
+<section class="hero wh-hero">
+  <div class="wh-hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="wh-hero-wrap">
+
+      <!-- Right copy (RTL = visual left) -->
+      <div class="wh-hero-left">
+        <span class="eyebrow wh-eyebrow"><span class="dot"></span> التخزين والوفاء بالطلبات</span>
+        <h1 class="headline">
+          مخزونك،<br/>
+          <em class="wh-accent">جاهز دائماً.</em>
+        </h1>
+        <p class="hero-sub">مستودعات آمنة بتحكم مناخي عبر ليبيا والعراق ولبنان — لتنتقل المنتجات من الرف إلى الباب بلا احتكاك.</p>
+        <div class="wh-hero-metrics">
+          <div class="wh-metric">
+            <span class="wh-metric-num">99.6%</span>
+            <span class="wh-metric-lab">دقة المخزون</span>
+          </div>
+          <div class="wh-metric-div"></div>
+          <div class="wh-metric">
+            <span class="wh-metric-num">&lt; 4 ساعات</span>
+            <span class="wh-metric-lab">SLA تجهيز الطلبات</span>
+          </div>
+          <div class="wh-metric-div"></div>
+          <div class="wh-metric">
+            <span class="wh-metric-num">2</span>
+            <span class="wh-metric-lab">مستودع رئيسي</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="https://app.mdm.express/en/auth/register" class="btn-primary">تخزين مخزوني ←</a>
+          <a href="#flow" class="wh-link">شاهد كيف يعمل</a>
+        </div>
+      </div>
+
+      <!-- Left: inventory dashboard (RTL visual right) -->
+      <div class="wh-dashboard" aria-label="معاينة لوحة المخزون المباشر">
+        <div class="wh-dash-header">
+          <div class="wh-dash-title">
+            <div class="wh-dash-dot wh-dot-green"></div>
+            <span>Warehouse Dashboard</span>
+          </div>
+          <div class="wh-dash-time" id="whClock">—</div>
+        </div>
+
+        <!-- Shelf utilisation bars -->
+        <div class="wh-shelf-section">
+          <div class="wh-shelf-label">
+            <span>Tripoli Hub — Shelf Capacity</span>
+            <span class="wh-shelf-pct" id="whRiyPct">0%</span>
+          </div>
+          <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-green" id="whRiyFill" style="width:0%"></div></div>
+
+          <div class="wh-shelf-label" style="margin-top:14px">
+            <span>Baghdad Hub — Shelf Capacity</span>
+            <span class="wh-shelf-pct" id="whDubPct">0%</span>
+          </div>
+          <div class="wh-shelf-track"><div class="wh-shelf-fill wh-fill-blue" id="whDubFill" style="width:0%"></div></div>
+        </div>
+
+        <!-- SKU list -->
+        <div class="wh-sku-list">
+          <div class="wh-sku-head">
+            <span>SKU</span>
+            <span>Units</span>
+            <span>Status</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-8821</span>
+            <span class="wh-sku-units">1,204</span>
+            <span class="wh-badge wh-badge-green">In Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-4492</span>
+            <span class="wh-sku-units">387</span>
+            <span class="wh-badge wh-badge-amber">Low Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-7703</span>
+            <span class="wh-sku-units">2,051</span>
+            <span class="wh-badge wh-badge-green">In Stock</span>
+          </div>
+          <div class="wh-sku-row">
+            <span class="wh-sku-code">MDM-3310</span>
+            <span class="wh-sku-units">0</span>
+            <span class="wh-badge wh-badge-red">Restocking</span>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="wh-activity">
+          <div class="wh-act-row" id="whAct1">
+            <div class="wh-act-icon wh-act-pack">📦</div>
+            <div class="wh-act-text">Order #WH-7841 — Packed &amp; ready</div>
+            <div class="wh-act-time">just now</div>
+          </div>
+          <div class="wh-act-row" id="whAct2">
+            <div class="wh-act-icon wh-act-in">↓</div>
+            <div class="wh-act-text">Inbound: 400 units MDM-8821</div>
+            <div class="wh-act-time">2 min</div>
+          </div>
+          <div class="wh-act-row" id="whAct3">
+            <div class="wh-act-icon wh-act-ship">🚚</div>
+            <div class="wh-act-text">Order #WH-7839 — Dispatched to Benghazi</div>
+            <div class="wh-act-time">5 min</div>
+          </div>
+        </div>
+
+        <!-- Scan toast -->
+        <div class="wh-scan-toast" id="whScanToast" aria-live="polite">
+          <div class="wh-scan-icon">✓</div>
+          <div class="wh-scan-text">
+            <div class="wh-scan-title">تم مسح الباركود</div>
+            <div class="wh-scan-sub">MDM-7703 · مستودع بغداد · رف D-14</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FULFILLMENT FLOW ═══════════════════════════════════════════ -->
+<section class="block" id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">كيف يعمل</span>
+      <h2 class="title">من المصنع إلى الباب في 4 خطوات</h2>
+      <p class="sec-sub">كل طلب يمر بنفس العملية المجربة — لا شيء يضيع في الطريق.</p>
+    </div>
+
+    <div class="wh-flow" id="whFlow">
+      <div class="wh-flow-track" aria-hidden="true">
+        <div class="wh-flow-progress" id="whFlowProgress"></div>
+      </div>
+
+      <div class="wh-step" data-step="1">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">01</div>
+          <h4 class="wh-step-title">استقبال البضاعة</h4>
+          <p class="wh-step-desc">تصل البضاعة إلى مستودعنا. تُعدّ كل وحدة وتُشفَّر بالباركود وتُسجَّل في لوحة مخزونك الفورية خلال ساعتين.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="2">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">02</div>
+          <h4 class="wh-step-title">تخزين آمن</h4>
+          <p class="wh-step-desc">مناطق بتحكم مناخي، مراقبة CCTV على مدار الساعة، وخرائط رفوف دقيقة لكل SKU. منتجاتك دائماً في مكانها الصحيح.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="3">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">03</div>
+          <h4 class="wh-step-title">التجهيز والتغليف</h4>
+          <p class="wh-step-desc">قوائم سحب آلية، تجميع متعدد SKU، وتغليف واقٍ — كل ذلك خلال 4 ساعات كحد أقصى.</p>
+        </div>
+      </div>
+
+      <div class="wh-step" data-step="4">
+        <div class="wh-step-node">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="wh-step-content">
+          <div class="wh-step-num">04</div>
+          <h4 class="wh-step-title">الشحن والتتبع</h4>
+          <p class="wh-step-desc">تُسلَّم الطلبات مباشرةً لأسطول التوصيل لدينا. تُزامن تحديثات التتبع المباشر مع لوحتك فور تحرك الشحنة.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MENA HUBS ════════════════════════════════════════════════════ -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">مواقعنا</span>
+      <h2 class="title">مستودعان. شبكة واحدة.</h2>
+      <p class="sec-sub">موقع استراتيجي لتغطية جميع أسواق الشرق الأوسط وشمال أفريقيا الكبرى مع التوصيل في نفس اليوم أو اليوم التالي.</p>
+    </div>
+    <div class="wh-hubs">
+
+      <div class="wh-hub-card" id="whHubRiy">
+        <div class="wh-hub-top">
+          <div class="wh-hub-flag">🇱🇾</div>
+          <div>
+            <div class="wh-hub-city">مستودع طرابلس</div>
+            <div class="wh-hub-sub">المنطقة اللوجستية – طرابلس</div>
+          </div>
+          <div class="wh-hub-live"><span class="wh-hub-pulse"></span> مباشر</div>
+        </div>
+        <div class="wh-hub-stats">
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="18000">0</div>
+            <div class="wh-hub-stat-lab">م² مساحة أرضية</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="240">0</div>
+            <div class="wh-hub-stat-lab">SKU نشط</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="99" data-suffix="%">0%</div>
+            <div class="wh-hub-stat-lab">معدل الدقة</div>
+          </div>
+        </div>
+        <div class="wh-hub-cap">
+          <div class="wh-hub-cap-label">
+            <span>نسبة الإشغال</span>
+            <span class="wh-hub-cap-pct">74%</span>
+          </div>
+          <div class="wh-hub-cap-track">
+            <div class="wh-hub-cap-fill" style="width:0%" data-target="74"></div>
+          </div>
+        </div>
+        <div class="wh-hub-tags">
+          <span class="wh-hub-tag">توصيل سريع – ليبيا</span>
+          <span class="wh-hub-tag">معالجة المرتجعات</span>
+          <span class="wh-hub-tag">منطقة مبردة</span>
+        </div>
+      </div>
+
+      <div class="wh-hub-card" id="whHubDub">
+        <div class="wh-hub-top">
+          <div class="wh-hub-flag">🇮🇶</div>
+          <div>
+            <div class="wh-hub-city">مستودع بغداد</div>
+            <div class="wh-hub-sub">المنطقة الصناعية – بغداد</div>
+          </div>
+          <div class="wh-hub-live"><span class="wh-hub-pulse"></span> مباشر</div>
+        </div>
+        <div class="wh-hub-stats">
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="12500">0</div>
+            <div class="wh-hub-stat-lab">م² مساحة أرضية</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="180">0</div>
+            <div class="wh-hub-stat-lab">SKU نشط</div>
+          </div>
+          <div class="wh-hub-stat">
+            <div class="wh-hub-stat-num" data-target="99" data-suffix="%">0%</div>
+            <div class="wh-hub-stat-lab">معدل الدقة</div>
+          </div>
+        </div>
+        <div class="wh-hub-cap">
+          <div class="wh-hub-cap-label">
+            <span>نسبة الإشغال</span>
+            <span class="wh-hub-cap-pct">61%</span>
+          </div>
+          <div class="wh-hub-cap-track">
+            <div class="wh-hub-cap-fill wh-fill-blue" style="width:0%" data-target="61"></div>
+          </div>
+        </div>
+        <div class="wh-hub-tags">
+          <span class="wh-hub-tag">توصيل سريع – العراق</span>
+          <span class="wh-hub-tag">وصول للميناء</span>
+          <span class="wh-hub-tag">منصات B2B</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ════════════════════════════════════════════════════ -->
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">ما هو مشمول</span>
+      <h2 class="title">كل ما يحتاجه مخزونك</h2>
+      <p class="sec-sub">لا إضافات، لا مفاجآت. كل بائع يحصل على الحزمة الكاملة من اليوم الأول.</p>
+    </div>
+    <div class="wh-feat-grid">
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-shelf-anim">
+            <div class="wh-shelf-row">
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-c"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+            </div>
+            <div class="wh-shelf-plank"></div>
+            <div class="wh-shelf-row">
+              <div class="wh-shelf-box wh-box-c"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-b"></div>
+              <div class="wh-shelf-box wh-box-a"></div>
+              <div class="wh-shelf-box wh-box-c"></div>
+            </div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">تخزين متميز</h4>
+        <p class="wh-feat-desc">مناطق بتحكم مناخي، أمن على مدار الساعة، وتنظيم SKU على مستوى الرف في جميع المستودعات.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-scan-anim">
+            <div class="wh-barcode">
+              <div class="wh-bar"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar wh-bar-thin"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar wh-bar-thin"></div><div class="wh-bar wh-bar-thick"></div><div class="wh-bar"></div><div class="wh-bar"></div>
+            </div>
+            <div class="wh-scan-beam"></div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">تتبع فوري</h4>
+        <p class="wh-feat-desc">كل مسح، كل حركة — مرئية في لوحتك فور حدوثها، على مستوى الوحدة الواحدة.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-pick-anim">
+            <div class="wh-pick-row"><div class="wh-pick-check wh-check-done">✓</div><span>MDM-8821 × 2</span></div>
+            <div class="wh-pick-row wh-pick-delay1"><div class="wh-pick-check wh-check-done">✓</div><span>MDM-4492 × 1</span></div>
+            <div class="wh-pick-row wh-pick-delay2"><div class="wh-pick-check wh-check-pulse"></div><span>MDM-7703 × 3</span></div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">التجهيز والتغليف</h4>
+        <p class="wh-feat-desc">قوائم سحب آلية، تجميع متعدد SKU، وتغليف واقٍ — كل ذلك خلال 4 ساعات كحد أقصى.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-return-anim">
+            <div class="wh-ret-box wh-ret-out">📦</div>
+            <div class="wh-ret-arrow" id="whRetArrow">←</div>
+            <div class="wh-ret-box wh-ret-back">🏬</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">معالجة المرتجعات</h4>
+        <p class="wh-feat-desc">سير عمل NDR والمرتجعات الآلي يعيد المنتجات للمخزون دون تدخل فريقك.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-alert-anim">
+            <div class="wh-bell" id="whBell">🔔</div>
+            <div class="wh-alert-badge">!</div>
+            <div class="wh-alert-msg">مخزون منخفض: MDM-4492</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">تنبيهات إعادة التخزين</h4>
+        <p class="wh-feat-desc">حدد حدوداً دنيا لكل SKU واستقبل تنبيهات فورية قبل النفاد — لا تخسر بيعاً بسبب نقص المخزون.</p>
+      </div>
+
+      <div class="wh-feat-card">
+        <div class="wh-feat-visual">
+          <div class="wh-dispatch-anim">
+            <div class="wh-road"></div>
+            <div class="wh-truck" id="whTruck">🚚</div>
+            <div class="wh-dest">🏠</div>
+          </div>
+        </div>
+        <h4 class="wh-feat-title">شحن في نفس اليوم</h4>
+        <p class="wh-feat-desc">الطلبات المؤكدة قبل الساعة 2 مساءً تُشحن في نفس اليوم — مباشرةً إلى شركاء التوصيل لدينا.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SYNC SPLIT ══════════════════════════════════════════════════ -->
+<section class="block">
+  <div class="wrap">
+    <div class="wh-sync-layout">
+      <div class="wh-sync-left">
+        <span class="sec-tag">مزامنة مباشرة</span>
+        <h2 class="title" style="font-size:clamp(28px,4vw,44px);margin-bottom:18px">لوحة مخزونك.<br/>تتحدث كل ثانية.</h2>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.7;margin-bottom:32px">لا جداول بيانات. لا عدّ يدوي. تزامن MDM Express كل عملية في المستودع — الاستقبال، السحب، المرتجعات، والشحن — في لوحة واحدة يمكنك فتحها من هاتفك.</p>
+        <div class="wh-sync-bullets">
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">مستويات المخزون المباشرة</div>
+              <div class="wh-sync-bullet-sub">أعداد كل SKU تتحدث فور تحرك المخزون.</div>
+            </div>
+          </div>
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">جدول زمني للطلبات</div>
+              <div class="wh-sync-bullet-sub">سجل كامل من تأكيد الطلب حتى الشحن.</div>
+            </div>
+          </div>
+          <div class="wh-sync-bullet">
+            <div class="wh-sync-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <div>
+              <div class="wh-sync-bullet-title">تنبيهات الحد الأدنى</div>
+              <div class="wh-sync-bullet-sub">SMS وبريد إلكتروني عند هبوط أي SKU عن حدك الأدنى.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wh-sync-right">
+        <div class="wh-sync-screen">
+          <div class="wh-sync-screen-header">
+            <div class="wh-sync-screen-dot r"></div>
+            <div class="wh-sync-screen-dot y"></div>
+            <div class="wh-sync-screen-dot g"></div>
+            <span style="margin-left:8px;font-size:11px;color:rgba(255,255,255,0.3)">inventory.mdmexpress.com</span>
+          </div>
+          <div class="wh-sync-screen-body">
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-8821</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill" style="width:82%"></div></div>
+              <span class="wh-sync-count wh-count-green">1,204</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-4492</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill wh-mini-amber" style="width:28%"></div></div>
+              <span class="wh-sync-count wh-count-amber">387</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-7703</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill" style="width:95%"></div></div>
+              <span class="wh-sync-count wh-count-green">2,051</span>
+            </div>
+            <div class="wh-sync-row">
+              <span class="wh-sync-sku">MDM-3310</span>
+              <div class="wh-sync-mini-bar"><div class="wh-sync-mini-fill wh-mini-red" style="width:4%"></div></div>
+              <span class="wh-sync-count wh-count-red">12</span>
+            </div>
+            <div class="wh-sync-pulse-row">
+              <div class="wh-sync-spinner"></div>
+              <span>جار المزامنة مع مستودع طرابلس…</span>
+              <span class="wh-sync-live-dot"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═════════════════════════════════════════════════════════ -->
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الأسئلة الشائعة</span>
+      <h2 class="title">إجابات سريعة</h2>
+    </div>
+    <div class="faq-grid">
+      <aside class="faq-side">
+        <h3>تحتاج مزيداً من التفاصيل؟</h3>
+        <p>فريق العمليات لدينا سيوضح لك الأسعار والحدود الدنيا وإجراءات الانضمام — عادةً خلال 24 ساعة.</p>
+        <a href="https://app.mdm.express/en/auth/register" class="btn-primary" style="display:inline-block">تحدث معنا</a>
+      </aside>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-q">ما هي رسوم التخزين؟ <span class="pl">+</span></div>
+          <div class="faq-a">يُحسب التخزين بالبليت أو المتر المكعب شهرياً. SKUs النشطة التي تُشحن بانتظام تحصل على أسعار مفضلة — تواصل معنا للحصول على عرض سعر مخصص بناءً على حجمك ومنتجاتك.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">هل هناك حد أدنى لكمية المخزون؟ <span class="pl">+</span></div>
+          <div class="faq-a">لا يوجد حد أدنى صارم — لكن للاستفادة القصوى من SLA التجهيز نوصي بالاحتفاظ بمخزون لا يقل عن 7 أيام من المبيعات المتوقعة في جميع الأوقات.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">كيف أرسل المخزون إلى مستودعكم؟ <span class="pl">+</span></div>
+          <div class="faq-a">تحجز شحنة واردة من خلال لوحتك، تطبع ملصقات التوجيه الخاصة بنا، وترسل إلى أقرب مستودع. يستقبل فريقنا كل وحدة عند الوصول — عادةً خلال ساعتين من التسليم.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ماذا يحدث للمنتجات المرتجعة؟ <span class="pl">+</span></div>
+          <div class="faq-a">يتم فحص المرتجعات وتصنيفها (قابلة للبيع / مراجعة الجودة / تالفة)، ثم إما إعادتها للمخزون أو الاحتفاظ بها للمراجعة أو التخلص منها وفق تعليماتك — كل ذلك مرئي في لوحتك.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../ar-shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../animations.js"></script>
+
+<audio id="hero-music" src="../hero-music.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" aria-label="تشغيل/إيقاف الموسيقى">
+  <span class="icon-play">♪</span><span class="icon-pause">❚❚</span>
+</button>
+<script>
+(function(){
+  const audio = document.getElementById('hero-music');
+  const btn   = document.getElementById('musicToggle');
+  if (!audio || !btn) return;
+  audio.volume = 0.5;
+  let playing = false;
+  document.addEventListener('click', function tryStart(){
+    audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }).catch(()=>{});
+  }, {once:false});
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(playing){ audio.pause(); playing=false; btn.classList.remove('playing'); }
+    else { audio.play().then(()=>{ playing=true; btn.classList.add('playing'); }); }
+  });
+  document.addEventListener('visibilitychange', ()=>{
+    if(document.hidden && playing) audio.pause();
+    else if(!document.hidden && playing) audio.play();
+  });
+})();
+
+(function(){
+  /* ── Live clock ──────────────────────────────────────────────── */
+  const clockEl = document.getElementById('whClock');
+  function tick(){
+    if(!clockEl) return;
+    const n = new Date();
+    clockEl.textContent = n.toLocaleTimeString('ar',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) + ' UTC+2';
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ── Hero capacity bars ──────────────────────────────────────── */
+  function animateCapBar(fillId, pctId, target, delay){
+    setTimeout(()=>{
+      const fill = document.getElementById(fillId);
+      const pct  = document.getElementById(pctId);
+      if(!fill || !pct) return;
+      let v = 0;
+      const step = () => {
+        v = Math.min(v + 1, target);
+        fill.style.width = v + '%';
+        pct.textContent  = v + '%';
+        if(v < target) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay);
+  }
+  animateCapBar('whRiyFill','whRiyPct', 74, 600);
+  animateCapBar('whDubFill','whDubPct', 61, 900);
+
+  /* ── Scan toast ──────────────────────────────────────────────── */
+  const toast = document.getElementById('whScanToast');
+  function showScanToast(){
+    if(!toast) return;
+    toast.classList.add('wh-toast-show');
+    setTimeout(()=> toast.classList.remove('wh-toast-show'), 2400);
+  }
+  setTimeout(showScanToast, 2200);
+  setInterval(showScanToast, 8000);
+
+  /* ── GSAP animations ─────────────────────────────────────────── */
+  if(window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.wh-hero-left > *', {
+      y: 40, opacity: 0, duration: 0.7,
+      stagger: 0.1, ease: 'power3.out', delay: 0.2
+    });
+    gsap.from('.wh-dashboard', {
+      y: 60, opacity: 0, duration: 0.9,
+      ease: 'power3.out', delay: 0.5
+    });
+
+    gsap.from('.wh-step', {
+      scrollTrigger: { trigger: '#whFlow', start: 'top 72%' },
+      x: 30, opacity: 0, duration: 0.6,
+      stagger: 0.18, ease: 'power2.out'
+    });
+    gsap.to('#whFlowProgress', {
+      scrollTrigger: {
+        trigger: '#whFlow',
+        start: 'top 70%', end: 'bottom 40%',
+        scrub: 1.2
+      },
+      width: '100%', ease: 'none'
+    });
+
+    gsap.from('.wh-hub-card', {
+      scrollTrigger: { trigger: '.wh-hubs', start: 'top 75%' },
+      y: 50, opacity: 0, duration: 0.65,
+      stagger: 0.2, ease: 'power2.out',
+      onComplete: animateHubCounters
+    });
+
+    function animateHubCounters(){
+      document.querySelectorAll('.wh-hub-cap-fill').forEach(bar => {
+        gsap.to(bar, { width: bar.dataset.target+'%', duration: 1.4, ease:'power2.out' });
+      });
+      document.querySelectorAll('.wh-hub-stat-num').forEach(el => {
+        const target = parseInt(el.dataset.target) || 0;
+        const suffix = el.dataset.suffix || '';
+        let obj = {val:0};
+        gsap.to(obj, {
+          val: target, duration: 1.6, ease:'power2.out',
+          onUpdate(){ el.textContent = Math.round(obj.val).toLocaleString('ar') + suffix; }
+        });
+      });
+    }
+
+    gsap.from('.wh-feat-card', {
+      scrollTrigger: { trigger: '.wh-feat-grid', start: 'top 75%' },
+      y: 40, opacity: 0, duration: 0.55,
+      stagger: 0.1, ease: 'power2.out'
+    });
+
+    gsap.from('.wh-sync-left > *', {
+      scrollTrigger: { trigger: '.wh-sync-layout', start: 'top 72%' },
+      x: 30, opacity: 0, duration: 0.6,
+      stagger: 0.12, ease: 'power2.out'
+    });
+    gsap.from('.wh-sync-screen', {
+      scrollTrigger: { trigger: '.wh-sync-layout', start: 'top 72%' },
+      x: -40, opacity: 0, duration: 0.8,
+      ease: 'power2.out', delay: 0.2
+    });
+  }
+
+  /* ── Truck animation ─────────────────────────────────────────── */
+  const truck = document.getElementById('whTruck');
+  if(truck){
+    function runTruck(){
+      truck.style.transition = 'none';
+      truck.style.left = '2%';
+      setTimeout(()=>{
+        truck.style.transition = 'left 2.2s cubic-bezier(0.16,1,0.3,1)';
+        truck.style.left = '68%';
+      }, 80);
+    }
+    runTruck();
+    setInterval(runTruck, 4200);
+  }
+
+  /* ── Bell shake ──────────────────────────────────────────────── */
+  const bell = document.getElementById('whBell');
+  if(bell){
+    function shakeBell(){
+      bell.classList.add('wh-bell-shake');
+      setTimeout(()=> bell.classList.remove('wh-bell-shake'), 600);
+    }
+    setTimeout(shakeBell, 1000);
+    setInterval(shakeBell, 3500);
+  }
+
+  /* ── Return arrow pulse ──────────────────────────────────────── */
+  const retArrow = document.getElementById('whRetArrow');
+  if(retArrow){
+    setInterval(()=>{
+      retArrow.style.transform = 'translateX(6px)';
+      setTimeout(()=>{ retArrow.style.transform = 'translateX(0)'; }, 400);
+    }, 2000);
+    retArrow.style.transition = 'transform 0.35s cubic-bezier(0.16,1,0.3,1)';
+  }
+
+})();
+</script>
+
+</body>
+</html>

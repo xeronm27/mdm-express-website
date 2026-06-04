@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>خدمة الدروبشيبينج · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="ar-styles.css" />
+<link rel="alternate" hreflang="en" href="https://mdm.express/affiliate.html" />
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/affiliate.html" />
+<style>
+/* PAGE HERO */
+.ds-page-hero{position:relative;background:#0A0202;overflow:hidden;padding:140px 0 100px;min-height:90vh;display:flex;align-items:center}
+.ds-page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 900px 700px at 100% 60%,rgba(220,38,38,.22) 0%,transparent 60%),radial-gradient(ellipse 500px 500px at 15% 15%,rgba(220,38,38,.12) 0%,transparent 55%);pointer-events:none}
+.ds-page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.05) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.ds-page-hero .wrap{position:relative;z-index:2;width:100%}
+.ds-page-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;direction:rtl}
+@media(max-width:900px){.ds-page-hero-inner{grid-template-columns:1fr}.ds-page-hero-inner>div:last-child{display:none}}
+@keyframes dsPulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.25)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08)}}
+.ds-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:28px;backdrop-filter:blur(8px)}
+.ds-hero-badge-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;box-shadow:0 0 0 3px rgba(34,197,94,.25);animation:dsPulse 2s ease-in-out infinite}
+/* Hero stats strip */
+.ds-hero-stats{display:flex;align-items:center;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
+.ds-hero-stat-num{font-size:22px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em;display:block;line-height:1}
+.ds-hero-stat-label{font-size:11.5px;color:rgba(255,255,255,.4);margin-top:4px;display:block}
+.ds-hero-stat-divider{width:1px;height:32px;background:rgba(255,255,255,.1);flex-shrink:0}
+/* Mock wrap */
+.ds-hero-mock-wrap{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0}
+.ds-mock-notif{position:absolute;background:rgba(20,20,20,.95);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 16px 40px rgba(0,0,0,.6);backdrop-filter:blur(12px);white-space:nowrap;z-index:10;direction:ltr}
+.ds-mock-notif.top{top:0;right:-20px;animation:dsFloat1 4s ease-in-out infinite}
+.ds-mock-notif.bottom{bottom:0;left:-20px;animation:dsFloat2 4s ease-in-out infinite 1.2s}
+@keyframes dsFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes dsFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.ds-mock-notif-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ds-mock-notif-icon.green{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.2)}
+.ds-mock-notif-icon.red{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.2)}
+.ds-mock-notif-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:dsPulse 2s ease-in-out infinite}
+.ds-mock-notif-text{font-size:12.5px;font-weight:700;color:#fff;line-height:1.2}
+.ds-mock-notif-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+/* Scroll cue */
+.ds-scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.35;animation:dsScrollBob 2s ease-in-out infinite}
+@keyframes dsScrollBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.ds-scroll-cue svg{width:20px;height:20px;color:#fff}
+.ds-scroll-cue span{font-size:10px;color:#fff;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+/* Hero text */
+.ds-hero-h1{font-size:clamp(40px,5.5vw,72px);font-weight:800;color:#ffffff;letter-spacing:-.03em;line-height:1.08;margin:0 0 24px}
+.ds-hero-accent{color:#EF4444}
+.ds-hero-sub{font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.6);line-height:1.75;max-width:480px;margin:0 0 36px}
+.ds-hero-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ds-hero-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s,transform .15s}
+.ds-hero-btn:hover{background:#B91C1C;transform:translateY(-1px)}
+.ds-hero-ghost{display:inline-flex;align-items:center;gap:6px;padding:14px 22px;border-radius:12px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);font-weight:600;font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}
+.ds-hero-ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.ds-hero-mock{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px;backdrop-filter:blur(12px);width:320px;direction:ltr}
+.ds-mock-bar{display:flex;gap:5px;margin-bottom:18px}
+.ds-mock-bar span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15)}
+.ds-mock-label{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;font-family:'JetBrains Mono',monospace;margin-bottom:16px}
+.ds-mock-product{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:12px;padding:10px 14px;margin-bottom:12px;border:1px solid rgba(255,255,255,.08)}
+.ds-mock-product-img{width:36px;height:36px;border-radius:8px;background:#2a1012;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ds-mock-product-name{font-size:13px;font-weight:700;color:#fff}
+.ds-mock-product-cost{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.ds-price-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ds-price-label{font-size:12px;color:rgba(255,255,255,.4);flex-shrink:0}
+.ds-price-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:8px 12px;font-size:16px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;text-align:right}
+.ds-profit-preview{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:10px;margin-bottom:16px}
+.ds-profit-label{font-size:12px;color:rgba(255,255,255,.5)}
+.ds-profit-num{font-size:18px;font-weight:800;color:#22C55E;font-family:'JetBrains Mono',monospace}
+.ds-mock-btn{width:100%;padding:11px;border-radius:10px;background:#DC2626;color:#fff;font-weight:700;font-size:14px;text-align:center;border:none;font-family:inherit;cursor:pointer}
+/* Steps — RTL */
+.ds-steps{margin-top:56px;position:relative}
+.ds-steps::before{content:'';position:absolute;right:31px;left:auto;top:40px;bottom:40px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.2) 10%,rgba(220,38,38,.2) 90%,transparent)}
+.ds-step{display:grid;grid-template-columns:1fr 1fr 64px;gap:48px;align-items:center;padding:48px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.ds-step:last-child{border-bottom:none}
+.ds-step-num{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--ink);position:relative;z-index:1;transition:border-color .2s,background .2s;flex-shrink:0}
+.ds-step:hover .ds-step-num{border-color:var(--accent);background:var(--accent-soft)}
+.ds-step-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+.ds-step-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin:0 0 10px}
+.ds-step-desc{font-size:15px;color:var(--muted);line-height:1.72;margin:0}
+.ds-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;direction:ltr}
+.ds-card-bar{display:flex;gap:5px;margin-bottom:16px}
+.ds-card-bar span{width:9px;height:9px;border-radius:50%;background:var(--line)}
+/* Breakdown */
+.ds-breakdown{background:#0A0202;padding:80px 0}
+.ds-breakdown .sec-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:none}
+.ds-breakdown .title{color:#fff}
+.ds-breakdown .sec-sub{color:rgba(255,255,255,.45)}
+.ds-bd-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.ds-bd-example{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px;direction:ltr}
+.ds-bd-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ds-bd-row:last-child{border-bottom:none;padding-bottom:0}
+.ds-bd-label{font-size:14px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px}
+.ds-bd-val{font-size:15px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace}
+.ds-bd-val.red{color:#EF4444}
+.ds-bd-val.grn{color:#22C55E}
+.ds-bd-total{margin-top:16px;padding:16px 20px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;display:flex;align-items:center;justify-content:space-between}
+.ds-bd-total-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em}
+.ds-bd-total-num{font-size:28px;font-weight:800;color:#22C55E;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em}
+.ds-bd-note{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.ds-bd-note-item{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;direction:rtl;text-align:right}
+.ds-bd-note-icon{width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.2);display:flex;align-items:center;justify-content:center;font-size:18px}
+.ds-bd-note-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.ds-bd-note-desc{font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.6}
+/* Benefits */
+.ds-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:48px}
+.ds-benefit{background:#fff;padding:40px 32px;display:flex;flex-direction:column;gap:14px}
+.ds-benefit-icon{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:22px}
+.ds-benefit h3{font-size:17px;font-weight:800;color:var(--ink);margin:0;letter-spacing:-.02em}
+.ds-benefit p{font-size:14px;color:var(--muted);line-height:1.7;margin:0}
+/* Markets */
+.ds-markets{background:#080608;padding:80px 0;border-top:1px solid rgba(255,0,19,.1)}
+.ds-markets .sec-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:none}
+.ds-markets .title{color:#fff}
+.ds-markets .sec-sub{color:rgba(255,255,255,.45)}
+.ds-markets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+.ds-market-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s}
+.ds-market-card.live{background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2)}
+.ds-market-card.live:hover{border-color:rgba(34,197,94,.4)}
+.ds-market-flag{font-size:28px;line-height:1}
+.ds-market-name{font-size:16px;font-weight:800;color:#fff}
+.ds-market-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;width:fit-content}
+.ds-market-badge.live{background:rgba(34,197,94,.15);color:#22C55E}
+.ds-market-badge.soon{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4)}
+.ds-market-badge-dot{width:6px;height:6px;border-radius:50%}
+.ds-market-badge.live .ds-market-badge-dot{background:#22C55E;animation:dsPulse 2s ease-in-out infinite}
+.ds-market-badge.soon .ds-market-badge-dot{background:rgba(255,255,255,.2)}
+.ds-market-desc{font-size:12.5px;color:rgba(255,255,255,.35);line-height:1.55}
+/* Requirements */
+.ds-req-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;align-items:start}
+.ds-req-list{display:flex;flex-direction:column;gap:12px}
+.ds-req-item{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.ds-req-check{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.ds-req-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.ds-req-sub{font-size:13px;color:var(--muted)}
+.ds-req-cta-card{background:var(--ink);border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;gap:16px;position:sticky;top:100px}
+.ds-req-cta-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35)}
+.ds-req-cta-title{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin:0}
+.ds-req-cta-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;margin:0}
+.ds-req-cta-btn{display:block;padding:14px 24px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-align:center;text-decoration:none;transition:background .2s}
+.ds-req-cta-btn:hover{background:#B91C1C}
+.ds-req-cta-note{font-size:12px;color:rgba(255,255,255,.25);text-align:center}
+/* Catalog */
+.ds-catalog{background:#F8F8FB;padding:100px 0;border-top:1px solid rgba(0,0,0,.05)}
+.ds-cat-tabs{display:flex;align-items:center;gap:8px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+.ds-cat-tab{padding:7px 18px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid #E0E0E8;color:#6B7280;background:#fff;cursor:pointer;transition:all .18s;font-family:inherit}
+.ds-cat-tab:hover{border-color:#DC2626;color:#DC2626}
+.ds-cat-tab.active{background:#DC2626;border-color:#DC2626;color:#fff}
+.ds-prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.ds-prod-card{background:#fff;border:1px solid #EBEBF0;border-radius:20px;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s;cursor:pointer;display:flex;flex-direction:column}
+.ds-prod-card:hover{transform:translateY(-5px);border-color:rgba(220,38,38,.25);box-shadow:0 20px 40px -12px rgba(220,38,38,.12)}
+.ds-prod-img-zone{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:52px;overflow:hidden}
+.ds-prod-img-zone.red{background:linear-gradient(145deg,#fff0f0 0%,#ffe0e3 100%)}
+.ds-prod-img-zone.lav{background:linear-gradient(145deg,#f3f0ff 0%,#e8e0ff 100%)}
+.ds-prod-img-zone.cream{background:linear-gradient(145deg,#fffbf0 0%,#fff3d6 100%)}
+.ds-prod-img-zone.green{background:linear-gradient(145deg,#f0fff8 0%,#d6ffec 100%)}
+.ds-prod-profit-chip{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:999px;background:rgba(21,128,61,.1);border:1px solid rgba(21,128,61,.18);font-size:11px;font-weight:700;color:#15803D;font-family:'JetBrains Mono',monospace}
+.ds-prod-body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ds-prod-name{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ds-prod-cost{font-size:12px;color:var(--muted)}
+.ds-prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid #F0F0F4}
+.ds-prod-sell-price{font-size:13px;font-weight:700;color:#DC2626}
+.ds-prod-add{width:28px;height:28px;border-radius:8px;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.15);display:flex;align-items:center;justify-content:center;color:#DC2626;font-size:16px;transition:background .15s}
+.ds-prod-card:hover .ds-prod-add{background:#DC2626;color:#fff;border-color:#DC2626}
+.ds-catalog-cta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:48px}
+.ds-catalog-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s}
+.ds-catalog-cta-btn:hover{background:#B91C1C}
+.ds-catalog-count{font-size:13px;color:var(--muted)}
+/* FAQ RTL */
+.faq-grid{grid-template-columns:1fr 260px}
+.faq-side{text-align:right}
+@media(max-width:960px){
+  .ds-step{grid-template-columns:1fr 64px}
+  .ds-step>*:first-child{display:none}
+  .ds-bd-grid,.ds-req-grid{grid-template-columns:1fr}
+  .ds-benefits-grid{grid-template-columns:1fr}
+  .ds-markets-grid,.ds-prod-grid{grid-template-columns:repeat(2,1fr)}
+  .ds-steps::before{display:none}
+}
+</style>
+</head>
+<body data-page="affiliate">
+
+<section class="ds-page-hero">
+  <div class="wrap">
+    <div class="ds-page-hero-inner">
+      <div>
+        <div class="ds-hero-badge"><span class="ds-hero-badge-dot"></span>دروبشيبينج · متاح في ليبيا</div>
+        <h1 class="ds-hero-h1">بيع المنتجات.<br/>ادفع فقط بعد<br/><span class="ds-hero-accent">التسليم.</span></h1>
+        <p class="ds-hero-sub">اختر أي منتج من كتالوجنا، حدد سعرك الخاص، وابدأ البيع. MDM Express يتولى التوريد والتخزين ومركز الاتصال والتوصيل — تدفع فقط بعد تسليم الطلب وتحتفظ بالربح.</p>
+        <div class="ds-hero-cta-row">
+          <a href="#apply" class="ds-hero-btn">ابدأ البيع ←</a>
+          <a href="#how-it-works" class="ds-hero-ghost">كيف يعمل</a>
+        </div>
+        <div class="ds-hero-stats">
+          <div>
+            <span class="ds-hero-stat-num">+10K</span>
+            <span class="ds-hero-stat-label">منتج جاهز للبيع</span>
+          </div>
+          <div class="ds-hero-stat-divider"></div>
+          <div>
+            <span class="ds-hero-stat-num">98%</span>
+            <span class="ds-hero-stat-label">معدل نجاح التوصيل</span>
+          </div>
+          <div class="ds-hero-stat-divider"></div>
+          <div>
+            <span class="ds-hero-stat-num">0 دينار</span>
+            <span class="ds-hero-stat-label">تكلفة مسبقة للبدء</span>
+          </div>
+        </div>
+      </div>
+      <div class="ds-hero-mock-wrap">
+        <div class="ds-mock-notif top">
+          <div class="ds-mock-notif-icon green">✓</div>
+          <div>
+            <div class="ds-mock-notif-text">Order Delivered</div>
+            <div class="ds-mock-notif-sub">Profit credited · +LYD 112</div>
+          </div>
+        </div>
+        <div class="ds-mock-notif bottom">
+          <div class="ds-mock-notif-icon red">🛒</div>
+          <div>
+            <div class="ds-mock-notif-text">New Order Placed</div>
+            <div class="ds-mock-notif-sub">Call center confirmed · Libya</div>
+          </div>
+        </div>
+        <div class="ds-hero-mock">
+          <div class="ds-mock-bar"><span></span><span></span><span></span></div>
+          <div class="ds-mock-label">New Dropship Request</div>
+          <div class="ds-mock-product">
+            <div class="ds-mock-product-img">👟</div>
+            <div>
+              <div class="ds-mock-product-name">Running Sneakers</div>
+              <div class="ds-mock-product-cost">Your cost: $38.00</div>
+            </div>
+          </div>
+          <div class="ds-price-row">
+            <span class="ds-price-label">Your selling price</span>
+            <div class="ds-price-input">$85.00</div>
+          </div>
+          <div class="ds-profit-preview">
+            <span class="ds-profit-label">Your profit</span>
+            <span class="ds-profit-num">$47.00</span>
+          </div>
+          <button class="ds-mock-btn">Submit Request →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ds-scroll-cue">
+    <span>تمرير</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<main id="main-content">
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how-it-works">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">كيف يعمل</span>
+        <h2 class="title">أربع خطوات من الطلب إلى الربح</h2>
+        <p class="sec-sub">بلا مستودع. بلا دفع مسبق. بلا لوجستيات. فقط اختر منتجاً، حدد سعرك، واستلم ربحك بعد التسليم.</p>
+      </div>
+      <div class="ds-steps">
+
+        <div class="ds-step">
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-bar"><span></span><span></span><span></span></div>
+              <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Select Product</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--accent-soft);border:1px solid rgba(220,38,38,.15);border-radius:10px;border-right:3px solid var(--accent);">
+                  <span style="font-size:18px;">👟</span>
+                  <div><div style="font-size:13px;font-weight:700;color:var(--ink);">Running Sneakers</div><div style="font-size:11px;color:var(--muted);">In stock · Libya warehouse</div></div>
+                  <span style="margin-right:auto;font-size:11px;font-weight:700;color:var(--accent);">Selected</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F8F8FC;border:1px solid var(--line);border-radius:10px;">
+                  <span style="font-size:18px;">⌚</span>
+                  <div><div style="font-size:13px;font-weight:700;color:var(--ink);">Smart Watch</div><div style="font-size:11px;color:var(--muted);">In stock</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F8F8FC;border:1px solid var(--line);border-radius:10px;">
+                  <span style="font-size:18px;">🎧</span>
+                  <div><div style="font-size:13px;font-weight:700;color:var(--ink);">Headphones</div><div style="font-size:11px;color:var(--muted);">In stock</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">طلب</div>
+            <h3 class="ds-step-title">اختر منتجاً وأرسل طلباً</h3>
+            <p class="ds-step-desc">تصفح كتالوجنا من +10,000 منتج جاهز للبيع مخزَّن في مستودعنا في ليبيا. اختر ما تريد بيعه وأرسل طلب دروبشيبينج — يستغرق أقل من دقيقتين.</p>
+          </div>
+          <div class="ds-step-num">01</div>
+        </div>
+
+        <div class="ds-step">
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-bar"><span></span><span></span><span></span></div>
+              <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Price &amp; Profit Preview</div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);"><span style="font-size:13px;color:var(--muted);">Your selling price</span><span style="font-size:15px;font-weight:800;color:var(--ink);font-family:'JetBrains Mono',monospace;">$85.00</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);"><span style="font-size:13px;color:var(--muted);">Product cost</span><span style="font-size:13px;font-weight:700;color:#EF4444;font-family:'JetBrains Mono',monospace;">−$38.00</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);"><span style="font-size:13px;color:var(--muted);">Service fees</span><span style="font-size:13px;font-weight:700;color:#EF4444;font-family:'JetBrains Mono',monospace;">−$X.XX</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#E8FFF2;border-radius:10px;margin-top:8px;"><span style="font-size:13px;font-weight:700;color:#15803D;">Your profit</span><span style="font-size:18px;font-weight:800;color:#15803D;font-family:'JetBrains Mono',monospace;">$47.00</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">التسعير</div>
+            <h3 class="ds-step-title">حدد سعر البيع بنفسك</h3>
+            <p class="ds-step-desc">أنت تقرر السعر. نعرض لك تكلفة المنتج وجميع رسوم الخدمة مسبقاً لتعرف ربحك الدقيق قبل التأكيد. شفافية كاملة، تحكم كامل.</p>
+          </div>
+          <div class="ds-step-num">02</div>
+        </div>
+
+        <div class="ds-step">
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-bar"><span></span><span></span><span></span></div>
+              <div style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Order #DS-2034 · Libya</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-right:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:72px;">Warehouse</span><span style="font-size:12px;color:#15803D;">Packed &amp; ready ✓</span></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:#F0FDF4;border-radius:9px;border-right:3px solid #22C55E;"><span style="font-size:12px;font-weight:700;color:#15803D;min-width:72px;">Call Centre</span><span style="font-size:12px;color:#15803D;">Order confirmed ✓</span></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--accent-soft);border-radius:9px;border-right:3px solid var(--accent);"><span style="font-size:12px;font-weight:700;color:var(--accent);min-width:72px;">Delivery</span><span style="font-size:12px;color:var(--accent);">● Out for delivery</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">وفاء بالطلب</div>
+            <h3 class="ds-step-title">نتولى كل شيء حتى التسليم</h3>
+            <p class="ds-step-desc">فريقنا يجهز الطلب من مستودعنا في ليبيا، يتصل بالعميل للتأكيد، ويشحنه بتوصيل في اليوم التالي. لا تلمس اللوجستيات — ولا مرة واحدة.</p>
+          </div>
+          <div class="ds-step-num">03</div>
+        </div>
+
+        <div class="ds-step">
+          <div>
+            <div class="ds-card" style="background:var(--ink);">
+              <div class="ds-card-bar"><span style="background:rgba(255,255,255,.15);"></span><span style="background:rgba(255,255,255,.15);"></span><span style="background:rgba(255,255,255,.15);"></span></div>
+              <div style="font-size:11px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;">Your Weekly Payout</div>
+              <div style="font-size:38px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:6px;">$1,880</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.35);margin-bottom:16px;">Net profit this week · 40 orders</div>
+              <div style="padding:10px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:12px;color:rgba(255,255,255,.5);">Transferred</span>
+                <span style="font-size:12px;font-weight:700;color:#22C55E;">Saturday ✓</span>
+              </div>
+            </div>
+          </div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">الدفع</div>
+            <h3 class="ds-step-title">ادفع لـ MDM. واحتفظ بربحك.</h3>
+            <p class="ds-step-desc">بمجرد تسليم الطلب وتحصيل النقد، تدفع لـ MDM تكلفة المنتج وجميع رسوم الخدمة. كل ما فوق ذلك لك — يُصرف أسبوعياً بجدول ثابت.</p>
+          </div>
+          <div class="ds-step-num">04</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIT BREAKDOWN -->
+  <section class="ds-breakdown">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">الاقتصاديات</span>
+        <h2 class="title">أنت تسعّر. نحن نحتسب. تحتفظ بالباقي.</h2>
+        <p class="sec-sub">نموذج بسيط وشفاف — تعرف دائماً ربحك قبل تأكيد أي طلب.</p>
+      </div>
+      <div class="ds-bd-grid">
+        <div class="ds-bd-example">
+          <div style="font-size:11px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px;">Example order · Sneakers</div>
+          <div class="ds-bd-row"><div class="ds-bd-label"><span>💵</span> Your selling price</div><div class="ds-bd-val">$85.00</div></div>
+          <div class="ds-bd-row"><div class="ds-bd-label"><span>📦</span> Product cost</div><div class="ds-bd-val red">−$38.00</div></div>
+          <div class="ds-bd-row"><div class="ds-bd-label"><span>📞</span> Call centre fee</div><div class="ds-bd-val red">−included</div></div>
+          <div class="ds-bd-row"><div class="ds-bd-label"><span>🏬</span> Fulfillment fee</div><div class="ds-bd-val red">−included</div></div>
+          <div class="ds-bd-row"><div class="ds-bd-label"><span>🚚</span> Delivery fee</div><div class="ds-bd-val red">−included</div></div>
+          <div class="ds-bd-total"><div class="ds-bd-total-label">Your profit</div><div class="ds-bd-total-num">$47.00+</div></div>
+        </div>
+        <div class="ds-bd-note">
+          <div class="ds-bd-note-item"><div class="ds-bd-note-icon">⚡</div><div><div class="ds-bd-note-title">ادفع فقط بعد التسليم</div><div class="ds-bd-note-desc">بلا تكلفة مسبقة، بلا استثمار في المخزون. MDM يحصّل النقد عند الاستلام ويفوترك بتكلفة المنتج ورسوم الخدمة. تحتفظ بكل ما فوق ذلك.</div></div></div>
+          <div class="ds-bd-note-item"><div class="ds-bd-note-icon">🎯</div><div><div class="ds-bd-note-title">أنت تتحكم في هامشك</div><div class="ds-bd-note-desc">حدد أي سعر تريده. نعرض لك الرسوم الدقيقة قبل التأكيد، فتعرف ربحك دائماً مسبقاً — بلا مفاجآت.</div></div></div>
+          <div class="ds-bd-note-item"><div class="ds-bd-note-icon">📅</div><div><div class="ds-bd-note-title">صرف أسبوعي</div><div class="ds-bd-note-desc">تُحوَّل أرباحك الصافية بجدول أسبوعي ثابت — متوقع، تلقائي، دائماً في الوقت المحدد.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THIS MODEL -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">لماذا الدروبشيبينج مع MDM</span>
+        <h2 class="title">كل ما تحتاجه للبيع. بدون ما لا تحتاجه.</h2>
+        <p class="sec-sub">MDM Express هو الشريك الوحيد في ليبيا الذي يُشغّل منظومة COD الكاملة للدروبشيبرز — من المستودع إلى الباب إلى صرف الأرباح.</p>
+      </div>
+      <div class="ds-benefits-grid">
+        <div class="ds-benefit"><div class="ds-benefit-icon">💰</div><h3>بلا تكلفة مسبقة</h3><p>لا تشتري مخزوناً. لا تدفع رسوم تخزين. تدفع لـ MDM فقط بعد التسليم الناجح — صفر مخاطر مالية قبل أول بيع.</p></div>
+        <div class="ds-benefit"><div class="ds-benefit-icon">🎯</div><h3>أنت تحدد السعر</h3><p>سعّر منتجاتك كما تشاء. استهدف هوامش عالية أو حجم كبير — ترى ربحك الدقيق قبل تأكيد كل طلب.</p></div>
+        <div class="ds-benefit"><div class="ds-benefit-icon">🚀</div><h3>منظومة COD الكاملة مشمولة</h3><p>تأكيد مركز الاتصال، وفاء بالطلب من المستودع، وتوصيل آخر ميل عبر ليبيا — كل ذلك يتولاه MDM. أنت ركّز على البيع.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section class="ds-catalog" id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">كتالوج المنتجات</span>
+        <h2 class="title">+10,000 منتج<br/>جاهز للدروبشيبينج</h2>
+        <p class="sec-sub">كل منتج مخزَّن في مستودعنا في ليبيا — شحن في نفس اليوم فور تأكيد طلبك.</p>
+      </div>
+      <div class="ds-cat-tabs">
+        <button class="ds-cat-tab active">الكل</button>
+        <button class="ds-cat-tab">إلكترونيات</button>
+        <button class="ds-cat-tab">أزياء</button>
+        <button class="ds-cat-tab">جمال</button>
+        <button class="ds-cat-tab">منزل</button>
+        <button class="ds-cat-tab">إكسسوارات</button>
+      </div>
+      <div class="ds-prod-grid">
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone red">👟<span class="ds-prod-profit-chip">+$27 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">حذاء رياضي للجري</div>
+            <div class="ds-prod-cost">تكلفتك · $38.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$65</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone lav">⌚<span class="ds-prod-profit-chip">+$26 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">ساعة ذكية</div>
+            <div class="ds-prod-cost">تكلفتك · $29.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$55</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone cream">🎧<span class="ds-prod-profit-chip">+$35 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">سماعات لاسلكية</div>
+            <div class="ds-prod-cost">تكلفتك · $45.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$80</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone green">💄<span class="ds-prod-profit-chip">+$22 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">طقم تجميل</div>
+            <div class="ds-prod-cost">تكلفتك · $18.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$40</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone lav">📱<span class="ds-prod-profit-chip">+$12 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">غطاء هاتف</div>
+            <div class="ds-prod-cost">تكلفتك · $8.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$20</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone cream">🏠<span class="ds-prod-profit-chip">+$23 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">طقم ديكور منزلي</div>
+            <div class="ds-prod-cost">تكلفتك · $22.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$45</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone red">👜<span class="ds-prod-profit-chip">+$16 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">حقيبة يد</div>
+            <div class="ds-prod-cost">تكلفتك · $14.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$30</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-prod-card">
+          <div class="ds-prod-img-zone green">🥤<span class="ds-prod-profit-chip">+$11 min</span></div>
+          <div class="ds-prod-body">
+            <div class="ds-prod-name">زجاجة ماء</div>
+            <div class="ds-prod-cost">تكلفتك · $7.00</div>
+            <div class="ds-prod-footer">
+              <span class="ds-prod-sell-price">بيع من +$18</span>
+              <span class="ds-prod-add">+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-catalog-cta">
+        <a href="#apply" class="ds-catalog-cta-btn">تصفح الكتالوج الكامل ←</a>
+        <span class="ds-catalog-count">عرض 8 من +10,000 منتج</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="ds-markets">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">التوفر</span>
+        <h2 class="title">متاح في ليبيا. التوسع لأسواق أكثر.</h2>
+        <p class="sec-sub">خدمة الدروبشيبينج لدينا متاحة وتعمل بالكامل في ليبيا، مع أسواق إضافية قادمة مع بناء البنية التحتية المحلية.</p>
+      </div>
+      <div class="ds-markets-grid">
+        <div class="ds-market-card live">
+          <div class="ds-market-flag">🇱🇾</div>
+          <div class="ds-market-name">ليبيا</div>
+          <div class="ds-market-badge live"><div class="ds-market-badge-dot"></div>متاح الآن</div>
+          <div class="ds-market-desc">تشغيل كامل. ابدأ الدروبشيبينج اليوم مع توصيل في اليوم التالي لجميع المدن الليبية الرئيسية.</div>
+        </div>
+        <div class="ds-market-card">
+          <div class="ds-market-flag">🇮🇶</div>
+          <div class="ds-market-name">العراق</div>
+          <div class="ds-market-badge soon"><div class="ds-market-badge-dot"></div>قريباً</div>
+          <div class="ds-market-desc">MDM Express تبني البنية التحتية للدروبشيبينج في العراق. الإطلاق قريباً.</div>
+        </div>
+        <div class="ds-market-card">
+          <div class="ds-market-flag">🇱🇧</div>
+          <div class="ds-market-name">لبنان</div>
+          <div class="ds-market-badge soon"><div class="ds-market-badge-dot"></div>قريباً</div>
+          <div class="ds-market-desc">التوسع للدروبشيبينج في لبنان جارٍ.</div>
+        </div>
+        <div class="ds-market-card">
+          <div class="ds-market-flag">🌍</div>
+          <div class="ds-market-name">أسواق أخرى</div>
+          <div class="ds-market-badge soon"><div class="ds-market-badge-dot"></div>في التخطيط</div>
+          <div class="ds-market-desc">قطر والبحرين وعُمان والمزيد في خارطة التوسع.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS + APPLY -->
+  <section class="block" id="apply">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">ابدأ</span>
+        <h2 class="title">من يمكنه الانضمام؟</h2>
+        <p class="sec-sub">متاح لأي بائع مقيم في ليبيا يريد بدء أو توسيع نشاط COD بدون الاحتفاظ بمخزون.</p>
+      </div>
+      <div class="ds-req-grid">
+        <div class="ds-req-list">
+          <div class="ds-req-item"><div class="ds-req-check">✓</div><div><div class="ds-req-title">مقيم في ليبيا</div><div class="ds-req-sub">متاح حالياً للبائعين المقيمين في ليبيا فقط. المزيد من الأسواق قادمة قريباً.</div></div></div>
+          <div class="ds-req-item"><div class="ds-req-check">✓</div><div><div class="ds-req-title">قناة مبيعات نشطة</div><div class="ds-req-sub">تحتاج صفحة أو متجراً أو حساباً اجتماعياً نشطاً تبيع منه بالفعل أو مستعد للبدء.</div></div></div>
+          <div class="ds-req-item"><div class="ds-req-check">✓</div><div><div class="ds-req-title">موافقة على الدفع بعد التسليم</div><div class="ds-req-sub">تسدّد فاتورة MDM — تكلفة المنتج بالإضافة لجميع رسوم الخدمة — ضمن الإطار الزمني المتفق عليه بعد كل تسليم.</div></div></div>
+          <div class="ds-req-item"><div class="ds-req-check">✓</div><div><div class="ds-req-title">بلا حد أدنى للطلبات</div><div class="ds-req-sub">ابدأ بطلب واحد. وسّع لمئات. لا التزام بحد أدنى مطلوب.</div></div></div>
+        </div>
+        <div class="ds-req-cta-card">
+          <div class="ds-req-cta-tag">🇱🇾 ليبيا · متاح الآن</div>
+          <h3 class="ds-req-cta-title">ابدأ الدروبشيبينج اليوم</h3>
+          <p class="ds-req-cta-sub">انضم لدروبشيبينج MDM Express — التسجيل مجاني، بلا رسوم مسبقة، وتبدأ تحقيق الربح من أول طلب يُسلَّم.</p>
+          <a href="https://app.mdm.express/en/auth/register" class="ds-req-cta-btn">سجّل للبيع ←</a>
+          <div class="ds-req-cta-note">مجاني للانضمام · دفع بعد التسليم فقط · أرباح أسبوعية</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block lav">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-tag">الأسئلة الشائعة</span><h2 class="title">أسئلة شائعة</h2></div>
+      <div class="faq-grid">
+        <aside class="faq-side">
+          <h3>لا يزال لديك أسئلة؟</h3>
+          <p>سيوضح فريقنا كل شيء قبل تسجيلك.</p>
+          <a href="https://app.mdm.express/en/auth/register" class="btn-primary" style="display:inline-block">تواصل معنا</a>
+        </aside>
+        <div class="faq-list">
+          <div class="faq-item open"><div class="faq-q">ماذا أدفع بالضبط لـ MDM بعد التسليم؟ <span class="pl">+</span></div><div class="faq-a">تدفع تكلفة المنتج بالإضافة لرسوم خدمة MDM — التي تشمل تأكيد مركز الاتصال، وفاء المستودع، وتوصيل آخر ميل. كل ما فوق ذلك ربحك، يُصرف أسبوعياً.</div></div>
+          <div class="faq-item"><div class="faq-q">ماذا يحدث إذا رفض العميل التسليم؟ <span class="pl">+</span></div><div class="faq-a">إذا رُفض الطلب عند الباب، لا تُحسب تكلفة المنتج — فقط رسوم الخدمة المتكبَّدة بالفعل. معدل تأكيد 98% في مركز الاتصال لدينا يُبقي معدلات الرفض منخفضة جداً.</div></div>
+          <div class="faq-item"><div class="faq-q">هل يمكنني بيع أي منتج من كتالوج MDM؟ <span class="pl">+</span></div><div class="faq-a">نعم — أي منتج مخزَّن في مستودعنا في ليبيا متاح للدروبشيبينج. يمكنك إرسال طلبات لعدة منتجات في آنٍ واحد.</div></div>
+          <div class="faq-item"><div class="faq-q">كم يستغرق التوصيل في ليبيا؟ <span class="pl">+</span></div><div class="faq-a">نقدم توصيلاً في اليوم التالي لجميع المدن الليبية الرئيسية. بمجرد تأكيد مركز الاتصال، يُشحن الطلب في نفس اليوم ويصل للعميل في اليوم التالي.</div></div>
+          <div class="faq-item"><div class="faq-q">متى ينطلق العراق ولبنان؟ <span class="pl">+</span></div><div class="faq-a">نبني البنية التحتية اللازمة بنشاط. ستُعلَن مواعيد الإطلاق الدقيقة عبر موقعنا وقنواتنا الاجتماعية.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../ar-shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../animations.js"></script>
+</body>
+</html>

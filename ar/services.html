@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>الخدمات · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="ar-styles.css" />
+<link rel="alternate" hreflang="en" href="https://mdm.express/services.html" />
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/services.html" />
+<style>
+
+/* ── HERO ──────────────────────────────────────────────── */
+.sv-hero{position:relative;background:#0A0202;overflow:hidden;padding:180px 0 140px;min-height:88vh;display:flex;align-items:center}
+.sv-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 1100px 700px at 50% 110%,rgba(220,38,38,.22) 0%,transparent 60%),radial-gradient(ellipse 600px 600px at 8% 5%,rgba(220,38,38,.09) 0%,transparent 60%),radial-gradient(ellipse 500px 400px at 92% 10%,rgba(220,38,38,.07) 0%,transparent 60%);pointer-events:none}
+.sv-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.04) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.sv-hero .wrap{position:relative;z-index:2;text-align:center}
+.sv-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:36px;backdrop-filter:blur(8px)}
+.sv-hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#EF4444;animation:svPulse 2s ease-in-out infinite}
+@keyframes svPulse{0%,100%{box-shadow:0 0 0 3px rgba(239,68,68,.25)}50%{box-shadow:0 0 0 7px rgba(239,68,68,.06)}}
+.sv-hero-h1{font-size:clamp(48px,6.5vw,90px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin:0 0 28px}
+.sv-hero-accent{color:#EF4444}
+.sv-hero-sub{font-size:clamp(15px,1.7vw,20px);color:rgba(255,255,255,.45);line-height:1.9;max-width:580px;margin:0 auto 52px}
+.sv-hero-chips{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.sv-hero-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;backdrop-filter:blur(8px)}
+.sv-hero-chip-num{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.sv-hero-chip-label{font-size:11.5px;color:rgba(255,255,255,.4)}
+
+/* ── SERVICES BENTO ────────────────────────────────────── */
+.sv-bento-section{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
+.sv-bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:auto;gap:16px;margin-top:56px}
+
+/* Featured large card — Dropshipping */
+.sv-feat{grid-column:8/13;grid-row:1/3;background:#0A0202;border-radius:24px;padding:48px 44px;display:flex;flex-direction:column;gap:0;min-height:440px;position:relative;overflow:hidden;text-decoration:none;transition:transform .22s,box-shadow .22s}
+.sv-feat:hover{transform:translateY(-5px);box-shadow:0 32px 64px -20px rgba(220,38,38,.25)}
+.sv-feat::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 500px 400px at 100% 110%,rgba(220,38,38,.25) 0%,transparent 60%);pointer-events:none}
+.sv-feat-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.25);border-radius:999px;font-size:11px;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:.04em;margin-bottom:28px;width:fit-content}
+.sv-feat-icon{width:64px;height:64px;border-radius:18px;background:rgba(220,38,38,.18);border:1px solid rgba(220,38,38,.25);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:24px;transition:transform .22s}
+.sv-feat:hover .sv-feat-icon{transform:scale(1.1) rotate(4deg)}
+.sv-feat-title{font-size:28px;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.2;margin:0 0 14px}
+.sv-feat-desc{font-size:14.5px;color:rgba(255,255,255,.45);line-height:1.85;margin:0;flex:1}
+.sv-feat-stat{margin-top:32px;display:inline-flex;align-items:center;gap:10px;padding:12px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px}
+.sv-feat-stat-num{font-size:22px;font-weight:800;color:#fff}
+.sv-feat-stat-label{font-size:12px;color:rgba(255,255,255,.4)}
+.sv-feat-arrow{position:absolute;bottom:44px;left:44px;width:40px;height:40px;border-radius:10px;background:rgba(220,38,38,.18);border:1px solid rgba(220,38,38,.25);display:flex;align-items:center;justify-content:center;color:#EF4444;font-size:18px;transition:background .2s,transform .2s}
+.sv-feat:hover .sv-feat-arrow{background:rgba(220,38,38,.3);transform:translate(-3px,-3px)}
+
+/* Small service cards */
+.sv-sm{background:#fff;border:1px solid #EBEBF0;border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;position:relative;overflow:hidden}
+.sv-sm:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(220,38,38,.12);border-color:rgba(220,38,38,.2)}
+.sv-sm-icon{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .2s}
+.sv-sm:hover .sv-sm-icon{transform:scale(1.1) rotate(3deg)}
+.sv-sm-name{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;margin:0}
+.sv-sm-desc{font-size:13px;color:var(--muted);line-height:1.75;margin:0;flex:1}
+.sv-sm-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;border-top:1px solid #F0F0F6}
+.sv-sm-stat{font-size:13px;font-weight:700;color:var(--accent)}
+.sv-sm-arrow{font-size:16px;color:var(--muted);transition:color .18s,transform .18s}
+.sv-sm:hover .sv-sm-arrow{color:var(--accent);transform:translate(-3px,-2px)}
+
+/* Grid placement RTL — featured on right side */
+.sv-sm1{grid-column:4/8}
+.sv-sm2{grid-column:1/4}
+.sv-sm3{grid-column:5/9}
+.sv-sm4{grid-column:1/5}
+.sv-sm5{grid-column:9/13}
+.sv-sm6{grid-column:5/9}
+/* Marketplace card */
+.sv-marketplace{grid-column:1/5;background:#0A0202;border-color:transparent}
+.sv-marketplace .sv-sm-name{color:#fff}
+.sv-marketplace .sv-sm-desc{color:rgba(255,255,255,.4)}
+.sv-marketplace .sv-sm-footer{border-top-color:rgba(255,255,255,.08)}
+.sv-marketplace .sv-sm-stat{color:#EF4444}
+.sv-marketplace .sv-sm-icon{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.2)}
+.sv-marketplace:hover{border-color:rgba(220,38,38,.2);box-shadow:0 20px 40px -12px rgba(220,38,38,.2)}
+
+@media(max-width:1024px){
+  .sv-bento{grid-template-columns:repeat(6,1fr)}
+  .sv-feat{grid-column:4/7;grid-row:1/2;min-height:320px}
+  .sv-sm1{grid-column:1/4}.sv-sm2{grid-column:4/7}
+  .sv-sm3{grid-column:1/4}.sv-sm4{grid-column:4/7}
+  .sv-sm5{grid-column:1/4}.sv-sm6{grid-column:4/7}
+  .sv-marketplace{grid-column:1/4}
+}
+@media(max-width:640px){
+  .sv-bento{grid-template-columns:1fr}
+  .sv-feat,.sv-sm1,.sv-sm2,.sv-sm3,.sv-sm4,.sv-sm5,.sv-sm6,.sv-marketplace{grid-column:1/-1;grid-row:auto}
+}
+
+/* ── HOW IT ALL CONNECTS ────────────────────────────────── */
+.sv-flow{background:#fff;padding:100px 0;border-top:1px solid #EBEBF0}
+.sv-flow-steps{position:relative;margin-top:64px}
+.sv-road-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sv-road-bg svg{width:100%;height:100%}
+
+/* each step row */
+.sv-flow-step{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:60px 0;border-bottom:1px solid #EBEBF0;position:relative;z-index:3}
+.sv-flow-step:last-child{border-bottom:none}
+.sv-flow-text{display:flex;flex-direction:column;gap:14px}
+.sv-flow-num{font-size:11px;font-weight:700;color:rgba(220,38,38,.7);letter-spacing:.08em;text-transform:uppercase}
+.sv-flow-title{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin:0}
+.sv-flow-desc{font-size:14px;color:var(--muted);line-height:1.85;margin:0}
+.sv-flow-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#EF4444;text-decoration:none;transition:gap .15s;width:fit-content}
+.sv-flow-link:hover{gap:10px}
+
+/* Preview Cards */
+.sv-flow-card{background:#fff;border:1px solid #EBEBF0;border-radius:22px;padding:0;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;z-index:4}
+.sv-flow-step:hover .sv-flow-card{border-color:rgba(220,38,38,.2);transform:translateY(-6px);box-shadow:0 28px 56px -16px rgba(220,38,38,.14)}
+.sv-fc-bar{display:flex;align-items:center;gap:8px;padding:14px 18px 12px;border-bottom:1px solid #F3F3F8;background:#FAFAFA;direction:ltr}
+.sv-fc-trafficlight{display:flex;gap:5px;align-items:center}
+.sv-fc-tl{width:9px;height:9px;border-radius:50%}
+.sv-fc-tl:nth-child(1){background:#FF5F57}
+.sv-fc-tl:nth-child(2){background:#FFBD2E}
+.sv-fc-tl:nth-child(3){background:#28C840}
+.sv-fc-title{font-size:11px;font-weight:600;color:#A0A0B8;margin-left:4px;letter-spacing:.04em;flex:1}
+.sv-fc-live{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;color:#15803D;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.18);padding:2px 8px;border-radius:999px}
+.sv-fc-live-dot{width:6px;height:6px;border-radius:50%;background:#22C55E}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.sv-fc-live-dot{animation:livePulse 1.6s ease-in-out infinite}
+.sv-fc-body{padding:16px 18px}
+.sv-fc-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:12px;background:#F8F8FB;border:1px solid #EFEFF5;margin-bottom:8px;transition:background .2s,border-color .2s}
+.sv-fc-row:last-child{margin-bottom:0}
+.sv-fc-row:hover{background:#FFF5F5;border-color:rgba(220,38,38,.12)}
+.sv-fc-row-left{display:flex;align-items:center;gap:11px}
+.sv-fc-row-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.sv-fc-row-name{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.2}
+.sv-fc-row-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.sv-fc-pill{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.sv-fc-pill.green{background:rgba(34,197,94,.1);color:#15803D;border:1px solid rgba(34,197,94,.2)}
+.sv-fc-pill.red{background:rgba(220,38,38,.08);color:#DC2626;border:1px solid rgba(220,38,38,.15)}
+.sv-fc-pill.muted{background:#F0F0F8;color:#7878A0;border:1px solid #E4E4EE}
+.sv-fc-pill.orange{background:rgba(249,115,22,.1);color:#C2410C;border:1px solid rgba(249,115,22,.2)}
+@keyframes callBlink{0%,100%{opacity:1}50%{opacity:.4}}
+.sv-fc-pill.calling{background:rgba(220,38,38,.08);color:#DC2626;border:1px solid rgba(220,38,38,.2);animation:callBlink 1.2s ease-in-out infinite}
+.sv-fc-progress{height:4px;background:#EBEBF0;border-radius:4px;margin-top:14px;overflow:hidden}
+.sv-fc-progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#DC2626,#EF4444)}
+
+@media(max-width:860px){.sv-flow-step{grid-template-columns:1fr}.sv-flow-card{display:none}}
+@media(max-width:580px){.sv-road-bg{display:none}}
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.sv-faq{background:#F8F8FB;padding:100px 0;border-top:1px solid #EBEBF0}
+.sv-faq-layout{display:grid;grid-template-columns:2fr 1fr;gap:64px;margin-top:56px;align-items:start}
+.sv-faq-side{position:sticky;top:100px}
+.sv-faq-side-title{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em;margin:0 0 12px}
+.sv-faq-side-sub{font-size:14px;color:var(--muted);line-height:1.85;margin:0 0 28px}
+.sv-faq-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:12px;background:#DC2626;color:#fff;font-weight:700;font-size:14px;text-decoration:none;transition:background .2s,transform .15s}
+.sv-faq-cta:hover{background:#B91C1C;transform:translateY(-2px)}
+.sv-faq-list{display:flex;flex-direction:column;gap:0}
+.sv-faq-item{border-bottom:1px solid #EBEBF0}
+.sv-faq-item:first-child{border-top:1px solid #EBEBF0}
+.sv-faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer;user-select:none;transition:color .18s}
+.sv-faq-q:hover{color:var(--accent)}
+.sv-faq-icon{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);border:1px solid rgba(220,38,38,.15);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--accent);flex-shrink:0;transition:background .18s,transform .28s}
+.sv-faq-item.open .sv-faq-icon{background:var(--accent);color:#fff;transform:rotate(45deg)}
+.sv-faq-a{display:none;font-size:14px;color:var(--muted);line-height:1.85;padding-bottom:22px}
+.sv-faq-item.open .sv-faq-a{display:block}
+@media(max-width:760px){.sv-faq-layout{grid-template-columns:1fr;gap:40px}.sv-faq-side{position:static}}
+
+</style>
+</head>
+<body data-page="services">
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="sv-hero">
+  <div class="wrap">
+    <div class="sv-hero-badge"><span class="sv-hero-badge-dot"></span>MDM Express · عمليات متكاملة</div>
+    <h1 class="sv-hero-h1">منصة واحدة.<br/><span class="sv-hero-accent">ست خدمات.</span><br/>بدون ثغرات.</h1>
+    <p class="sv-hero-sub">من توريد المنتجات حتى التوصيل للعميل — نتولى جميع العمليات حتى تتفرغ لتنمية مبيعاتك.</p>
+    <div class="sv-hero-chips">
+      <div class="sv-hero-chip"><span class="sv-hero-chip-num">9K+</span><span class="sv-hero-chip-label">بائع نشط</span></div>
+      <div class="sv-hero-chip"><span class="sv-hero-chip-num">98%</span><span class="sv-hero-chip-label">معدل التوصيل</span></div>
+      <div class="sv-hero-chip"><span class="sv-hero-chip-num">500+</span><span class="sv-hero-chip-label">مورد محلي</span></div>
+      <div class="sv-hero-chip"><span class="sv-hero-chip-num">24/7</span><span class="sv-hero-chip-label">مركز الاتصال</span></div>
+    </div>
+  </div>
+</section>
+
+<main id="main-content">
+
+<!-- ── SERVICES BENTO ────────────────────────────────────── -->
+<section class="sv-bento-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">خدماتنا</span>
+      <h2 class="title">كل ما تحتاجه للتوسع.</h2>
+      <p class="sec-sub">ست خدمات مُدارة بالكامل — كل واحدة قوية بذاتها، ولا يُقاوم تأثيرها حين تعمل معاً.</p>
+    </div>
+    <div class="sv-bento">
+
+      <!-- FEATURED: Dropshipping -->
+      <a href="affiliate.html" class="sv-feat">
+        <div class="sv-feat-badge">⭐ الأكثر شعبية</div>
+        <div class="sv-feat-icon">📦</div>
+        <div class="sv-feat-title">دروبشيبينغ</div>
+        <p class="sv-feat-desc">بِع المنتجات دون الحاجة لامتلاك أي مخزون. نحن نوفّر المصادر والتغليف والشحن ونتولى المرتجعات — تجني أنت الفارق. بدون تكلفة مسبقة، تدفع فقط بعد التوصيل.</p>
+        <div class="sv-feat-stat">
+          <span class="sv-feat-stat-num">10K+</span>
+          <span class="sv-feat-stat-label">منتج جاهز للبيع</span>
+        </div>
+        <div class="sv-feat-arrow">←</div>
+      </a>
+
+      <!-- Warehousing -->
+      <a href="warehousing.html" class="sv-sm sv-sm1">
+        <div class="sv-sm-icon">🏬</div>
+        <div class="sv-sm-name">التخزين والتنفيذ</div>
+        <p class="sv-sm-desc">مستودعات آمنة في ليبيا والعراق. تغليف احترافي، فحص جودة، وشحن في نفس اليوم لكل طلب.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">مستودعات ليبيا والعراق</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Call Centre -->
+      <a href="call-center.html" class="sv-sm sv-sm2">
+        <div class="sv-sm-icon">🎧</div>
+        <div class="sv-sm-name">مركز الاتصال</div>
+        <p class="sv-sm-desc">فريق تأكيد متعدد اللغات يعمل 24/7، يتواصل مع كل عميل ويرفع معدل قبول الطلبات بالدفع عند الاستلام.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">دعم 24/7</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Delivery -->
+      <a href="delivery.html" class="sv-sm sv-sm3">
+        <div class="sv-sm-icon">🚚</div>
+        <div class="sv-sm-name">توصيل آخر ميل</div>
+        <p class="sv-sm-desc">شبكة توصيل في اليوم التالي تغطي ليبيا والعراق ولبنان مع تتبع فوري لكل شحنة.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">توصيل في اليوم التالي</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Remittance -->
+      <a href="remittance.html" class="sv-sm sv-sm4">
+        <div class="sv-sm-icon">💸</div>
+        <div class="sv-sm-name">تحويل الدفع عند الاستلام</div>
+        <p class="sv-sm-desc">مدفوعات أسبوعية شفافة. النقد المحصّل عند التوصيل يُحوَّل مباشرة لحسابك — بسرعة ومنتظمة.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">مدفوعات أسبوعية</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Sourcing -->
+      <a href="sourcing.html" class="sv-sm sv-sm5">
+        <div class="sv-sm-icon">🔍</div>
+        <div class="sv-sm-name">توريد المنتجات</div>
+        <p class="sv-sm-desc">أكثر من 10,000 منتج رابح من موردين معتمدين. مفحوصة الجودة، جاهزة للتداول، بأفضل الأسعار.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">10K+ منتج</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Advance -->
+      <a href="capital.html" class="sv-sm sv-sm6">
+        <div class="sv-sm-icon">⚡</div>
+        <div class="sv-sm-name">سلفة التوريد</div>
+        <p class="sv-sm-desc">تمويل مخزون قائم على الأداء. احصل على رأس المال لتوسيع مخزونك وإعلاناتك — دون حصص أو ضمانات.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">+5M$ مُموَّلة</span>
+          <span class="sv-sm-arrow">←</span>
+        </div>
+      </a>
+
+      <!-- Marketplace -->
+      <a href="marketplace.html" class="sv-sm sv-marketplace">
+        <div class="sv-sm-icon">🛒</div>
+        <div class="sv-sm-name">MDM ماركت بليس</div>
+        <p class="sv-sm-desc">وصول مباشر لأكثر من 500 مورد ليبي محلي. اطلب بالجملة (50 قطعة كحد أدنى) — توريد وتوصيل خلال 24–48 ساعة.</p>
+        <div class="sv-sm-footer">
+          <span class="sv-sm-stat">500+ مورد</span>
+          <span class="sv-sm-arrow" style="color:rgba(255,255,255,.3)">←</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT ALL CONNECTS ────────────────────────────────── -->
+<section class="sv-flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">المنظومة الكاملة</span>
+      <h2 class="title">كيف تعمل الخدمات معاً.</h2>
+      <p class="sec-sub">كل خطوة في رحلة البائع مُغطّاة. استخدم خدمة واحدة أو المنظومة كاملة — تتصل بسلاسة من البداية للنهاية.</p>
+    </div>
+
+    <div class="sv-flow-steps">
+
+      <!-- BACKGROUND ZIGZAG ROAD SVG -->
+      <div class="sv-road-bg">
+        <svg id="svRoadSvg" viewBox="0 0 1000 1200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <path id="svRoadPath"
+            d="M500 0 C780 120, 820 280, 500 400 C180 520, 150 680, 500 800 C820 920, 800 1080, 500 1200"
+            fill="none" stroke="rgba(220,38,38,.1)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M500 0 C780 120, 820 280, 500 400 C180 520, 150 680, 500 800 C820 920, 800 1080, 500 1200"
+            fill="none" stroke="rgba(220,38,38,.3)" stroke-width="2.5" stroke-dasharray="24 16" stroke-linecap="round"/>
+          <path id="svTraveledPath"
+            d="M500 0 C780 120, 820 280, 500 400 C180 520, 150 680, 500 800 C820 920, 800 1080, 500 1200"
+            fill="none" stroke="rgba(220,38,38,.5)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 9999"/>
+        </svg>
+      </div>
+
+      <!-- Step 01 — Sourcing -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 01</span>
+          <h3 class="sv-flow-title">ابحث عن منتجك</h3>
+          <p class="sv-flow-desc">تصفّح أكثر من 10,000 منتج رابح من الكتالوج، أو اطلب مباشرة من 500+ مورد محلي معتمد عبر MDM ماركت بليس — بأفضل أسعار الوصول.</p>
+          <a href="sourcing.html" class="sv-flow-link">استكشف التوريد ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">mdm.express / sourcing</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>مباشر</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FFF3CD">👟</div><div><div class="sv-fc-row-name">أحذية رياضية</div><div class="sv-fc-row-sub">500 وحدة · مخزون ليبيا</div></div></div>
+              <span class="sv-fc-pill green">متوفر</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E8F4FF">⌚</div><div><div class="sv-fc-row-name">ساعة ذكية برو</div><div class="sv-fc-row-sub">200 وحدة · جاهزة</div></div></div>
+              <span class="sv-fc-pill green">متوفر</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FFE8F3">💄</div><div><div class="sv-fc-row-name">طقم سيروم تجميل</div><div class="sv-fc-row-sub">1,200 وحدة · الأكثر مبيعاً</div></div></div>
+              <span class="sv-fc-pill orange">مخزون منخفض</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:78%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 02 — Warehousing -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 02</span>
+          <h3 class="sv-flow-title">خزّن وجهّز</h3>
+          <p class="sv-flow-desc">يُستقبل مخزونك في مستودعاتنا الآمنة بليبيا والعراق. كل طلب يُفحص جودةً ويُغلَّف باحتراف ويُصطفّ للشحن في نفس اليوم — بشكل تلقائي كامل.</p>
+          <a href="warehousing.html" class="sv-flow-link">استكشف التخزين ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">مستودع طرابلس</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>نشط</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">📦</div><div><div class="sv-fc-row-name">طلبات جُهّزت اليوم</div><div class="sv-fc-row-sub">جاهزة للشحن</div></div></div>
+              <span class="sv-fc-pill green">247 وحدة</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FEE8E8">🔍</div><div><div class="sv-fc-row-name">فحوصات الجودة</div><div class="sv-fc-row-sub">هذا الأسبوع</div></div></div>
+              <span class="sv-fc-pill green">99.2%</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FFF8E1">⏱</div><div><div class="sv-fc-row-name">متوسط وقت الشحن</div><div class="sv-fc-row-sub">بعد تأكيد الطلب</div></div></div>
+              <span class="sv-fc-pill muted">3.2 ساعة</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:92%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 03 — Call Centre -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 03</span>
+          <h3 class="sv-flow-title">أكّد كل طلب</h3>
+          <p class="sv-flow-desc">قبل شحن أي طلب، يتواصل مركز الاتصال متعدد اللغات 24/7 مع كل عميل للتأكيد. هذا يقلل بشكل كبير من حالات الفشل في التوصيل ومعدلات الإرجاع.</p>
+          <a href="call-center.html" class="sv-flow-link">استكشف مركز الاتصال ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">mdm.express / call-centre</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>مباشر</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">✅</div><div><div class="sv-fc-row-name">أحمد ك. — طرابلس</div><div class="sv-fc-row-sub">طلب #4821 · مؤكَّد</div></div></div>
+              <span class="sv-fc-pill green">مؤكَّد</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FEE8E8">📞</div><div><div class="sv-fc-row-name">سارة م. — بنغازي</div><div class="sv-fc-row-sub">طلب #4822 · جارٍ الاتصال…</div></div></div>
+              <span class="sv-fc-pill calling">● في المكالمة</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">✅</div><div><div class="sv-fc-row-name">عمر ف. — بغداد</div><div class="sv-fc-row-sub">طلب #4820 · مؤكَّد</div></div></div>
+              <span class="sv-fc-pill green">مؤكَّد</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 04 — Delivery -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 04</span>
+          <h3 class="sv-flow-title">وصّل في اليوم التالي</h3>
+          <p class="sv-flow-desc">تغطي شبكة التوصيل كامل ليبيا والعراق ولبنان. كل شحنة تحصل على رقم تتبع والعملاء يتلقون تحديثات فورية حتى التسليم.</p>
+          <a href="delivery.html" class="sv-flow-link">استكشف التوصيل ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">تتبع · #MDM-4821</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>مباشر</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">✅</div><div><div class="sv-fc-row-name">تم شحن الطلب</div><div class="sv-fc-row-sub">مستودع طرابلس · 08:14 صباحاً</div></div></div>
+              <span class="sv-fc-pill green">تم</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FEE8E8">🚚</div><div><div class="sv-fc-row-name">في طريقه للتوصيل</div><div class="sv-fc-row-sub">السائق: حسن · ETA 2 ساعة</div></div></div>
+              <span class="sv-fc-pill red">في الطريق</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#F0F0F8">🏠</div><div><div class="sv-fc-row-name">تم التوصيل للعميل</div><div class="sv-fc-row-sub">بانتظار التأكيد</div></div></div>
+              <span class="sv-fc-pill muted">قيد الانتظار</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 05 — Remittance -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 05</span>
+          <h3 class="sv-flow-title">استلم أموالك أسبوعياً</h3>
+          <p class="sv-flow-desc">النقد المحصّل عند التوصيل يُحسب ويُحوَّل لحسابك كل أسبوع. تفاصيل شفافة، بدون مفاجآت — دائماً في موعده.</p>
+          <a href="remittance.html" class="sv-flow-link">استكشف التحويلات ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">mdm.express / remittance · wk23</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>مدفوع</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">💰</div><div><div class="sv-fc-row-name">إجمالي المحصّل</div><div class="sv-fc-row-sub">184 طلب · ليبيا</div></div></div>
+              <span class="sv-fc-pill green">9,240 د.ل</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FEE8E8">📤</div><div><div class="sv-fc-row-name">محوَّل لحسابك</div><div class="sv-fc-row-sub">كل خميس · في موعده</div></div></div>
+              <span class="sv-fc-pill green">8,180 د.ل</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FFF8E1">📊</div><div><div class="sv-fc-row-name">معدل التوصيل</div><div class="sv-fc-row-sub">هذا الأسبوع</div></div></div>
+              <span class="sv-fc-pill muted">97.8%</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:97%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 06 — Advance -->
+      <div class="sv-flow-step">
+        <div class="sv-flow-text">
+          <span class="sv-flow-num">الخطوة 06</span>
+          <h3 class="sv-flow-title">توسّع مع السلفة</h3>
+          <p class="sv-flow-desc">أداؤك مع MDM يفتح لك تمويل مخزون قبل دفعتك القادمة. أعد الاستثمار في المخزون والإعلانات فوراً — بدون حصص ولا ضمانات ولا انتظار.</p>
+          <a href="capital.html" class="sv-flow-link">استكشف السلفة ←</a>
+        </div>
+        <div class="sv-flow-card">
+          <div class="sv-fc-bar"><div class="sv-fc-trafficlight"><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div><div class="sv-fc-tl"></div></div><span class="sv-fc-title">mdm.express / advance</span><span class="sv-fc-live"><span class="sv-fc-live-dot"></span>موافق عليه</span></div>
+          <div class="sv-fc-body">
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FEE8E8">⚡</div><div><div class="sv-fc-row-name">السلفة الموافق عليها</div><div class="sv-fc-row-sub">بناءً على نقاط الأداء</div></div></div>
+              <span class="sv-fc-pill green">15,000 د.ل</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#E6F9EE">📈</div><div><div class="sv-fc-row-name">نقاط الأداء</div><div class="sv-fc-row-sub">98% توصيل · 6 أشهر</div></div></div>
+              <span class="sv-fc-pill green">ممتاز</span>
+            </div>
+            <div class="sv-fc-row">
+              <div class="sv-fc-row-left"><div class="sv-fc-row-icon" style="background:#FFF8E1">🔄</div><div><div class="sv-fc-row-name">السداد</div><div class="sv-fc-row-sub">خصم تلقائي من المدفوعات</div></div></div>
+              <span class="sv-fc-pill muted">تلقائي</span>
+            </div>
+            <div class="sv-fc-progress"><div class="sv-fc-progress-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────── -->
+<section class="sv-faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الأسئلة الشائعة</span>
+      <h2 class="title">إجابات سريعة.</h2>
+      <p class="sec-sub">كل ما يسأله البائعون قبل البدء.</p>
+    </div>
+    <div class="sv-faq-layout">
+      <div class="sv-faq-list">
+        <div class="sv-faq-item open">
+          <div class="sv-faq-q">هل يمكنني استخدام خدمة واحدة دون البقية؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">نعم — كل خدمة مستقلة تماماً. معظم البائعين يبدؤون بالدروبشيبينغ أو مركز الاتصال ثم يتوسعون مع النمو. لا يوجد إلزام باستخدام المنظومة الكاملة.</div>
+        </div>
+        <div class="sv-faq-item">
+          <div class="sv-faq-q">ما الأسواق التي تغطّونها؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">نحن نعمل حالياً في ليبيا والعراق ولبنان، مع توسع نشط نحو منطقة MENA الأوسع. بعض الخدمات خاصة بأسواق معينة — راجع صفحة كل خدمة لمعرفة تفاصيل التغطية.</div>
+        </div>
+        <div class="sv-faq-item">
+          <div class="sv-faq-q">كم يستغرق التهيئة الأولى؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">معظم الحسابات تعمل خلال 48–72 ساعة من تقديم الطلب. البائعون في الدروبشيبينغ يمكنهم البدء في البيع في اليوم الأول في أغلب الأحيان.</div>
+        </div>
+        <div class="sv-faq-item">
+          <div class="sv-faq-q">هل تتعاملون مع المرتجعات وحالات NDR؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">نعم — إدارة حالات عدم التوصيل (NDR) ومعالجة المرتجعات مشمولة ضمن خدمة التخزين. نحاول إعادة التوصيل قبل تصنيف الطرد كمُرتجَع.</div>
+        </div>
+        <div class="sv-faq-item">
+          <div class="sv-faq-q">كيف تعمل سلفة التوريد؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">السلفة قائمة على الأداء — ننظر في حجم طلباتك ومعدل التوصيل وتاريخك مع MDM. البائعون الموافق عليهم يحصلون على تمويل مخزون دون حصص أو ضمانات. يُخصم السداد من المدفوعات المستقبلية.</div>
+        </div>
+        <div class="sv-faq-item">
+          <div class="sv-faq-q">ما الحد الأدنى للطلب في ماركت بليس؟ <div class="sv-faq-icon">+</div></div>
+          <div class="sv-faq-a">يشترط MDM ماركت بليس حداً أدنى من 50 قطعة لكل منتج. تُوَرَّد الطلبات من موردين ليبيين محليين وتُسلَّم خلال 24–48 ساعة.</div>
+        </div>
+      </div>
+      <div class="sv-faq-side">
+        <div class="sv-faq-side-title">هل لديك مزيد من الأسئلة؟</div>
+        <p class="sv-faq-side-sub">فريقنا متاح 24/7. تواصل معنا وسنرشدك للخدمات المناسبة لعملك.</p>
+        <a href="https://app.mdm.express/en/auth/register" target="_blank" class="sv-faq-cta">تواصل معنا ←</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="ar-shared.js"></script>
+<script src="../animations.js"></script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.sv-hero-badge',{y:20,opacity:0,duration:.7,ease:'power2.out'});
+  gsap.from('.sv-hero-h1',{y:32,opacity:0,duration:.85,ease:'power2.out',delay:.12});
+  gsap.from('.sv-hero-sub',{y:24,opacity:0,duration:.75,ease:'power2.out',delay:.24});
+  gsap.from('.sv-hero-chip',{y:20,opacity:0,duration:.65,stagger:.1,ease:'back.out(1.4)',delay:.38});
+
+  gsap.from('.sv-feat',{y:40,opacity:0,duration:.9,ease:'power2.out',scrollTrigger:{trigger:'.sv-bento',start:'top 80%',once:true}});
+  gsap.from('.sv-sm',{y:32,opacity:0,duration:.7,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.sv-bento',start:'top 75%',once:true}});
+
+  gsap.from('.sv-flow-step',{x:24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
+  gsap.from('.sv-flow-card',{x:-24,opacity:0,duration:.75,stagger:.18,ease:'power2.out',scrollTrigger:{trigger:'.sv-flow-steps',start:'top 78%',once:true}});
+
+  (function(){
+    const steps = document.querySelector('.sv-flow-steps');
+    const traveled = document.getElementById('svTraveledPath');
+    if(!steps || !traveled) return;
+    const pathLen = traveled.getTotalLength();
+    traveled.style.strokeDasharray = pathLen;
+    traveled.style.strokeDashoffset = pathLen;
+    ScrollTrigger.create({
+      trigger: steps, start:'top 85%', end:'bottom 15%', scrub: 1.4,
+      onUpdate(self){ traveled.style.strokeDashoffset = pathLen * (1 - self.progress); }
+    });
+  })();
+
+  gsap.from('.sv-faq-item',{y:20,opacity:0,duration:.55,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.sv-faq-list',start:'top 82%',once:true}});
+
+  document.querySelectorAll('.sv-faq-item').forEach(item=>{
+    const q=item.querySelector('.sv-faq-q');
+    if(!q)return;
+    q.addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.sv-faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>كيف يعمل · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"/>
+<link rel="stylesheet" href="ar-styles.css"/>
+<link rel="alternate" hreflang="en" href="https://mdm.express/how-it-works.html" />
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/how-it-works.html" />
+<style>
+/* ============================================================
+   HOW IT WORKS  —  hw-* namespace  (Arabic RTL)
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.hw-hero{position:relative;background:#0A0202;overflow:hidden;padding:130px 0 90px;min-height:100vh;display:flex;align-items:center}
+.hw-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 600px at 90% 60%,rgba(220,38,38,.14) 0%,transparent 65%),radial-gradient(ellipse 400px 400px at 15% 15%,rgba(220,38,38,.08) 0%,transparent 60%);pointer-events:none}
+.hw-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.03) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hw-hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hw-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);border-radius:100px;padding:6px 14px;font-size:.76rem;font-weight:600;color:#FCA5A5;letter-spacing:.03em;text-transform:uppercase;margin-bottom:22px}
+.hw-eye-dot{width:7px;height:7px;background:#DC2626;border-radius:50%;animation:hwPulse 1.8s ease-in-out infinite}
+@keyframes hwPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hw-headline{font-size:clamp(2.2rem,4vw,3.6rem);font-weight:800;line-height:1.15;color:#fff;margin:0 0 18px;letter-spacing:-.01em}
+.hw-accent{color:#EF4444}
+.hw-sub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.85;max-width:460px;margin:0 0 34px}
+.hw-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hw-btn{background:#DC2626;color:#fff;font-weight:700;font-size:.92rem;padding:13px 26px;border-radius:10px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 18px rgba(220,38,38,.35)}
+.hw-btn:hover{background:#B91C1C;transform:translateY(-1px);box-shadow:0 8px 28px rgba(220,38,38,.45)}
+.hw-ghost{color:rgba(255,255,255,.65);font-weight:600;font-size:.88rem;text-decoration:none;transition:color .2s}
+.hw-ghost:hover{color:#EF4444}
+
+/* Hero flow preview widget */
+.hw-flow-preview{position:relative;z-index:2}
+.hw-flow-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:24px;backdrop-filter:blur(20px);box-shadow:0 4px 6px rgba(0,0,0,.3),0 24px 64px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07)}
+.hw-flow-title{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.hw-flow-steps{display:flex;flex-direction:column;gap:0}
+.hw-fs{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
+.hw-fs:last-child{border-bottom:none}
+.hw-fs-num{font-size:.65rem;font-weight:500;color:rgba(255,255,255,.3);min-width:20px}
+.hw-fs-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.hw-fs-icon.c1{background:rgba(220,38,38,.15)}
+.hw-fs-icon.c2{background:rgba(245,158,11,.15)}
+.hw-fs-icon.c3{background:rgba(99,102,241,.15)}
+.hw-fs-icon.c4{background:rgba(16,185,129,.15)}
+.hw-fs-icon.c5{background:rgba(236,72,153,.15)}
+.hw-fs-icon.c6{background:rgba(220,38,38,.15)}
+.hw-fs-info{flex:1}
+.hw-fs-name{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:2px}
+.hw-fs-detail{font-size:.7rem;color:rgba(255,255,255,.35)}
+.hw-fs-status{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:100px}
+.hw-fs-status.done{background:rgba(16,185,129,.15);color:#4ADE80}
+.hw-fs-status.active{background:rgba(220,38,38,.15);color:#FCA5A5;animation:hwBlink 2s ease-in-out infinite}
+.hw-fs-status.pending{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+@keyframes hwBlink{0%,100%{opacity:1}50%{opacity:.5}}
+.hw-flow-bar{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.hw-flow-bar-label{font-size:.68rem;color:rgba(255,255,255,.3);margin-bottom:8px}
+.hw-flow-bar-track{height:4px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden;direction:ltr}
+.hw-flow-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#DC2626,#EF4444);border-radius:100px;transition:width 1.6s cubic-bezier(.22,1,.36,1)}
+
+/* ---------- STATS ---------- */
+.hw-stats{background:#fff;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:34px 0}
+.hw-stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.hw-stat{text-align:center;padding:8px 20px;border-left:1px solid rgba(0,0,0,.07)}
+.hw-stat:last-child{border-left:none}
+.hw-stat-val{font-size:2rem;font-weight:500;color:#111;line-height:1;margin-bottom:5px}
+.hw-stat-val.r{color:#DC2626}
+.hw-stat-label{font-size:.8rem;color:#888;font-weight:500}
+
+/* ---------- JOURNEY STEPS ---------- */
+.hw-steps-wrap{margin-top:64px;position:relative}
+.hw-steps-wrap::before{content:'';position:absolute;right:40px;left:auto;top:60px;bottom:60px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.25) 10%,rgba(220,38,38,.25) 90%,transparent);pointer-events:none}
+.hw-step{display:grid;grid-template-columns:1fr 1fr 80px;gap:40px;align-items:center;padding:48px 0;border-bottom:1px solid rgba(0,0,0,.06);position:relative}
+.hw-step:last-child{border-bottom:none}
+.hw-step-num{display:flex;flex-direction:column;align-items:center;gap:0}
+.hw-step-bubble{width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:500;color:#999;transition:border-color .3s,color .3s;position:relative;z-index:1}
+.hw-step:hover .hw-step-bubble{border-color:#DC2626;color:#DC2626}
+.hw-step-content{}
+.hw-step-tag{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#DC2626;background:rgba(220,38,38,.08);padding:4px 10px;border-radius:100px;margin-bottom:12px}
+.hw-step-title{font-size:1.5rem;font-weight:800;color:#111;margin:0 0 12px;letter-spacing:-.01em}
+.hw-step-desc{font-size:.9rem;color:#555;line-height:1.8;margin:0 0 18px}
+.hw-step-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hw-chip{font-size:.75rem;color:#555;background:#F3F4F6;border:1px solid #E5E7EB;padding:5px 12px;border-radius:100px}
+.hw-step-mock{border-radius:18px;overflow:hidden}
+
+/* Step 1 – store connect */
+.hw-mock-connect{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:20px}
+.hw-mc-title{font-size:.72rem;font-weight:700;color:#374151;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+.hw-mc-platform{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1px solid #E5E7EB;border-radius:10px;margin-bottom:8px}
+.hw-mc-platform.active{border-color:#DC2626;background:rgba(220,38,38,.03)}
+.hw-mc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.hw-mc-name{font-size:.8rem;font-weight:600;color:#111;flex:1}
+.hw-mc-check{color:#DC2626;font-size:.8rem}
+.hw-mc-markets{display:flex;gap:8px;margin-top:12px}
+.hw-mc-mkt{flex:1;padding:8px;background:#fff;border:1px solid #E5E7EB;border-radius:9px;text-align:center;font-size:.72rem;font-weight:600;color:#555}
+.hw-mc-mkt.sel{border-color:#DC2626;color:#DC2626;background:rgba(220,38,38,.04)}
+
+/* Step 2 – sourcing */
+.hw-mock-source{background:#FFFBF0;border:1px solid #FDE68A;border-radius:16px;padding:20px}
+.hw-ms-product{display:flex;align-items:center;gap:12px;padding:12px;background:#fff;border:1px solid #FDE68A;border-radius:12px;margin-bottom:12px}
+.hw-ms-img{width:44px;height:44px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.hw-ms-info{flex:1}
+.hw-ms-name{font-size:.78rem;font-weight:700;color:#111;margin-bottom:3px}
+.hw-ms-origin{font-size:.68rem;color:#92400E}
+.hw-ms-price{font-size:.9rem;font-weight:500;color:#D97706}
+.hw-ms-qc{display:flex;align-items:center;gap:6px;padding:7px 12px;background:#ECFDF5;border:1px solid rgba(16,185,129,.25);border-radius:8px;font-size:.72rem;font-weight:600;color:#065F46}
+
+/* Step 3 – warehouse */
+.hw-mock-wh{background:#F0F4FF;border:1px solid #C7D2FE;border-radius:16px;padding:20px}
+.hw-wh-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #E0E7FF}
+.hw-wh-stat:last-of-type{border-bottom:none;margin-bottom:10px}
+.hw-wh-key{font-size:.75rem;color:#4338CA}
+.hw-wh-val{font-size:.82rem;font-weight:500;color:#1E1B4B}
+.hw-wh-bar{height:5px;background:#C7D2FE;border-radius:3px;overflow:hidden;margin-bottom:4px;direction:ltr}
+.hw-wh-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#6366F1,#818CF8)}
+
+/* Step 4 – orders */
+.hw-mock-orders{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:20px}
+.hw-ord-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;margin-bottom:6px}
+.hw-ord-row.confirmed{background:#ECFDF5;border:1px solid rgba(16,185,129,.2)}
+.hw-ord-row.calling{background:#FEF9C3;border:1px solid rgba(234,179,8,.3)}
+.hw-ord-row.new{background:#F3F4F6;border:1px solid #E5E7EB}
+.hw-ord-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hw-ord-dot.g{background:#22C55E}
+.hw-ord-dot.y{background:#EAB308;animation:hwBlink 1.2s ease-in-out infinite}
+.hw-ord-dot.s{background:#D1D5DB}
+.hw-ord-id{font-size:.7rem;color:#555;flex:1}
+.hw-ord-status{font-size:.68rem;font-weight:700}
+.hw-ord-row.confirmed .hw-ord-status{color:#16A34A}
+.hw-ord-row.calling .hw-ord-status{color:#CA8A04}
+.hw-ord-row.new .hw-ord-status{color:#9CA3AF}
+.hw-ord-val{font-size:.75rem;color:#111;font-weight:500}
+
+/* Step 5 – delivery */
+.hw-mock-delivery{background:#0A0202;border:1px solid rgba(220,38,38,.15);border-radius:16px;padding:20px;color:#fff}
+.hw-dl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.hw-dl-title{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.hw-dl-live{font-size:.65rem;font-weight:700;color:#EF4444;background:rgba(220,38,38,.15);padding:3px 9px;border-radius:100px}
+.hw-dl-route{display:flex;flex-direction:column;gap:8px}
+.hw-dl-stop{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:9px}
+.hw-dl-stop.current{border-color:rgba(220,38,38,.35);background:rgba(220,38,38,.08)}
+.hw-dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hw-dl-dot.done2{background:#22C55E}
+.hw-dl-dot.now{background:#EF4444;animation:hwBlink 1s ease-in-out infinite}
+.hw-dl-dot.soon{background:rgba(255,255,255,.2)}
+.hw-dl-stop-name{font-size:.78rem;color:rgba(255,255,255,.7);flex:1}
+.hw-dl-stop.current .hw-dl-stop-name{color:#fff;font-weight:600}
+.hw-dl-eta{font-size:.68rem;color:rgba(255,255,255,.3)}
+.hw-dl-stop.current .hw-dl-eta{color:#EF4444}
+
+/* Step 6 – payout */
+.hw-mock-payout{background:#030D09;border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:20px;color:#fff}
+.hw-pay-label{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.hw-pay-amount{font-size:2.2rem;font-weight:500;color:#4ADE80;line-height:1;margin-bottom:4px}
+.hw-pay-date{font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hw-pay-breakdown{display:flex;flex-direction:column;gap:6px}
+.hw-pay-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,.04);border-radius:7px}
+.hw-pay-rkey{font-size:.72rem;color:rgba(255,255,255,.5)}
+.hw-pay-rval{font-size:.72rem;color:rgba(255,255,255,.85);font-weight:500}
+.hw-pay-rval.g{color:#4ADE80}
+
+/* ---------- WHAT YOU DON'T NEED (bento) ---------- */
+.hw-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.hw-bc{border:1px solid rgba(0,0,0,.07);border-radius:20px;padding:28px;background:#fff;transition:box-shadow .25s,transform .25s;position:relative;overflow:hidden}
+.hw-bc:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);transform:translateY(-2px)}
+.hw-bc.hw-wide{grid-column:span 2}
+.hw-bc.hw-dark{background:#0A0202;border-color:rgba(255,255,255,.07)}
+.hw-bc-cross{font-size:1.4rem;margin-bottom:12px;display:block;opacity:.7}
+.hw-bc-title{font-size:.95rem;font-weight:700;color:#111;margin:0 0 8px}
+.hw-bc.hw-dark .hw-bc-title{color:#fff}
+.hw-bc-desc{font-size:.83rem;color:#777;line-height:1.65;margin:0}
+.hw-bc.hw-dark .hw-bc-desc{color:rgba(255,255,255,.45)}
+.hw-bc-tag{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;color:#DC2626;background:rgba(220,38,38,.08);padding:4px 10px;border-radius:100px;margin-top:12px}
+.hw-savings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.hw-saving{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px}
+.hw-saving-num{font-size:1.4rem;font-weight:500;color:#fff;margin-bottom:4px}
+.hw-saving-label{font-size:.68rem;color:rgba(255,255,255,.4)}
+
+/* ---------- FAQ ---------- */
+.hw-faq-grid{display:grid;grid-template-columns:1fr 300px;gap:64px;margin-top:56px}
+.hw-faq-side h3{font-size:1.3rem;font-weight:800;color:#111;margin:0 0 10px}
+.hw-faq-side p{font-size:.87rem;color:#666;line-height:1.75;margin:0 0 22px}
+.hw-faq-contact{display:inline-block;padding:11px 22px;background:#DC2626;color:#fff;font-weight:700;font-size:.85rem;border-radius:10px;text-decoration:none;transition:background .2s}
+.hw-faq-contact:hover{background:#B91C1C}
+.hw-faq-list{display:flex;flex-direction:column}
+.hw-faq-item{border-bottom:1px solid #F3F4F6}
+.hw-faq-q{display:flex;align-items:center;justify-content:space-between;padding:17px 0;font-size:.9rem;font-weight:600;color:#111;cursor:pointer;user-select:none;transition:color .2s}
+.hw-faq-q:hover{color:#DC2626}
+.hw-faq-plus{width:24px;height:24px;border-radius:50%;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#888;transition:background .2s,color .2s,transform .25s;flex-shrink:0}
+.hw-faq-item.open .hw-faq-plus{background:#DC2626;color:#fff;transform:rotate(45deg)}
+.hw-faq-a{font-size:.86rem;color:#666;line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease;padding-bottom:0}
+.hw-faq-item.open .hw-faq-a{max-height:200px;padding-bottom:16px}
+
+/* ---------- CTA ---------- */
+.hw-cta{background:#0A0202;padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.hw-cta::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(220,38,38,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hw-cta-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);color:#FCA5A5;font-size:.72rem;font-weight:700;padding:6px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:22px}
+.hw-cta-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin:0 0 14px;letter-spacing:-.01em;line-height:1.2}
+.hw-cta-sub{font-size:.95rem;color:rgba(255,255,255,.48);line-height:1.75;max-width:480px;margin:0 auto 32px}
+.hw-cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.hw-cta-primary{padding:14px 30px;background:#DC2626;color:#fff;font-weight:700;font-size:.92rem;border-radius:11px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(220,38,38,.38)}
+.hw-cta-primary:hover{background:#B91C1C;transform:translateY(-2px);box-shadow:0 10px 28px rgba(220,38,38,.45)}
+.hw-cta-sec{padding:14px 26px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);font-weight:600;font-size:.88rem;border-radius:11px;text-decoration:none;transition:border-color .2s,color .2s}
+.hw-cta-sec:hover{border-color:rgba(220,38,38,.5);color:#EF4444}
+
+/* ── MOBILE ─── */
+@media(max-width:860px){
+  .hw-hero{padding:100px 0 60px;min-height:auto}
+  .hw-hero-inner{grid-template-columns:1fr!important;gap:36px}
+  .hw-flow-preview{display:none}
+  .hw-stats-grid{grid-template-columns:repeat(2,1fr)!important}
+  .hw-stat{border-left:none!important;border-bottom:1px solid rgba(0,0,0,.07)}
+  .hw-stat:nth-child(odd){border-left:1px solid rgba(0,0,0,.07)!important}
+  .hw-stat:nth-child(3),.hw-stat:nth-child(4){border-bottom:none}
+  .hw-stat-val{font-size:1.6rem}
+  .hw-steps-wrap::before{display:none}
+  .hw-step{grid-template-columns:1fr!important;gap:20px;padding:36px 0}
+  .hw-step-num{display:none}
+  .hw-bento{grid-template-columns:1fr!important}
+  .hw-bc.hw-wide{grid-column:auto!important}
+  .hw-savings-grid{grid-template-columns:repeat(3,1fr)}
+  .hw-faq-grid{grid-template-columns:1fr!important;gap:32px}
+  .hw-faq-side{position:static!important}
+  .hw-cta-btns{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){
+  .hw-savings-grid{grid-template-columns:1fr!important}
+  .hw-step-chips{gap:6px}
+}
+</style>
+</head>
+<body data-page="how">
+
+<!-- HERO -->
+<section class="hw-hero">
+  <div class="wrap">
+    <div class="hw-hero-inner">
+      <div>
+        <div class="hw-eyebrow"><span class="hw-eye-dot"></span>منصة متكاملة من الألف للياء</div>
+        <h1 class="hw-headline">من فكرة المنتج<br>إلى استلام<br><span class="hw-accent">المبلغ.</span></h1>
+        <p class="hw-sub">ست خطوات. منصة واحدة. MDM Express يتولى التوريد والتخزين والتوصيل والتأكيد الهاتفي وتحويل المبالغ — أنت فقط تبيع.</p>
+        <div class="hw-cta-row">
+          <a href="#steps" class="hw-btn">اكتشف الرحلة كاملة ↓</a>
+          <a href="index.html" class="hw-ghost">ابدأ الآن ←</a>
+        </div>
+      </div>
+
+      <!-- Flow preview widget -->
+      <div class="hw-flow-preview">
+        <div class="hw-flow-card">
+          <div class="hw-flow-title">طلبك الآن</div>
+          <div class="hw-flow-steps">
+            <div class="hw-fs">
+              <span class="hw-fs-num">01</span>
+              <div class="hw-fs-icon c1">🔗</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">المتجر متصل</div><div class="hw-fs-detail">Shopify ← MDM Express</div></div>
+              <span class="hw-fs-status done">تم</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">02</span>
+              <div class="hw-fs-icon c2">📦</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">المنتجات جاهزة</div><div class="hw-fs-detail">الصين · اجتاز فحص الجودة</div></div>
+              <span class="hw-fs-status done">تم</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">03</span>
+              <div class="hw-fs-icon c3">🏭</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">في المستودع</div><div class="hw-fs-detail">284 وحدة على الرف</div></div>
+              <span class="hw-fs-status done">تم</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">04</span>
+              <div class="hw-fs-icon c4">📞</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">الطلب مؤكَّد</div><div class="hw-fs-detail">COD · مركز الاتصال ✓</div></div>
+              <span class="hw-fs-status done">تم</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">05</span>
+              <div class="hw-fs-icon c5">🚚</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">في طريقه للتوصيل</div><div class="hw-fs-detail">طرابلس · ETA 2 ساعة</div></div>
+              <span class="hw-fs-status active">مباشر</span>
+            </div>
+            <div class="hw-fs">
+              <span class="hw-fs-num">06</span>
+              <div class="hw-fs-icon c6">💰</div>
+              <div class="hw-fs-info"><div class="hw-fs-name">التحويل</div><div class="hw-fs-detail">تسوية يوم الخميس</div></div>
+              <span class="hw-fs-status pending">الخميس</span>
+            </div>
+          </div>
+          <div class="hw-flow-bar">
+            <div class="hw-flow-bar-label">تقدم الرحلة — الخطوة 5 من 6</div>
+            <div class="hw-flow-bar-track"><div class="hw-flow-bar-fill" id="hwFlowFill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="hw-stats" id="hwStats">
+  <div class="wrap">
+    <div class="hw-stats-grid">
+      <div class="hw-stat"><div class="hw-stat-val r">6</div><div class="hw-stat-label">خطوات مُدارة بالكامل</div></div>
+      <div class="hw-stat"><div class="hw-stat-val">48 ساعة</div><div class="hw-stat-label">من التسجيل لأول طلب</div></div>
+      <div class="hw-stat"><div class="hw-stat-val r">3</div><div class="hw-stat-label">أسواق مغطاة</div></div>
+      <div class="hw-stat"><div class="hw-stat-val">$0</div><div class="hw-stat-label">تكلفة مستودع مسبقة</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6-STEP JOURNEY -->
+<section class="block" id="steps">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الرحلة</span>
+      <h2 class="title">ست خطوات. صفر تخمين.</h2>
+      <p class="sec-sub">كل خطوة تتولاها MDM Express — أنت تدير متجرك وإعلاناتك. نحن نتولى الباقي.</p>
+    </div>
+    <div class="hw-steps-wrap">
+
+      <!-- Step 1 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">01</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">🔗 إعداد</div>
+          <h3 class="hw-step-title">انضم وربط متجرك</h3>
+          <p class="hw-step-desc">سجّل حسابك، اربط متجرك (Shopify أو WooCommerce أو فانل مخصص)، اختر سوقك المستهدف وحدّد مسار الدفع. فريق التهيئة يجعلك جاهزاً خلال 48 ساعة.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">Shopify / WooCommerce</span>
+            <span class="hw-chip">فانلات مخصصة</span>
+            <span class="hw-chip">ليبيا · العراق · لبنان</span>
+            <span class="hw-chip">تهيئة خلال 48 ساعة</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-connect">
+            <div class="hw-mc-title">ربط المتجر</div>
+            <div class="hw-mc-platform active">
+              <div class="hw-mc-icon" style="background:#96BF48;color:#fff;font-size:.7rem;font-weight:700">SH</div>
+              <span class="hw-mc-name">Shopify</span>
+              <span class="hw-mc-check">✓ متصل</span>
+            </div>
+            <div class="hw-mc-platform">
+              <div class="hw-mc-icon" style="background:#7F54B3;color:#fff;font-size:.6rem;font-weight:700">WC</div>
+              <span class="hw-mc-name">WooCommerce</span>
+              <span style="font-size:.68rem;color:#ccc">+ إضافة</span>
+            </div>
+            <div class="hw-mc-markets">
+              <div class="hw-mc-mkt sel">🇱🇾 ليبيا</div>
+              <div class="hw-mc-mkt sel">🇮🇶 العراق</div>
+              <div class="hw-mc-mkt">🇱🇧 لبنان</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">02</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">🔍 توريد</div>
+          <h3 class="hw-step-title">وفّر منتجاتك</h3>
+          <p class="hw-step-desc">تصفّح أكثر من 500 مورد معتمد من الصين وتركيا والإمارات. نتولى فحص الجودة والتغليف الخاص والشحن لمستودعاتنا. أنت تختار الفائزين — نحن نتولى الباقي.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">500+ مورد معتمد</span>
+            <span class="hw-chip">فحص الجودة مشمول</span>
+            <span class="hw-chip">خيار التغليف الخاص</span>
+            <span class="hw-chip">وفّر حتى 30%</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-source">
+            <div class="hw-ms-product">
+              <div class="hw-ms-img">🎧</div>
+              <div class="hw-ms-info">
+                <div class="hw-ms-name">سماعات لاسلكية برو</div>
+                <div class="hw-ms-origin">الصين · مصنع شنتشن</div>
+              </div>
+              <div class="hw-ms-price">$11.40</div>
+            </div>
+            <div class="hw-ms-qc">✅ اجتاز فحص الجودة · 200 وحدة جاهزة للشحن</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">03</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">🏭 تخزين</div>
+          <h3 class="hw-step-title">نخزّنه جاهزاً للشحن</h3>
+          <p class="hw-step-desc">تصل منتجاتك لمراكز الإنجاز في ليبيا والعراق ولبنان. نختار ونغلف ونصنّف كل طلب — مع تتبع فوري للمخزون في لوحة التحكم.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">3 مراكز إنجاز</span>
+            <span class="hw-chip">تتبع مخزون فوري</span>
+            <span class="hw-chip">شحن في نفس اليوم</span>
+            <span class="hw-chip">$0 رسوم تخزين للبداية</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-wh">
+            <div class="hw-wh-stat"><span class="hw-wh-key">وحدات في المخزون</span><span class="hw-wh-val">284</span></div>
+            <div class="hw-wh-stat"><span class="hw-wh-key">تم شحنها اليوم</span><span class="hw-wh-val">47</span></div>
+            <div class="hw-wh-stat"><span class="hw-wh-key">متوسط وقت الشحن</span><span class="hw-wh-val">3.2 ساعة</span></div>
+            <div class="hw-wh-bar"><div class="hw-wh-fill" style="width:68%"></div></div>
+            <div style="font-size:.68rem;color:#6366F1;margin-top:2px">68% من الطاقة مستخدمة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">04</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">📞 تأكيد</div>
+          <h3 class="hw-step-title">أنت تبيع. نحن نؤكد كل طلب.</h3>
+          <p class="hw-step-desc">شغّل إعلاناتك. تتدفق الطلبات تلقائياً لنظامنا. مركز الاتصال العربي يتواصل مع كل عميل لتأكيد طلبه قبل الشحن — يقلل المرتجعات ويرفع معدل التوصيل.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">مركز اتصال عربي</span>
+            <span class="hw-chip">مزامنة تلقائية للطلبات</span>
+            <span class="hw-chip">معدل تأكيد +94%</span>
+            <span class="hw-chip">مكالمات مسجّلة</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-orders">
+            <div class="hw-ord-row confirmed">
+              <div class="hw-ord-dot g"></div>
+              <span class="hw-ord-id">#ORD-4821</span>
+              <span class="hw-ord-status">✓ مؤكَّد</span>
+              <span class="hw-ord-val">$34</span>
+            </div>
+            <div class="hw-ord-row calling">
+              <div class="hw-ord-dot y"></div>
+              <span class="hw-ord-id">#ORD-4822</span>
+              <span class="hw-ord-status">📞 جارٍ الاتصال...</span>
+              <span class="hw-ord-val">$28</span>
+            </div>
+            <div class="hw-ord-row new">
+              <div class="hw-ord-dot s"></div>
+              <span class="hw-ord-id">#ORD-4823</span>
+              <span class="hw-ord-status">في الانتظار</span>
+              <span class="hw-ord-val">$41</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">05</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">🚚 توصيل</div>
+          <h3 class="hw-step-title">توصيل آخر ميل في MENA</h3>
+          <p class="hw-step-desc">تُشحن الطلبات المؤكدة من أقرب مركز إنجاز. تغطي شبكة شركاء التوصيل جميع المدن الكبرى في ليبيا والعراق ولبنان — مع تتبع مباشر وتحصيل COD عند الباب.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">ليبيا · العراق · لبنان</span>
+            <span class="hw-chip">توصيل 1–3 أيام</span>
+            <span class="hw-chip">تتبع مباشر</span>
+            <span class="hw-chip">COD يُحصَّل عند التوصيل</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-delivery">
+            <div class="hw-dl-header">
+              <span class="hw-dl-title">طلب #ORD-4821</span>
+              <span class="hw-dl-live">● مباشر</span>
+            </div>
+            <div class="hw-dl-route">
+              <div class="hw-dl-stop"><div class="hw-dl-dot done2"></div><span class="hw-dl-stop-name">تم الشحن من المستودع</span><span class="hw-dl-eta">09:14</span></div>
+              <div class="hw-dl-stop"><div class="hw-dl-dot done2"></div><span class="hw-dl-stop-name">في الطريق — شمال طرابلس</span><span class="hw-dl-eta">11:30</span></div>
+              <div class="hw-dl-stop current"><div class="hw-dl-dot now"></div><span class="hw-dl-stop-name">في طريقه للتوصيل</span><span class="hw-dl-eta">ETA 2 ساعة</span></div>
+              <div class="hw-dl-stop"><div class="hw-dl-dot soon"></div><span class="hw-dl-stop-name">تم التوصيل وتحصيل COD</span><span class="hw-dl-eta">—</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="hw-step">
+        <div class="hw-step-num"><div class="hw-step-bubble">06</div></div>
+        <div class="hw-step-content">
+          <div class="hw-step-tag">💰 تحويل</div>
+          <h3 class="hw-step-title">استلم أموالك. كل أسبوع.</h3>
+          <p class="hw-step-desc">تُحوَّل أموال COD المحصّلة لحسابك بجدول أسبوعي ثابت — بالدينار الليبي أو الدينار العراقي أو الليرة اللبنانية. بدون ملاحقة للمدفوعات. بدون مفاجآت بنكية. في موعده دائماً.</p>
+          <div class="hw-step-chips">
+            <span class="hw-chip">جدول أسبوعي ثابت</span>
+            <span class="hw-chip">د.ل · د.ع · ل.ل</span>
+            <span class="hw-chip">معدل الالتزام 99.8%</span>
+            <span class="hw-chip">سجل المدفوعات في اللوحة</span>
+          </div>
+        </div>
+        <div class="hw-step-mock">
+          <div class="hw-mock-payout">
+            <div class="hw-pay-label">مدفوعات هذا الأسبوع</div>
+            <div class="hw-pay-amount" id="hwPayAmt">$0</div>
+            <div class="hw-pay-date">الخميس · تحويل مباشر</div>
+            <div class="hw-pay-breakdown">
+              <div class="hw-pay-row"><span class="hw-pay-rkey">طلبات تم توصيلها</span><span class="hw-pay-rval">142</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">متوسط قيمة الطلب</span><span class="hw-pay-rval">$31.20</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">رسوم المنصة</span><span class="hw-pay-rval" style="color:#EF4444">−$440</span></div>
+              <div class="hw-pay-row"><span class="hw-pay-rkey">صافي المدفوعات</span><span class="hw-pay-rval g">$3,990</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU DON'T NEED -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الميزة</span>
+      <h2 class="title">كل ما نتولاه عنك</h2>
+      <p class="sec-sub">MDM Express يحل محل ست جهات منفصلة. عقد واحد، لوحة تحكم واحدة، نقطة تواصل واحدة.</p>
+    </div>
+    <div class="hw-bento">
+
+      <div class="hw-bc hw-wide hw-dark">
+        <div class="hw-bc-cross">🚀</div>
+        <div class="hw-bc-title" style="color:#fff">ست جهات تتحول لمنصة واحدة</div>
+        <div class="hw-bc-desc">البائع في COD يحتاج عادةً وكيل توريد، وشركة شحن دولي، ومشغّل مستودع، ومركز اتصال، وشركة توصيل، وخدمة تحويل — كلٌّ بعقده وسعره ونقطة فشله.</div>
+        <div class="hw-savings-grid">
+          <div class="hw-saving"><div class="hw-saving-num">6←1</div><div class="hw-saving-label">جهات موحّدة</div></div>
+          <div class="hw-saving"><div class="hw-saving-num">~40%</div><div class="hw-saving-label">تقليل في التكاليف التشغيلية</div></div>
+          <div class="hw-saving"><div class="hw-saving-num">1</div><div class="hw-saving-label">لوحة تحكم لكل شيء</div></div>
+        </div>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">❌</div>
+        <div class="hw-bc-title">لا حاجة لوكيل شحن</div>
+        <div class="hw-bc-desc">نشحن مباشرة من المورد لمستودعاتنا. لا حاجة للتفاوض مع شركات الشحن أو إدارة الجمارك.</div>
+        <span class="hw-bc-tag">تتولاه MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">❌</div>
+        <div class="hw-bc-title">لا حاجة لإيجار مستودع</div>
+        <div class="hw-bc-desc">مخزونك يقيم في مراكز الإنجاز لدينا. بدون إيجار أو موظفين أو معدات — فقط ادفع لكل طلب يُنجز.</div>
+        <span class="hw-bc-tag">تتولاه MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">❌</div>
+        <div class="hw-bc-title">لا حاجة لإعداد مركز اتصال</div>
+        <div class="hw-bc-desc">فريق التأكيد العربي لدينا مدرَّب وجاهز. كل طلب يُؤكَّد قبل الشحن.</div>
+        <span class="hw-bc-tag">تتولاه MDM</span>
+      </div>
+
+      <div class="hw-bc">
+        <div class="hw-bc-cross">❌</div>
+        <div class="hw-bc-title">لا متاعب في التحويلات</div>
+        <div class="hw-bc-desc">نقد COD المحصّل عند التوصيل يُجمع تلقائياً ويُحوَّل لحسابك بالجدول الأسبوعي — دون ملاحقة للمبالغ.</div>
+        <span class="hw-bc-tag">تتولاه MDM</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block lav">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">الأسئلة الشائعة</span>
+      <h2 class="title">أسئلة شائعة</h2>
+    </div>
+    <div class="hw-faq-grid">
+      <div class="hw-faq-list">
+        <div class="hw-faq-item open">
+          <div class="hw-faq-q">كم يستغرق الإعداد؟ <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">من التسجيل لأول طلب حي يستغرق عادةً 48 ساعة. ربط المتجر فوري؛ تهيئة التوريد والتخزين تستغرق 1–2 أيام عمل حسب فئة منتجاتك.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">هل يجب أن أوفّد منتجاتي عبر MDM Express؟ <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">لا. يمكنك إحضار منتجاتك الخاصة لمستودعاتنا. التوريد عبرنا اختياري لكنه موصى به — تحصل على موردين معتمدين وفحص جودة وأسعار أقل بـ 25–35% عادةً.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">ماذا يحدث إذا رفض العميل الطلب عند التوصيل؟ <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">الطلبات المرتجعة تعود لمستودعنا بدون تكلفة إضافية. تُحسَّب عليك فقط محاولة التوصيل. خطوة التأكيد الهاتفي مصممة تحديداً لتقليل حالات الرفض.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">هل يمكنني البيع في أكثر من دولة في نفس الوقت؟ <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">نعم. يمكنك تفعيل ليبيا والعراق ولبنان في آنٍ واحد من لوحة تحكم واحدة. يمكن تقسيم المخزون أو توحيده عبر مراكز الإنجاز حسب حجم مبيعاتك.</div>
+        </div>
+        <div class="hw-faq-item">
+          <div class="hw-faq-q">متى بالضبط أستلم مدفوعاتي الأسبوعية؟ <span class="hw-faq-plus">+</span></div>
+          <div class="hw-faq-a">تُعالَج المدفوعات كل خميس وتصل عادةً لحسابك خلال 24 ساعة. يمكنك الاطلاع على الجدول والتفاصيل الدقيقة في لوحة التحكم قبل إجراء التحويل.</div>
+        </div>
+      </div>
+      <aside class="hw-faq-side">
+        <h3>هل لديك شيء غير واضح؟</h3>
+        <p>فريقنا سعيد بشرح العملية كاملة قبل أن تلتزم بأي شيء.</p>
+        <a href="https://app.mdm.express/en/auth/register" class="hw-faq-contact">تواصل معنا ←</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hw-cta">
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="hw-cta-tag"><span style="display:inline-block;width:7px;height:7px;background:#DC2626;border-radius:50%"></span>جاهز للبدء</div>
+    <h2 class="hw-cta-title">أول بيع لك<br>أقرب مما تتخيل.</h2>
+    <p class="hw-cta-sub">انضم لمئات البائعين في الدفع عند الاستلام في ليبيا والعراق ولبنان الذين يديرون أعمالهم كاملاً على MDM Express.</p>
+    <div class="hw-cta-btns">
+      <a href="https://app.mdm.express/en/auth/register" class="hw-cta-primary">ابدأ مجاناً ←</a>
+      <a href="services.html" class="hw-cta-sec">استكشف الخدمات</a>
+    </div>
+  </div>
+</section>
+
+<script src="ar-shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../animations.js"></script>
+<script>
+/* Hero flow bar */
+setTimeout(function(){var b=document.getElementById('hwFlowFill');if(b)b.style.width='83%';},700);
+
+/* Payout counter */
+setTimeout(function(){
+  var el=document.getElementById('hwPayAmt');if(!el)return;
+  var end=3990,dur=1800,st=null;
+  function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent='$'+Math.round(e*end).toLocaleString();if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+},800);
+
+/* FAQ */
+document.querySelectorAll('.hw-faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=this.parentElement,wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.hw-faq-item').forEach(function(i){i.classList.remove('open')});
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+
+/* GSAP animations */
+(function(){
+  if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined')return;
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.hw-step').forEach(function(step){
+    ScrollTrigger.create({trigger:step,start:'top 85%',once:true,onEnter:function(){
+      gsap.from(step,{opacity:0,y:36,duration:.6,ease:'power3.out'});
+      gsap.from(step.querySelector('.hw-step-mock'),{opacity:0,x:-30,duration:.65,delay:.1,ease:'power3.out'});
+    }});
+  });
+  ScrollTrigger.create({trigger:'.hw-bento',start:'top 85%',once:true,onEnter:function(){
+    gsap.from('.hw-bc',{opacity:0,y:28,duration:.55,stagger:.1,ease:'power3.out'});
+  }});
+  ScrollTrigger.create({trigger:'.hw-faq-grid',start:'top 88%',once:true,onEnter:function(){
+    gsap.from('.hw-faq-item',{opacity:0,y:14,duration:.4,stagger:.08,ease:'power2.out'});
+  }});
+})();
+</script>
+</body>
+</html>

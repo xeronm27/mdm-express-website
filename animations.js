@@ -442,6 +442,24 @@
     }
 
     /* ============================================================
+       25b. HOME PAGE — Six-to-One strip animation
+    ============================================================ */
+    const solSvcs = $$('.sol-svc');
+    const solOne  = document.querySelector('.sol-one');
+    const solSub  = document.querySelector('.sol-sub');
+    if (solSvcs.length) {
+      gsap.set(solSvcs, { opacity: 0, y: 18 });
+      if (solOne) gsap.set([solOne, solSub], { opacity: 0, scale: 0.92 });
+      ScrollTrigger.create({
+        trigger: '.six-one-strip', start: 'top 84%', once: true,
+        onEnter: () => {
+          gsap.to(solSvcs, { opacity: 1, y: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out' });
+          if (solOne) gsap.to([solOne, solSub], { opacity: 1, scale: 1, duration: 0.7, delay: 0.45, stagger: 0.1, ease: 'back.out(1.6)' });
+        },
+      });
+    }
+
+    /* ============================================================
        26. HOME PAGE — Market chips + catalog cards stagger
     ============================================================ */
     const marketChips = $$('.market-chip');
@@ -490,8 +508,8 @@
         }),
       });
     });
-    // Stat counters on platform cards
-    document.querySelectorAll('.psc-num').forEach(el => {
+    // Stat counters — platform cards (.psc-num) and stats accent band (.sab-num)
+    document.querySelectorAll('.psc-num, .sab-num').forEach(el => {
       const target = parseFloat(el.dataset.target || '0');
       const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
@@ -507,6 +525,24 @@
         }),
       });
     });
+    // Stats accent band — fade-up reveal on scroll
+    const sabItems = $$('.sab-item');
+    if (sabItems.length) {
+      gsap.set(sabItems, { opacity: 0, y: 24 });
+      ScrollTrigger.create({
+        trigger: '.stats-accent-band', start: 'top 84%', once: true,
+        onEnter: () => gsap.to(sabItems, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out' }),
+      });
+    }
+    // Testimonial cards — fade-up reveal
+    const testiCards = $$('.testi-card');
+    if (testiCards.length) {
+      gsap.set(testiCards, { opacity: 0, y: 32 });
+      ScrollTrigger.create({
+        trigger: '.testi-grid', start: 'top 84%', once: true,
+        onEnter: () => gsap.to(testiCards, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out' }),
+      });
+    }
 
     /* ============================================================
        28. FEATURES PAGE — fv-cards scroll reveal

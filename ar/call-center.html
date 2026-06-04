@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>مركز الاتصال · MDM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="stylesheet" href="ar-styles.css" />
+<link rel="alternate" hreflang="en" href="https://mdm.express/call-center.html" />
+<link rel="alternate" hreflang="ar" href="https://mdm.express/ar/call-center.html" />
+<style>
+/* RTL overrides for call center page */
+.cc-hero-wrap{flex-direction:row-reverse}
+.cc-flow-track{right:40px;left:auto}
+.cc-call-layout{flex-direction:row-reverse}
+.cc-call-text{text-align:right}
+.cc-bar-fill{transform-origin:right center}
+.cc-flow-progress{transform-origin:right center}
+.faq-grid{grid-template-columns:1fr 260px}
+/* Gauge bars: keep LTR for visual consistency */
+.cc-bar-track{direction:ltr}
+.cc-gauge-wrap{direction:ltr}
+</style>
+</head>
+<body data-page="services">
+
+<!-- HERO -->
+<section class="cc-hero">
+  <div class="cc-hero-glow"></div>
+  <div class="cc-hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap cc-hero-wrap">
+
+    <!-- Left: copy -->
+    <div class="cc-hero-left">
+      <span class="eyebrow cc-eyebrow"><span class="dot"></span>مركز الاتصال</span>
+      <h1 class="cc-h1">محرك تأكيد COD<br>على مدار<br><em class="cc-accent">الساعة.</em></h1>
+      <p class="cc-sub">وكلاؤنا بلغة العميل يتصلون بكل عميل خلال 30 ثانية من تقديم الطلب — يؤكدون، يعالجون الاعتراضات، ويقلصون المرتجعات قبل شحن الصندوق.</p>
+      <div class="cc-hero-metrics">
+        <div class="cc-metric">
+          <div class="cc-metric-num">98%</div>
+          <div class="cc-metric-lab">معدل التأكيد</div>
+        </div>
+        <div class="cc-metric-div"></div>
+        <div class="cc-metric">
+          <div class="cc-metric-num">&lt;30ث</div>
+          <div class="cc-metric-lab">متوسط وقت الرد</div>
+        </div>
+        <div class="cc-metric-div"></div>
+        <div class="cc-metric">
+          <div class="cc-metric-num">24/7</div>
+          <div class="cc-metric-lab">دائماً متاح</div>
+        </div>
+        <div class="cc-metric-div"></div>
+        <div class="cc-metric">
+          <div class="cc-metric-num">3</div>
+          <div class="cc-metric-lab">لغات</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <a href="https://app.mdm.express/en/auth/register" class="btn-primary">ابدأ التأكيد الآن ←</a>
+        <a href="how-it-works.html" class="btn-ghost cc-ghost">كيف يعمل</a>
+      </div>
+    </div>
+
+    <!-- Right: live ops dashboard -->
+    <div class="cc-dashboard" aria-hidden="true">
+
+      <div class="cc-dash-header">
+        <div class="cc-dash-title">
+          <span class="cc-live-dot"></span>
+          <span class="cc-dash-label">عمليات مباشرة</span>
+        </div>
+        <span class="cc-dash-clock mono" id="ccClock">--:--:--</span>
+      </div>
+
+      <!-- Agent list -->
+      <div class="cc-agents">
+        <div class="cc-agent cc-agent-active">
+          <div class="cc-agent-av cc-av-red">ع</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">عائشة م.</div>
+            <div class="cc-agent-status cc-on">في المكالمة</div>
+          </div>
+          <div class="cc-agent-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="cc-agent cc-agent-active">
+          <div class="cc-agent-av cc-av-blue">خ</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">خالد ر.</div>
+            <div class="cc-agent-status cc-on">في المكالمة</div>
+          </div>
+          <div class="cc-agent-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="cc-agent">
+          <div class="cc-agent-av cc-av-green">ف</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">فاطمة ح.</div>
+            <div class="cc-agent-status cc-avail">متاحة</div>
+          </div>
+          <div class="cc-status-pill cc-pill-avail"></div>
+        </div>
+        <div class="cc-agent cc-agent-active">
+          <div class="cc-agent-av cc-av-purple">ع</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">عمر س.</div>
+            <div class="cc-agent-status cc-on">في المكالمة</div>
+          </div>
+          <div class="cc-agent-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="cc-agent">
+          <div class="cc-agent-av cc-av-amber">ن</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">نور أ.</div>
+            <div class="cc-agent-status cc-wrap">إنهاء المكالمة</div>
+          </div>
+          <div class="cc-status-pill cc-pill-wrap"></div>
+        </div>
+        <div class="cc-agent">
+          <div class="cc-agent-av cc-av-green">س</div>
+          <div class="cc-agent-info">
+            <div class="cc-agent-name">سارة ك.</div>
+            <div class="cc-agent-status cc-avail">متاحة</div>
+          </div>
+          <div class="cc-status-pill cc-pill-avail"></div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="cc-dash-stats">
+        <div class="cc-dstat">
+          <div class="cc-dstat-num" id="ccCallCount">247</div>
+          <div class="cc-dstat-lab">مكالمات اليوم</div>
+        </div>
+        <div class="cc-dstat">
+          <div class="cc-dstat-num">98.2%</div>
+          <div class="cc-dstat-lab">معدل التأكيد</div>
+        </div>
+        <div class="cc-dstat">
+          <div class="cc-dstat-num">4</div>
+          <div class="cc-dstat-lab">نشط الآن</div>
+        </div>
+      </div>
+
+      <!-- Incoming call toast -->
+      <div class="cc-incoming" id="ccIncoming">
+        <div class="cc-inc-ring">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="cc-inc-info">
+          <div class="cc-inc-title">طلب جديد وارد</div>
+          <div class="cc-inc-num mono">#٥,٨٤٧ · طرابلس</div>
+        </div>
+        <div class="cc-inc-badge">تأكيد</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- 5-STEP CALL FLOW -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">العملية</span>
+        <h2 class="title">كل طلب يُؤكَّد في 5 خطوات</h2>
+        <p class="sec-sub">من الدفع حتى تأكيد الشحن — يتولى الوكلاء الدورة الكاملة حتى لا تحتاج لالتقاط الهاتف.</p>
+      </div>
+      <div class="cc-flow">
+        <div class="cc-flow-track" aria-hidden="true">
+          <div class="cc-flow-progress"></div>
+        </div>
+        <div class="cc-step">
+          <div class="cc-step-node">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div class="cc-step-body">
+            <div class="cc-step-num mono">01</div>
+            <h4 class="cc-step-title">تقديم الطلب</h4>
+            <p class="cc-step-desc">يُقدّم العميل طلب الدفع عند الاستلام. تستلمه MDM فوراً.</p>
+          </div>
+        </div>
+        <div class="cc-step">
+          <div class="cc-step-node">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="cc-step-body">
+            <div class="cc-step-num mono">02</div>
+            <h4 class="cc-step-title">تعيين الوكيل</h4>
+            <p class="cc-step-desc">يُوجّه النظام الطلب للوكيل الناطق باللغة المناسبة خلال ثوانٍ.</p>
+          </div>
+        </div>
+        <div class="cc-step">
+          <div class="cc-step-node">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="cc-step-body">
+            <div class="cc-step-num mono">03</div>
+            <h4 class="cc-step-title">الوكيل يتصل</h4>
+            <p class="cc-step-desc">يتصل الوكيل ويتحقق من العنوان والتفاصيل ويعالج أي اعتراضات.</p>
+          </div>
+        </div>
+        <div class="cc-step">
+          <div class="cc-step-node">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="cc-step-body">
+            <div class="cc-step-num mono">04</div>
+            <h4 class="cc-step-title">تأكيد الطلب</h4>
+            <p class="cc-step-desc">يؤكد العميل شفهياً. تُحدَّث لوحة التحكم فوراً.</p>
+          </div>
+        </div>
+        <div class="cc-step">
+          <div class="cc-step-node">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="cc-step-body">
+            <div class="cc-step-num mono">05</div>
+            <h4 class="cc-step-title">الشحن</h4>
+            <p class="cc-step-desc">المستودع يختار ويغلف ويشحن. إيراداتك مضمونة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE CALL MOCKUP -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="cc-call-layout">
+
+        <div class="cc-call-text">
+          <span class="sec-tag">ما يحدث في كل مكالمة</span>
+          <h2 class="title" style="margin-top:14px;text-align:right;max-width:420px">سكريبت دقيق. أقل من 3 دقائق. في كل مرة.</h2>
+          <p style="color:var(--muted);line-height:1.85;margin:16px 0 28px;font-size:16px">يؤكد الوكلاء تفاصيل الطلب ويعالجون الاعتراضات ويُغلقون كل مكالمة بالعربية أو الإنجليزية أو الفرنسية — كل شيء مسجّل في لوحة التحكم.</p>
+          <div class="cc-bullets">
+            <div class="cc-bullet">
+              <div class="cc-bullet-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>التحقق من الطلب والعنوان في كل مكالمة</span>
+            </div>
+            <div class="cc-bullet">
+              <div class="cc-bullet-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>معالجة الاعتراضات ومحاولات البيع الإضافي</span>
+            </div>
+            <div class="cc-bullet">
+              <div class="cc-bullet-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>تحديث حالة الطلب فورياً في لوحة التحكم</span>
+            </div>
+            <div class="cc-bullet">
+              <div class="cc-bullet-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <span>تسعير لكل طلب مؤكَّد — بدون رسوم ثابتة</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated call UI card -->
+        <div class="cc-phone-card" aria-hidden="true">
+          <div class="cc-phone-header">
+            <div class="cc-phone-agent">
+              <div class="cc-phone-av">ع</div>
+              <div>
+                <div class="cc-phone-name">عائشة م.</div>
+                <div class="cc-phone-role mono">MDM Agent · AR / EN</div>
+              </div>
+            </div>
+            <div class="cc-phone-timer mono" id="ccTimer">02:14</div>
+          </div>
+          <div class="cc-phone-waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="cc-chat">
+            <div class="cc-bubble cc-bubble-agent cc-b1">
+              مرحباً، هل تؤكد طلبك رقم ٥٨٤٧؟
+            </div>
+            <div class="cc-bubble cc-bubble-cust cc-b2">
+              نعم، أؤكد الطلب.
+            </div>
+            <div class="cc-bubble cc-bubble-agent cc-b3">
+              تم تأكيد طلب رقم ٥,٨٤٧. الشحن إلى طرابلس — التوصيل المتوقع يوم الخميس.
+            </div>
+            <div class="cc-confirmed cc-b4">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              تم تأكيد الطلب
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">النتائج</span>
+        <h2 class="title">26 نقطة فوق متوسط السوق</h2>
+        <p class="sec-sub">وكلاء MDM Express يتفوقون باستمرار على متوسط سوق COD في MENA — الفرق بين متجر رابح ومتجر يكافح.</p>
+      </div>
+      <div class="cc-results">
+
+        <div class="cc-gauge-wrap">
+          <svg class="cc-gauge-svg" viewBox="0 0 220 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20 120 A 90 90 0 0 1 200 120" stroke="var(--line)" stroke-width="14" stroke-linecap="round"/>
+            <path class="cc-gauge-fill" d="M 20 120 A 90 90 0 0 1 200 120" stroke="var(--accent)" stroke-width="14" stroke-linecap="round" stroke-dasharray="282.7" stroke-dashoffset="282.7" fill="none"/>
+          </svg>
+          <div class="cc-gauge-val">
+            <div class="cc-gauge-num" id="ccGaugeNum">0%</div>
+            <div class="cc-gauge-lab">معدل التأكيد</div>
+          </div>
+        </div>
+
+        <div class="cc-compare">
+          <h3 class="cc-compare-title">مقارنة معدل التأكيد</h3>
+          <div class="cc-bar-row">
+            <div class="cc-bar-label">
+              <span class="cc-bar-name">MDM Express</span>
+              <span class="cc-bar-val">98%</span>
+            </div>
+            <div class="cc-bar-track">
+              <div class="cc-bar-fill cc-fill-accent" data-target="0.98"></div>
+            </div>
+          </div>
+          <div class="cc-bar-row">
+            <div class="cc-bar-label">
+              <span class="cc-bar-name" style="color:var(--muted)">متوسط السوق</span>
+              <span class="cc-bar-val" style="color:var(--muted)">71%</span>
+            </div>
+            <div class="cc-bar-track">
+              <div class="cc-bar-fill cc-fill-muted" data-target="0.71"></div>
+            </div>
+          </div>
+          <div class="cc-bar-row">
+            <div class="cc-bar-label">
+              <span class="cc-bar-name" style="color:var(--muted)">بدون مركز اتصال</span>
+              <span class="cc-bar-val" style="color:var(--muted)">47%</span>
+            </div>
+            <div class="cc-bar-track">
+              <div class="cc-bar-fill cc-fill-line" data-target="0.47"></div>
+            </div>
+          </div>
+          <p class="cc-compare-note">بناءً على بيانات سوق COD في MENA، 2024</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">اللغات</span>
+        <h2 class="title">أصوات محلية في كل سوق</h2>
+        <p class="sec-sub">العملاء يؤكدون أسرع حين يتحدث الوكلاء بلغتهم. فريقنا يغطي MENA وشمال أفريقيا كاملاً.</p>
+      </div>
+      <div class="cc-langs">
+        <div class="cc-lang-card">
+          <div class="cc-lang-flag">🇸🇦</div>
+          <div class="cc-lang-name">العربية</div>
+          <div class="cc-lang-markets">ليبيا · العراق · الخليج</div>
+          <div class="cc-lang-sample" lang="ar" dir="rtl">مرحباً، أؤكد طلبك رقم ٥٨٤٧</div>
+          <div class="cc-typing"><span></span><span></span><span></span></div>
+        </div>
+        <div class="cc-lang-card cc-lang-featured">
+          <div class="cc-lang-flag">🇬🇧</div>
+          <div class="cc-lang-name">الإنجليزية</div>
+          <div class="cc-lang-markets">العراق · دولي</div>
+          <div class="cc-lang-sample">Your order #5,847 is confirmed and ships Thursday.</div>
+          <div class="cc-typing"><span></span><span></span><span></span></div>
+        </div>
+        <div class="cc-lang-card">
+          <div class="cc-lang-flag">🇲🇦</div>
+          <div class="cc-lang-name">الفرنسية</div>
+          <div class="cc-lang-markets">شمال أفريقيا · المنطقة الفرانكوفونية</div>
+          <div class="cc-lang-sample" lang="fr">Votre commande est confirmée, livraison jeudi.</div>
+          <div class="cc-typing"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block lav">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">الأسئلة الشائعة</span>
+        <h2 class="title">أسئلة شائعة</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-list">
+          <div class="faq-item open">
+            <div class="faq-q">كيف يُسعَّر الخدمة؟ <span class="pl">+</span></div>
+            <div class="faq-a">تسعير لكل طلب مؤكَّد — تدفع فقط عند نجاح الوكيل في تأكيد طلب COD. بدون رسوم ثابتة ولا تكاليف إعداد ولا رسوم خفية.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">كم سرعة رد الوكلاء على الطلبات الجديدة؟ <span class="pl">+</span></div>
+            <div class="faq-a">متوسط وقت الرد أقل من 30 ثانية من تقديم الطلب. تُصطف الطلبات وتُوجَّه فورياً للوكيل التالي المتاح.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">ما اللغات التي يتحدثها وكلاؤكم؟ <span class="pl">+</span></div>
+            <div class="faq-a">العربية (اللهجة الخليجية)، الإنجليزية، والفرنسية. يُطابَق لغة الوكيل تلقائياً مع منطقة شحن العميل.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">هل يمكنني الاستماع لتسجيلات المكالمات؟ <span class="pl">+</span></div>
+            <div class="faq-a">نعم — جميع المكالمات مسجّلة ومتاحة في لوحة تحكم البائع لمراجعة الجودة والتدريب وحل النزاعات.</div>
+          </div>
+        </div>
+        <aside class="faq-side">
+          <h3>هل لديك مزيد من الأسئلة؟</h3>
+          <p>فريقنا يرد خلال يوم عمل واحد.</p>
+          <a href="https://app.mdm.express/en/auth/register" class="btn-primary" style="display:inline-block">تواصل معنا</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="ar-shared.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../animations.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Live clock */
+  function tick(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const el = document.getElementById('ccClock');
+    if(el) el.textContent = pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* Call timer */
+  let secs = 134;
+  setInterval(()=>{
+    secs++;
+    const el = document.getElementById('ccTimer');
+    if(el) el.textContent = String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
+  }, 1000);
+
+  /* Calls ticker */
+  let calls = 247;
+  setInterval(()=>{
+    if(Math.random() > 0.65){
+      calls++;
+      const el = document.getElementById('ccCallCount');
+      if(!el) return;
+      el.textContent = calls;
+      gsap.fromTo(el, { color:'var(--accent)' }, { color:'#F0F0F8', duration:0.8, ease:'power2.out' });
+    }
+  }, 3800);
+
+  /* Incoming toast */
+  const toast = document.getElementById('ccIncoming');
+  if(toast){
+    function showToast(){
+      toast.classList.add('cc-inc-show');
+      setTimeout(()=> toast.classList.remove('cc-inc-show'), 3600);
+    }
+    setTimeout(showToast, 1800);
+    setInterval(showToast, 7000);
+  }
+
+  /* Hero entrance */
+  const heroChildren = document.querySelectorAll('.cc-hero-left > *');
+  gsap.from(heroChildren, { opacity:0, y:36, duration:0.7, stagger:0.1, ease:'power3.out', delay:0.15 });
+  gsap.from('.cc-dashboard', { opacity:0, x:-48, duration:0.9, ease:'power3.out', delay:0.4 });
+
+  /* Flow steps */
+  gsap.from('.cc-step', {
+    scrollTrigger:{ trigger:'.cc-flow', start:'top 78%' },
+    opacity:0, y:40, duration:0.55, stagger:0.12, ease:'power2.out'
+  });
+  gsap.to('.cc-flow-progress', {
+    scrollTrigger:{ trigger:'.cc-flow', start:'top 78%', end:'bottom 55%', scrub:1.2 },
+    scaleX:1, transformOrigin:'right center', ease:'none'
+  });
+
+  /* Chat bubbles */
+  gsap.set(['.cc-b1','.cc-b2','.cc-b3','.cc-b4'], { opacity:0, y:14 });
+  ScrollTrigger.create({
+    trigger:'.cc-phone-card', start:'top 72%', once:true,
+    onEnter:()=>{
+      gsap.to(['.cc-b1','.cc-b2','.cc-b3','.cc-b4'], {
+        opacity:1, y:0, duration:0.5, stagger:0.75, ease:'power2.out'
+      });
+    }
+  });
+
+  /* Gauge */
+  ScrollTrigger.create({
+    trigger:'.cc-gauge-wrap', start:'top 78%', once:true,
+    onEnter:()=>{
+      const fill = document.querySelector('.cc-gauge-fill');
+      const numEl = document.getElementById('ccGaugeNum');
+      const total = 282.7;
+      gsap.to(fill, { strokeDashoffset: total*(1-0.98), duration:1.8, ease:'power2.out' });
+      const obj = { v:0 };
+      gsap.to(obj, { v:98, duration:1.8, ease:'power2.out', onUpdate(){ numEl.textContent = Math.round(obj.v)+'%'; } });
+    }
+  });
+
+  /* Comparison bars */
+  gsap.set('.cc-bar-fill', { scaleX:0, transformOrigin:'left center' });
+  ScrollTrigger.create({
+    trigger:'.cc-compare', start:'top 78%', once:true,
+    onEnter:()=>{
+      document.querySelectorAll('.cc-bar-fill').forEach((bar,i)=>{
+        const t = parseFloat(bar.dataset.target);
+        gsap.to(bar, { scaleX:t, duration:1.3, delay:i*0.18, ease:'power2.out' });
+      });
+    }
+  });
+
+  /* Language cards */
+  gsap.from('.cc-lang-card', {
+    scrollTrigger:{ trigger:'.cc-langs', start:'top 78%' },
+    opacity:0, y:44, scale:0.96, duration:0.6, stagger:0.14, ease:'power2.out'
+  });
+
+  /* Section heads */
+  document.querySelectorAll('.sec-head').forEach(el=>{
+    gsap.from(el, {
+      scrollTrigger:{ trigger:el, start:'top 82%' },
+      opacity:0, y:28, duration:0.6, ease:'power2.out'
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
