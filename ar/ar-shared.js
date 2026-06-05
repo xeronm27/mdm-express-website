@@ -328,23 +328,6 @@
     hero.after(trustWrap.firstElementChild);
   }
 
-  /* ── INJECT: stats band & testimonials (home only) ─────────────────── */
-  if (active === 'home') {
-    const main = document.querySelector('main');
-    if (main) {
-      const statsWrap = document.createElement('div');
-      statsWrap.innerHTML = statsHtml;
-      main.prepend(statsWrap.firstElementChild);
-
-      const testiWrap = document.createElement('div');
-      testiWrap.innerHTML = testiHtml;
-      // Insert before the last section (FAQ)
-      const sections = main.querySelectorAll('section');
-      const lastSec = sections[sections.length - 1];
-      if (lastSec) main.insertBefore(testiWrap.firstElementChild, lastSec);
-    }
-  }
-
   /* ── INJECT: CTA + footer ───────────────────────────────────────────── */
   if (!document.body.dataset.noCta) {
     const ctaWrap = document.createElement('div');
