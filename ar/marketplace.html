@@ -83,7 +83,7 @@
 .mp-steps-section{background:#fff;padding:100px 0}
 .mp-steps{margin-top:56px;position:relative}
 .mp-steps::before{content:'';position:absolute;right:31px;left:auto;top:40px;bottom:40px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.2) 10%,rgba(220,38,38,.2) 90%,transparent)}
-.mp-step{display:grid;grid-template-columns:1fr 1fr 64px;gap:48px;align-items:center;padding:52px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.mp-step{display:grid;grid-template-columns:64px 1fr 1fr;gap:48px;align-items:center;padding:52px 0;border-bottom:1px solid rgba(0,0,0,.05)}
 .mp-step:last-child{border-bottom:none}
 .mp-step-circle{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--ink);position:relative;z-index:1;transition:border-color .25s,background .25s;font-family:'JetBrains Mono',monospace;flex-shrink:0}
 .mp-step:hover .mp-step-circle{border-color:var(--accent);background:var(--accent-soft)}
@@ -275,6 +275,12 @@
 
       <!-- STEP 1 -->
       <div class="mp-step">
+        <div class="mp-step-circle">01</div>
+        <div>
+          <div class="mp-step-label">تصفح</div>
+          <h3 class="mp-step-title">اختر منتجاً وأرسل طلباً</h3>
+          <p class="mp-step-desc">تصفح مئات المنتجات من موردين ليبيين محليين معتمدين. اختر ما تريد بيعه، حدد الكمية (الحد الأدنى 50 قطعة)، وأرسل طلب توريد في أقل من دقيقتين.</p>
+        </div>
         <div>
           <div class="mp-step-card">
             <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
@@ -296,16 +302,16 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="mp-step-label">تصفح</div>
-          <h3 class="mp-step-title">اختر منتجاً وأرسل طلباً</h3>
-          <p class="mp-step-desc">تصفح مئات المنتجات من موردين ليبيين محليين معتمدين. اختر ما تريد بيعه، حدد الكمية (الحد الأدنى 50 قطعة)، وأرسل طلب توريد في أقل من دقيقتين.</p>
-        </div>
-        <div class="mp-step-circle">01</div>
       </div>
 
       <!-- STEP 2 -->
       <div class="mp-step">
+        <div class="mp-step-circle">02</div>
+        <div>
+          <div class="mp-step-label">توريد</div>
+          <h3 class="mp-step-title">MDM تتواصل مع المورد نيابةً عنك</h3>
+          <p class="mp-step-desc">يتواصل فريقنا مع المورد المحلي، يتحقق من توافر المخزون، يؤكد السعر النهائي، ويرتب الاستلام — كل ذلك في غضون ساعات. لا تحتاج التحدث مع أحد.</p>
+        </div>
         <div>
           <div class="mp-step-card">
             <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
@@ -318,16 +324,16 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="mp-step-label">توريد</div>
-          <h3 class="mp-step-title">MDM تتواصل مع المورد نيابةً عنك</h3>
-          <p class="mp-step-desc">يتواصل فريقنا مع المورد المحلي، يتحقق من توافر المخزون، يؤكد السعر النهائي، ويرتب الاستلام — كل ذلك في غضون ساعات. لا تحتاج التحدث مع أحد.</p>
-        </div>
-        <div class="mp-step-circle">02</div>
       </div>
 
       <!-- STEP 3 -->
       <div class="mp-step">
+        <div class="mp-step-circle">03</div>
+        <div>
+          <div class="mp-step-label">توصيل</div>
+          <h3 class="mp-step-title">المخزون بين يديك. ابدأ البيع.</h3>
+          <p class="mp-step-desc">مخزون تم فحص جودته يُسلَّم مباشرةً إليك خلال 24–48 ساعة من التأكيد. ادفع لـ MDM بعد استلام البضاعة — ثم ابدأ البيع عبر قنواتك فوراً.</p>
+        </div>
         <div>
           <div class="mp-step-card">
             <div class="mp-step-card-bar"><span></span><span></span><span></span></div>
@@ -344,12 +350,6 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="mp-step-label">توصيل</div>
-          <h3 class="mp-step-title">المخزون بين يديك. ابدأ البيع.</h3>
-          <p class="mp-step-desc">مخزون تم فحص جودته يُسلَّم مباشرةً إليك خلال 24–48 ساعة من التأكيد. ادفع لـ MDM بعد استلام البضاعة — ثم ابدأ البيع عبر قنواتك فوراً.</p>
-        </div>
-        <div class="mp-step-circle">03</div>
       </div>
 
     </div>
