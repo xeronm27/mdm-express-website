@@ -2,9 +2,16 @@
 (function(){
   const active = document.body.dataset.page || '';
 
-  // Detect current page for language switcher (link back to English)
-  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-  const enHref = '../' + (currentFile === '' ? 'index.html' : currentFile);
+  // Detect current page for language switcher (link back to English).
+  // With cleanUrls, ar/index.html is at /ar (pop = 'ar', no extension).
+  // ar/affiliate.html is at /ar/affiliate (pop = 'affiliate', no extension).
+  // We add .html if there's no extension; index page maps to index.html.
+  (function(){})(); // noop — enHref computed below
+  const _pathParts = window.location.pathname.split('/').filter(Boolean);
+  const _last = _pathParts[_pathParts.length - 1] || '';
+  const _isIndexPage = _last === 'ar' || _last === '' || _last === 'index.html';
+  const _file = _isIndexPage ? 'index.html' : (_last.includes('.') ? _last : _last + '.html');
+  const enHref = '../' + _file;
 
   /* ── NAV ITEMS ─────────────────────────────────────────────────────── */
   const NAV_ITEMS = [
