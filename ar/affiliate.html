@@ -30,8 +30,8 @@
 /* Mock wrap */
 .ds-hero-mock-wrap{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0}
 .ds-mock-notif{position:absolute;background:rgba(20,20,20,.95);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 16px 40px rgba(0,0,0,.6);backdrop-filter:blur(12px);white-space:nowrap;z-index:10;direction:ltr}
-.ds-mock-notif.top{top:0;right:-20px;animation:dsFloat1 4s ease-in-out infinite}
-.ds-mock-notif.bottom{bottom:0;left:-20px;animation:dsFloat2 4s ease-in-out infinite 1.2s}
+.ds-mock-notif.top{top:0;left:-20px;right:auto;animation:dsFloat1 4s ease-in-out infinite}
+.ds-mock-notif.bottom{bottom:0;right:-20px;left:auto;animation:dsFloat2 4s ease-in-out infinite 1.2s}
 @keyframes dsFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes dsFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 .ds-mock-notif-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
@@ -72,7 +72,7 @@
 /* Steps — RTL */
 .ds-steps{margin-top:56px;position:relative}
 .ds-steps::before{content:'';position:absolute;right:31px;left:auto;top:40px;bottom:40px;width:2px;background:linear-gradient(180deg,transparent,rgba(220,38,38,.2) 10%,rgba(220,38,38,.2) 90%,transparent)}
-.ds-step{display:grid;grid-template-columns:1fr 1fr 64px;gap:48px;align-items:center;padding:48px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.ds-step{display:grid;grid-template-columns:64px 1fr 1fr;gap:48px;align-items:center;padding:48px 0;border-bottom:1px solid rgba(0,0,0,.06)}
 .ds-step:last-child{border-bottom:none}
 .ds-step-num{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--ink);position:relative;z-index:1;transition:border-color .2s,background .2s;flex-shrink:0}
 .ds-step:hover .ds-step-num{border-color:var(--accent);background:var(--accent-soft)}
@@ -267,6 +267,12 @@
       <div class="ds-steps">
 
         <div class="ds-step">
+          <div class="ds-step-num">01</div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">طلب</div>
+            <h3 class="ds-step-title">اختر منتجاً وأرسل طلباً</h3>
+            <p class="ds-step-desc">تصفح كتالوجنا من +10,000 منتج جاهز للبيع مخزَّن في مستودعنا في ليبيا. اختر ما تريد بيعه وأرسل طلب دروبشيبينج — يستغرق أقل من دقيقتين.</p>
+          </div>
           <div>
             <div class="ds-card">
               <div class="ds-card-bar"><span></span><span></span><span></span></div>
@@ -288,15 +294,15 @@
               </div>
             </div>
           </div>
-          <div class="ds-step-text">
-            <div class="ds-step-tag">طلب</div>
-            <h3 class="ds-step-title">اختر منتجاً وأرسل طلباً</h3>
-            <p class="ds-step-desc">تصفح كتالوجنا من +10,000 منتج جاهز للبيع مخزَّن في مستودعنا في ليبيا. اختر ما تريد بيعه وأرسل طلب دروبشيبينج — يستغرق أقل من دقيقتين.</p>
-          </div>
-          <div class="ds-step-num">01</div>
         </div>
 
         <div class="ds-step">
+          <div class="ds-step-num">02</div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">التسعير</div>
+            <h3 class="ds-step-title">حدد سعر البيع بنفسك</h3>
+            <p class="ds-step-desc">أنت تقرر السعر. نعرض لك تكلفة المنتج وجميع رسوم الخدمة مسبقاً لتعرف ربحك الدقيق قبل التأكيد. شفافية كاملة، تحكم كامل.</p>
+          </div>
           <div>
             <div class="ds-card">
               <div class="ds-card-bar"><span></span><span></span><span></span></div>
@@ -309,15 +315,15 @@
               </div>
             </div>
           </div>
-          <div class="ds-step-text">
-            <div class="ds-step-tag">التسعير</div>
-            <h3 class="ds-step-title">حدد سعر البيع بنفسك</h3>
-            <p class="ds-step-desc">أنت تقرر السعر. نعرض لك تكلفة المنتج وجميع رسوم الخدمة مسبقاً لتعرف ربحك الدقيق قبل التأكيد. شفافية كاملة، تحكم كامل.</p>
-          </div>
-          <div class="ds-step-num">02</div>
         </div>
 
         <div class="ds-step">
+          <div class="ds-step-num">03</div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">وفاء بالطلب</div>
+            <h3 class="ds-step-title">نتولى كل شيء حتى التسليم</h3>
+            <p class="ds-step-desc">فريقنا يجهز الطلب من مستودعنا في ليبيا، يتصل بالعميل للتأكيد، ويشحنه بتوصيل في اليوم التالي. لا تلمس اللوجستيات — ولا مرة واحدة.</p>
+          </div>
           <div>
             <div class="ds-card">
               <div class="ds-card-bar"><span></span><span></span><span></span></div>
@@ -329,15 +335,15 @@
               </div>
             </div>
           </div>
-          <div class="ds-step-text">
-            <div class="ds-step-tag">وفاء بالطلب</div>
-            <h3 class="ds-step-title">نتولى كل شيء حتى التسليم</h3>
-            <p class="ds-step-desc">فريقنا يجهز الطلب من مستودعنا في ليبيا، يتصل بالعميل للتأكيد، ويشحنه بتوصيل في اليوم التالي. لا تلمس اللوجستيات — ولا مرة واحدة.</p>
-          </div>
-          <div class="ds-step-num">03</div>
         </div>
 
         <div class="ds-step">
+          <div class="ds-step-num">04</div>
+          <div class="ds-step-text">
+            <div class="ds-step-tag">الدفع</div>
+            <h3 class="ds-step-title">ادفع لـ MDM. واحتفظ بربحك.</h3>
+            <p class="ds-step-desc">بمجرد تسليم الطلب وتحصيل النقد، تدفع لـ MDM تكلفة المنتج وجميع رسوم الخدمة. كل ما فوق ذلك لك — يُصرف أسبوعياً بجدول ثابت.</p>
+          </div>
           <div>
             <div class="ds-card" style="background:var(--ink);">
               <div class="ds-card-bar"><span style="background:rgba(255,255,255,.15);"></span><span style="background:rgba(255,255,255,.15);"></span><span style="background:rgba(255,255,255,.15);"></span></div>
@@ -350,12 +356,6 @@
               </div>
             </div>
           </div>
-          <div class="ds-step-text">
-            <div class="ds-step-tag">الدفع</div>
-            <h3 class="ds-step-title">ادفع لـ MDM. واحتفظ بربحك.</h3>
-            <p class="ds-step-desc">بمجرد تسليم الطلب وتحصيل النقد، تدفع لـ MDM تكلفة المنتج وجميع رسوم الخدمة. كل ما فوق ذلك لك — يُصرف أسبوعياً بجدول ثابت.</p>
-          </div>
-          <div class="ds-step-num">04</div>
         </div>
 
       </div>
