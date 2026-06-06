@@ -58,7 +58,12 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
 .mdr-services-list a { padding-right: 16px; padding-left: 8px; }
 
 /* ── 4. Trust Strip — reverse marquee ──────────────────────────────────── */
-.trust-marquee { animation-direction: reverse; }
+/* direction:ltr keeps flex items in HTML order so the -50% loop works;
+   animation-direction:reverse makes it scroll right-to-left for RTL */
+.trust-marquee {
+  direction: ltr;
+  animation-direction: reverse;
+}
 .trust-item { flex-direction: row-reverse; }
 
 /* ── 5. Hero / Eyebrow ─────────────────────────────────────────────────── */
