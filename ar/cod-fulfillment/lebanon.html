@@ -63,7 +63,7 @@
       </div>
 
       <!-- STATS ROW -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:720px">
+      <div class="stats-row">
         <div class="stat-pill">
           <div class="stat-num">60–80%</div>
           <div class="stat-label">معدل التوصيل</div>
@@ -164,20 +164,20 @@
         <p class="sec-sub">MDM Express يوصّل في كل أنحاء لبنان — من بيروت إلى البقاع والشمال.</p>
       </div>
       <div class="cities-grid">
-        <div class="city-chip">🏙️ بيروت</div>
-        <div class="city-chip">🏙️ طرابلس</div>
-        <div class="city-chip">🏙️ صيدا</div>
-        <div class="city-chip">🏙️ صور</div>
-        <div class="city-chip">🏙️ زحلة</div>
-        <div class="city-chip">🏙️ بعلبك</div>
-        <div class="city-chip">🏙️ جونيه</div>
-        <div class="city-chip">🏙️ البترون</div>
-        <div class="city-chip">🏙️ جبيل</div>
-        <div class="city-chip">🏙️ عاليه</div>
-        <div class="city-chip">🏙️ النبطية</div>
-        <div class="city-chip">🏙️ بنت جبيل</div>
-        <div class="city-chip">🏙️ هرمل</div>
-        <div class="city-chip">+ جميع المدن</div>
+        <div class="city-chip">بيروت</div>
+        <div class="city-chip">طرابلس</div>
+        <div class="city-chip">صيدا</div>
+        <div class="city-chip">صور</div>
+        <div class="city-chip">زحلة</div>
+        <div class="city-chip">بعلبك</div>
+        <div class="city-chip">جونيه</div>
+        <div class="city-chip">البترون</div>
+        <div class="city-chip">جبيل</div>
+        <div class="city-chip">عاليه</div>
+        <div class="city-chip">النبطية</div>
+        <div class="city-chip">بنت جبيل</div>
+        <div class="city-chip">هرمل</div>
+        <div class="city-chip all">+ جميع المدن</div>
       </div>
     </div>
   </section>
@@ -309,23 +309,105 @@
 </main>
 <script src="/ar/ar-shared.js"></script>
 <style>
-.stat-pill{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:20px;text-align:center}
-.stat-num{font-size:1.6rem;font-weight:700;color:var(--accent,#6c63ff);margin-bottom:4px}
-.stat-label{font-size:13px;color:var(--text-muted,#888)}
+:root{--text-muted:var(--muted,#6B6B78)}
+/* ── Hero ── */
+.btn-outline{padding:14px 22px;border-radius:999px;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s,border-color .2s}
+.btn-outline:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.45)}
+.hero-title{font-size:clamp(38px,5.8vw,68px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#fff;margin:0 0 20px}
+.hero-title .highlight{color:var(--accent)}
+.hero-sub{font-size:clamp(16px,2.2vw,20px);color:rgba(255,255,255,.82);max-width:600px;margin:0 0 32px;line-height:1.65}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,14,18,.92) 0%,rgba(14,14,18,.7) 100%);pointer-events:none}
+/* ── Stats row ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;max-width:720px}
+.stat-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:20px 16px;text-align:center;backdrop-filter:blur(8px)}
+.stat-num{font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+.stat-label{font-size:13px;color:rgba(255,255,255,.65)}
+/* ── Section cards ── */
+.feat-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 24px;transition:box-shadow .25s,transform .25s}
+.feat-card:hover{box-shadow:0 8px 28px -8px rgba(0,0,0,.12);transform:translateY(-3px)}
+.feat-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,0,19,.06);border:1px solid rgba(255,0,19,.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.feat-grid{display:grid;gap:20px}
+.step-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 24px;transition:box-shadow .25s,transform .25s}
+.step-card:hover{box-shadow:0 8px 28px -8px rgba(0,0,0,.12);transform:translateY(-3px)}
 .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.step-card{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:24px}
-.step-num{width:36px;height:36px;border-radius:50%;background:var(--accent,#6c63ff);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.step-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
-.step-card p{font-size:13.5px;color:var(--text-muted,#888);line-height:1.8}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 6px 16px -4px rgba(255,0,19,.4)}
+.step-card h3{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.step-card p{font-size:13.5px;color:var(--muted);line-height:1.8}
+/* ── Cities ── */
 .cities-grid{display:flex;flex-wrap:wrap;gap:10px}
-.city-chip{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:8px;padding:8px 16px;font-size:14px;font-weight:500}
-.cite-block{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:10px;padding:16px 20px;margin-bottom:12px}
-.cite-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#6c63ff);margin-bottom:8px}
-.cite-block code{font-size:13px;color:var(--text-muted,#aaa);line-height:1.7;display:block;direction:ltr;text-align:left}
-.country-card{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:16px;padding:32px 40px;text-align:center;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
-.country-card:hover{border-color:var(--accent,#6c63ff);transform:translateY(-3px)}
-.country-card h3{font-size:1.2rem;font-weight:700;margin:10px 0 6px}
-.country-card p{font-size:13px;color:var(--text-muted,#888)}
+.city-chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:14px;font-weight:500;cursor:default;transition:border-color .2s,color .2s,transform .2s;display:inline-flex;align-items:center;gap:7px}
+.city-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.city-chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.city-chip.all{background:var(--accent);border-color:var(--accent);color:#fff}
+.city-chip.all::before{background:#fff}
+/* ── Cite blocks ── */
+.cite-block{background:#F8F8FC;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:14px}
+.cite-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cite-block code{font-size:13px;color:var(--muted);line-height:1.7;display:block;direction:ltr;text-align:left}
+/* ── Country cards ── */
+.country-card{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:32px 40px;text-align:center;text-decoration:none;color:inherit;transition:border-color .25s,transform .25s,box-shadow .25s;display:block}
+.country-card:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 12px 32px -8px rgba(255,0,19,.15)}
+.country-card h3{font-size:1.2rem;font-weight:700;margin:10px 0 6px;color:var(--ink)}
+.country-card p{font-size:13px;color:var(--muted)}
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{cursor:pointer;padding:20px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;color:var(--ink)}
+.faq-q::after{content:'+';font-size:22px;font-weight:300;color:var(--accent);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.16,1,0.3,1),padding .3s}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
+.faq-a p,.faq-a ul{font-size:15px;color:var(--muted);line-height:1.8;margin:0}
+/* ── Scroll reveal ── */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(0.16,1,0.3,1),transform .65s cubic-bezier(0.16,1,0.3,1)}
+[data-reveal].in{opacity:1;transform:none}
+.stats-row .stat-pill{opacity:0;transform:translateY(22px);transition:opacity .55s cubic-bezier(0.16,1,0.3,1),transform .55s cubic-bezier(0.16,1,0.3,1)}
+.stats-row.in .stat-pill:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+.stats-row.in .stat-pill:nth-child(2){opacity:1;transform:none;transition-delay:.12s}
+.stats-row.in .stat-pill:nth-child(3){opacity:1;transform:none;transition-delay:.19s}
+.stats-row.in .stat-pill:nth-child(4){opacity:1;transform:none;transition-delay:.26s}
+.cities-grid .city-chip{opacity:0;transform:translateY(16px) scale(.97);transition:opacity .45s cubic-bezier(0.16,1,0.3,1),transform .45s cubic-bezier(0.16,1,0.3,1),border-color .2s,color .2s}
+.cities-grid.in .city-chip{opacity:1;transform:none}
+.cities-grid.in .city-chip:nth-child(1){transition-delay:.03s}
+.cities-grid.in .city-chip:nth-child(2){transition-delay:.06s}
+.cities-grid.in .city-chip:nth-child(3){transition-delay:.09s}
+.cities-grid.in .city-chip:nth-child(4){transition-delay:.12s}
+.cities-grid.in .city-chip:nth-child(5){transition-delay:.15s}
+.cities-grid.in .city-chip:nth-child(6){transition-delay:.18s}
+.cities-grid.in .city-chip:nth-child(7){transition-delay:.21s}
+.cities-grid.in .city-chip:nth-child(8){transition-delay:.24s}
+.cities-grid.in .city-chip:nth-child(9){transition-delay:.27s}
+.cities-grid.in .city-chip:nth-child(10){transition-delay:.30s}
+.cities-grid.in .city-chip:nth-child(11){transition-delay:.33s}
+.cities-grid.in .city-chip:nth-child(12){transition-delay:.36s}
+.cities-grid.in .city-chip:nth-child(13){transition-delay:.39s}
+.cities-grid.in .city-chip:nth-child(14){transition-delay:.42s}
+.steps-grid .step-card{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(0.16,1,0.3,1),transform .6s cubic-bezier(0.16,1,0.3,1),box-shadow .25s}
+.steps-grid.in .step-card:nth-child(1){opacity:1;transform:none;transition-delay:.07s}
+.steps-grid.in .step-card:nth-child(2){opacity:1;transform:none;transition-delay:.14s}
+.steps-grid.in .step-card:nth-child(3){opacity:1;transform:none;transition-delay:.21s}
+.steps-grid.in .step-card:nth-child(4){opacity:1;transform:none;transition-delay:.28s}
+.feat-grid .feat-card{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(0.16,1,0.3,1),transform .6s cubic-bezier(0.16,1,0.3,1),box-shadow .25s}
+.feat-grid.in .feat-card:nth-child(1){opacity:1;transform:none;transition-delay:.07s}
+.feat-grid.in .feat-card:nth-child(2){opacity:1;transform:none;transition-delay:.14s}
+.feat-grid.in .feat-card:nth-child(3){opacity:1;transform:none;transition-delay:.21s}
+.feat-grid.in .feat-card:nth-child(4){opacity:1;transform:none;transition-delay:.28s}
+@media(prefers-reduced-motion:reduce){[data-reveal],[data-reveal].in,.stats-row .stat-pill,.stats-row.in .stat-pill,.cities-grid .city-chip,.cities-grid.in .city-chip,.steps-grid .step-card,.steps-grid.in .step-card,.feat-grid .feat-card,.feat-grid.in .feat-card{opacity:1;transform:none;transition:none}}
 </style>
+<script>
+(function(){
+  var els=document.querySelectorAll('[data-reveal],.stats-row,.cities-grid,.steps-grid,.feat-grid');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.1,rootMargin:'0px 0px -48px 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('in');});}
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click',function(){
+      var open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');});
+      if(!open)item.classList.add('open');
+    });
+  });
+})();
+</script>
 </body>
 </html>

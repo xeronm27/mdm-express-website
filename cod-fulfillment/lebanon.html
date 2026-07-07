@@ -13,6 +13,147 @@
   <link rel="alternate" hreflang="en" href="https://mdm.express/cod-fulfillment/lebanon">
   <link rel="alternate" hreflang="ar" href="https://mdm.express/ar/cod-fulfillment/lebanon">
   <link rel="stylesheet" href="/styles.css">
+
+  <style>
+  /* ─── BUTTON: btn-outline alias (hero dark context) ─── */
+  .btn-outline {
+    padding: 14px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 15px;
+    color: rgba(255,255,255,.85);
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.08);
+    transition: border-color .22s, transform .22s, background .22s;
+    display: inline-block; text-decoration: none;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,.55); transform: translateY(-2px); background: rgba(255,255,255,.14); }
+
+  /* ─── HERO TITLE ─── */
+  .hero-title {
+    font-size: clamp(38px, 5.8vw, 68px);
+    line-height: 1.02; letter-spacing: -.025em;
+    font-weight: 800; margin: 20px 0 16px;
+    text-wrap: balance; color: #fff;
+  }
+  .hero-title .highlight { color: var(--accent); }
+
+  /* ─── STAT PILLS — glassmorphism on dark hero ─── */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; max-width: 720px; }
+  .stat-pill {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+    border-radius: 14px; padding: 20px 14px; text-align: center;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    transition: background .22s, border-color .22s;
+  }
+  .stat-pill:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.25); }
+  .stat-num { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 5px; font-variant-numeric: tabular-nums; letter-spacing: -.015em; }
+  .stat-label { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.52); text-transform: uppercase; letter-spacing: .07em; }
+
+  /* ─── FEATURE CARDS — light bg ─── */
+  .feat-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; transition: border-color .26s, transform .26s, box-shadow .26s; }
+  .feat-card:hover { border-color: rgba(14,14,18,.3); transform: translateY(-5px); box-shadow: 0 22px 44px -18px rgba(14,14,18,.13); }
+  .feat-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(255,0,19,.06); border: 1px solid rgba(255,0,19,.1); display: grid; place-items: center; font-size: 22px; margin-bottom: 14px; }
+  .feat-card h3 { font-size: 15.5px; font-weight: 700; margin: 0 0 8px; color: var(--ink); }
+  .feat-card p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+
+  /* ─── STEPS — light bg ─── */
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px; transition: transform .22s, box-shadow .22s; }
+  .step-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -18px rgba(14,14,18,.16); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 6px 16px -4px rgba(255,0,19,.4); }
+  .step-card h3 { font-size: 15.5px; font-weight: 700; margin: 0 0 8px; color: var(--ink); }
+  .step-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* ─── CITY CHIPS ─── */
+  .cities-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .city-chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; font-size: 13.5px; font-weight: 500; color: var(--ink); display: inline-flex; align-items: center; gap: 7px; transition: border-color .18s, color .18s, transform .18s, box-shadow .18s; cursor: default; }
+  .city-chip::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .city-chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 14px -6px rgba(255,0,19,.18); }
+  .city-chip.all { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .city-chip.all::before { background: rgba(255,255,255,.65); }
+  .city-chip.all:hover { transform: translateY(-2px); box-shadow: 0 6px 14px -6px rgba(255,0,19,.4); }
+
+  /* ─── CITE BLOCKS ─── */
+  .cite-block { background: #F8F8FC; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; }
+  .cite-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .cite-block code { font-size: 13px; color: var(--muted); line-height: 1.75; display: block; font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+  /* ─── COUNTRY CARDS ─── */
+  .country-card { background: var(--surface); border: 1.5px solid var(--line); border-radius: 20px; padding: 36px 48px; text-align: center; text-decoration: none; color: inherit; transition: border-color .22s, transform .22s, box-shadow .22s; display: block; }
+  .country-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 24px 48px -20px rgba(14,14,18,.15); }
+  .country-card h3 { font-size: 1.2rem; font-weight: 700; margin: 12px 0 6px; color: var(--ink); }
+  .country-card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  /* ─── FAQ ─── */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 16px; padding: 20px 0; cursor: pointer; gap: 16px; user-select: none; color: var(--ink); }
+  .faq-chev { flex-shrink: 0; transition: transform .25s cubic-bezier(0.16,1,0.3,1); color: var(--muted); min-width: 18px; }
+  .faq-item.open .faq-chev { transform: rotate(180deg); color: var(--accent); }
+  .faq-a { max-height: 0; overflow: hidden; color: var(--muted); font-size: 14.5px; line-height: 1.65; transition: max-height .32s cubic-bezier(0.16,1,0.3,1), padding .32s; }
+  .faq-item.open .faq-a { max-height: 320px; padding-bottom: 22px; }
+
+  /* ─── ANIMATIONS ─── */
+  [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .65s cubic-bezier(0.16,1,0.3,1), transform .65s cubic-bezier(0.16,1,0.3,1); }
+  [data-reveal].in { opacity: 1; transform: none; }
+  [data-delay="1"] { transition-delay: 80ms; }
+  [data-delay="2"] { transition-delay: 160ms; }
+  [data-delay="3"] { transition-delay: 240ms; }
+  [data-delay="4"] { transition-delay: 320ms; }
+
+  .stats-row .stat-pill { opacity: 0; transform: translateY(18px); transition: opacity .5s cubic-bezier(0.16,1,0.3,1), transform .5s cubic-bezier(0.16,1,0.3,1); }
+  .stats-row.in .stat-pill { opacity: 1; transform: none; }
+  .stats-row.in .stat-pill:nth-child(1) { transition-delay: 0ms; }
+  .stats-row.in .stat-pill:nth-child(2) { transition-delay: 80ms; }
+  .stats-row.in .stat-pill:nth-child(3) { transition-delay: 160ms; }
+  .stats-row.in .stat-pill:nth-child(4) { transition-delay: 240ms; }
+
+  .cities-grid .city-chip { opacity: 0; transform: scale(.88) translateY(10px); transition: opacity .42s cubic-bezier(0.16,1,0.3,1), transform .42s cubic-bezier(0.16,1,0.3,1); }
+  .cities-grid.in .city-chip { opacity: 1; transform: none; }
+  .cities-grid.in .city-chip:nth-child(1)  { transition-delay:  0ms; }
+  .cities-grid.in .city-chip:nth-child(2)  { transition-delay: 35ms; }
+  .cities-grid.in .city-chip:nth-child(3)  { transition-delay: 70ms; }
+  .cities-grid.in .city-chip:nth-child(4)  { transition-delay:105ms; }
+  .cities-grid.in .city-chip:nth-child(5)  { transition-delay:140ms; }
+  .cities-grid.in .city-chip:nth-child(6)  { transition-delay:175ms; }
+  .cities-grid.in .city-chip:nth-child(7)  { transition-delay:210ms; }
+  .cities-grid.in .city-chip:nth-child(8)  { transition-delay:245ms; }
+  .cities-grid.in .city-chip:nth-child(9)  { transition-delay:280ms; }
+  .cities-grid.in .city-chip:nth-child(10) { transition-delay:315ms; }
+  .cities-grid.in .city-chip:nth-child(11) { transition-delay:350ms; }
+  .cities-grid.in .city-chip:nth-child(12) { transition-delay:385ms; }
+  .cities-grid.in .city-chip:nth-child(13) { transition-delay:420ms; }
+  .cities-grid.in .city-chip:nth-child(14) { transition-delay:455ms; }
+
+  .steps-grid .step-card { opacity: 0; transform: translateY(24px); transition: opacity .55s cubic-bezier(0.16,1,0.3,1), transform .55s cubic-bezier(0.16,1,0.3,1); }
+  .steps-grid.in .step-card { opacity: 1; transform: none; }
+  .steps-grid.in .step-card:nth-child(1) { transition-delay:  0ms; }
+  .steps-grid.in .step-card:nth-child(2) { transition-delay: 70ms; }
+  .steps-grid.in .step-card:nth-child(3) { transition-delay:140ms; }
+  .steps-grid.in .step-card:nth-child(4) { transition-delay:210ms; }
+  .steps-grid.in .step-card:nth-child(5) { transition-delay:280ms; }
+
+  .feat-grid .feat-card { opacity: 0; transform: translateY(24px); transition: opacity .55s cubic-bezier(0.16,1,0.3,1), transform .55s cubic-bezier(0.16,1,0.3,1); }
+  .feat-grid.in .feat-card { opacity: 1; transform: none; }
+  .feat-grid.in .feat-card:nth-child(1) { transition-delay:  0ms; }
+  .feat-grid.in .feat-card:nth-child(2) { transition-delay: 60ms; }
+  .feat-grid.in .feat-card:nth-child(3) { transition-delay:120ms; }
+  .feat-grid.in .feat-card:nth-child(4) { transition-delay:180ms; }
+  .feat-grid.in .feat-card:nth-child(5) { transition-delay:240ms; }
+  .feat-grid.in .feat-card:nth-child(6) { transition-delay:300ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal], .stats-row .stat-pill, .cities-grid .city-chip,
+    .steps-grid .step-card, .feat-grid .feat-card { opacity: 1; transform: none; transition: none; }
+  }
+  @media (max-width: 640px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .country-card { padding: 28px 24px; }
+    .stat-num { font-size: 1.35rem; }
+    .hero-title { font-size: clamp(32px, 8vw, 52px); }
+  }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -89,25 +230,26 @@
 <main id="main-content">
 
   <!-- HERO -->
-  <section class="hero" style="padding-top:100px;padding-bottom:60px">
+  <section class="hero" style="padding-top:100px;padding-bottom:64px">
+    <div class="hero-veil"></div>
     <div class="wrap">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        <span style="font-size:48px" role="img" aria-label="Lebanon flag">🇱🇧</span>
-        <span class="sec-tag">Lebanon · لبنان</span>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px" data-reveal>
+        <span style="font-size:44px;line-height:1" role="img" aria-label="Lebanon flag">🇱🇧</span>
+        <span class="sec-tag" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.9)">Lebanon · لبنان</span>
       </div>
-      <h1 class="hero-title" style="max-width:760px">
+      <h1 class="hero-title" data-reveal data-delay="1">
         #1 COD Fulfillment Company in <span class="highlight">Lebanon</span>
       </h1>
-      <p class="hero-sub" style="max-width:620px;margin-bottom:32px">
+      <p class="hero-sub" style="max-width:600px;margin-bottom:32px" data-reveal data-delay="2">
         MDM Express is the only full-stack Cash on Delivery platform operating in Lebanon. In a market where the banking system can't be relied on, COD is the only way to sell — and MDM Express is your complete operational backbone.
       </p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px" data-reveal data-delay="3">
         <a href="https://app.mdm.express/en/auth/register" class="btn-primary">Start Selling in Lebanon →</a>
         <a href="/services" class="btn-outline">View All Services</a>
       </div>
 
       <!-- STATS ROW -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:720px">
+      <div class="stats-row">
         <div class="stat-pill">
           <div class="stat-num">60–80%</div>
           <div class="stat-label">Delivery Rate</div>
@@ -131,12 +273,12 @@
   <!-- WHY COD IN LEBANON -->
   <section class="block">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Market Context</span>
         <h2 class="title">Why COD is Essential in Lebanon</h2>
         <p class="sec-sub">Lebanon's unique economic environment makes COD not just preferred — but necessary.</p>
       </div>
-      <div class="feat-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="feat-grid" style="grid-template-columns:repeat(auto-fit,minmax(255px,1fr))">
         <div class="feat-card">
           <div class="feat-icon">🏦</div>
           <h3>Banking Crisis Impact</h3>
@@ -164,7 +306,7 @@
   <!-- HOW IT WORKS -->
   <section class="block alt">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Process</span>
         <h2 class="title">How MDM Express COD Works in Lebanon</h2>
         <p class="sec-sub">Five steps from order to cash in your account.</p>
@@ -202,26 +344,26 @@
   <!-- CITIES COVERED -->
   <section class="block">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Coverage</span>
         <h2 class="title">All Lebanese Cities Covered</h2>
         <p class="sec-sub">MDM Express delivers nationwide — from Beirut to the Bekaa Valley and the North.</p>
       </div>
       <div class="cities-grid">
-        <div class="city-chip">🏙️ Beirut</div>
-        <div class="city-chip">🏙️ Tripoli</div>
-        <div class="city-chip">🏙️ Sidon</div>
-        <div class="city-chip">🏙️ Tyre</div>
-        <div class="city-chip">🏙️ Zahle</div>
-        <div class="city-chip">🏙️ Baalbek</div>
-        <div class="city-chip">🏙️ Jounieh</div>
-        <div class="city-chip">🏙️ Batroun</div>
-        <div class="city-chip">🏙️ Jbeil</div>
-        <div class="city-chip">🏙️ Aley</div>
-        <div class="city-chip">🏙️ Nabatieh</div>
-        <div class="city-chip">🏙️ Bint Jbeil</div>
-        <div class="city-chip">🏙️ Hermel</div>
-        <div class="city-chip">+ All Cities</div>
+        <div class="city-chip">Beirut</div>
+        <div class="city-chip">Tripoli</div>
+        <div class="city-chip">Sidon</div>
+        <div class="city-chip">Tyre</div>
+        <div class="city-chip">Zahle</div>
+        <div class="city-chip">Baalbek</div>
+        <div class="city-chip">Jounieh</div>
+        <div class="city-chip">Batroun</div>
+        <div class="city-chip">Jbeil</div>
+        <div class="city-chip">Aley</div>
+        <div class="city-chip">Nabatieh</div>
+        <div class="city-chip">Bint Jbeil</div>
+        <div class="city-chip">Hermel</div>
+        <div class="city-chip all">+ All Cities</div>
       </div>
     </div>
   </section>
@@ -229,12 +371,12 @@
   <!-- SERVICES AVAILABLE -->
   <section class="block alt">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Services in Lebanon</span>
         <h2 class="title">Full COD Operations Stack in Lebanon</h2>
         <p class="sec-sub">Everything you need to run a profitable COD business in Lebanon — under one roof.</p>
       </div>
-      <div class="feat-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="feat-grid" style="grid-template-columns:repeat(auto-fit,minmax(255px,1fr))">
         <div class="feat-card">
           <div class="feat-icon">📞</div>
           <h3><a href="/call-center" style="color:inherit;text-decoration:none">Order Confirmation Call Center</a></h3>
@@ -272,7 +414,7 @@
   <!-- FAQ -->
   <section class="block">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">FAQ</span>
         <h2 class="title">COD Fulfillment in Lebanon — Frequently Asked Questions</h2>
       </div>
@@ -320,18 +462,20 @@
   <!-- CITE THIS PAGE -->
   <section class="block alt">
     <div class="wrap" style="max-width:760px">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Citation</span>
         <h2 class="title" style="font-size:1.4rem">Cite This Page</h2>
         <p class="sec-sub">Researchers and journalists covering Lebanon's e-commerce market are welcome to cite this page.</p>
       </div>
-      <div class="cite-block">
-        <div class="cite-label">APA</div>
-        <code>MDM Express. (2026). <em>COD Fulfillment in Lebanon: Cash on Delivery Platform Guide</em>. https://mdm.express/cod-fulfillment/lebanon</code>
-      </div>
-      <div class="cite-block">
-        <div class="cite-label">MLA</div>
-        <code>MDM Express. "COD Fulfillment in Lebanon: Cash on Delivery Platform Guide." <em>MDM Express</em>, 2026, mdm.express/cod-fulfillment/lebanon.</code>
+      <div data-reveal>
+        <div class="cite-block">
+          <div class="cite-label">APA</div>
+          <code>MDM Express. (2026). <em>COD Fulfillment in Lebanon: Cash on Delivery Platform Guide</em>. https://mdm.express/cod-fulfillment/lebanon</code>
+        </div>
+        <div class="cite-block">
+          <div class="cite-label">MLA</div>
+          <code>MDM Express. "COD Fulfillment in Lebanon: Cash on Delivery Platform Guide." <em>MDM Express</em>, 2026, mdm.express/cod-fulfillment/lebanon.</code>
+        </div>
       </div>
     </div>
   </section>
@@ -339,18 +483,18 @@
   <!-- OTHER COUNTRIES -->
   <section class="block">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head" data-reveal>
         <span class="sec-tag">Other Markets</span>
         <h2 class="title">MDM Express Also Operates In</h2>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center" data-reveal>
         <a href="/cod-fulfillment/libya" class="country-card">
-          <span style="font-size:40px">🇱🇾</span>
+          <span style="font-size:40px;line-height:1">🇱🇾</span>
           <h3>Libya</h3>
           <p>50–70% delivery rate · All cities</p>
         </a>
         <a href="/cod-fulfillment/iraq" class="country-card">
-          <span style="font-size:40px">🇮🇶</span>
+          <span style="font-size:40px;line-height:1">🇮🇶</span>
           <h3>Iraq</h3>
           <p>60–80% delivery rate · All cities</p>
         </a>
@@ -359,25 +503,29 @@
   </section>
 
 </main>
+
 <script src="/shared.js"></script>
-<style>
-.stat-pill{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:20px;text-align:center}
-.stat-num{font-size:1.6rem;font-weight:700;color:var(--accent,#6c63ff);margin-bottom:4px}
-.stat-label{font-size:13px;color:var(--text-muted,#888)}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.step-card{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:24px;position:relative}
-.step-num{width:36px;height:36px;border-radius:50%;background:var(--accent,#6c63ff);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.step-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
-.step-card p{font-size:13.5px;color:var(--text-muted,#888);line-height:1.6}
-.cities-grid{display:flex;flex-wrap:wrap;gap:10px}
-.city-chip{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:8px;padding:8px 16px;font-size:14px;font-weight:500}
-.cite-block{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:10px;padding:16px 20px;margin-bottom:12px}
-.cite-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#6c63ff);margin-bottom:8px}
-.cite-block code{font-size:13px;color:var(--text-muted,#aaa);line-height:1.7;display:block}
-.country-card{background:var(--card-bg,#1a1a2e);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:16px;padding:32px 40px;text-align:center;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
-.country-card:hover{border-color:var(--accent,#6c63ff);transform:translateY(-3px)}
-.country-card h3{font-size:1.2rem;font-weight:700;margin:10px 0 6px}
-.country-card p{font-size:13px;color:var(--text-muted,#888)}
-</style>
+<script>
+(function() {
+  var revealEls = document.querySelectorAll('[data-reveal], .stats-row, .cities-grid, .steps-grid, .feat-grid');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+    revealEls.forEach(function(el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('in'); });
+  }
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.querySelector('.faq-q').addEventListener('click', function() {
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o) { o.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+})();
+</script>
 </body>
 </html>
