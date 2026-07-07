@@ -284,6 +284,7 @@
           <a href="features.html" class="${active==='features'?'active':''}">Features</a>
           <a href="about.html" class="${active==='about'?'active':''}">About Us</a>
           <a href="how-it-works.html" class="${active==='how'?'active':''}">How it works</a>
+          <a href="/blog" class="${active==='blog'?'active':''}">Blog</a>
           <a href="https://app.mdm.express/en/auth/register" class="mdr-cta">Get Started →</a>
         </div>
       </div>

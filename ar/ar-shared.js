@@ -195,7 +195,8 @@
     {label:'دروبشيبينغ',   href:'affiliate.html',    key:'affiliate'},
     {label:'السوق',         href:'marketplace.html',  key:'marketplace'},
     {label:'المميزات',      href:'features.html',     key:'features'},
-    {label:'من نحن',        href:'about.html',        key:'about'}
+    {label:'من نحن',        href:'about.html',        key:'about'},
+    {label:'Blog',          href:'/blog',             key:'blog'}
   ];
 
   /* ── SERVICES DROPDOWN ─────────────────────────────────────────────── */
@@ -295,6 +296,7 @@
           <a href="features.html" class="${active==='features'?'active':''}">المميزات</a>
           <a href="about.html" class="${active==='about'?'active':''}">من نحن</a>
           <a href="how-it-works.html" class="${active==='how'?'active':''}">كيف يعمل</a>
+          <a href="/blog" class="${active==='blog'?'active':''}">Blog</a>
           <a href="https://app.mdm.express/en/auth/register" class="mdr-cta">ابدأ الآن →</a>
         </div>
       </div>
