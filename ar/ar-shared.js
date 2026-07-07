@@ -5,7 +5,7 @@
   (function(){
     if(document.querySelector('link[rel="icon"]')) return;
     const link = document.createElement('link');
-    link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = '../favicon.svg';
+    link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = '/favicon.svg';
     document.head.appendChild(link);
   })();
 
@@ -30,6 +30,11 @@
       '/ar/about':       { title:'عن MDM Express — شريك اللوجستيك بالدفع عند الاستلام في منطقة MENA', desc:'MDM Express شريك متكامل لعمليات التجارة الإلكترونية بالدفع عند الاستلام للبائعين في ليبيا والعراق ولبنان — يوفر لوجستيات شاملة، تجهيز طلبات، وبنية تحتية مالية.' },
       '/ar/remittance':  { title:'تحويل مالي COD ومدفوعات البائعين | MDM Express', desc:'يحصّل MDM Express مدفوعات الدفع عند الاستلام ويقدم تقارير تسوية شفافة حتى يعرف البائعون دائماً ما تم توصيله وتحصيله وموعد استلام أموالهم.' },
       '/ar/capital':     { title:'سلفة التوريد وتمويل البائعين | MDM Express', desc:'يقدم MDM Express سلفة توريد لمساعدة البائعين على تمويل مشتريات المخزون بناءً على أداء المبيعات — بدون حصص، تُسدَّد من عائدات الدفع عند الاستلام.' },
+      '/ar/blog':        { title:'المدونة — نصائح التجارة الإلكترونية بالدفع عند الاستلام | MDM Express', desc:'أدلة عملية واستراتيجيات ورؤى للبائعين في ليبيا والعراق ولبنان — من التوريد والدروبشيبينغ إلى التوصيل والتوسع.' },
+      '/ar/blog/what-is-cash-on-delivery': { title:'ما هو الدفع عند الاستلام (COD)؟ لماذا يهيمن على التجارة الإلكترونية في ليبيا والعراق؟ | MDM Express', desc:'الدفع عند الاستلام هو طريقة الدفع الافتراضية في ليبيا والعراق ولبنان. تعرف على كيفية عمل COD، ولماذا يفضله العملاء، وكيف تدير عملية COD مربحة.' },
+      '/ar/cod-fulfillment/libya':   { title:'خدمة الدفع عند الاستلام في ليبيا 2026 — المنصة الأولى | MDM Express', desc:'MDM Express هي الشركة الأولى لخدمات الدفع عند الاستلام في ليبيا. توصيل لجميع المدن، معدل توصيل 50-70%، ومعدل تأكيد 98%. ابدأ البيع اليوم.' },
+      '/ar/cod-fulfillment/iraq':    { title:'خدمة الدفع عند الاستلام في العراق 2026 — المنصة الأولى | MDM Express', desc:'MDM Express هي الشركة الأولى لخدمات الدفع عند الاستلام في العراق. توصيل لجميع المدن، معدل توصيل 60-80%، ومعدل تأكيد 98%. ابدأ البيع اليوم.' },
+      '/ar/cod-fulfillment/lebanon': { title:'خدمة الدفع عند الاستلام في لبنان 2026 — المنصة الأولى | MDM Express', desc:'MDM Express هي الشركة الأولى لخدمات الدفع عند الاستلام في لبنان. توصيل لجميع المدن، معدل توصيل 60-80%، ومعدل تأكيد 98%. ابدأ البيع اليوم.' },
     };
 
     // Match current path (strip trailing .html if any)
@@ -196,7 +201,8 @@
     {label:'السوق',         href:'marketplace.html',  key:'marketplace'},
     {label:'المميزات',      href:'features.html',     key:'features'},
     {label:'من نحن',        href:'about.html',        key:'about'},
-    {label:'المدونة',       href:'/ar/blog',          key:'blog'}
+    {label:'المدونة',       href:'/ar/blog',          key:'blog'},
+    {label:'الدول',         href:'#',                 key:'countries'}
   ];
 
   /* ── SERVICES DROPDOWN ─────────────────────────────────────────────── */
@@ -239,6 +245,30 @@
         </a>`).join('')}
     </div>`;
 
+  /* ── COUNTRIES DROPDOWN ──────────────────────────────────────────── */
+  const COUNTRY_ITEMS = [
+    { label:'ليبيا', sub:'جميع المدن · توصيل 50-70%', href:'/ar/cod-fulfillment/libya',
+      icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>` },
+    { label:'العراق', sub:'جميع المدن · توصيل 60-80%', href:'/ar/cod-fulfillment/iraq',
+      icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>` },
+    { label:'لبنان', sub:'جميع المدن · توصيل 60-80%', href:'/ar/cod-fulfillment/lebanon',
+      icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>` },
+    { label:'مقارنة المنصات', sub:'MDM مقابل المنافسين', href:'/best-cod-platforms-mena',
+      icon:`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>` },
+  ];
+
+  const countryDropdown = `
+    <div class="nav-dd-panel">
+      ${COUNTRY_ITEMS.map(c=>`
+        <a href="${c.href}" class="nav-dd-item">
+          <div class="nav-dd-icon">${c.icon}</div>
+          <div class="nav-dd-text">
+            <div class="nav-dd-name">${c.label}</div>
+            <div class="nav-dd-sub">${c.sub}</div>
+          </div>
+        </a>`).join('')}
+    </div>`;
+
   const navLinksHtml = NAV_ITEMS.map(n => {
     if (n.key === 'services') {
       return `
@@ -250,6 +280,16 @@
           ${serviceDropdown}
         </div>`;
     }
+    if (n.key === 'countries') {
+      return `
+        <div class="nav-drop-wrap nav-drop-countries${n.key===active?' active':''}">
+          <a href="#" class="nav-drop-trigger${n.key===active?' active':''}">
+            ${n.label}
+            <svg class="nav-drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          ${countryDropdown}
+        </div>`;
+    }
     return `<a href="${n.href}" class="${n.key===active?'active':''}">${n.label}</a>`;
   }).join('');
 
@@ -258,7 +298,7 @@
     <header class="nav-bar">
       <nav class="nav">
         <a href="index.html" class="logo">
-          <img src="../MAIN.svg" alt="MDM Express" class="logo-svg" width="97" height="36" fetchpriority="high">
+          <img src="/MAIN.svg" alt="MDM Express" class="logo-svg" width="97" height="36" fetchpriority="high">
         </a>
         <div class="nav-links" id="navLinks">
           ${navLinksHtml}
@@ -297,6 +337,23 @@
           <a href="about.html" class="${active==='about'?'active':''}">من نحن</a>
           <a href="how-it-works.html" class="${active==='how'?'active':''}">كيف يعمل</a>
           <a href="/ar/blog" class="${active==='blog'?'active':''}">المدونة</a>
+          <!-- Countries accordion -->
+          <div class="mdr-services-wrap">
+            <button class="mdr-services-btn" id="mdrCountriesBtn">
+              الدول
+              <svg class="mdr-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mdr-services-list" id="mdrCountriesList">
+              ${COUNTRY_ITEMS.map(c=>`
+              <a href="${c.href}" class="mdr-service-item">
+                <div class="mdr-service-icon">${c.icon}</div>
+                <div>
+                  <div class="mdr-service-name">${c.label}</div>
+                  <div class="mdr-service-sub">${c.sub}</div>
+                </div>
+              </a>`).join('')}
+            </div>
+          </div>
           <a href="https://app.mdm.express/en/auth/register" class="mdr-cta">ابدأ الآن →</a>
         </div>
       </div>
@@ -431,7 +488,7 @@
       <div class="wrap">
         <div>
           <div class="brand">
-            <img src="../MAIN.svg" alt="MDM Express" class="footer-logo-svg" width="86" height="32" loading="lazy" decoding="async">
+            <img src="/MAIN.svg" alt="MDM Express" class="footer-logo-svg" width="86" height="32" loading="lazy" decoding="async">
           </div>
           <p style="font-size:13.5px;line-height:1.8;color:#A8A4BD">شريكك المتكامل في اللوجستيك والتجارة الإلكترونية — توريد، تخزين، شحن، تحويل مالي وتمويل، كل ذلك في مكان واحد.</p>
           <div class="socials" style="margin-top:14px">
@@ -451,11 +508,20 @@
           </ul>
         </div>
         <div>
+          <h5>الدول</h5>
+          <ul>
+            <li><a href="/ar/cod-fulfillment/libya" style="color:inherit">🇱🇾 ليبيا</a></li>
+            <li><a href="/ar/cod-fulfillment/iraq" style="color:inherit">🇮🇶 العراق</a></li>
+            <li><a href="/ar/cod-fulfillment/lebanon" style="color:inherit">🇱🇧 لبنان</a></li>
+            <li><a href="/best-cod-platforms-mena" style="color:inherit">مقارنة المنصات</a></li>
+          </ul>
+        </div>
+        <div>
           <h5>الموارد</h5>
           <ul>
             <li>تواصل معنا</li>
             <li>مركز المساعدة</li>
-            <li>المدونة</li>
+            <li><a href="/ar/blog" style="color:inherit">المدونة</a></li>
             <li>خريطة الموقع</li>
           </ul>
         </div>
@@ -512,24 +578,27 @@
   fWrap.innerHTML = footerHtml;
   document.body.appendChild(fWrap.firstElementChild);
 
-  /* ── SERVICES DROPDOWN ─────────────────────────────────────────────── */
+  /* ── NAV DROPDOWNS ─────────────────────────────────────────────── */
   (function(){
-    const wrap = document.querySelector('.nav-drop-wrap');
-    if (!wrap) return;
-    let closeTimer;
-    function open(){ clearTimeout(closeTimer); wrap.classList.add('dd-open'); }
-    function close(){ closeTimer = setTimeout(()=> wrap.classList.remove('dd-open'), 180); }
-    wrap.addEventListener('mouseenter', open);
-    wrap.addEventListener('mouseleave', close);
-    const chevron = wrap.querySelector('.nav-drop-chevron');
-    if (chevron) {
-      chevron.addEventListener('click', (e)=>{
-        e.preventDefault(); e.stopPropagation();
-        wrap.classList.toggle('dd-open');
-      });
-    }
+    const wraps = document.querySelectorAll('.nav-drop-wrap');
+    wraps.forEach(wrap => {
+      let closeTimer;
+      function open(){ clearTimeout(closeTimer); wraps.forEach(w=>{ if(w!==wrap) w.classList.remove('dd-open'); }); wrap.classList.add('dd-open'); }
+      function close(){ closeTimer = setTimeout(()=> wrap.classList.remove('dd-open'), 180); }
+      wrap.addEventListener('mouseenter', open);
+      wrap.addEventListener('mouseleave', close);
+      const chevron = wrap.querySelector('.nav-drop-chevron');
+      if (chevron) {
+        chevron.addEventListener('click', (e)=>{
+          e.preventDefault(); e.stopPropagation();
+          const isOpen = wrap.classList.contains('dd-open');
+          wraps.forEach(w=> w.classList.remove('dd-open'));
+          if(!isOpen) wrap.classList.add('dd-open');
+        });
+      }
+    });
     document.addEventListener('click', (e)=>{
-      if (!wrap.contains(e.target)) wrap.classList.remove('dd-open');
+      if (!e.target.closest('.nav-drop-wrap')) wraps.forEach(w=> w.classList.remove('dd-open'));
     });
   })();
 
@@ -560,6 +629,14 @@
       svcBtn.addEventListener('click', () => {
         const open = svcBtn.classList.toggle('open');
         svcList.classList.toggle('open', open);
+      });
+    }
+    const ctryBtn  = document.getElementById('mdrCountriesBtn');
+    const ctryList = document.getElementById('mdrCountriesList');
+    if (ctryBtn && ctryList) {
+      ctryBtn.addEventListener('click', () => {
+        const open = ctryBtn.classList.toggle('open');
+        ctryList.classList.toggle('open', open);
       });
     }
   })();

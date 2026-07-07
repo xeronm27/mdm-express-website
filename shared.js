@@ -6,7 +6,7 @@
   (function(){
     if(document.querySelector('link[rel="icon"]')) return;
     const isAr = window.location.pathname.includes('/ar/');
-    const path = isAr ? '../favicon.svg' : 'favicon.svg';
+    const path = '/favicon.svg';
     const link = document.createElement('link');
     link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = path;
     document.head.appendChild(link);
@@ -35,6 +35,10 @@
       '/capital':       { title:'Sourcing Advance & Seller Financing | MDM Express', desc:'MDM Express offers sourcing advance to help sellers fund inventory purchases based on sales performance — no equity required, repaid from COD revenue.' },
       '/blog':          { title:'Blog — COD E-Commerce Tips for Libya, Iraq & Lebanon | MDM Express', desc:'Practical guides, strategies, and insights for COD sellers in Libya, Iraq, and Lebanon — from sourcing and dropshipping to delivery and scaling.' },
       '/blog/what-is-cash-on-delivery': { title:'What Is Cash on Delivery (COD)? Why It Dominates E-Commerce in Libya & Iraq | MDM Express', desc:'Cash on Delivery is the default payment method across Libya, Iraq, and Lebanon. Learn how COD works, why customers prefer it, and how to run a profitable COD operation.' },
+      '/cod-fulfillment/libya':   { title:'COD Fulfillment in Libya 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Libya. Nationwide delivery to all cities, 50–70% delivery rate, 98% order confirmation rate. Start selling today.' },
+      '/cod-fulfillment/iraq':    { title:'COD Fulfillment in Iraq 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Iraq. Nationwide delivery to all cities, 60–80% delivery rate, 98% order confirmation rate. Start selling today.' },
+      '/cod-fulfillment/lebanon': { title:'COD Fulfillment in Lebanon 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Lebanon. Nationwide delivery to all cities, 60–80% delivery rate, 98% order confirmation rate. Start selling today.' },
+      '/best-cod-platforms-mena': { title:'Best COD Platforms in MENA 2026 — Comparison | MDM Express', desc:'Compare the top Cash on Delivery fulfillment platforms in the Middle East and North Africa. MDM Express is the only COD platform covering Libya, Iraq, and Lebanon together.' },
     };
 
     // Match current page
@@ -180,7 +184,8 @@
     {label:'Marketplace',  href:'marketplace.html',  key:'marketplace'},
     {label:'Features',     href:'features.html',     key:'features'},
     {label:'About Us',     href:'about.html',        key:'about'},
-    {label:'Blog',         href:'blog/index.html',   key:'blog'}
+    {label:'Blog',         href:'blog/index.html',   key:'blog'},
+    {label:'Countries',    href:'#',                 key:'countries'}
   ];
   const active = document.body.dataset.page || '';
 
@@ -212,6 +217,38 @@
     },
   ];
 
+  /* ── COUNTRIES DROPDOWN ITEMS ──────────────────────────────── */
+  const COUNTRY_ITEMS = [
+    {
+      label: 'Libya', sub: 'All cities · 50–70% delivery', href: '/cod-fulfillment/libya',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>`
+    },
+    {
+      label: 'Iraq', sub: 'All cities · 60–80% delivery', href: '/cod-fulfillment/iraq',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>`
+    },
+    {
+      label: 'Lebanon', sub: 'All cities · 60–80% delivery', href: '/cod-fulfillment/lebanon',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>`
+    },
+    {
+      label: 'Compare All Platforms', sub: 'MDM vs competitors', href: '/best-cod-platforms-mena',
+      icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`
+    },
+  ];
+
+  const countryDropdown = `
+    <div class="nav-dd-panel">
+      ${COUNTRY_ITEMS.map(c => `
+        <a href="${c.href}" class="nav-dd-item">
+          <div class="nav-dd-icon">${c.icon}</div>
+          <div class="nav-dd-text">
+            <div class="nav-dd-name">${c.label}</div>
+            <div class="nav-dd-sub">${c.sub}</div>
+          </div>
+        </a>`).join('')}
+    </div>`;
+
   const serviceDropdown = `
     <div class="nav-dd-panel">
       ${SERVICE_ITEMS.map(s => `
@@ -236,6 +273,16 @@
           ${serviceDropdown}
         </div>`;
     }
+    if (n.key === 'countries') {
+      return `
+        <div class="nav-drop-wrap nav-drop-countries${n.key === active ? ' active' : ''}">
+          <a href="#" class="nav-drop-trigger${n.key === active ? ' active' : ''}">
+            ${n.label}
+            <svg class="nav-drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          ${countryDropdown}
+        </div>`;
+    }
     return `<a href="${n.href}" class="${n.key === active ? 'active' : ''}">${n.label}</a>`;
   }).join('');
 
@@ -243,7 +290,7 @@
     <header class="nav-bar">
       <nav class="nav">
         <a href="index.html" class="logo">
-          <img src="MAIN.svg" alt="MDM Express" class="logo-svg" width="97" height="36" fetchpriority="high">
+          <img src="/MAIN.svg" alt="MDM Express" class="logo-svg" width="97" height="36" fetchpriority="high">
         </a>
         <div class="nav-links" id="navLinks">
           ${navLinksHtml}
@@ -285,6 +332,23 @@
           <a href="about.html" class="${active==='about'?'active':''}">About Us</a>
           <a href="how-it-works.html" class="${active==='how'?'active':''}">How it works</a>
           <a href="/blog" class="${active==='blog'?'active':''}">Blog</a>
+          <!-- Countries accordion -->
+          <div class="mdr-services-wrap">
+            <button class="mdr-services-btn" id="mdrCountriesBtn">
+              Countries
+              <svg class="mdr-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mdr-services-list" id="mdrCountriesList">
+              ${COUNTRY_ITEMS.map(c=>`
+              <a href="${c.href}" class="mdr-service-item">
+                <div class="mdr-service-icon">${c.icon}</div>
+                <div>
+                  <div class="mdr-service-name">${c.label}</div>
+                  <div class="mdr-service-sub">${c.sub}</div>
+                </div>
+              </a>`).join('')}
+            </div>
+          </div>
           <a href="https://app.mdm.express/en/auth/register" class="mdr-cta">Get Started →</a>
         </div>
       </div>
@@ -419,7 +483,7 @@
       <div class="wrap">
         <div>
           <div class="brand">
-            <img src="MAIN.svg" alt="MDM Express" class="footer-logo-svg" width="86" height="32" loading="lazy" decoding="async">
+            <img src="/MAIN.svg" alt="MDM Express" class="footer-logo-svg" width="86" height="32" loading="lazy" decoding="async">
           </div>
           <p style="font-size:13.5px;line-height:1.6;color:#A8A4BD">Your all-in-one logistics and eCommerce partner — sourcing, warehousing, shipping, remittance and advance financing, all in one place.</p>
           <div class="socials" style="margin-top:14px">
@@ -439,11 +503,20 @@
           </ul>
         </div>
         <div>
+          <h5>Countries</h5>
+          <ul>
+            <li><a href="/cod-fulfillment/libya" style="color:inherit">🇱🇾 Libya</a></li>
+            <li><a href="/cod-fulfillment/iraq" style="color:inherit">🇮🇶 Iraq</a></li>
+            <li><a href="/cod-fulfillment/lebanon" style="color:inherit">🇱🇧 Lebanon</a></li>
+            <li><a href="/best-cod-platforms-mena" style="color:inherit">Compare Platforms</a></li>
+          </ul>
+        </div>
+        <div>
           <h5>Resources</h5>
           <ul>
             <li>Contact</li>
             <li>Help Center</li>
-            <li>Blog</li>
+            <li><a href="/blog" style="color:inherit">Blog</a></li>
             <li>Sitemap</li>
           </ul>
         </div>
@@ -508,37 +581,28 @@
   fWrap.innerHTML = footerHtml;
   document.body.appendChild(fWrap.firstElementChild);
 
-  /* ── SERVICES DROPDOWN — hover with delay so clicks register ── */
+  /* ── NAV DROPDOWNS — hover with delay so clicks register ── */
   (function(){
-    const wrap = document.querySelector('.nav-drop-wrap');
-    if (!wrap) return;
-    let closeTimer;
-
-    function open(){
-      clearTimeout(closeTimer);
-      wrap.classList.add('dd-open');
-    }
-    function close(){
-      closeTimer = setTimeout(()=> wrap.classList.remove('dd-open'), 180);
-    }
-
-    wrap.addEventListener('mouseenter', open);
-    wrap.addEventListener('mouseleave', close);
-
-    // On mobile (no hover): chevron click toggles dropdown; link click navigates
-    const trigger = wrap.querySelector('.nav-drop-trigger');
-    const chevron = wrap.querySelector('.nav-drop-chevron');
-    if (trigger && chevron) {
-      chevron.addEventListener('click', (e)=>{
-        e.preventDefault();
-        e.stopPropagation();
-        wrap.classList.toggle('dd-open');
-      });
-    }
-
+    const wraps = document.querySelectorAll('.nav-drop-wrap');
+    wraps.forEach(wrap => {
+      let closeTimer;
+      function open(){ clearTimeout(closeTimer); wraps.forEach(w=>{ if(w!==wrap) w.classList.remove('dd-open'); }); wrap.classList.add('dd-open'); }
+      function close(){ closeTimer = setTimeout(()=> wrap.classList.remove('dd-open'), 180); }
+      wrap.addEventListener('mouseenter', open);
+      wrap.addEventListener('mouseleave', close);
+      const chevron = wrap.querySelector('.nav-drop-chevron');
+      if (chevron) {
+        chevron.addEventListener('click', (e)=>{
+          e.preventDefault(); e.stopPropagation();
+          const isOpen = wrap.classList.contains('dd-open');
+          wraps.forEach(w=> w.classList.remove('dd-open'));
+          if(!isOpen) wrap.classList.add('dd-open');
+        });
+      }
+    });
     // Close when clicking outside
     document.addEventListener('click', (e)=>{
-      if (!wrap.contains(e.target)) wrap.classList.remove('dd-open');
+      if (!e.target.closest('.nav-drop-wrap')) wraps.forEach(w=> w.classList.remove('dd-open'));
     });
   })();
 
@@ -577,6 +641,15 @@
       svcBtn.addEventListener('click', () => {
         const open = svcBtn.classList.toggle('open');
         svcList.classList.toggle('open', open);
+      });
+    }
+    // Wire Countries accordion button
+    const ctryBtn  = document.getElementById('mdrCountriesBtn');
+    const ctryList = document.getElementById('mdrCountriesList');
+    if (ctryBtn && ctryList) {
+      ctryBtn.addEventListener('click', () => {
+        const open = ctryBtn.classList.toggle('open');
+        ctryList.classList.toggle('open', open);
       });
     }
   })();
