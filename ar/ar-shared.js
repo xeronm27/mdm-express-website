@@ -258,7 +258,7 @@
     <header class="nav-bar">
       <nav class="nav">
         <a href="index.html" class="logo">
-          <img src="../MAIN.svg" alt="MDM Express" class="logo-svg">
+          <img src="../MAIN.svg" alt="MDM Express" class="logo-svg" width="97" height="36" fetchpriority="high">
         </a>
         <div class="nav-links" id="navLinks">
           ${navLinksHtml}
@@ -431,7 +431,7 @@
       <div class="wrap">
         <div>
           <div class="brand">
-            <img src="../MAIN.svg" alt="MDM Express" class="footer-logo-svg">
+            <img src="../MAIN.svg" alt="MDM Express" class="footer-logo-svg" width="86" height="32" loading="lazy" decoding="async">
           </div>
           <p style="font-size:13.5px;line-height:1.8;color:#A8A4BD">شريكك المتكامل في اللوجستيك والتجارة الإلكترونية — توريد، تخزين، شحن، تحويل مالي وتمويل، كل ذلك في مكان واحد.</p>
           <div class="socials" style="margin-top:14px">
