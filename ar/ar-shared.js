@@ -74,7 +74,7 @@
         ['og:title',            meta.title],
         ['og:description',      meta.desc],
         ['og:url',              BASE + arSlug],
-        ['og:image',            BASE + '/og-image.png'],
+        ['og:image',            'https://project-48ubm.vercel.app/og-image.png'],
         ['og:image:width',      '1200'],
         ['og:image:height',     '630'],
         ['og:image:type',       'image/png'],
