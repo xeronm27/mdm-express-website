@@ -33,6 +33,8 @@
       '/about':         { title:'About MDM Express — COD Logistics Partner in MENA', desc:'MDM Express is a full-service COD e-commerce operations partner for sellers in Libya, Iraq, and Lebanon — providing end-to-end logistics, fulfillment, and financial infrastructure.' },
       '/remittance':    { title:'COD Remittance & Seller Payouts | MDM Express', desc:'MDM Express collects COD payments on delivery and provides transparent settlement reporting so sellers always know what was delivered, collected, and when they will be paid.' },
       '/capital':       { title:'Sourcing Advance & Seller Financing | MDM Express', desc:'MDM Express offers sourcing advance to help sellers fund inventory purchases based on sales performance — no equity required, repaid from COD revenue.' },
+      '/blog':          { title:'Blog — COD E-Commerce Tips for Libya, Iraq & Lebanon | MDM Express', desc:'Practical guides, strategies, and insights for COD sellers in Libya, Iraq, and Lebanon — from sourcing and dropshipping to delivery and scaling.' },
+      '/blog/what-is-cash-on-delivery': { title:'What Is Cash on Delivery (COD)? Why It Dominates E-Commerce in Libya & Iraq | MDM Express', desc:'Cash on Delivery is the default payment method across Libya, Iraq, and Lebanon. Learn how COD works, why customers prefer it, and how to run a profitable COD operation.' },
     };
 
     // Match current page
@@ -177,7 +179,8 @@
     {label:'Dropshipping', href:'affiliate.html',    key:'affiliate'},
     {label:'Marketplace',  href:'marketplace.html',  key:'marketplace'},
     {label:'Features',     href:'features.html',     key:'features'},
-    {label:'About Us',     href:'about.html',        key:'about'}
+    {label:'About Us',     href:'about.html',        key:'about'},
+    {label:'Blog',         href:'blog/index.html',   key:'blog'}
   ];
   const active = document.body.dataset.page || '';
 
