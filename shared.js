@@ -11,13 +11,13 @@
     document.head.appendChild(link);
   })();
   const NAV_ITEMS = [
-    {label:'Home',         href:'index.html',       key:'home'},
+    {label:'Home',         href:'index.html',        key:'home'},
+    {label:'Services',     href:'services.html',     key:'services'},
+    {label:'How It Works', href:'how-it-works.html', key:'how'},
     {label:'Dropshipping', href:'affiliate.html',    key:'affiliate'},
-    {label:'Marketplace',  href:'marketplace.html', key:'marketplace'},
-    {label:'Services',     href:'services.html',    key:'services'},
-    {label:'Features',     href:'features.html',    key:'features'},
-    {label:'About Us',     href:'about.html',       key:'about'},
-    {label:'How it works', href:'how-it-works.html',key:'how'}
+    {label:'Marketplace',  href:'marketplace.html',  key:'marketplace'},
+    {label:'Features',     href:'features.html',     key:'features'},
+    {label:'About Us',     href:'about.html',        key:'about'}
   ];
   const active = document.body.dataset.page || '';
 

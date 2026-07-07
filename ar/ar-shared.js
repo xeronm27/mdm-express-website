@@ -15,13 +15,13 @@
 
   /* ── NAV ITEMS ─────────────────────────────────────────────────────── */
   const NAV_ITEMS = [
-    {label:'الرئيسية',      href:'index.html',       key:'home'},
-    {label:'دروبشيبينغ',   href:'affiliate.html',   key:'affiliate'},
-    {label:'السوق',         href:'marketplace.html', key:'marketplace'},
-    {label:'الخدمات',       href:'services.html',    key:'services'},
-    {label:'المميزات',      href:'features.html',    key:'features'},
-    {label:'من نحن',        href:'about.html',       key:'about'},
-    {label:'كيف يعمل',     href:'how-it-works.html',key:'how'}
+    {label:'الرئيسية',      href:'index.html',        key:'home'},
+    {label:'الخدمات',       href:'services.html',     key:'services'},
+    {label:'كيف يعمل',     href:'how-it-works.html',  key:'how'},
+    {label:'دروبشيبينغ',   href:'affiliate.html',    key:'affiliate'},
+    {label:'السوق',         href:'marketplace.html',  key:'marketplace'},
+    {label:'المميزات',      href:'features.html',     key:'features'},
+    {label:'من نحن',        href:'about.html',        key:'about'}
   ];
 
   /* ── SERVICES DROPDOWN ─────────────────────────────────────────────── */
