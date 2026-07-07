@@ -1,6 +1,7 @@
 
 // shared.js — injects nav, trust strip, page-specific sections, CTA strip, footer + FAQ toggle.
 (function(){
+
   /* ── FAVICON ──────────────────────────────────────────────────── */
   (function(){
     if(document.querySelector('link[rel="icon"]')) return;
@@ -9,6 +10,162 @@
     const link = document.createElement('link');
     link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = path;
     document.head.appendChild(link);
+  })();
+
+  /* ── SEO / GEO / AEO ─────────────────────────────────────────── */
+  (function(){
+    const BASE = 'https://mdm.express';
+    const path = window.location.pathname;
+
+    // Per-page meta config
+    const PAGE_META = {
+      '/':              { title:'MDM Express — COD E-Commerce Operations Platform | Libya, Iraq, Lebanon', desc:'MDM Express manages the full COD e-commerce operation for sellers in Libya, Iraq and Lebanon — sourcing, warehousing, order confirmation, delivery, and cash collection through one connected system.' },
+      '/index':         { title:'MDM Express — COD E-Commerce Operations Platform | Libya, Iraq, Lebanon', desc:'MDM Express manages the full COD e-commerce operation for sellers in Libya, Iraq and Lebanon — sourcing, warehousing, order confirmation, delivery, and cash collection through one connected system.' },
+      '/services':      { title:'Our Services — Sourcing, Fulfillment, Delivery & COD Collection | MDM Express', desc:'Explore MDM Express services: product sourcing, international shipping, warehousing, call center order confirmation, last-mile delivery, COD collection, and seller reporting.' },
+      '/sourcing':      { title:'Product Sourcing from China & Dubai | MDM Express', desc:'Source products from China, Dubai and local suppliers through MDM Express. We handle supplier research, coordination, shipping, customs clearance, and import support for COD sellers.' },
+      '/warehousing':   { title:'Warehousing & Order Fulfillment | MDM Express', desc:'Store and manage your inventory inside MDM warehouses. Track stock levels, order preparation, and fulfillment through one connected platform built for COD e-commerce.' },
+      '/call-center':   { title:'Order Confirmation & Call Center | MDM Express', desc:'MDM Express confirms orders through local call center teams trained to verify customers, handle objections, follow up, and improve delivery success rates for COD sellers.' },
+      '/delivery':      { title:'Last-Mile COD Delivery | Libya, Iraq & Lebanon | MDM Express', desc:'Nationwide COD delivery in Libya, Iraq and Lebanon. MDM tracks every order from dispatch to delivery and collects cash payments on your behalf.' },
+      '/affiliate':     { title:'COD Dropshipping — Sell Without Holding Stock | MDM Express', desc:'Start dropshipping with MDM Express in Libya — no upfront stock required. Choose products, set your price, and MDM handles fulfillment, confirmation, delivery, and COD collection.' },
+      '/marketplace':   { title:'Local Product Marketplace — Source Locally & Sell Fast | MDM Express', desc:'Source products from verified local suppliers through MDM Marketplace. Browse, request stock, and receive delivery — available now in Libya for registered MDM sellers.' },
+      '/how-it-works':  { title:'How MDM Express Works — From Sourcing to Cash Collection', desc:'MDM Express manages the full e-commerce journey: account setup, product sourcing, warehousing, order confirmation, delivery, COD cash collection, and transparent seller payouts.' },
+      '/features':      { title:'Seller Dashboard & Platform Features | MDM Express', desc:'MDM Express gives sellers full visibility over orders, stock levels, delivery status, confirmation rates, returns, and payout tracking from one dashboard.' },
+      '/about':         { title:'About MDM Express — COD Logistics Partner in MENA', desc:'MDM Express is a full-service COD e-commerce operations partner for sellers in Libya, Iraq, and Lebanon — providing end-to-end logistics, fulfillment, and financial infrastructure.' },
+      '/remittance':    { title:'COD Remittance & Seller Payouts | MDM Express', desc:'MDM Express collects COD payments on delivery and provides transparent settlement reporting so sellers always know what was delivered, collected, and when they will be paid.' },
+      '/capital':       { title:'Sourcing Advance & Seller Financing | MDM Express', desc:'MDM Express offers sourcing advance to help sellers fund inventory purchases based on sales performance — no equity required, repaid from COD revenue.' },
+    };
+
+    // Match current page
+    const slug = path.replace(/\/index\.html?$/, '/').replace(/\.html?$/, '') || '/';
+    const meta = PAGE_META[slug] || PAGE_META['/'];
+
+    // ── Canonical ──
+    if(!document.querySelector('link[rel="canonical"]')){
+      const can = document.createElement('link');
+      can.rel = 'canonical';
+      can.href = BASE + slug;
+      document.head.appendChild(can);
+    }
+
+    // ── hreflang ──
+    if(!document.querySelector('link[rel="alternate"]')){
+      [['en', BASE + slug], ['ar', BASE + '/ar' + (slug === '/' ? '/' : slug)]].forEach(([lang, href]) => {
+        const l = document.createElement('link');
+        l.rel = 'alternate'; l.hreflang = lang; l.href = href;
+        document.head.appendChild(l);
+      });
+    }
+
+    // ── Meta description ──
+    if(!document.querySelector('meta[name="description"]') && meta){
+      const m = document.createElement('meta');
+      m.name = 'description'; m.content = meta.desc;
+      document.head.appendChild(m);
+    }
+
+    // ── Open Graph ──
+    if(!document.querySelector('meta[property="og:title"]') && meta){
+      const og = [
+        ['og:type',        'website'],
+        ['og:site_name',   'MDM Express'],
+        ['og:title',       meta.title],
+        ['og:description', meta.desc],
+        ['og:url',         BASE + slug],
+        ['og:image',       BASE + '/MAIN.svg'],
+        ['og:locale',      'en_US'],
+        ['og:locale:alternate', 'ar_LY'],
+        ['twitter:card',   'summary_large_image'],
+        ['twitter:title',  meta.title],
+        ['twitter:description', meta.desc],
+      ];
+      og.forEach(([prop, content]) => {
+        const t = document.createElement('meta');
+        if(prop.startsWith('twitter:')) t.name = prop; else t.setAttribute('property', prop);
+        t.content = content;
+        document.head.appendChild(t);
+      });
+    }
+
+    // ── Organization + WebSite JSON-LD (global) ──
+    const orgSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': BASE + '/#organization',
+          name: 'MDM Express',
+          url: BASE,
+          logo: { '@type': 'ImageObject', url: BASE + '/MAIN.svg' },
+          description: 'MDM Express is a COD e-commerce operations platform providing sourcing, warehousing, order confirmation, last-mile delivery, cash collection, and seller reporting for sellers in Libya, Iraq, and Lebanon.',
+          areaServed: ['Libya', 'Iraq', 'Lebanon'],
+          knowsAbout: ['Cash on Delivery logistics', 'E-commerce fulfillment', 'Product sourcing', 'Last-mile delivery', 'Order confirmation call center', 'COD remittance'],
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'MDM Express Services',
+            itemListElement: [
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Product Sourcing', url: BASE + '/sourcing' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Warehousing & Fulfillment', url: BASE + '/warehousing' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Order Confirmation Call Center', url: BASE + '/call-center' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Last-Mile COD Delivery', url: BASE + '/delivery' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'COD Remittance & Payouts', url: BASE + '/remittance' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dropshipping', url: BASE + '/affiliate' } },
+            ]
+          },
+          contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', availableLanguage: ['English', 'Arabic'] }
+        },
+        {
+          '@type': 'WebSite',
+          '@id': BASE + '/#website',
+          url: BASE,
+          name: 'MDM Express',
+          publisher: { '@id': BASE + '/#organization' },
+          inLanguage: ['en', 'ar']
+        }
+      ]
+    };
+    const orgScript = document.createElement('script');
+    orgScript.type = 'application/ld+json';
+    orgScript.text = JSON.stringify(orgSchema);
+    document.head.appendChild(orgScript);
+
+    // ── FAQPage JSON-LD (auto-extract from DOM) ──
+    window.addEventListener('DOMContentLoaded', function(){
+      const faqItems = document.querySelectorAll('.faq-item, .sv-faq-item');
+      if(faqItems.length < 2) return;
+      const entities = [];
+      faqItems.forEach(item => {
+        const qEl = item.querySelector('.faq-q, .sv-faq-q');
+        const aEl = item.querySelector('.faq-a, .sv-faq-a');
+        if(!qEl || !aEl) return;
+        const q = qEl.childNodes[0] ? qEl.childNodes[0].textContent.trim() : qEl.textContent.trim();
+        const a = aEl.textContent.trim();
+        if(q && a) entities.push({ '@type':'Question', name: q, acceptedAnswer: { '@type':'Answer', text: a } });
+      });
+      if(entities.length < 2) return;
+      const faqScript = document.createElement('script');
+      faqScript.type = 'application/ld+json';
+      faqScript.text = JSON.stringify({ '@context':'https://schema.org', '@type':'FAQPage', mainEntity: entities });
+      document.head.appendChild(faqScript);
+    });
+
+    // ── BreadcrumbList JSON-LD ──
+    window.addEventListener('DOMContentLoaded', function(){
+      if(slug === '/') return;
+      const label = (document.title || '').split('|')[0].split('—')[0].trim();
+      const bc = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type':'ListItem', position:1, name:'Home', item: BASE + '/' },
+          { '@type':'ListItem', position:2, name: label, item: BASE + slug }
+        ]
+      };
+      const bcScript = document.createElement('script');
+      bcScript.type = 'application/ld+json';
+      bcScript.text = JSON.stringify(bc);
+      document.head.appendChild(bcScript);
+    });
+
   })();
   const NAV_ITEMS = [
     {label:'Home',         href:'index.html',        key:'home'},
