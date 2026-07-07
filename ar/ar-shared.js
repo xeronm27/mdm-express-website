@@ -1,5 +1,176 @@
 // ar-shared.js — Arabic nav, trust strip, CTA strip, footer for MDM Express
 (function(){
+
+  /* ── FAVICON ──────────────────────────────────────────────────── */
+  (function(){
+    if(document.querySelector('link[rel="icon"]')) return;
+    const link = document.createElement('link');
+    link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = '../favicon.svg';
+    document.head.appendChild(link);
+  })();
+
+  /* ── SEO / GEO / AEO (Arabic) ────────────────────────────────── */
+  (function(){
+    const BASE = 'https://mdm.express';
+    const path = window.location.pathname;
+
+    // Arabic per-page meta
+    const PAGE_META = {
+      '/ar/':            { title:'MDM Express — منصة التجارة الإلكترونية بالدفع عند الاستلام | ليبيا، العراق، لبنان', desc:'MDM Express تدير عملياتك الكاملة في التجارة الإلكترونية بالدفع عند الاستلام — توريد، تخزين، تأكيد الطلبات، توصيل، وتحصيل نقدي من خلال منظومة متكاملة.' },
+      '/ar/index':       { title:'MDM Express — منصة التجارة الإلكترونية بالدفع عند الاستلام | ليبيا، العراق، لبنان', desc:'MDM Express تدير عملياتك الكاملة في التجارة الإلكترونية بالدفع عند الاستلام — توريد، تخزين، تأكيد الطلبات، توصيل، وتحصيل نقدي من خلال منظومة متكاملة.' },
+      '/ar/services':    { title:'خدماتنا — توريد، تخزين، توصيل وتحصيل نقدي | MDM Express', desc:'اكتشف خدمات MDM Express: توريد المنتجات، شحن دولي، تخزين، مركز اتصال لتأكيد الطلبات، توصيل آخر ميل، تحصيل نقدي، وتقارير البائعين.' },
+      '/ar/sourcing':    { title:'توريد المنتجات من الصين ودبي | MDM Express', desc:'وفّر منتجاتك من الصين ودبي والموردين المحليين عبر MDM Express. نتولى البحث عن الموردين، الشحن، التخليص الجمركي، والاستيراد لبائعي الدفع عند الاستلام.' },
+      '/ar/warehousing': { title:'التخزين وتجهيز الطلبات | MDM Express', desc:'خزّن وأدر مخزونك داخل مستودعات MDM. تتبّع مستويات المخزون، تجهيز الطلبات، والشحن من خلال منصة متكاملة مبنية لتجارة الدفع عند الاستلام.' },
+      '/ar/call-center': { title:'تأكيد الطلبات ومركز الاتصال | MDM Express', desc:'يؤكد MDM Express الطلبات عبر فرق مركز الاتصال المحلية المدرّبة على التحقق من العملاء، ومعالجة الاعتراضات، والمتابعة لرفع معدلات نجاح التوصيل.' },
+      '/ar/delivery':    { title:'توصيل آخر ميل بالدفع عند الاستلام | ليبيا، العراق، لبنان | MDM Express', desc:'توصيل وطني بالدفع عند الاستلام في ليبيا والعراق ولبنان. يتتبع MDM كل طلب من الإرسال حتى التسليم ويحصّل المدفوعات النقدية نيابةً عنك.' },
+      '/ar/affiliate':   { title:'دروبشيبينغ بالدفع عند الاستلام — بيع بدون مخزون | MDM Express', desc:'ابدأ الدروبشيبينغ مع MDM Express في ليبيا — لا يلزم مخزون مسبق. اختر المنتجات، حدد سعرك، ويتولى MDM تجهيز الطلبات، التأكيد، التوصيل، والتحصيل النقدي.' },
+      '/ar/marketplace': { title:'سوق المنتجات المحلية — وفّر محلياً وبع بسرعة | MDM Express', desc:'وفّر منتجاتك من موردين محليين موثوقين عبر سوق MDM. تصفّح، اطلب المخزون، واستقبل التوصيل — متاح الآن في ليبيا للبائعين المسجلين في MDM.' },
+      '/ar/how-it-works':{ title:'كيف يعمل MDM Express — من التوريد إلى التحصيل النقدي', desc:'يدير MDM Express رحلة التجارة الإلكترونية كاملةً: إعداد الحساب، توريد المنتجات، تخزين، تأكيد الطلبات، توصيل، تحصيل نقدي، وتسويات شفافة للبائعين.' },
+      '/ar/features':    { title:'لوحة تحكم البائع وميزات المنصة | MDM Express', desc:'يمنحك MDM Express رؤية كاملة على الطلبات، مستويات المخزون، حالة التوصيل، معدلات التأكيد، المرتجعات، وتتبع المدفوعات — كل ذلك من لوحة تحكم واحدة.' },
+      '/ar/about':       { title:'عن MDM Express — شريك اللوجستيك بالدفع عند الاستلام في منطقة MENA', desc:'MDM Express شريك متكامل لعمليات التجارة الإلكترونية بالدفع عند الاستلام للبائعين في ليبيا والعراق ولبنان — يوفر لوجستيات شاملة، تجهيز طلبات، وبنية تحتية مالية.' },
+      '/ar/remittance':  { title:'تحويل مالي COD ومدفوعات البائعين | MDM Express', desc:'يحصّل MDM Express مدفوعات الدفع عند الاستلام ويقدم تقارير تسوية شفافة حتى يعرف البائعون دائماً ما تم توصيله وتحصيله وموعد استلام أموالهم.' },
+      '/ar/capital':     { title:'سلفة التوريد وتمويل البائعين | MDM Express', desc:'يقدم MDM Express سلفة توريد لمساعدة البائعين على تمويل مشتريات المخزون بناءً على أداء المبيعات — بدون حصص، تُسدَّد من عائدات الدفع عند الاستلام.' },
+    };
+
+    // Match current path (strip trailing .html if any)
+    const slug = path.replace(/\/index\.html?$/, '/ar/').replace(/\.html?$/, '') || '/ar/';
+    const arSlug = slug; // e.g. /ar/services
+    const enSlug = arSlug.replace(/^\/ar/, '') || '/'; // e.g. /services
+    const meta = PAGE_META[arSlug] || PAGE_META['/ar/'];
+
+    // ── Canonical ──
+    if(!document.querySelector('link[rel="canonical"]')){
+      const can = document.createElement('link');
+      can.rel = 'canonical';
+      can.href = BASE + arSlug;
+      document.head.appendChild(can);
+    }
+
+    // ── hreflang ──
+    if(!document.querySelector('link[rel="alternate"]')){
+      [['ar', BASE + arSlug], ['en', BASE + (enSlug || '/')]].forEach(([lang, href]) => {
+        const l = document.createElement('link');
+        l.rel = 'alternate'; l.hreflang = lang; l.href = href;
+        document.head.appendChild(l);
+      });
+    }
+
+    // ── dir + lang on <html> ──
+    document.documentElement.setAttribute('lang', 'ar');
+    document.documentElement.setAttribute('dir', 'rtl');
+
+    // ── Meta description ──
+    if(!document.querySelector('meta[name="description"]') && meta){
+      const m = document.createElement('meta');
+      m.name = 'description'; m.content = meta.desc;
+      document.head.appendChild(m);
+    }
+
+    // ── Open Graph ──
+    if(!document.querySelector('meta[property="og:title"]') && meta){
+      const og = [
+        ['og:type',             'website'],
+        ['og:site_name',        'MDM Express'],
+        ['og:title',            meta.title],
+        ['og:description',      meta.desc],
+        ['og:url',              BASE + arSlug],
+        ['og:image',            BASE + '/MAIN.svg'],
+        ['og:locale',           'ar_LY'],
+        ['og:locale:alternate', 'en_US'],
+        ['twitter:card',        'summary_large_image'],
+        ['twitter:title',       meta.title],
+        ['twitter:description', meta.desc],
+      ];
+      og.forEach(([prop, content]) => {
+        const t = document.createElement('meta');
+        if(prop.startsWith('twitter:')) t.name = prop; else t.setAttribute('property', prop);
+        t.content = content;
+        document.head.appendChild(t);
+      });
+    }
+
+    // ── Organization + WebSite JSON-LD ──
+    const orgSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': BASE + '/#organization',
+          name: 'MDM Express',
+          url: BASE,
+          logo: { '@type': 'ImageObject', url: BASE + '/MAIN.svg' },
+          description: 'MDM Express منصة متكاملة لعمليات التجارة الإلكترونية بالدفع عند الاستلام — تقدم خدمات التوريد، التخزين، تأكيد الطلبات، التوصيل الأخير، التحصيل النقدي، وتقارير البائعين في ليبيا والعراق ولبنان.',
+          areaServed: ['Libya', 'Iraq', 'Lebanon'],
+          knowsAbout: ['Cash on Delivery logistics', 'E-commerce fulfillment', 'Product sourcing', 'Last-mile delivery', 'Order confirmation call center', 'COD remittance'],
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'خدمات MDM Express',
+            itemListElement: [
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'توريد المنتجات', url: BASE + '/sourcing' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'التخزين وتجهيز الطلبات', url: BASE + '/warehousing' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'مركز الاتصال لتأكيد الطلبات', url: BASE + '/call-center' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'توصيل آخر ميل بالدفع عند الاستلام', url: BASE + '/delivery' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'تحويل مالي ومدفوعات البائعين', url: BASE + '/remittance' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'دروبشيبينغ', url: BASE + '/affiliate' } },
+            ]
+          },
+          contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', availableLanguage: ['English', 'Arabic'] }
+        },
+        {
+          '@type': 'WebSite',
+          '@id': BASE + '/#website',
+          url: BASE,
+          name: 'MDM Express',
+          publisher: { '@id': BASE + '/#organization' },
+          inLanguage: ['en', 'ar']
+        }
+      ]
+    };
+    const orgScript = document.createElement('script');
+    orgScript.type = 'application/ld+json';
+    orgScript.text = JSON.stringify(orgSchema);
+    document.head.appendChild(orgScript);
+
+    // ── FAQPage JSON-LD (auto-extract from DOM) ──
+    window.addEventListener('DOMContentLoaded', function(){
+      const faqItems = document.querySelectorAll('.faq-item, .sv-faq-item');
+      if(faqItems.length < 2) return;
+      const entities = [];
+      faqItems.forEach(item => {
+        const qEl = item.querySelector('.faq-q, .sv-faq-q');
+        const aEl = item.querySelector('.faq-a, .sv-faq-a');
+        if(!qEl || !aEl) return;
+        const q = qEl.childNodes[0] ? qEl.childNodes[0].textContent.trim() : qEl.textContent.trim();
+        const a = aEl.textContent.trim();
+        if(q && a) entities.push({ '@type':'Question', name: q, acceptedAnswer: { '@type':'Answer', text: a } });
+      });
+      if(entities.length < 2) return;
+      const faqScript = document.createElement('script');
+      faqScript.type = 'application/ld+json';
+      faqScript.text = JSON.stringify({ '@context':'https://schema.org', '@type':'FAQPage', mainEntity: entities });
+      document.head.appendChild(faqScript);
+    });
+
+    // ── BreadcrumbList JSON-LD ──
+    window.addEventListener('DOMContentLoaded', function(){
+      if(arSlug === '/ar/' || arSlug === '/ar') return;
+      const label = (document.title || '').split('|')[0].split('—')[0].trim();
+      const bc = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type':'ListItem', position:1, name:'الرئيسية', item: BASE + '/ar/' },
+          { '@type':'ListItem', position:2, name: label, item: BASE + arSlug }
+        ]
+      };
+      const bcScript = document.createElement('script');
+      bcScript.type = 'application/ld+json';
+      bcScript.text = JSON.stringify(bc);
+      document.head.appendChild(bcScript);
+    });
+
+  })();
+
   const active = document.body.dataset.page || '';
 
   // Detect current page for language switcher (link back to English).
