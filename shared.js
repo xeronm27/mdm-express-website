@@ -71,8 +71,7 @@
     <header class="nav-bar">
       <nav class="nav">
         <a href="index.html" class="logo">
-          <span class="logo-mark">MDM</span>
-          <span>MDM&nbsp;EXPRESS</span>
+          <img src="MAIN.svg" alt="MDM Express" class="logo-svg">
         </a>
         <div class="nav-links" id="navLinks">
           ${navLinksHtml}
@@ -247,8 +246,7 @@
       <div class="wrap">
         <div>
           <div class="brand">
-            <span class="logo-mark">MDM</span>
-            <span>MDM&nbsp;EXPRESS</span>
+            <img src="MAIN.svg" alt="MDM Express" class="footer-logo-svg">
           </div>
           <p style="font-size:13.5px;line-height:1.6;color:#A8A4BD">Your all-in-one logistics and eCommerce partner — sourcing, warehousing, shipping, remittance and advance financing, all in one place.</p>
           <div class="socials" style="margin-top:14px">

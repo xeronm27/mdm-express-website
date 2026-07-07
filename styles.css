@@ -88,12 +88,9 @@
     padding:10px 12px 10px 22px;
     box-shadow:0 1px 0 rgba(255,255,255,.8) inset, 0 8px 28px -16px rgba(20,20,40,.18);
   }
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
-  .logo-mark{
-    width:28px;height:28px;border-radius:8px;
-    background:linear-gradient(135deg,var(--accent),#C2000F);
-    display:grid;place-items:center;color:var(--on-dark);font-weight:800;font-size:13px;
-  }
+  .logo{display:flex;align-items:center}
+  .logo-svg{height:36px;width:auto;display:block;transition:opacity .18s}
+  .logo:hover .logo-svg{opacity:.85}
   .nav-links{display:flex;gap:6px;align-items:center}
   .nav-links a{
     padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink-2);
@@ -557,8 +554,8 @@
   footer h5{color:var(--on-dark);font-size:14px;margin:0 0 14px;font-weight:700;letter-spacing:.02em}
   footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
   footer li{color:#A8A4BD}
-  footer .brand{display:flex;align-items:center;gap:10px;color:var(--on-dark);font-weight:800;margin-bottom:14px}
-  footer .brand .logo-mark{background:var(--surface);color:var(--accent)}
+  footer .brand{display:flex;align-items:center;margin-bottom:14px}
+  .footer-logo-svg{height:32px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.9}
   footer .copy{font-size:13px;color:#7A769A}
   footer .bottom{
     border-top:1px solid #221839;margin-top:48px;padding-top:20px;
