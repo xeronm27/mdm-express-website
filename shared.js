@@ -1,6 +1,15 @@
 
 // shared.js — injects nav, trust strip, page-specific sections, CTA strip, footer + FAQ toggle.
 (function(){
+  /* ── FAVICON ──────────────────────────────────────────────────── */
+  (function(){
+    if(document.querySelector('link[rel="icon"]')) return;
+    const isAr = window.location.pathname.includes('/ar/');
+    const path = isAr ? '../favicon.svg' : 'favicon.svg';
+    const link = document.createElement('link');
+    link.rel = 'icon'; link.type = 'image/svg+xml'; link.href = path;
+    document.head.appendChild(link);
+  })();
   const NAV_ITEMS = [
     {label:'Home',         href:'index.html',       key:'home'},
     {label:'Dropshipping', href:'affiliate.html',    key:'affiliate'},

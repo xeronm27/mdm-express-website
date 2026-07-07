@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Red rounded square background -->
+  <rect width="100" height="100" rx="22" fill="#FF0013"/>
+  <!-- White M mark (left M polygon from MAIN.svg, scaled to fit) -->
+  <g transform="translate(11,24.3) scale(0.1337)" fill="#ffffff">
+    <polygon points="0 385.5 100.6 0 219.3 0 301.2 149.4 457.2 0 583.7 0 481.9 385.5 353.6 385.5 393.4 228.9 252.4 346.5 171.7 227.1 128.9 385.5 0 385.5"/>
+  </g>
+</svg>
