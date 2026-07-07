@@ -1,0 +1,42 @@
+# MDM Express
+
+> MDM Express is a full-service COD (Cash on Delivery) e-commerce operations platform for sellers in Libya, Iraq, and Lebanon. We handle the entire operation — product sourcing, warehousing, order confirmation, last-mile delivery, cash collection, and seller payouts — through one connected system.
+
+## Core Pages
+
+- [Home](https://mdm.express/): Overview of MDM Express platform and COD e-commerce operations
+- [Services](https://mdm.express/services): Full list of services — sourcing, warehousing, call center, delivery, remittance, capital
+- [How It Works](https://mdm.express/how-it-works): Step-by-step walkthrough from account setup to cash collection
+- [Dropshipping](https://mdm.express/affiliate): Sell without holding stock — MDM handles everything
+- [Marketplace](https://mdm.express/marketplace): Source products from local verified suppliers in Libya
+- [Features](https://mdm.express/features): Seller dashboard, order tracking, payout reporting
+
+## Services
+
+- [Product Sourcing](https://mdm.express/sourcing): Source from China, Dubai, and local suppliers — MDM handles supplier research, shipping, and customs clearance
+- [Warehousing](https://mdm.express/warehousing): Store inventory in MDM warehouses across Libya and Iraq with real-time stock tracking
+- [Call Center](https://mdm.express/call-center): Local Arabic-speaking agents confirm orders, reduce fake orders, and improve delivery success rates
+- [Delivery](https://mdm.express/delivery): Nationwide last-mile COD delivery in Libya, Iraq, and Lebanon with tracking
+- [Remittance](https://mdm.express/remittance): Weekly COD cash collection payouts with transparent settlement reports
+- [Capital / Sourcing Advance](https://mdm.express/capital): Inventory financing based on sales performance — no equity required
+
+## Key Facts
+
+- Founded: 2016
+- Active sellers: 9,000+
+- Markets: Libya, Iraq, Lebanon
+- Order confirmation rate: 98% (vs market average of 60–70%)
+- Capital advanced to sellers: $30M+
+- Products available: 10,000+
+- Headquarters: Dubai, UAE (Creative Tower) and London, UK
+
+## Arabic Version
+
+- [Arabic Home](https://mdm.express/ar/): الصفحة الرئيسية بالعربية
+- [Arabic Services](https://mdm.express/ar/services): خدمات MDM Express
+
+## Contact
+
+- Website: https://mdm.express
+- App / Register: https://app.mdm.express/en/auth/register
+- Support: support@mdmexpress.com
