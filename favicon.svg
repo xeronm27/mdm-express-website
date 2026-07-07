@@ -1,8 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Red rounded square background -->
-  <rect width="100" height="100" rx="22" fill="#FF0013"/>
-  <!-- White M mark (left M polygon from MAIN.svg, scaled to fit) -->
-  <g transform="translate(11,24.3) scale(0.1337)" fill="#ffffff">
-    <polygon points="0 385.5 100.6 0 219.3 0 301.2 149.4 457.2 0 583.7 0 481.9 385.5 353.6 385.5 393.4 228.9 252.4 346.5 171.7 227.1 128.9 385.5 0 385.5"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 409.1 364.4">
+  <!-- Generator: Adobe Illustrator 30.6.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 109)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #ec1e24;
+      }
+
+      .st1 {
+        fill: #0c0e0f;
+      }
+    </style>
+  </defs>
+  <polygon class="st0" points="0 0 129.1 0 260.4 181.5 130.2 364.4 72.6 260.2 130.2 182.2 0 0"/>
+  <polygon class="st1" points="148.7 0 277.8 0 409.1 181.5 278.9 364.4 221.3 260.2 278.9 182.2 148.7 0"/>
 </svg>
