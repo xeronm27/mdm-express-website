@@ -244,6 +244,14 @@
 
   <!-- ── English Blog Articles (Libya) ── -->
   <url>
+    <loc>https://mdm.express/blog/ecommerce-libya-guide</loc>
+    <lastmod>2026-07-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdm.express/blog/ecommerce-libya-guide"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mdm.express/ar/blog/ecommerce-libya-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://mdm.express/blog/sell-online-libya-cod-guide</loc>
     <lastmod>2026-07-07</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://mdm.express/blog/sell-online-libya-cod-guide"/>
@@ -313,6 +321,14 @@
   </url>
 
   <!-- ── Arabic Blog Articles (Libya) ── -->
+  <url>
+    <loc>https://mdm.express/ar/blog/ecommerce-libya-guide</loc>
+    <lastmod>2026-07-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mdm.express/ar/blog/ecommerce-libya-guide"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdm.express/blog/ecommerce-libya-guide"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
   <url>
     <loc>https://mdm.express/ar/blog/sell-online-libya-cod-guide</loc>
     <lastmod>2026-07-07</lastmod>
