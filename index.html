@@ -39,7 +39,7 @@
 
 <!-- ═══ HERO ═══════════════════════════════════════════════════ -->
 <section class="hero">
-  <video class="hero-video" src="hero-bg.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video" src="/hero-bg.mp4" autoplay muted loop playsinline preload="auto" id="heroVideo"></video>
   <div class="hero-veil"></div>
   <div class="wrap">
     <div class="hero-inner">
@@ -445,7 +445,23 @@
 <script src="shared.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="animations.js"></script>
+<script src="/animations.js"></script>
+<script>
+/* Hero video iOS autoplay nudge */
+(function(){
+  var v = document.getElementById('heroVideo');
+  if (!v) return;
+  var p = v.play();
+  if (p !== undefined) {
+    p.catch(function(){
+      /* iOS blocked autoplay — retry on first touch */
+      document.addEventListener('touchstart', function retry(){
+        v.play(); document.removeEventListener('touchstart', retry);
+      }, {once:true, passive:true});
+    });
+  }
+})();
+</script>
 
 <audio id="hero-music" src="hero-music.mp3" loop preload="auto"></audio>
 <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
