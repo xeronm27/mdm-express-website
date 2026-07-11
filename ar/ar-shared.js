@@ -201,8 +201,7 @@
     {label:'السوق',         href:'marketplace.html',  key:'marketplace'},
     {label:'المميزات',      href:'features.html',     key:'features'},
     {label:'من نحن',        href:'about.html',        key:'about'},
-    {label:'المدونة',       href:'/ar/blog',          key:'blog'},
-    {label:'الدول',         href:'#',                 key:'countries'}
+    {label:'المدونة',       href:'/ar/blog',          key:'blog'}
   ];
 
   /* ── SERVICES DROPDOWN ─────────────────────────────────────────────── */

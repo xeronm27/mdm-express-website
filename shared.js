@@ -184,8 +184,7 @@
     {label:'Marketplace',  href:'marketplace.html',  key:'marketplace'},
     {label:'Features',     href:'features.html',     key:'features'},
     {label:'About Us',     href:'about.html',        key:'about'},
-    {label:'Blog',         href:'blog/index.html',   key:'blog'},
-    {label:'Countries',    href:'#',                 key:'countries'}
+    {label:'Blog',         href:'blog/index.html',   key:'blog'}
   ];
   const active = document.body.dataset.page || '';
 
