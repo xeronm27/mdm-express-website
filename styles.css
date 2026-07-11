@@ -4968,6 +4968,8 @@ footer li{transition:color .18s ease;cursor:default}
 
 @media(max-width:980px){
   .nav-hamburger{display:flex}
+  .nav-cta{display:none}
+  .nav-links{display:none}
 }
 
 /* ═══════════════════════════════════════════════════════════════
