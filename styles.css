@@ -379,6 +379,7 @@
     border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;
     display:inline-flex;gap:6px;align-items:center;
     box-shadow:0 12px 24px -12px rgba(20,20,40,.2);
+    color:var(--ink);
   }
   .fc-flag .pin{width:8px;height:8px;border-radius:50%;background:#22C55E}
   .fc-flag-1{left:6%;top:230px;transform:rotate(-2deg)}
