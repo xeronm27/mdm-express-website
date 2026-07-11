@@ -2,6 +2,23 @@
   "name": "mdm-express",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/new-seller-form",
+      "destination": "/affiliate",
+      "permanent": true
+    },
+    {
+      "source": "/docs/MDM%20Fees.pdf",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/docs/MDM Fees.pdf",
+      "destination": "/services",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.mp4",
