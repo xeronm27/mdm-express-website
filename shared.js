@@ -35,9 +35,9 @@
       '/capital':       { title:'Sourcing Advance & Seller Financing | MDM Express', desc:'MDM Express offers sourcing advance to help sellers fund inventory purchases based on sales performance — no equity required, repaid from COD revenue.' },
       '/blog':          { title:'Blog — COD E-Commerce Tips for Libya, Iraq & Lebanon | MDM Express', desc:'Practical guides, strategies, and insights for COD sellers in Libya, Iraq, and Lebanon — from sourcing and dropshipping to delivery and scaling.' },
       '/blog/what-is-cash-on-delivery': { title:'What Is Cash on Delivery (COD)? Why It Dominates E-Commerce in Libya & Iraq | MDM Express', desc:'Cash on Delivery is the default payment method across Libya, Iraq, and Lebanon. Learn how COD works, why customers prefer it, and how to run a profitable COD operation.' },
-      '/cod-fulfillment/libya':   { title:'COD Fulfillment in Libya 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Libya. Nationwide delivery to all cities, 50–70% delivery rate, 98% order confirmation rate. Start selling today.' },
-      '/cod-fulfillment/iraq':    { title:'COD Fulfillment in Iraq 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Iraq. Nationwide delivery to all cities, 60–80% delivery rate, 98% order confirmation rate. Start selling today.' },
-      '/cod-fulfillment/lebanon': { title:'COD Fulfillment in Lebanon 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Lebanon. Nationwide delivery to all cities, 60–80% delivery rate, 98% order confirmation rate. Start selling today.' },
+      '/cod-fulfillment/libya':   { title:'COD Fulfillment in Libya 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Libya. Nationwide delivery to all cities, 50–70% delivery rate, 75% order confirmation rate. Start selling today.' },
+      '/cod-fulfillment/iraq':    { title:'COD Fulfillment in Iraq 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Iraq. Nationwide delivery to all cities, 60–80% delivery rate, 75% order confirmation rate. Start selling today.' },
+      '/cod-fulfillment/lebanon': { title:'COD Fulfillment in Lebanon 2026 — #1 Cash on Delivery Platform | MDM Express', desc:'MDM Express is the #1 COD fulfillment company in Lebanon. Nationwide delivery to all cities, 60–80% delivery rate, 75% order confirmation rate. Start selling today.' },
       '/best-cod-platforms-mena': { title:'Best COD Platforms in MENA 2026 — Comparison | MDM Express', desc:'Compare the top Cash on Delivery fulfillment platforms in the Middle East and North Africa. MDM Express is the only COD platform covering Libya, Iraq, and Lebanon together.' },
     };
 
@@ -362,7 +362,7 @@
     '24/7 Call Centre Support',
     'Next-Day Delivery',
     '10,000+ Products Ready',
-    'MDM Express Since 2016',
+    'MDM Express Since 2023',
     'No Equity Required',
     'Full-Stack Operations',
   ];
